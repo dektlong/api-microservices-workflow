@@ -1,0 +1,53 @@
+command:
+  name: new
+  description: Create a new micro-gateways for online Stores
+  options:
+    - name: sso
+      description:  sso
+      dataType: string
+      defaultValue: yes
+      inputType: checkbox    #multiple options
+      choices:
+        project: yes
+        internal: no
+    - name: api-keys
+      description:  keys
+      dataType: string
+      #defaultValue: functionality
+      inputType: select    #single options
+      choices:
+        access-level: a
+        functionality: b
+        on-off-platform: b
+#
+
+sources:
+  include:
+    - name: everything
+      condition: true
+      patterns: [ '**/*' ]
+  exclude:
+    - name: test-container-filers
+      condition: "!#useTestContainers"
+      patterns: [ '**/*TestContainer*' ]
+    - name: hidden-files
+      condition: true
+      patterns:
+        - ".idea/**"
+        - ".git/**"
+        - "target/**"
+
+symbols:
+  derived:
+    - name: camelCaseProjectName
+      expression: "#helper.camelCase(#projectName)"
+
+
+transformations:
+  replace:
+    - name: 'Replace - project creation time in version controller'
+      regex: '1 January 1970 00:00:00 UT'
+      with: '#now'
+    - name: 'Replace - project name in version controller'
+      regex: 'name-mysqlapp'
+      with: '#camelCaseProjectName'
