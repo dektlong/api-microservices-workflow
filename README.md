@@ -1,5 +1,7 @@
-# Accelerator to create an AppStack supply-chain for operating api gateways
+# Accelerator to operate api gateways
 
-Provides gateways and sso configuration
+* Help create an AppStack supply-chain for operating a collection of micro-gateways
 
-Support both kuberentes and tanzu application service
+* Provides gateways and sso configuration
+
+* Support both kuberentes and tanzu application service
