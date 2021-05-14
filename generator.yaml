@@ -2,23 +2,16 @@ command:
   name: new
   description: Create a new micro-gateways for online Stores
   options:
-    - name: sso
-      description:  sso
-      dataType: string
-      defaultValue: yes
-      inputType: checkbox    #multiple options
-      choices:
-        project: yes
-        internal: no
-    - name: api-keys
-      description:  keys
-      dataType: string
-      #defaultValue: functionality
-      inputType: select    #single options
-      choices:
-        access-level: a
-        functionality: b
-        on-off-platform: b
+     - name: sso-config
+       description: Add configuration to support protected routes on your gateways
+       dataType: boolean
+       defaultValue: true
+       inputType: toggle
+     - name: api-keys
+       description: Location of the api-key provider
+       defaultValue: 
+       paramLabel: WORD
+       inputType: text     # TEXT
 #
 
 sources:
