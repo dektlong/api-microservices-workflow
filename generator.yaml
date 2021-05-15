@@ -1,3 +1,10 @@
+
+Gateway supch
+HA gateway - replace instance count
+SSO OpenID identity provide provider Google, Okta, Microsoft, Amazo generic OpenID add secret and sso file example)
+API portal includes - project APIs, LoB APIs, off platform (‘brownfield’)
+
+
 command:
   name: new
   description: Create a new micro-gateways for online Stores

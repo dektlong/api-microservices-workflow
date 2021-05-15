@@ -1,0 +1,16 @@
+# this is a mockup file to illustrate future AppStack concepts 
+apiVersion: experimental.kontinue.io/v1
+kind: Workload
+metadata:
+  name: api-gateways-supplychain
+  labels:
+    app.kubernetes.io/name: api-gateways-supplychain
+    app.tanzu.vmware.com/workload-type: supplychain
+  spec:
+    components:
+      -name: opinion-service-api-gateway-template-provider
+        templateRef:
+          kind: OpinionTemplate
+          name: online-store-micro-gateways
+          # deploy gateway in HA mode
+      
