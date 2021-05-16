@@ -1,7 +1,3 @@
----
-actions:
-  to: deployment/gateway/gateway-tas
----
 {
     "sso": {
       "plan": "onlinestore-sso-secret"
