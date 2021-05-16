@@ -11,6 +11,5 @@ metadata:
       -name: opinion-service-api-gateway-template-provider
         templateRef:
           kind: OpinionTemplate
-          name: online-store-micro-gateways
-          # deploy gateway in HA mode
+          name: onlinestore-gateways
       

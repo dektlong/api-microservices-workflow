@@ -5,13 +5,13 @@ actions:
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
-  name: online-store-micro-gateway
+  name: onlinestore-micro-gateway
 spec:
   api:
-    serverUrl: https://online-store.example.com
+    serverUrl: https://onlinestore.example.com
     title: Online Store micro-gateway
     description: Micro Gateway to control internal APIs for building microservices for online stores. 
     version: 0.1.0
   count: 2
   sso:
-    secret: online-store-sso-secret
+    secret: onlinestore-sso-secret

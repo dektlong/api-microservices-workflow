@@ -4,11 +4,11 @@ actions:
 ---
 {
     "sso": {
-      "plan": "online-store-sso-secret"
+      "plan": "onlinestore-sso-secret"
     },
     "count": 2,
-    "host": "online-store-gateway",
-    "title": "online-store-gateway",
+    "host": "onlinestore-gateway",
+    "title": "onlinestore-gateway",
     "description": "Demo application for Tanzu API Grid",
     "documentation": "https://github.com/dektlong/_dekt4pets-demo",
     "version": "1.0.0",
