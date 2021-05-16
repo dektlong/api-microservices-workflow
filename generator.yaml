@@ -1,9 +1,8 @@
-
 command:
   name: new
   description: Create micro-gateways base configuration
   options:
-     - name: sso-provider
+    - name: sso-provider
        description: SSO OpenID identity provider
        dataType: string
        inputType: select  
@@ -18,7 +17,7 @@ command:
        dataType: boolean
        defaultValue: true
        inputType: toggle
-     - name: api-keys
+    - name: api-keys
        description: Location of the api-keys management server
        paramLabel: WORD
        inputType: text
@@ -31,3 +30,5 @@ command:
         external: External gateways
         internal: Internal gateways
         brownfield: Brownfield gateways
+
+#
