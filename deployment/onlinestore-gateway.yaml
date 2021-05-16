@@ -1,7 +1,3 @@
----
-actions:
-  to: deployment/gateway/gateway-k8s.yaml
----
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
