@@ -23,7 +23,12 @@ accelerator:
       microsoft: Microsoft
       internal: Internal
   - name: apiPortal
-    description: Deploy API Portal with gateways   
+    description: Add API Portal configuration  
+    dataType: boolean
+    defaultValue: true
+    inputType: toggle
+  - name: brownfieldGW
+    description: Add 'brownfield' gateway configuration to access external api end points
     dataType: boolean
     defaultValue: true
     inputType: toggle
@@ -57,16 +62,13 @@ engine:
         with: '#ssoProvider'
       - token: "{{haCount}}"
         with: '#haCount'
-  - name: boot-observer
-    includes: ["config/deployment-with-boot-observer.yaml"]
-    condition: '#includeBootObserver'
-  - name: pom-xml
-    includes: ["src/maven/pom.xml"]
-    transformations:
-      replace:
-      - token: "{{appName}}"
-        with: '#projectName'
-      - name: all-other
-        includes: ["**"]
-        excludes: ["accelerator.yaml","generator.yaml"]
+  - name: include-brownfield-gateway
+    includes: ["config/brownfield-gateway.yaml"]
+    condition: '#brownfieldGW'
+  - name: include-api-portal
+    includes: ["config/api-portal-openapi-ingress.yaml"]
+    condition: '#apiPortal'
+  - name: all-other
+    includes: ["**"]
+    excludes: ["accelerator.yaml","generator.yaml","config/api-portal-openapi-ingress.yaml","config/brownfield-gateway.yaml"]
       
