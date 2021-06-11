@@ -1,13 +1,13 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
-  name: exterenal-service-gateway
+  name: {{appName}-brownfield-gateway
 spec:
   api:
     serverUrl: https://brownfield.{{domainName}}
     title: External Service
-    description: APIs to help with connectivity to a 'brownfield' (external services) api end point
+    description: Brownfield gateway to enable {{appName}} to access external api end points
     version: 0.5.0
-  count: 1
+  count: {{haCount}}
   sso:
     secret: brownfield-{{ssoProvider}}-secret
