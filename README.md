@@ -1,11 +1,11 @@
-# Accelerator to config a workflow that supports the following:
+## Accelerator to configure a workflow that supports the following:
 
-## Single K8s Cluster / Single TAS foundation
+- Single K8s Cluster / Single TAS foundation
 
-## Multiple app components (microservices) build and pipelines 
+- Multiple app components (microservices) build and pipelines 
 
-## Micro-gateways configuration (HA, SSO, domains, etc...)
+- Micro-gateways configuration (HA, SSO, domains, etc...)
 
-## Api portal configuration
+- Api portal configuration
 
 
