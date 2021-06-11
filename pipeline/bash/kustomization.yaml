@@ -9,4 +9,5 @@ resources:
   - {{microserviceTwoName}}.yaml
   - {{microserviceTwoName}}-routes.yaml
   - {{microserviceTwoName}}-mapping.yaml
+  - {{appName}}-gateway.yaml
  
