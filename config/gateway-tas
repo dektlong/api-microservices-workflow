@@ -2,7 +2,7 @@
     "sso": {
       "plan": "{{appName}}-{{ssoProvider}}-plan"
     },
-    "count": 2,
+    "count": {{haCount}},
     "host": "{{appName}}-gateway",
     "title": "{{appName}}-gateway",
     "description": "API gateway for {{appName}},
