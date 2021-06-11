@@ -27,15 +27,6 @@ accelerator:
     dataType: boolean
     defaultValue: true
     inputType: toggle
-  - name: brownfieldGW
-    description: Add gateway configuration to access external api end points
-    dataType: boolean
-    defaultValue: true
-    inputType: toggle
-  - name: apiKeys
-    description: Default location to obtain api-keys
-    dataType: string
-    inputType: text
   - name: haCount
     description: HA setup for micro gateways deployment
     dataType: string
@@ -61,13 +52,10 @@ engine:
         with: '#ssoProvider'
       - token: "{{haCount}}"
         with: '#haCount'
-  - name: include-brownfield-gateway
-    includes: ["config/brownfield-gateway.yaml"]
-    condition: '#brownfieldGW'
   - name: include-api-portal
     includes: ["config/api-portal-openapi-ingress.yaml"]
     condition: '#apiPortal'
   - name: all-other
     includes: ["**"]
-    excludes: ["accelerator.yaml","generator.yaml","config/api-portal-openapi-ingress.yaml","config/brownfield-gateway.yaml"]
+    excludes: ["accelerator.yaml","generator.yaml"]
       
