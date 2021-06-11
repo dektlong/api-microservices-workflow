@@ -27,7 +27,7 @@ accelerator:
     dataType: boolean
     defaultValue: true
     inputType: toggle
-  - name: haCount
+  - name: microGatewayHA
     description: HA setup for micro gateways deployment
     dataType: string
     inputType: select
@@ -51,7 +51,7 @@ engine:
       - token: "{{ssoProvider}}"
         with: '#ssoProvider'
       - token: "{{haCount}}"
-        with: '#haCount'
+        with: '#microGatewayHA'
   - name: include-api-portal
     includes: ["config/api-portal-openapi-ingress.yaml"]
     condition: '#apiPortal'
