@@ -7,6 +7,6 @@
     "title": "{{appName}}-gateway",
     "description": "API gateway for {{appName}},
     "version": "1.0.0",
-    "error-routes": [ { "code": "404", "redirect-path": "/rescue" } ]
+    "error-routes": [ { "code": "404", "redirect-path": "/store" } ]
 }
   
