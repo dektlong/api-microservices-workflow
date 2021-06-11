@@ -1,5 +1,0 @@
-kp builder create {{projectName}}-builder -n {{projectName}}-ns \
-   --tag goharbor.io/{{projectName}}/{{projectName}}-builder \
-   --order build-order.yaml \
-   --stack base \
-   --store default
