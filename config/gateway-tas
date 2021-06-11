@@ -1,11 +1,11 @@
 {
     "sso": {
-      "plan": "onlinestore-sso-secret"
+      "plan": "{{appName}}-{{ssoProvider}}-plan"
     },
     "count": 2,
-    "host": "onlinestore-gateway",
-    "title": "onlinestore-gateway",
-    "description": "Demo application for Tanzu API Grid",
+    "host": "{{appName}}-gateway",
+    "title": "{{appName}}-gateway",
+    "description": "API gateway for {{appName}},
     "documentation": "https://github.com/dektlong/_dekt4pets-demo",
     "version": "1.0.0",
     "error-routes": [ { "code": "404", "redirect-path": "/rescue" } ]
