@@ -1,6 +1,6 @@
 accelerator:
-  displayName: Workflow for operating api gateways
-  description: Accelerator to create an AppStack supply-chain for operating api gateways
+  displayName: Workflow for operating API Grid components
+  description: Accelerator to create an AppStack supply-chain for operating api grid components
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/80bfdbf23040731d16310e286e7d40b57e3b23d5/tanzu.png
   tags:
   - online-store-devops
@@ -28,7 +28,7 @@ accelerator:
     defaultValue: true
     inputType: toggle
   - name: brownfieldGW
-    description: Add 'brownfield' gateway configuration to access external api end points
+    description: Add gateway configuration to access external api end points
     dataType: boolean
     defaultValue: true
     inputType: toggle
@@ -41,12 +41,11 @@ accelerator:
     dataType: string
     inputType: select
     required: true
-    defaultValue: 2  
+    defaultValue: 1  
     choices:
-      1: None
-      2: Development
-      4: Intergration
-      5: Production
+      1: Development
+      2: Intergration
+      4: Production
 
 engine:
   resources:
