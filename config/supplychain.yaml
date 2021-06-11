@@ -2,9 +2,9 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: {{appName}}-micro-gateways-supplychain
+  name: {{appName}}-apigrid
   labels:
-    app.kubernetes.io/name: {{appName}}-micro-gateways-supplychain
+    app.kubernetes.io/name: {{appName}}-apigrid
     app.tanzu.vmware.com/workload-type: supplychain
   spec:
     components:
