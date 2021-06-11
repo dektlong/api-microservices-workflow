@@ -1,61 +1,72 @@
 accelerator:
-  displayName: Backend API for online-stores
-  description: Accelerator to create Backend API service for online stores
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-boot.png
+  displayName: Workflow for operating api gateways
+  description: Accelerator to create an AppStack supply-chain for operating api gateways
+  iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/80bfdbf23040731d16310e286e7d40b57e3b23d5/tanzu.png
   tags:
-  - online-store-devs
+  - online-store-devops
 
   options:
-  - name: apiValidation
-    description:  How to score and validate APIs spec and performance
+  - name: deploymentDomain
+    description: The initial deployment domain 
+    dataType: string
+    inputType: text
+    required: true
+  - name: ssoProvider
+    description: SSO OpenID identity provider
     dataType: string
     required: true
-    defaultValue: project
-    inputType: select
+    inputType: select  
     choices:
-      unit: Unit test local access
-      project: Project level access 
-      internal: Internal teams collabolartion 
-  - name: firstApiGroup
-    description: Name of the first API group
-    dataType: string
-    inputType: text
-    defaultValue: All my APIs
-    required: true
-  - name: secondApiGroup
-    description: Name of the second API group
-    dataType: string
-    inputType: text
-  - name: includeBootObserver
-    description: Include sidecar integration to Spring Boot Observer
+      amazon: Amazon
+      google: Google
+      okta: Okta (Auth0)
+      microsoft: Microsoft
+      internal: Internal
+  - name: apiPortal
+    description: Deploy API Portal with gateways   
     dataType: boolean
     defaultValue: true
     inputType: toggle
+  - name: apiKeys
+    description: Default location to obtain api-keys
+    dataType: string
+    inputType: text
+  - name: haCount
+    description: HA setup for micro gateways deployment
+    dataType: string
+    inputType: select
+    required: true
+    defaultValue: 2  
+    choices:
+      1: None
+      2: Development
+      4: Intergration
+      5: Production
 
 engine:
   resources:
-    - name: config-yaml
-      includes: ["config/*.yaml"]
-      transformations:
-        replace:
-          - token: "{{appName}}"
-            with: '#projectName'
-          - token: "{{apiValidation}}"
-            with: '#apiValidation'
-          - token: "{{apiGroup1}}"
-            with: '#firstApiGroup'
-          - token: "{{apiGroup2}}"
-            with: '#secondApiGroup'
-    - name: boot-observer
-      includes: ["config/deployment-with-boot-observer.yaml"]
-      condition: '#includeBootObserver'
-    - name: pom-xml
-      includes: ["src/maven/pom.xml"]
-      transformations:
-        replace:
-          - token: "{{appName}}"
-            with: '#projectName'
-    - name: all-other
-      includes: ["**"]
-      excludes: ["accelerator.yaml","generator.yaml","config/deployment-with-boot-observer.yaml"]
+  - name: update-deployment-config
+    includes: ["config/*.*"]
+    transformations:
+      replace:
+      - token: "{{appName}}"
+        with: '#projectName'
+      - token: "{{deploymentDomain}}"
+        with: '#deploymentDomain'
+      - token: "{{ssoProvider}}"
+        with: '#ssoProvider'
+      - token: "{{haCount}}"
+        with: '#haCount'
+  - name: boot-observer
+    includes: ["config/deployment-with-boot-observer.yaml"]
+    condition: '#includeBootObserver'
+  - name: pom-xml
+    includes: ["src/maven/pom.xml"]
+    transformations:
+      replace:
+      - token: "{{appName}}"
+        with: '#projectName'
+      - name: all-other
+        includes: ["**"]
+        excludes: ["accelerator.yaml","generator.yaml"]
       
