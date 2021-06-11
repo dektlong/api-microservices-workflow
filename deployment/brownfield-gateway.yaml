@@ -4,10 +4,10 @@ metadata:
   name: exterenal-service-gateway
 spec:
   api:
-    serverUrl: https://brownfield.{HOST_NAME}
+    serverUrl: https://brownfield.{{domainName}}
     title: External Service
     description: APIs to help with connectivity to a 'brownfield' (external services) api end point
     version: 0.5.0
   count: 1
   sso:
-    secret: external-service-sso-secret
+    secret: brownfield-{{ssoProvider}}-secret
