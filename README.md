@@ -1,9 +1,11 @@
-# Accelerator to operate api grid components
+# Accelerator to config a workflow that supports the following:
 
-* Help create an AppStack supply-chain for operating api-grid for a business application
+## Single K8s Cluster / Single TAS foundation
 
-* Provides micro-gateways configuration (HA, SSO, domains, etc...)
+## Multiple app components (microservices) build and pipelines 
 
-* Provide api portal configuration
+## Micro-gateways configuration (HA, SSO, domains, etc...)
 
-* Support both kuberentes and tanzu application service
+## Api portal configuration
+
+
