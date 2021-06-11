@@ -2,14 +2,14 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: api-gateways-supplychain
+  name: {{appName}}-micro-gateways-supplychain
   labels:
-    app.kubernetes.io/name: api-gateways-supplychain
+    app.kubernetes.io/name: {{appName}}-micro-gateways-supplychain
     app.tanzu.vmware.com/workload-type: supplychain
   spec:
     components:
-      -name: opinion-service-api-gateway-template-provider
+      -name: api-gateway-template
         templateRef:
           kind: OpinionTemplate
-          name: onlinestore-gateways
+          name: web-micro-gateways
       
