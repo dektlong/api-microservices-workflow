@@ -1,9 +1,9 @@
 # Accelerator to operate api grid components
 
-* Help create an AppStack supply-chain for operating a collection of micro-gateways
+* Help create an AppStack supply-chain for operating an api-grid for a business application
 
-* Provides gateways and sso configuration
+** Provides micro-gateways configuration (HA, SSO, domains, etc...)
 
-* Provide api portal configs 
+** Provide api portal configuration
 
 * Support both kuberentes and tanzu application service
