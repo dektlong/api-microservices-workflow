@@ -1,0 +1,61 @@
+accelerator:
+  displayName: Backend API for online-stores
+  description: Accelerator to create Backend API service for online stores
+  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-boot.png
+  tags:
+  - online-store-devs
+
+  options:
+  - name: apiValidation
+    description:  How to score and validate APIs spec and performance
+    dataType: string
+    required: true
+    defaultValue: project
+    inputType: select
+    choices:
+      unit: Unit test local access
+      project: Project level access 
+      internal: Internal teams collabolartion 
+  - name: firstApiGroup
+    description: Name of the first API group
+    dataType: string
+    inputType: text
+    defaultValue: All my APIs
+    required: true
+  - name: secondApiGroup
+    description: Name of the second API group
+    dataType: string
+    inputType: text
+  - name: includeBootObserver
+    description: Include sidecar integration to Spring Boot Observer
+    dataType: boolean
+    defaultValue: true
+    inputType: toggle
+
+engine:
+  resources:
+    - name: config-yaml
+      includes: ["config/*.yaml"]
+      transformations:
+        replace:
+          - token: "{{appName}}"
+            with: '#projectName'
+          - token: "{{apiValidation}}"
+            with: '#apiValidation'
+          - token: "{{apiGroup1}}"
+            with: '#firstApiGroup'
+          - token: "{{apiGroup2}}"
+            with: '#secondApiGroup'
+    - name: boot-observer
+      includes: ["config/deployment-with-boot-observer.yaml"]
+      condition: '#includeBootObserver'
+    - name: pom-xml
+      includes: ["src/maven/pom.xml"]
+      transformations:
+        replace:
+          - token: "{{appName}}"
+            with: '#projectName'
+    - name: all-other
+      includes: ["**"]
+      excludes: ["accelerator.yaml","generator.yaml","config/deployment-with-boot-observer.yaml"]
+      
