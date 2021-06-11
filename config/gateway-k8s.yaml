@@ -11,6 +11,6 @@ spec:
     cors:
       allowedOrigins:
         - api-portal.{{deploymentDomain}}
-  count: 2
+  count: {{haCount}}
   sso:
     secret: {{appName}}-{{ssoProvider}}-secret
