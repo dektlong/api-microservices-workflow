@@ -46,21 +46,11 @@ accelerator:
       1: Development
       2: Intergration
       4: Production
-  - name: pipelineProvider
-    description: Pipeline tool to be used
-    dataType: string
-    inputType: select
-    required: true
-    defaultValue: argo  
-    choices:
-      argo: Argo
-      azure-devops: Azure DevOps
-      bash: Bash and Kustomize
 
 engine:
   resources:
-  - name: update-api-grid-config
-    includes: ["api-grid/*.*"]
+  - name: update-configs
+    includes: ["**"]
     transformations:
       replace:
       - token: "{{appName}}"
@@ -71,25 +61,13 @@ engine:
         with: '#ssoProvider'
       - token: "{{haCount}}"
         with: '#microGatewayHA'
-  - name: include-api-portal
-    includes: ["api-grid/api-portal-openapi-ingress.yaml"]
-    condition: '#apiPortal'
-  - name: update-build-config
-    includes: ["build/create-builder.sh"]
-    transformations:
-      replace:
-      - token: "{{appName}}"
-        with: '#projectName'
-  - name: update-pipeline
-    includes: ["pipeline/*.*"]
-    transformations:
-      replace:
-      - token: "{{appName}}"
-        with: '#projectName'
       - token: "{{microserviceOneName}}"
         with: '#microserviceOneName'
       - token: "{{microserviceTwoName}}"
         with: '#microserviceTwoName'
+  - name: include-api-portal
+    includes: ["api-grid/api-portal-openapi-ingress.yaml"]
+    condition: '#apiPortal'
   - name: all-other
     includes: ["**"]
     excludes: ["accelerator.yaml","generator.yaml","pipeline/argo","pipeline/azure-devops"]
