@@ -8,4 +8,5 @@
 
 - Api portal configuration
 
+- Preview of AppStack supplychain concepts
 
