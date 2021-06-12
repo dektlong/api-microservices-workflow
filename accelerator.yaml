@@ -81,7 +81,7 @@ engine:
       - token: "{{appName}}"
         with: '#projectName'
   - name: update-pipeline
-    includes: ["pipline/*.*"]
+    includes: ["pipeline/*.*"]
     transformations:
       replace:
       - token: "{{appName}}"
