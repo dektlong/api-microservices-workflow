@@ -1,4 +1,4 @@
-## Accelerator to configure a workflow that supports the following:
+## Accelerator to configure an API-Microservices workflow
 
 - Single K8s Cluster / Single TAS foundation
 
