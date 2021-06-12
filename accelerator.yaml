@@ -49,7 +49,7 @@ accelerator:
 engine:
   resources:
   - name: update-configs
-    includes: ["**"]
+    includes: ["api-grid/*.*","build/*.*","workflow/*.*"]
     transformations:
       replace:
       - token: "{{appName}}"
@@ -69,5 +69,5 @@ engine:
     condition: '#apiPortal'
   - name: all-other
     includes: ["**"]
-    excludes: ["accelerator.yaml","generator.yaml","pipeline/argo","pipeline/azure-devops"]
+    excludes: ["accelerator.yaml"]
       
