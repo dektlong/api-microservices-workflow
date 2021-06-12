@@ -3,7 +3,7 @@ accelerator:
   description: Accelerator to create an AppStack supply-chain for operating api grid components
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/80bfdbf23040731d16310e286e7d40b57e3b23d5/tanzu.png
   tags:
-  - workflows
+  - onlinestore-devops
 
   options:
   - name: deploymentDomain
