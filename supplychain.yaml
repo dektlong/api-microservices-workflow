@@ -2,12 +2,27 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: {{appName}}-apigrid
+  name: {{appName}}-workflow
   labels:
-    app.kubernetes.io/name: {{appName}}-apigrid
+    app.kubernetes.io/name: {{appName}}-workflow
     app.tanzu.vmware.com/workload-type: supplychain
   spec:
     components:
+      - name: source-provider
+        templateRef:
+          kind: SourceTemplate
+          name: git-repository-battery
+      - name: build-image-provider
+        templateRef:
+          kind: BuildTemplate
+          name: kpack-battery
+        sources:
+          - component: source-provider
+            name: {{appName}}-builder
+      - name: opinion-service-workload-template-provider
+        templateRef:
+          kind: OpinionTemplate
+          name: {{appName}}-workflow
       -name: api-gateway-template
         templateRef:
           kind: OpinionTemplate
