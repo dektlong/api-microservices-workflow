@@ -1,5 +1,5 @@
 accelerator:
-  displayName: Workflow for API Driven Microservices
+  displayName: API Driven Microservices workflow
   description: Configure the path-to-production of an API-driven microservices application
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/80bfdbf23040731d16310e286e7d40b57e3b23d5/tanzu.png
   tags:
