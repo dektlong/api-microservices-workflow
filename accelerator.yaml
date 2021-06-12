@@ -1,6 +1,6 @@
 accelerator:
-  displayName: Workflow for operating API Grid components
-  description: Accelerator to create an AppStack supply-chain for operating api grid components
+  displayName: Workflow for API Driven Microservices
+  description: Configure the path-to-production of an API-driven microservices application
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/80bfdbf23040731d16310e286e7d40b57e3b23d5/tanzu.png
   tags:
   - onlinestore-devops
@@ -11,6 +11,15 @@ accelerator:
     dataType: string
     inputType: text
     required: true
+  - name: microserviceOneName
+    description: The name of microservice one
+    dataType: string
+    inputType: text
+    required: true
+  - name: microserviceTwoName
+    description: The name of microservice two
+    dataType: string
+    inputType: text
   - name: ssoProvider
     description: SSO OpenID identity provider
     dataType: string
@@ -37,11 +46,21 @@ accelerator:
       1: Development
       2: Intergration
       4: Production
+  - name: pipelineProvider
+    description: Pipeline tool to be used
+    dataType: string
+    inputType: select
+    required: true
+    defaultValue: argo  
+    choices:
+      argo: Argo
+      azure-devops: Azure DevOps
+      bash: Bash and Kustomize
 
 engine:
   resources:
-  - name: update-deployment-config
-    includes: ["config/*.*"]
+  - name: update-api-grid-config
+    includes: ["api-grid/*.*"]
     transformations:
       replace:
       - token: "{{appName}}"
@@ -53,9 +72,25 @@ engine:
       - token: "{{haCount}}"
         with: '#microGatewayHA'
   - name: include-api-portal
-    includes: ["config/api-portal-openapi-ingress.yaml"]
+    includes: ["api-grid/api-portal-openapi-ingress.yaml"]
     condition: '#apiPortal'
+  - name: update-build-config
+    includes: ["build/create-builder.sh"]
+    transformations:
+      replace:
+      - token: "{{appName}}"
+        with: '#projectName'
+  - name: update-pipeline
+    includes: ["pipline/*.*"]
+    transformations:
+      replace:
+      - token: "{{appName}}"
+        with: '#projectName'
+      - token: "{{microserviceOneName}}"
+        with: '#microserviceOneName'
+      - token: "{{microserviceTwoName}}"
+        with: '#microserviceTwoName'
   - name: all-other
     includes: ["**"]
-    excludes: ["accelerator.yaml","generator.yaml"]
+    excludes: ["accelerator.yaml","generator.yaml","pipeline/argo","pipeline/azure-devops"]
       
