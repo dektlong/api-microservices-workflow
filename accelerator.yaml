@@ -23,7 +23,6 @@ accelerator:
   - name: ssoProvider
     description: SSO OpenID identity provider
     dataType: string
-    required: true
     inputType: select  
     choices:
       amazon: Amazon
