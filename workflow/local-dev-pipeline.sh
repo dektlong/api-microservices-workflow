@@ -5,16 +5,16 @@
 case $1 in
 
 deploy)
-  kp image create {{microserviceOneName}}-image -n {{appName}}-ns \
-    --tag goharbor.io/{{appName}}/{{microserviceOneName}}:0.0.1 \
-    --git https://github.com/myuser/{{microserviceOneName}} \
+  kp image create {{appName}}-component1 -n {{appName}}-ns \
+    --tag goharbor.io/{{appName}}/component1:0.0.1 \
+    --git {{appComponent1Git}} \
     --git-revision main \
     --builder {{appName}}-builder \
     --wait
   
-  kp image create {{microserviceTwoName}}-image -n {{appName}}-ns \
-    --tag goharbor.io/{{appName}}/{{microserviceTwoName}}:0.0.1 \
-    --git https://github.com/myuser/{{microserviceTwoName}} \
+  kp image create {{appName}}-component2 -n {{appName}}-ns \
+    --tag goharbor.io/{{appName}}/component2:0.0.1 \
+    --git {{appComponent2Git}} \
     --git-revision main \
     --builder {{appName}}-builder \
      --wait
@@ -23,9 +23,9 @@ deploy)
   ;;
 
 patch)
-  kp image patch {{microserviceOneName}}-image
+  kp image patch {{appName}}-component1
   
-  kp image patch {{microserviceTwoName}}-image
+  kp image patch {{appName}}-component2
   
   kustomize build . | kubectl apply -f -
   ;;
@@ -33,9 +33,9 @@ patch)
 delete)
   kustomize build . | kubectl delete -f -
   
-  kp image delete {{microserviceOneName}}-image
+  kp image delete {{appName}}-component1
   
-  kp image delete {{microserviceTwoName}}-image
+  kp image delete {{appName}}-component2
 
 *)
   # incorrect usage
