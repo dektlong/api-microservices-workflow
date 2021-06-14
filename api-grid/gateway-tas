@@ -1,11 +1,11 @@
 {
     "sso": {
-      "plan": "{{appName}}-{{ssoProvider}}-plan"
+      "plan": "dekt4pets-google-plan"
     },
-    "count": {{haCount}},
-    "host": "{{appName}}-gateway",
-    "title": "{{appName}}-gateway",
-    "description": "API gateway for {{appName}},
+    "count": 2,
+    "host": "dekt4pets-gateway",
+    "title": "dekt4pets-gateway",
+    "description": "API gateway for dekt4pets,
     "version": "1.0.0",
     "error-routes": [ { "code": "404", "redirect-path": "/store" } ]
 }
