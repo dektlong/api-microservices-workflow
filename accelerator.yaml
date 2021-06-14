@@ -11,11 +11,19 @@ accelerator:
     dataType: string
     inputType: text
     required: true
-  - name: appComponentsRepos
-    description: List of app-components repos that construct this business workflow
+  - name: appComponent1Git
+    description: Git URL for 1st app component in this business workflow
     dataType: string
     inputType: text
     required: true
+  - name: appComponent2Git
+    description: Git URL for 2nd app component in this business workflow
+    dataType: string
+    inputType: text
+  - name: appComponent3Git
+    description: Git URL for 3rd app component in this business workflow
+    dataType: string
+    inputType: text
   - name: ssoProvider
     description: SSO OpenID identity provider
     dataType: string
@@ -56,10 +64,10 @@ engine:
         with: '#ssoProvider'
       - token: "{{haCount}}"
         with: '#microGatewayHA'
-      - token: "{{microserviceOneName}}"
-        with: '#microserviceOneName'
-      - token: "{{microserviceTwoName}}"
-        with: '#microserviceTwoName'
+      - token: "{{appComponent1Git}}"
+        with: '#appComponent1Git'
+      - token: "{{appComponent2Git}}"
+        with: '#appComponent2Git'
   - name: include-api-portal
     includes: ["api-grid/api-portal-openapi-ingress.yaml"]
     condition: '#apiPortal'
