@@ -20,14 +20,11 @@ accelerator:
     description: Git URL for 2nd microservice in this business workflow
     dataType: string
     inputType: text
-  - name: microService3Git
-    description: Git URL for 3rd microservice in this business workflow
-    dataType: string
-    inputType: text
   - name: ssoProvider
     description: SSO OpenID identity provider
     dataType: string
-    inputType: select  
+    inputType: select 
+    required: true
     choices:
       amazon: Amazon
       google: Google
@@ -68,8 +65,6 @@ engine:
         with: '#microService1Git'
       - token: "{{microService2Git}}"
         with: '#microService2Git'
-      - token: "{{microService3Git}}"
-        with: '#microService3Git'
   - name: include-api-portal
     includes: ["api-grid/api-portal-openapi-ingress.yaml"]
     condition: '#apiPortal'
