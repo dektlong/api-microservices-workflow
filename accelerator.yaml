@@ -11,15 +11,11 @@ accelerator:
     dataType: string
     inputType: text
     required: true
-  - name: microserviceOneName
-    description: The name of microservice one
+  - name: appComponentsRepos
+    description: List of app-components repos that construct this business workflow
     dataType: string
     inputType: text
     required: true
-  - name: microserviceTwoName
-    description: The name of microservice two
-    dataType: string
-    inputType: text
   - name: ssoProvider
     description: SSO OpenID identity provider
     dataType: string
