@@ -11,17 +11,17 @@ accelerator:
     dataType: string
     inputType: text
     required: true
-  - name: appComponent1Git
-    description: Git URL for 1st app component in this business workflow
+  - name: microService1Git
+    description: Git URL for 1st microservice in this business workflow
     dataType: string
     inputType: text
     required: true
-  - name: appComponent2Git
-    description: Git URL for 2nd app component in this business workflow
+  - name: microService2Git
+    description: Git URL for 2nd microservice in this business workflow
     dataType: string
     inputType: text
-  - name: appComponent3Git
-    description: Git URL for 3rd app component in this business workflow
+  - name: microService3Git
+    description: Git URL for 3rd microservice in this business workflow
     dataType: string
     inputType: text
   - name: ssoProvider
@@ -64,10 +64,10 @@ engine:
         with: '#ssoProvider'
       - token: "{{haCount}}"
         with: '#microGatewayHA'
-      - token: "{{appComponent1Git}}"
-        with: '#appComponent1Git'
-      - token: "{{appComponent2Git}}"
-        with: '#appComponent2Git'
+      - token: "{{microService1Git}}"
+        with: '#microService1Git'
+      - token: "{{microService2Git}}"
+        with: '#microService2Git'
   - name: include-api-portal
     includes: ["api-grid/api-portal-openapi-ingress.yaml"]
     condition: '#apiPortal'
