@@ -11,15 +11,17 @@ accelerator:
     dataType: string
     inputType: text
     required: true
-  - name: microService1Git
-    description: Git URL for 1st microservice in this business workflow
+  - name: apiValidation
+    description:  Policy to score and validate APIs spec and performance
     dataType: string
-    inputType: text
     required: true
-  - name: microService2Git
-    description: Git URL for 2nd microservice in this business workflow
-    dataType: string
-    inputType: text
+    defaultValue: unit
+    inputType: select
+    choices:
+      unit: Unit test local access
+      project: Project level access 
+      internal: Internal teams collabolartion 
+      external: Extenral facing APIs
   - name: ssoProvider
     description: SSO OpenID identity provider
     dataType: string
@@ -31,22 +33,31 @@ accelerator:
       okta: Okta (Auth0)
       microsoft: Microsoft
       internal: Internal
-  - name: apiPortal
-    description: Add API Portal configuration  
-    dataType: boolean
-    defaultValue: true
-    inputType: toggle
   - name: microGatewayHA
     description: HA setup for micro gateways deployment
     dataType: string
     inputType: select
     required: true
-    defaultValue: 1  
+    defaultValue: 2  
     choices:
-      1: Development
-      2: Intergration
-      4: Production
+      2: Internal access only
+      3: Public and internal access
+      4: Internal, External and 3rd
 
+  - name: microService1Git
+    description: Git URL for 1st microservice in this business workflow
+    dataType: string
+    inputType: text
+    required: true
+  - name: microService2Git
+    description: Git URL for 2nd microservice in this business workflow
+    dataType: string
+    inputType: text
+  - name: apiPortal
+    description: Add API Portal configuration  
+    dataType: boolean
+    defaultValue: true
+    inputType: toggle
 engine:
   resources:
   - name: update-configs
