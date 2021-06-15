@@ -1,0 +1,25 @@
+# this is a mockup file to illustrate future AppStack concepts 
+apiVersion: experimental.kontinue.io/v1
+kind: Workload
+metadata:
+  name: {{appName}}-microservice1
+  labels:
+    app.kubernetes.io/name: {{appName}}-microservice1
+    app.tanzu.vmware.com/workload-type: web
+  spec:
+    git:
+      url: {{microService1Git}}
+        branch: main
+---
+apiVersion: experimental.kontinue.io/v1
+kind: Workload
+metadata:
+  name: {{appName}}-microservice2
+  labels:
+    app.kubernetes.io/name: {{appName}}-microservice2
+    app.tanzu.vmware.com/workload-type: web
+  spec:
+    git:
+      url: {{microService2Git}}
+        branch: main
+  
