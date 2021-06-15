@@ -38,12 +38,11 @@ accelerator:
     dataType: string
     inputType: select
     required: true
-    defaultValue: 2  
+    defaultValue: 1
     choices:
-      2: Internal access only
-      3: Public and internal access
-      4: Internal, External and 3rd
-
+      1: Testing 
+      2: Integration  
+      4: Production
   - name: microService1Git
     description: Git URL for 1st microservice in this business workflow
     dataType: string
