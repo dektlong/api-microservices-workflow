@@ -76,6 +76,10 @@ engine:
         with: '#microService1Git'
       - token: "{{microService2Git}}"
         with: '#microService2Git'
+      - token: "{{microService1Name}}"
+        with: '#projectName-backend'
+      - token: "{{microService2Name}}"
+        with: '#projectName-frontend'
     excludes: ["accelerator.yaml", "accelerators/k8s/api-portal-openapi-ingress.yaml"]
   - name: include-api-portal
     includes: ["accelerators/k8s/api-portal-openapi-ingress.yaml"]
