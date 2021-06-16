@@ -2,9 +2,9 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: {{appName}}-microservice1
+  name: {{microService1Name}}
   labels:
-    app.kubernetes.io/name: {{appName}}-microservice1
+    app.kubernetes.io/name: {{microService1Name}}
     app.tanzu.vmware.com/workload-type: web
   spec:
     git:
@@ -14,9 +14,9 @@ metadata:
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: {{appName}}-microservice2
+  name: {{microService2Name}}
   labels:
-    app.kubernetes.io/name: {{appName}}-microservice2
+    app.kubernetes.io/name: {{microService2Name}}
     app.tanzu.vmware.com/workload-type: web
   spec:
     git:
