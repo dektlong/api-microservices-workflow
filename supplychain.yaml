@@ -16,7 +16,7 @@ metadata:
         templateRef:
           kind: BuildTemplate
           name: kpack-battery
-      - name: api-validator
+      - name: api-microservices-workflow
         templateRef:
           kind: OpinionTemplate
-          name: {{apiValidation}}-api-validation-rules
+          name: pipeline-battery
