@@ -57,10 +57,11 @@ accelerator:
     dataType: boolean
     defaultValue: true
     inputType: toggle
+
 engine:
   resources:
-  - name: update-configs
-    includes: ["api-grid/*.*","build/*.*","workflow/*.*"]
+  - name: set-user-selections
+    includes: ["**"]
     transformations:
       replace:
       - token: "{{appName}}"
@@ -75,10 +76,9 @@ engine:
         with: '#microService1Git'
       - token: "{{microService2Git}}"
         with: '#microService2Git'
+    excludes: ["accelerator.yaml", "accelerators/k8s/api-portal-openapi-ingress.yaml"]
   - name: include-api-portal
-    includes: ["api-grid/api-portal-openapi-ingress.yaml"]
+    includes: ["accelerators/k8s/api-portal-openapi-ingress.yaml"]
     condition: '#apiPortal'
-  - name: all-other
-    includes: ["**"]
-    excludes: ["accelerator.yaml"]
+    
       
