@@ -77,9 +77,9 @@ engine:
       - token: "{{microService2Git}}"
         with: '#microService2Git'
       - token: "{{microService1Name}}"
-        with: '#projectName-backend'
+        with: "dekt4pets-backend"
       - token: "{{microService2Name}}"
-        with: '#projectName-frontend'
+        with: "dekt4pets-frontend"
     excludes: ["accelerator.yaml", "accelerators/k8s/api-portal-openapi-ingress.yaml"]
   - name: include-api-portal
     includes: ["accelerators/k8s/api-portal-openapi-ingress.yaml"]
