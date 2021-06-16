@@ -3,10 +3,10 @@ kind: Kustomization
 namespace: {{appName}}-ns
 
 resources:
-  - {{microservice1}}-app.yaml
-  - {{microservice1}}-routes.yaml
-  - {{microservice2}}-app.yaml
-  - {{microservice2}}-routes.yaml
+  - {{microService1Name}}-app.yaml
+  - {{microService1Name}}-routes.yaml
+  - {{microService2Name}}-app.yaml
+  - {{microService2Name}}-routes.yaml
   - mapping.yaml
   - gateway.yaml
  
