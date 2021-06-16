@@ -52,14 +52,17 @@ accelerator:
     dataType: string
     inputType: text
   - name: microService3Git
+    description: Git URL for 3rd microservice in this business workflow
     dataType: string
     inputType: text
     defaultValue: git3
   - name: microService4Git
+    description: Git URL for 4th microservice in this business workflow
     dataType: string
     inputType: text
     defaultValue: git4
   - name: microService5Git
+    description: Git URL for 5th microservice in this business workflow
     dataType: string
     inputType: text
     defaultValue: git5
