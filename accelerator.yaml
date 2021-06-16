@@ -77,6 +77,8 @@ engine:
         with: '#deploymentDomain'
       - token: "{{ssoProvider}}"
         with: '#ssoProvider'
+      - token: "{{apiValidation}}"
+        with: '#apiValidation'
       - token: "{{haCount}}"
         with: '#microGatewayHA'
       - token: "{{microService1Git}}"
