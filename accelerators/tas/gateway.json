@@ -5,7 +5,7 @@
     "count": 2,
     "host": "{{appName}}.{{domainName}}",
     "title": "{{appName}}-gateway",
-    "description": "API gateway for {{appName}},
+    "description": "API gateway for {{appName}}",
     "version": "1.0.0",
     "error-routes": [ { "code": "404", "redirect-path": "/store" } ]
 }
