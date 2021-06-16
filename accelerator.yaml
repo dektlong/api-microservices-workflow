@@ -79,6 +79,10 @@ engine:
     excludes: ["accelerator.yaml", "accelerators/k8s/api-portal-openapi-ingress.yaml"]
   - name: include-api-portal
     includes: ["accelerators/k8s/api-portal-openapi-ingress.yaml"]
-    condition: '#apiPortal'
+    transformations:
+      replace:
+      - token: "{{deploymentDomain}}"
+        with: '#deploymentDomain'
+    condition: '#apiPortal'    
     
       
