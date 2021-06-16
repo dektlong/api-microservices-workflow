@@ -16,15 +16,7 @@ metadata:
         templateRef:
           kind: BuildTemplate
           name: kpack-battery
-        sources:
-          - component: source-provider
-            name: {{appName}}-builder
-      - name: opinion-service-workload-template-provider
+      - name: api-validator
         templateRef:
           kind: OpinionTemplate
-          name: {{appName}}-workflow
-      -name: api-gateway-template
-        templateRef:
-          kind: OpinionTemplate
-          name: web-micro-gateways
-      
+          name: {{apiValidation}}-api-validation-rules
