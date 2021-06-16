@@ -1,0 +1,13 @@
+# this is a mockup file to illustrate future API validator concepts 
+metadata:
+  name: {{appName}}-api-validators
+spec:
+  validator:
+    - name: project
+      sso: never
+      model: updateOnly
+      path: always
+      method: updateOnly
+      rateLimit: public
+ activeValidator:
+   - name: {{apiValidator}}
