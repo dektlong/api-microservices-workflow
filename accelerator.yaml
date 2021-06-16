@@ -11,7 +11,7 @@ accelerator:
     dataType: string
     inputType: text
     required: true
-  - name: apiValidation
+  - name: apiValidator
     description:  Policy to score and validate APIs spec and performance
     dataType: string
     required: true
@@ -92,8 +92,8 @@ engine:
         with: '#deploymentDomain'
       - token: "{{ssoProvider}}"
         with: '#ssoProvider'
-      - token: "{{apiValidation}}"
-        with: '#apiValidation'
+      - token: "{{apiValidator}}"
+        with: '#apiValidator'
       - token: "{{haCount}}"
         with: '#microGatewayHA'
       - token: "{{microService1Git}}"
