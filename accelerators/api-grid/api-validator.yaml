@@ -2,12 +2,31 @@
 metadata:
   name: {{appName}}-api-validators
 spec:
-  validator:
+  validator: 
     - name: project
-      sso: never
-      model: updateOnly
-      path: always
+      # notRequired, alwaysRequired, updateOnly
+      sso: notRequired 
+      model: notRequired
+      path: alwaysRequired
       method: updateOnly
-      rateLimit: public
+      rateLimit: notRequired
+      circuitBreaker: notRequired
+   - name: internal
+      # notRequired, alwaysRequired, updateOnly
+      sso: updateOnly 
+      model: updateOnly
+      path: alwaysRequired
+      method: alwaysRequired
+      rateLimit: updateOnly
+      circuitBreaker: notRequired
+   - name: external
+      # notRequired, alwaysRequired, updateOnly
+      sso: alwaysRequired 
+      model: updateOnly
+      path: alwaysRequired
+      method: alwaysRequired
+      rateLimit: alwaysRequired
+      circuitBreaker: alwaysRequired
  activeValidator:
    - name: {{apiValidator}}
+     
