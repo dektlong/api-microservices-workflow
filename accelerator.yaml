@@ -61,7 +61,7 @@ accelerator:
     inputType: text
     defaultValue: dekt4pets-backend
   - name: microService2Name
-    dataType: srting
+    dataType: string
     inputType: text
     defaultValue: dekt4pets-frontend
 
