@@ -15,10 +15,9 @@ accelerator:
     description:  Policy to score and validate APIs spec and performance
     dataType: string
     required: true
-    defaultValue: unit
+    defaultValue: project
     inputType: select
     choices:
-      unit: Unit test local access
       project: Project level access 
       internal: Internal teams collabolartion 
       external: Extenral facing APIs
@@ -58,7 +57,7 @@ accelerator:
     defaultValue: true
     inputType: toggle
   - name: microService1Name
-    dataType: srting
+    dataType: string
     inputType: text
     defaultValue: dekt4pets-backend
   - name: microService2Name
