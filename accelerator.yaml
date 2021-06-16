@@ -51,6 +51,18 @@ accelerator:
     description: Git URL for 2nd microservice in this business workflow
     dataType: string
     inputType: text
+  - name: microService3Git
+    dataType: string
+    inputType: text
+    defaultValue: git3
+  - name: microService4Git
+    dataType: string
+    inputType: text
+    defaultValue: git4
+  - name: microService5Git
+    dataType: string
+    inputType: text
+    defaultValue: git5
   - name: apiPortal
     description: Add API Portal configuration  
     dataType: boolean
