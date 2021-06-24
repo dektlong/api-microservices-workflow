@@ -8,6 +8,7 @@ spec:
     title: {{appName}} micro-gateway
     description: Micro Gateway to control internal APIs for building microservices for {{appName}}. 
     version: 0.1.0
+    documentation: {{apiScorecards}}
     cors:
       allowedOrigins:
         - api-portal.{{deploymentDomain}}
