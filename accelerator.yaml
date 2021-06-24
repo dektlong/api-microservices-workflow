@@ -111,9 +111,9 @@ engine:
         with: '#microService2Name'
       - token: "{{apiScorecards}}"
         with: '#apiScorecards'
-    excludes: ["accelerator.yaml", "accelerators/k8s/api-portal-openapi-ingress.yaml"]
+    excludes: ["accelerator.yaml", "accelerators/api-grid/api-portal.yaml"]
   - name: include-api-portal
-    includes: ["accelerators/api-grid/api-portal-openapi-ingress.yaml"]
+    includes: ["accelerators/api-grid/api-portal.yaml"]
     transformations:
       replace:
       - token: "{{deploymentDomain}}"
