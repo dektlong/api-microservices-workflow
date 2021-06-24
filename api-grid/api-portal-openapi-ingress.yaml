@@ -1,3 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-portal-server
+spec:
+  template:
+    metadata:
+      labels:
+        app: api-portal-server
+    spec:
+      containers:
+      - name: api-portal-server
+        env:
+          - name: API_PORTAL_SOURCE_URLS
+            value: scg-openapi.{{deploymentDomain}}
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress 
 metadata: 
