@@ -59,7 +59,7 @@ accelerator:
   - name: apiScorecards
     description: URL for API Scorecards dashboard
     dataType: string
-    defaultValue: https://app.demo.getcortexapp.com/demo/scorecards/vmware-governance
+    defaultValue: https://github.com/dektlong/_dekt4pets-demo
     inputType: text
   - name: microService3Git
     description: Git URL for 3rd microservice in this business workflow
