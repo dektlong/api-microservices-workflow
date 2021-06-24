@@ -54,7 +54,7 @@ accelerator:
   - name: apiPortal
     description: Add API Portal configuration  
     dataType: boolean
-    defaultValue: true
+    defaultValue: false
     inputType: toggle
   - name: apiScorecards
     description: URL for API Scorecards dashboard
