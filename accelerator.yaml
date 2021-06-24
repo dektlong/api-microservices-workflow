@@ -51,6 +51,16 @@ accelerator:
     description: Git URL for 2nd microservice in this business workflow
     dataType: string
     inputType: text
+  - name: apiPortal
+    description: Add API Portal configuration  
+    dataType: boolean
+    defaultValue: true
+    inputType: toggle
+  - name: apiScorecards
+    description: URL for API Scorecards dashboard
+    dataType: string
+    defaultValue: https://app.demo.getcortexapp.com/demo/scorecards/vmware-governance
+    inputType: text
   - name: microService3Git
     description: Git URL for 3rd microservice in this business workflow
     dataType: string
@@ -66,16 +76,6 @@ accelerator:
     dataType: string
     inputType: text
     defaultValue: git5
-  - name: apiPortal
-    description: Add API Portal configuration  
-    dataType: boolean
-    defaultValue: true
-    inputType: toggle
-  - name: apiScorecards
-    description: URL for API Scorecards dashboard
-    dataType: string
-    defaultValue: https://app.demo.getcortexapp.com/demo/scorecards/vmware-governance
-    inputType: text
   - name: microService1Name
     dataType: string
     inputType: text
@@ -110,7 +110,7 @@ engine:
       - token: "{{microService2Name}}"
         with: '#microService2Name'
       - token: "{{apiScorecards}}"
-        with: '#deploymentDomain'
+        with: '#apiScorecards'
     excludes: ["accelerator.yaml", "accelerators/k8s/api-portal-openapi-ingress.yaml"]
   - name: include-api-portal
     includes: ["accelerators/api-grid/api-portal-openapi-ingress.yaml"]
@@ -118,13 +118,6 @@ engine:
       replace:
       - token: "{{deploymentDomain}}"
         with: '#deploymentDomain'
-    condition: '#apiPortal'    
-  - name: include-api-scorecard
-    includes: ["accelerators/api-grid/gateway.yaml"]
-    transformations:
-      replace:
-      - token: "{{{apiScorecards}}"
-        with: '#deploymentDomain'
-    condition: '#apiScorecards'    
+    condition: '#apiPortal'  
     
       
