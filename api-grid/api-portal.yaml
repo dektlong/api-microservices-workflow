@@ -12,7 +12,7 @@ spec:
       - name: api-portal-server
         env:
           - name: API_PORTAL_SOURCE_URLS
-            value: scg-openapi.{{deploymentDomain}}
+            value: scg-openapi.{{deploymentDomain}}/openapi
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress 
