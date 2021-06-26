@@ -15,3 +15,7 @@ spec:
   count: {{haCount}}
   sso:
     secret: {{appName}}-{{ssoProvider}}-secret
+  metrics:
+    secret: {{appName}}-observability
+  tracing:
+    secret: {{appName}}-observability
