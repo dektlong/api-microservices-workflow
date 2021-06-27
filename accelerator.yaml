@@ -26,29 +26,24 @@ accelerator:
       external: Extenral facing APIs
   - name: gatewayHA
     label: Micro-gateway HA
-    description:  Micro-gateway HA configuration
-    dataType: string
+    description:  Deploy Micro-gateway with HA configuration
+    dataType: boolean
     required: true
-    defaultValue: one
-    inputType: select
-    choices:
-      one: Testing
-      two: Integration
-      four: Production
+    defaultValue: true
+    inputType: toggle
   - name: ssoProvider
     label: Identity provider
     description: SSO OpenID identity provider
     dataType: string
     inputType: select 
-    defaultValue: internal
+    defaultValue: openId
     required: true
     choices:
       amazon: Amazon
       google: Google
       okta: Okta (Auth0)
       microsoft: Microsoft
-      internal: Internal
-      openId: Custom OpenID connect
+      openId: OpenID connect
   - name: apiScorecards
     description: URL for API Scorecards dashboard
     dataType: string
@@ -106,8 +101,6 @@ engine:
          with: "#ssoProvider"
        - text: api-validator
          with: "#apiValidator"
-       - text: ha-count
-         with: "#gatewayHA"
        - text: parent-git
          with: "#parentGit"
        - text: subpath1
