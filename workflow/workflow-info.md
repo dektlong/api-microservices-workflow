@@ -1,6 +1,7 @@
   info on how to deploy app components, gateways and routes using Tanzu Build Service, Spring Cloud Gateway and Kustomize
 
-```deploy
+deploy
+```
   kp image create subpath1 -n app-name \
     --tag goharbor.io/app-name/subpath1:0.0.1 \
     --git parent-repo \
@@ -18,10 +19,9 @@
     --wait
   
   kustomize build api-grid | kubectl apply -f -
-
 ```
-
-```patch
+patch
+```
   kp image patch subpath1
   
   kp image patch subpath2
@@ -29,8 +29,8 @@
   kustomize build api-grid | kubectl apply -f -
   ;;
 ```
-
-```delete
+delete
+```
   kustomize build api-grid | kubectl delete -f -
   
   kp image delete subpath1
