@@ -5,27 +5,27 @@
 case $1 in
 
 deploy)
-  kp image create {{microService1Name}} -n {{appName}} \
-    --tag goharbor.io/{{appName}}/{{microService1Name}}:0.0.1 \
-    --git {{microService1Git}} \
+  kp image create microservice1 -n app-name \
+    --tag goharbor.io/app-name/microservice1:0.0.1 \
+    --git microservice1-git \
     --git-revision main \
-    --builder {{appName}}-builder \
+    --builder app-name-builder \
     --wait
   
-  kp image create {{microService2Name}} -n {{appName}} \
-    --tag goharbor.io/{{appName}}/{{microService2Name}}:0.0.1 \
-    --git {{microService2Git}} \
+  kp image create microservice2 -n app-name \
+    --tag goharbor.io/app-name/microservice2:0.0.1 \
+    --git microservice2-git \
     --git-revision main \
-    --builder {{appName}}-builder \
+    --builder app-name-builder \
      --wait
   
   kustomize build api-grid | kubectl apply -f -
   ;;
 
 patch)
-  kp image patch {{microService1Name}}
+  kp image patch microservice1
   
-  kp image patch {{microService2Name}}
+  kp image patch microservice2
   
   kustomize build api-grid | kubectl apply -f -
   ;;
@@ -33,9 +33,9 @@ patch)
 delete)
   kustomize build api-grid | kubectl delete -f -
   
-  kp image delete {{microService1Name}}
+  kp image delete microservice1
   
-  kp image delete {{microService2Name}}
+  kp image delete microservice2
 
 *)
   # incorrect usage
