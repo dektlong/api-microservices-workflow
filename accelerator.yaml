@@ -54,7 +54,7 @@ accelerator:
     description: Parent Git URL for all microservices in this project
     dataType: string
     inputType: text
-    defaultValue: https://github.com/myrepo
+    defaultValue: https://github.com/dektlong/_dekt4pets-demo
     required: true
   - name: subPath1
     label: Microservice 1 sub-path
