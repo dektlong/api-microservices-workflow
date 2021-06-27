@@ -32,9 +32,9 @@ accelerator:
     defaultValue: 1
     inputType: select
     choices:
-      1: Testing
-      2: Integration
-      4: Production
+      one: Testing
+      two: Integration
+      four: Production
   - name: ssoProvider
     label: Identity provider
     description: SSO OpenID identity provider
