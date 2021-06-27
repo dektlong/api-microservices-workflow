@@ -16,7 +16,7 @@ kind: Workload
 metadata:
   name: subpath2
   labels:
-    app.kubernetes.io/name: {{microService2Name}}
+    app.kubernetes.io/name: subpath2
     app.tanzu.vmware.com/workload-type: web
   spec:
     git:
