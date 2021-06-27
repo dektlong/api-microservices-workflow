@@ -38,11 +38,6 @@ accelerator:
       microsoft: Microsoft
       internal: Internal
       openId: Custom OpenID connect
-  - name: apiPortal
-    description: Add API Portal configuration  
-    dataType: boolean
-    defaultValue: false
-    inputType: toggle
   - name: apiScorecards
     description: URL for API Scorecards dashboard
     dataType: string
@@ -85,16 +80,6 @@ accelerator:
     dataType: string
     defaultValue: sub-path5
     inputType: text
-  - name: microService1Name
-    label: First microservice name
-    dataType: string
-    inputType: text
-    defaultValue: dekt4pets-backend
-  - name: microService2Name
-    label: Second microservice git
-    dataType: string
-    inputType: text
-    defaultValue: dekt4pets-frontend
 
 engine:
   sources:
@@ -112,13 +97,11 @@ engine:
          with: "#apiValidator"
        - text: ha-count
          with: "#microGatewayHA"
-       - text: microservice1-git
-         with: "#microService1Git"
-       - text: microservice2-git
-         with: "#microService2Git"
-       - text: microservice1
-         with: "#microService1Name"
-       - text: microservice2
-         with: "#microService2Name"
+       - text: parent-git
+         with: "#parentGit"
+       - text: subpath1
+         with: "#subPath1"
+       - text: subpath2
+         with: "#subPath2"
        - token: api-scorecards
          with: "#apiScorecards"
