@@ -49,7 +49,7 @@ accelerator:
     dataType: string
     defaultValue: https://vmware.wavefront.com/u/yFS1NnphFd?t=vmware
     inputType: text
-  - name: partentGit
+  - name: parentGit
     label: Parent git repo
     description: Parent Git URL for all microservices in this project
     dataType: string
@@ -102,7 +102,7 @@ engine:
        - text: api-validator
          with: "#apiValidator"
        - text: parent-git
-         with: "#partentGit"
+         with: "#parentGit"
        - text: subpath1
          with: "#subPath1"
        - text: subpath2
