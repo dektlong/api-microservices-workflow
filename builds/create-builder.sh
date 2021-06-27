@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-kp builder create {{appName}}-builder -n {{appName}}-ns \
-   --tag goharbor.io/{{appName}}/{{appName}}-builder \
+kp builder create app-name-builder -n app-name-ns \
+   --tag goharbor.io/app-name/app-name-builder \
    --order build-order.yaml \
    --stack base \
    --store default
