@@ -46,39 +46,45 @@ accelerator:
   - name: apiScorecards
     description: URL for API Scorecards dashboard
     dataType: string
-    defaultValue: https://github.com/dektlong/_dekt4pets-demo
+    defaultValue: https://vmware.wavefront.com/u/yFS1NnphFd?t=vmware
     inputType: text
-  - name: microService1Git
-    label: First microservice git
-    description: Git URL for 1st microservice in this business workflow
+  - name: partentRepo
+    label: Parent git repo
+    description: Parent Git URL for all microservices in this project
     dataType: string
     inputType: text
-    defaultValue: https://github.com/myuser/myrepo
+    defaultValue: https://github.com/myrepo
     required: true
-  - name: microService2Git
-    label: Second microservice git
-    description: Git URL for 2nd microservice in this business workflow
+  - name: subPath1
+    label: Microservice 1 sub-path
+    description: Sub-path within partent git for microservice1
     dataType: string
-    defaultValue: git2
+    defaultValue: sub-path1
     inputType: text
-  - name: microService3Git
-    label: Third microservice git
-    description: Git URL for 3rd microservice in this business workflow
+  - name: subPath2
+    label: Microservice 2 sub-path
+    description: Sub-path within partent git for microservice2
     dataType: string
+    defaultValue: sub-path2
     inputType: text
-    defaultValue: git3
-  - name: microService4Git
-    label: Forth microservice git
-    description: Git URL for 4th microservice in this business workflow
+  - name: subPath1
+    label: Microservice 3 sub-path
+    description: Sub-path within partent git for microservice3
     dataType: string
+    defaultValue: sub-path3
     inputType: text
-    defaultValue: git4
-  - name: microService5Git
-    label: Fifth microservice git
-    description: Git URL for 5th microservice in this business workflow
+  - name: subPath1
+    label: Microservice 4 sub-path
+    description: Sub-path within partent git for microservice4
     dataType: string
+    defaultValue: sub-path4
     inputType: text
-    defaultValue: git5
+  - name: subPath5
+    label: Microservice 5 sub-path
+    description: Sub-path within partent git for microservice5
+    dataType: string
+    defaultValue: sub-path5
+    inputType: text
   - name: microService1Name
     label: First microservice name
     dataType: string
