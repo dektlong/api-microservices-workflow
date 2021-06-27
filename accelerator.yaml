@@ -73,13 +73,13 @@ accelerator:
     dataType: string
     defaultValue: sub-path2
     inputType: text
-  - name: subPath1
+  - name: subPath3
     label: Microservice 3 sub-path
     description: Sub-path within partent git for microservice3
     dataType: string
     defaultValue: sub-path3
     inputType: text
-  - name: subPath1
+  - name: subPath4
     label: Microservice 4 sub-path
     description: Sub-path within partent git for microservice4
     dataType: string
