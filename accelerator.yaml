@@ -38,17 +38,6 @@ accelerator:
       microsoft: Microsoft
       internal: Internal
       openId: Custom OpenID connect
-  - name: microGatewayHA
-    label: Micro-Gateway HA setup
-    description: HA setup for micro gateways deployment
-    dataType: string
-    inputType: select
-    required: true
-    defaultValue: 1
-    choices:
-      1: Testing 
-      2: Integration  
-      4: Production
   - name: apiPortal
     description: Add API Portal configuration  
     dataType: boolean
