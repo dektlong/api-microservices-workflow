@@ -4,7 +4,7 @@ deploy
 ```
 kp image create subpath1 -n app-name \
   --tag goharbor.io/app-name/subpath1:0.0.1 \
-  --git parent-repo \
+  --git parent-git \
   --sub-path ./subpath1 \
   --git-revision main \
   --builder app-name-builder \
@@ -12,7 +12,7 @@ kp image create subpath1 -n app-name \
   
 kp image create subpath2 -n app-name \
   --tag goharbor.io/app-name/subpath2:0.0.1 \
-  --git parent-repo \
+  --git parent-git \
   --sub-path ./subpath2 \
   --git-revision main \
   --builder app-name-builder \
@@ -32,7 +32,7 @@ kustomize build api-grid | kubectl apply -f -
 
 delete
 ```
-ustomize build api-grid | kubectl delete -f -
+kustomize build api-grid | kubectl delete -f -
   
 kp image delete subpath1
   
