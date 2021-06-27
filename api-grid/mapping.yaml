@@ -1,19 +1,19 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayMapping
 metadata:
-  name: microservice1-mapping
+  name: subpath1-mapping
 spec:
   gatewayRef:
     name: app-name-gateway
   routeConfigRef:
-    name: microservice2-routes
+    name: subpath1-routes
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayMapping
 metadata:
-  name: microservice2-mapping
+  name: subpath2-mapping
 spec:
   gatewayRef:
     name: app-name-gateway
   routeConfigRef:
-    name: microservice2-routes
+    name: subpath2-routes
