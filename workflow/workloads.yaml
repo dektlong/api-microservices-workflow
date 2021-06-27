@@ -2,24 +2,24 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: {{microService1Name}}
+  name: subpath1
   labels:
-    app.kubernetes.io/name: {{microService1Name}}
+    app.kubernetes.io/name: subpath1
     app.tanzu.vmware.com/workload-type: web
   spec:
     git:
-      url: {{microService1Git}}
-        branch: main
+      url: parent-repo
+        sub-path: subpath1
 ---
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: {{microService2Name}}
+  name: subpath2
   labels:
     app.kubernetes.io/name: {{microService2Name}}
     app.tanzu.vmware.com/workload-type: web
   spec:
     git:
-      url: {{microService2Git}}
-        branch: main
+      url: parent-repo
+        sub-path: subpath2
   
