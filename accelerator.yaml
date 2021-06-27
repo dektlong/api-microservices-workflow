@@ -7,11 +7,14 @@ accelerator:
 
   options:
   - name: deploymentDomain
+    label: Initial deployment domain
     description: The initial deployment domain 
     dataType: string
     inputType: text
+    defaultValue: myproject.example.com
     required: true
   - name: apiValidator
+    label: API validation policy
     description:  Policy to score and validate APIs spec and performance
     dataType: string
     required: true
@@ -22,9 +25,11 @@ accelerator:
       internal: Internal teams collabolartion 
       external: Extenral facing APIs
   - name: ssoProvider
+    label: Identity provider
     description: SSO OpenID identity provider
     dataType: string
     inputType: select 
+    defaultValue: internal
     required: true
     choices:
       amazon: Amazon
@@ -32,7 +37,9 @@ accelerator:
       okta: Okta (Auth0)
       microsoft: Microsoft
       internal: Internal
+      openId: Custom OpenID connect
   - name: microGatewayHA
+    label: Micro-Gateway HA setup
     description: HA setup for micro gateways deployment
     dataType: string
     inputType: select
@@ -42,15 +49,6 @@ accelerator:
       1: Testing 
       2: Integration  
       4: Production
-  - name: microService1Git
-    description: Git URL for 1st microservice in this business workflow
-    dataType: string
-    inputType: text
-    required: true
-  - name: microService2Git
-    description: Git URL for 2nd microservice in this business workflow
-    dataType: string
-    inputType: text
   - name: apiPortal
     description: Add API Portal configuration  
     dataType: boolean
@@ -61,30 +59,78 @@ accelerator:
     dataType: string
     defaultValue: https://github.com/dektlong/_dekt4pets-demo
     inputType: text
+  - name: microService1Git
+    label: First microservice git
+    description: Git URL for 1st microservice in this business workflow
+    dataType: string
+    inputType: text
+    defaultValue: https://github.com/myuser/myrepo
+    required: true
+  - name: microService2Git
+    label: Second microservice git
+    description: Git URL for 2nd microservice in this business workflow
+    dataType: string
+    defaultValue: git2
+    inputType: text
   - name: microService3Git
+    label: Third microservice git
     description: Git URL for 3rd microservice in this business workflow
     dataType: string
     inputType: text
     defaultValue: git3
   - name: microService4Git
+    label: Forth microservice git
     description: Git URL for 4th microservice in this business workflow
     dataType: string
     inputType: text
     defaultValue: git4
   - name: microService5Git
+    label: Fifth microservice git
     description: Git URL for 5th microservice in this business workflow
     dataType: string
     inputType: text
     defaultValue: git5
   - name: microService1Name
+    label: First microservice name
     dataType: string
     inputType: text
     defaultValue: dekt4pets-backend
   - name: microService2Name
+    label: Second microservice git
     dataType: string
     inputType: text
     defaultValue: dekt4pets-frontend
 
+engine:
+  sources:
+   - includes: ["**"]
+     excludes: [ "accelerators/deployment/**" ]
+     transformations:
+     - type: ReplaceText
+       substitutions:
+       - text: app-name
+         with: "#artifactId"
+       - text: api-group1
+         with: "#firstApiGroup"
+       - text: api-group2
+         with: "#secondApiGroup"
+   - includes: [ "accelerators/deployment/app-simple.yaml" ]
+     condition: "#appDeploymentType == 'k8s'"
+     transformations:
+     - type: ReplaceText
+       substitutions:
+       - text: app-name
+         with: "#artifactId"
+   - includes: [ "accelerators/deployment/app-observer.yaml" ]
+     condition: "#appDeploymentType == 'k8sObserver'"
+     transformations:
+     - type: ReplaceText
+       substitutions:
+       - text: app-name
+         with: "#artifactId"
+
+  options:
+  
 engine:
   resources:
   - name: set-user-selections
