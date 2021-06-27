@@ -1,18 +1,18 @@
 # this is a mockup file to illustrate future API validator concepts 
 metadata:
-  name: {{appName}}-api-validators
+  name: app-name-api-validators
 spec:
-  validator: 
+  activeValidator:
+   - name: external
+  validators: 
     - name: project
-      # notRequired, alwaysRequired, updateOnly
-      sso: notRequired 
+      sso: notRequired   # notRequired, alwaysRequired, updateOnly
       model: notRequired
       path: alwaysRequired
       method: updateOnly
       rateLimit: notRequired
       circuitBreaker: notRequired
    - name: internal
-      # notRequired, alwaysRequired, updateOnly
       sso: updateOnly 
       model: updateOnly
       path: alwaysRequired
@@ -20,13 +20,9 @@ spec:
       rateLimit: updateOnly
       circuitBreaker: notRequired
    - name: external
-      # notRequired, alwaysRequired, updateOnly
       sso: alwaysRequired 
       model: updateOnly
       path: alwaysRequired
       method: alwaysRequired
       rateLimit: alwaysRequired
       circuitBreaker: alwaysRequired
- activeValidator:
-   - name: {{apiValidator}}
-     
