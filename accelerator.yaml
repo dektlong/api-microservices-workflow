@@ -29,7 +29,7 @@ accelerator:
     description:  Micro-gateway HA configuration
     dataType: string
     required: true
-    defaultValue: 1
+    defaultValue: one
     inputType: select
     choices:
       one: Testing
