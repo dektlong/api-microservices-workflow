@@ -1,9 +1,9 @@
 # this is a mockup file to illustrate future API validator concepts 
 metadata:
-  name: app-name-api-validators
+  name: app-name-validators
 spec:
   activeValidator:
-   - name: external
+   - name: api-validator
   validators: 
     - name: project
       sso: notRequired   # notRequired, alwaysRequired, updateOnly
