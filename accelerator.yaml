@@ -27,7 +27,7 @@ accelerator:
   - name: haCount
     label: Micro-gateway HA count
     description:  How many instances to deploy every Micro-gateway with 
-    dataType: number
+    dataType: text
     required: true
     defaultValue: 2
     inputType: text
