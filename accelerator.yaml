@@ -6,6 +6,13 @@ accelerator:
   - onlinestore-devops
 
   options:
+  - name: deploymentDomain
+    label: Initial deployment domain
+    description: The initial deployment domain 
+    dataType: string
+    inputType: text
+    defaultValue: myproject.example.com
+    required: true
   - name: apiValidator
     label: API validation policy
     description:  Policy to score and validate APIs spec and performance
@@ -89,6 +96,8 @@ engine:
        substitutions:
        - text: app-name
          with: "#artifactId"
+       - text: deployment-domain
+         with: "#deploymentDomain"
        - text: sso-provider
          with: "#ssoProvider"
        - text: api-validator
