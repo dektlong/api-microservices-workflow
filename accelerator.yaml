@@ -29,7 +29,7 @@ accelerator:
     description:  How many instances to deploy every Micro-gateway with 
     dataType: string
     required: true
-    defaultValue: 2
+    defaultValue: "2"
     inputType: text
   - name: ssoProvider
     label: Identity provider
