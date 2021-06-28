@@ -16,6 +16,8 @@ spec:
   sso:
     secret: app-name-sso-provider-secret
   metrics:
-    secret: app-name-observability
+    wavefront:
+      secret: app-name-observability
   tracing:
-    secret: app-name-observability
+    wavefront:
+      secret: app-name-observability
