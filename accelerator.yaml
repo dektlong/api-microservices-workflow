@@ -103,7 +103,7 @@ engine:
        - text: api-validator
          with: "#apiValidator"
        - text: ha-count
-         with "#haCount"
+         with: "#haCount"
        - text: parent-git
          with: "#parentGit"
        - text: subpath1
