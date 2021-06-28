@@ -100,8 +100,6 @@ engine:
          with: "#deploymentDomain"
        - text: sso-provider
          with: "#ssoProvider"
-       - text: api-validator
-         with: "#apiValidator"
        - text: ha-count
          with: "#haCount"
        - text: parent-git
