@@ -1,0 +1,11 @@
+# this is a mockup file to illustrate future API validator concepts 
+metadata:
+  name: app-name-project-api-validator
+spec:
+  - validators: # notRequired, alwaysRequired, updateOnly
+    sso: notRequired   
+    model: notRequired
+    path: alwaysRequired
+    method: updateOnly
+    rateLimit: notRequired
+    circuitBreaker: notRequired
