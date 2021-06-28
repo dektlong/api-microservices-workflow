@@ -47,7 +47,7 @@ accelerator:
   - name: apiScorecards
     description: URL for API Scorecards dashboard
     dataType: string
-    defaultValue: https://vmware.wavefront.com/u/yFS1NnphFd?t=vmware
+    defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
     inputType: text
   - name: parentGit
     label: Parent git repo
