@@ -25,12 +25,12 @@ accelerator:
       internal: Internal teams collabolartion 
       external: Extenral facing APIs
   - name: gatewayHA
-    label: Micro-gateway HA
-    description:  Deploy Micro-gateway with HA configuration
-    dataType: boolean
+    label: Micro-gateway HA count
+    description:  How many instances to deploy every Micro-gateway with 
+    dataType: number
     required: true
-    defaultValue: true
-    inputType: toggle
+    defaultValue: 2
+    inputType: text
   - name: ssoProvider
     label: Identity provider
     description: SSO OpenID identity provider
@@ -90,6 +90,7 @@ accelerator:
 engine:
   sources:
    - includes: ["**"]
+     excludes: ["api-grid/validators/**"]
      transformations:
      - type: ReplaceText
        substitutions:
@@ -109,3 +110,25 @@ engine:
          with: "#subPath2"
        - text: api-scorecards
          with: "#apiScorecards"
+   - includes: [ "api-grid/validators/project-validator.yaml" ]
+     condition: "#apiValidator == 'project'"
+     transformations:
+     - type: ReplaceText
+       substitutions:
+       - text: app-name
+         with: "#artifactId"
+   - includes: [ "api-grid/validators/internal-validator.yaml" ]
+     condition: "#apiValidator == 'internal'"
+     transformations:
+     - type: ReplaceText
+       substitutions:
+       - text: app-name
+         with: "#artifactId"
+   - includes: [ "api-grid/validators/external-validator.yaml" ]
+     condition: "#apiValidator == 'external'"
+     transformations:
+     - type: ReplaceText
+       substitutions:
+       - text: app-name
+         with: "#artifactId"
+      
