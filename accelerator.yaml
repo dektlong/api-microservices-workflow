@@ -24,7 +24,7 @@ accelerator:
       project: Project level access 
       internal: Internal teams collabolartion 
       external: Extenral facing APIs
-  - name: gatewayHA
+  - name: haCount
     label: Micro-gateway HA count
     description:  How many instances to deploy every Micro-gateway with 
     dataType: number
@@ -102,6 +102,8 @@ engine:
          with: "#ssoProvider"
        - text: api-validator
          with: "#apiValidator"
+       - text: ha-count
+         with "#haCount"
        - text: parent-git
          with: "#parentGit"
        - text: subpath1
