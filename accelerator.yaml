@@ -35,13 +35,10 @@ accelerator:
   - name: parentGit
     label: Parent git repo
     description: Parent Git URL for all microservices in this project
-    dataType: string
-    inputType: text
     defaultValue: https://github.com/dektlong/_dekt4pets-demo
     required: true
   - name: apiScorecards
     description: URL for API Scorecards dashboard
-    dataType: string
     defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
     display: true
   - name: subpath1
@@ -100,7 +97,7 @@ engine:
    - includes: [ "api-grid/validators/external-validator.yaml" ]
      condition: "#apiValidator == 'external'"
   transformations:
-    - type: ReplaceText
-      substitutions:
-      - text: app-name
-        with: "#artifactId"
+  - type: ReplaceText
+    substitutions:
+    - text: app-name
+      with: "#artifactId"
