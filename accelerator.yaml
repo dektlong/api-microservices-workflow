@@ -90,12 +90,12 @@ engine:
         with: "#subpath2"
       - text: api-scorecards
         with: "#apiScorecards"
-   - includes: [ "api-grid/validators/project-validator.yaml" ]
-     condition: "#apiValidator == 'project'"
-   - includes: [ "api-grid/validators/internal-validator.yaml" ]
-     condition: "#apiValidator == 'internal'"
-   - includes: [ "api-grid/validators/external-validator.yaml" ]
-     condition: "#apiValidator == 'external'"
+  - includes: [ "api-grid/validators/project-validator.yaml" ]
+    condition: "#apiValidator == 'project'"
+  - includes: [ "api-grid/validators/internal-validator.yaml" ]
+    condition: "#apiValidator == 'internal'"
+  - includes: [ "api-grid/validators/external-validator.yaml" ]
+    condition: "#apiValidator == 'external'"
   transformations:
   - type: ReplaceText
     substitutions:
