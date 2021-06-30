@@ -11,6 +11,7 @@ accelerator:
     description:  Policy to score and validate APIs spec and performance
     required: true
     defaultValue: project
+    inputType: select 
     choices:
       project: Project level access 
       internal: Internal teams collabolartion 
