@@ -6,20 +6,11 @@ accelerator:
   - onlinestore-devops
 
   options:
-  - name: deploymentDomain
-    label: Initial deployment domain
-    description: The initial deployment domain 
-    dataType: string
-    inputType: text
-    defaultValue: myproject.example.com
-    required: true
   - name: apiValidator
     label: API validation policy
     description:  Policy to score and validate APIs spec and performance
-    dataType: string
     required: true
     defaultValue: project
-    inputType: select
     choices:
       project: Project level access 
       internal: Internal teams collabolartion 
@@ -27,14 +18,11 @@ accelerator:
   - name: haCount
     label: Micro-gateway HA count
     description:  How many instances to deploy every Micro-gateway with 
-    dataType: string
     required: true
     defaultValue: "2"
-    inputType: text
   - name: ssoProvider
     label: Identity provider
     description: SSO OpenID identity provider
-    dataType: string
     inputType: select 
     defaultValue: openId
     required: true
@@ -44,11 +32,6 @@ accelerator:
       okta: Okta (Auth0)
       microsoft: Microsoft
       openId: OpenID connect
-  - name: apiScorecards
-    description: URL for API Scorecards dashboard
-    dataType: string
-    defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
-    inputType: text
   - name: parentGit
     label: Parent git repo
     description: Parent Git URL for all microservices in this project
@@ -56,46 +39,46 @@ accelerator:
     inputType: text
     defaultValue: https://github.com/dektlong/_dekt4pets-demo
     required: true
+  - name: apiScorecards
+    description: URL for API Scorecards dashboard
+    dataType: string
+    defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
+    display: true
   - name: subPath1
     label: Microservice 1 sub-path
     description: Sub-path within partent git for microservice1
-    dataType: string
-    defaultValue: sub-path1
-    inputType: text
+    defaultValue: workload-backend
+    display: true
   - name: subPath2
     label: Microservice 2 sub-path
     description: Sub-path within partent git for microservice2
-    dataType: string
-    defaultValue: sub-path2
-    inputType: text
+    defaultValue: workload-frontend
+    display: true
   - name: subPath3
     label: Microservice 3 sub-path
     description: Sub-path within partent git for microservice3
-    dataType: string
     defaultValue: sub-path3
-    inputType: text
   - name: subPath4
     label: Microservice 4 sub-path
     description: Sub-path within partent git for microservice4
-    dataType: string
     defaultValue: sub-path4
-    inputType: text
   - name: subPath5
     label: Microservice 5 sub-path
     description: Sub-path within partent git for microservice5
-    dataType: string
     defaultValue: sub-path5
-    inputType: text
+  - name: deploymentDomain
+    label: Initial deployment domain
+    description: The initial deployment domain 
+    display: true
+    defaultValue: tanzu.dekt.io
 
 engine:
   sources:
-   - includes: ["**"]
+  - includes: ["**"]
      excludes: ["api-grid/validators/**"]
      transformations:
      - type: ReplaceText
        substitutions:
-       - text: app-name
-         with: "#artifactId"
        - text: deployment-domain
          with: "#deploymentDomain"
        - text: sso-provider
@@ -126,7 +109,7 @@ engine:
          with: "#artifactId"
    - includes: [ "api-grid/validators/external-validator.yaml" ]
      condition: "#apiValidator == 'external'"
-     transformations:
+  transformations:
      - type: ReplaceText
        substitutions:
        - text: app-name
