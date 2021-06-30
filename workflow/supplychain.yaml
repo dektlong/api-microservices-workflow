@@ -2,9 +2,9 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: {{app-name}}-workflow
+  name: app-name-workflow
   labels:
-    app.kubernetes.io/name: {{app-name}}-workflow
+    app.kubernetes.io/name: app-name-workflow
     app.tanzu.vmware.com/workload-type: supplychain
   spec:
     components:

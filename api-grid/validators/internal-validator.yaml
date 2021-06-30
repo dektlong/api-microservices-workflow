@@ -1,6 +1,6 @@
 # this is a mockup file to illustrate future API validator concepts 
 metadata:
-  name: {{app-name}}-internal-api-validator
+  name: app-name-internal-api-validator
 spec:
   - validators: # notRequired, alwaysRequired, updateOnly
     sso: updateOnly 

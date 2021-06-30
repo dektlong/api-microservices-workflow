@@ -79,19 +79,19 @@ engine:
     transformations:
     - type: ReplaceText
       substitutions:
-      - text: {{deployment-domain}}
+      - text: deployment-domain
         with: "#deploymentDomain"
-      - text: {{sso-provider}}
+      - text: sso-provider
         with: "#ssoProvider"
-      - text: {{ha-count}}
+      - text: ha-count
         with: "#haCount"
-      - text: {{parent-git}}
+      - text: parent-git
         with: "#parentGit"
-      - text: {{subpath1}}
+      - text: subpath1
         with: "#subpath1"
-      - text: {{subpath2}}
+      - text: subpath2
         with: "#subpath2"
-      - text: {{api-scorecards}}
+      - text: api-scorecards
         with: "#apiScorecards"
    - includes: [ "api-grid/validators/project-validator.yaml" ]
      condition: "#apiValidator == 'project'"
@@ -102,5 +102,5 @@ engine:
   transformations:
     - type: ReplaceText
       substitutions:
-      - text: {{app-name}}
+      - text: app-name
         with: "#artifactId"
