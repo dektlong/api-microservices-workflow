@@ -2,24 +2,24 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: subpath1
+  name: {{subpath1}}
   labels:
-    app.kubernetes.io/name: subpath1
+    app.kubernetes.io/name: {{subpath1}}
     app.tanzu.vmware.com/workload-type: web
   spec:
     git:
       url: parent-repo
-        sub-path: subpath1
+        sub-path: {{subpath1}}
 ---
 apiVersion: experimental.kontinue.io/v1
 kind: Workload
 metadata:
-  name: subpath2
+  name: {{subpath2}}
   labels:
-    app.kubernetes.io/name: subpath2
+    app.kubernetes.io/name: {{subpath2}}
     app.tanzu.vmware.com/workload-type: web
   spec:
     git:
       url: parent-repo
-        sub-path: subpath2
+        sub-path: {{subpath2}}
   

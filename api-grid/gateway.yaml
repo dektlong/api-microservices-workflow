@@ -1,23 +1,23 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
-  name: app-name-micro-gateway
+  name: {{app-name}}-micro-gateway
 spec:
   api:
-    serverUrl: https://app-name.deployment-domain
-    title: app-name micro-gateway
-    description: Micro Gateway to control internal APIs for building microservices for app-name. 
+    serverUrl: https://{{app-name}}.{{deployment-domain}}
+    title: {{app-name}} micro-gateway
+    description: Micro Gateway to control internal APIs for building microservices for {{app-name}}. 
     version: 0.1.0
-    scorecards: api-scorecards
+    scorecards: {{api-scorecards}}
     cors:
       allowedOrigins:
-        - api-portal.deployment-domain
-  count: ha-count
+        - api-portal.{{deployment-domain}}
+  count: {{ha-count}}
   sso:
-    secret: app-name-sso-provider-secret
+    secret: {{app-name}}-{{sso-provider}}-secret
   metrics:
     wavefront:
-      secret: app-name-observability
+      secret: {{app-name}}-observability
   tracing:
     wavefront:
-      secret: app-name-observability
+      secret: {{app-name}}-observability

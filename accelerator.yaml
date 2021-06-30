@@ -44,12 +44,12 @@ accelerator:
     dataType: string
     defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
     display: true
-  - name: subPath1
+  - name: {{subpath1}}
     label: Microservice 1 sub-path
     description: Sub-path within partent git for microservice1
     defaultValue: workload-backend
     display: true
-  - name: subPath2
+  - name: {{subpath2}}
     label: Microservice 2 sub-path
     description: Sub-path within partent git for microservice2
     defaultValue: workload-frontend
@@ -79,19 +79,19 @@ engine:
     transformations:
     - type: ReplaceText
       substitutions:
-      - text: deployment-domain
+      - text: {{deployment-domain}}
         with: "#deploymentDomain"
-      - text: sso-provider
+      - text: {{sso-provider}}
         with: "#ssoProvider"
-      - text: ha-count
+      - text: {{ha-count}}
         with: "#haCount"
-      - text: parent-git
+      - text: {{parent-git}}
         with: "#parentGit"
-      - text: subpath1
-        with: "#subPath1"
-      - text: subpath2
-        with: "#subPath2"
-      - text: api-scorecards
+      - text: {{subpath1}}
+        with: "#{{subpath1}}"
+      - text: {{subpath2}}
+        with: "#{{subpath2}}"
+      - text: {{api-scorecards}}
         with: "#apiScorecards"
    - includes: [ "api-grid/validators/project-validator.yaml" ]
      condition: "#apiValidator == 'project'"
@@ -102,5 +102,5 @@ engine:
   transformations:
     - type: ReplaceText
       substitutions:
-      - text: app-name
+      - text: {{app-name}}
         with: "#artifactId"
