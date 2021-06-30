@@ -44,12 +44,12 @@ accelerator:
     dataType: string
     defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
     display: true
-  - name: {{subpath1}}
+  - name: subpath1
     label: Microservice 1 sub-path
     description: Sub-path within partent git for microservice1
     defaultValue: workload-backend
     display: true
-  - name: {{subpath2}}
+  - name: subpath2
     label: Microservice 2 sub-path
     description: Sub-path within partent git for microservice2
     defaultValue: workload-frontend
@@ -88,9 +88,9 @@ engine:
       - text: {{parent-git}}
         with: "#parentGit"
       - text: {{subpath1}}
-        with: "#{{subpath1}}"
+        with: "#subpath1"
       - text: {{subpath2}}
-        with: "#{{subpath2}}"
+        with: "#subpath2"
       - text: {{api-scorecards}}
         with: "#apiScorecards"
    - includes: [ "api-grid/validators/project-validator.yaml" ]
