@@ -13,9 +13,12 @@ accelerator:
     defaultValue: project
     inputType: select 
     choices:
-      project: Project level access 
-      internal: Internal teams collabolartion 
-      external: Extenral facing APIs
+    - value: project
+      text: Project level access
+    - value: internal
+      text: Internal teams collabolartion 
+    - valute: external
+      text: Extenral facing APIs
   - name: haCount
     label: Micro-gateway HA count
     description:  How many instances to deploy every Micro-gateway with 
@@ -28,11 +31,16 @@ accelerator:
     defaultValue: openId
     required: true
     choices:
-      amazon: Amazon
-      google: Google
-      okta: Okta (Auth0)
-      microsoft: Microsoft
-      openId: OpenID connect
+    - value: amazon
+      text: Amazon
+    - value: google
+      text: Google
+    - value: okta
+      text: Okta (Auth0)
+    - value: microsoft
+      text: Microsoft
+    - value: openId
+      text: OpenID connect (generic)
   - name: parentGit
     label: Parent git repo
     description: Parent Git URL for all microservices in this project
