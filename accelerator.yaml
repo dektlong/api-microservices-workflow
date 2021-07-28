@@ -44,7 +44,7 @@ accelerator:
   - name: parentGit
     label: Parent git repo
     description: Parent Git URL for all microservices in this project
-    defaultValue: https://github.com/dektlong/_dekt4pets-demo
+    defaultValue: https://github.com/dektlong/APIGridDemo
     required: true
   - name: apiScorecards
     description: URL for API Scorecards dashboard
@@ -53,12 +53,12 @@ accelerator:
   - name: subpath1
     label: Microservice 1 sub-path
     description: Sub-path within partent git for microservice1
-    defaultValue: workload-backend
+    defaultValue: workloads/dekt4pets/backend
     display: true
   - name: subpath2
     label: Microservice 2 sub-path
     description: Sub-path within partent git for microservice2
-    defaultValue: workload-frontend
+    defaultValue: workloads/dekt4pets/frontend
     display: true
   - name: subPath3
     label: Microservice 3 sub-path
