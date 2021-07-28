@@ -17,7 +17,7 @@ accelerator:
       text: Project level access
     - value: internal
       text: Internal teams collabolartion 
-    - valute: external
+    - value: external
       text: Extenral facing APIs
   - name: haCount
     label: Micro-gateway HA count
