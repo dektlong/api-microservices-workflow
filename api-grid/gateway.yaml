@@ -18,6 +18,10 @@ spec:
   metrics:
     wavefront:
       secret: app-name-observability
+      application: app-name
+      service: app-name-gateway
   tracing:
     wavefront:
       secret: app-name-observability
+      application: app-name
+      service: app-name-gateway
