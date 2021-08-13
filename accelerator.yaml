@@ -28,12 +28,28 @@ accelerator:
       - value: cf
         text: Cloud Foundry
   
-  - name: parentGit
-    label: Parent git repo
-    description: Parent Git URL for all microservices in this project
-    defaultValue: https://github.com/dektlong/APIGridDemo
+  - name: git1
+    label: Git repo for microservice #1
+    description: Git repo for microservice #1
+    defaultValue: https://github.com/dektlong/APIGridDemo/workloads/dekt4pets/backend
     required: true
-  
+  - name: git2
+    label: Git repo for microservice #2
+    description: Git repo for microservice #2
+    defaultValue: https://github.com/dektlong/APIGridDemo/workloads/dekt4pets/frontend
+    display: true
+  - name: git3
+    label: Git repo for microservice #3
+    description: Git repo for microservice #3
+    defaultValue: https://github.com/dektlong/git3
+  - name: git4
+    label: Git repo for microservice #4
+    description: Git repo for microservice #4
+    defaultValue: https://github.com/dektlong/git4
+  - name: git5
+    label: Git repo for microservice #5
+    description: Git repo for microservice #5
+    defaultValue: https://github.com/dektlong/git5
   
   #API Grid
   
@@ -77,41 +93,10 @@ accelerator:
     - value: openId
       text: OpenID connect (generic)
   
-  
-  
   - name: apiScorecards
     description: URL for API Scorecards dashboard
     defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
     display: true
-  
-  - name: subpath1
-    label: Microservice 1 sub-path
-    description: Sub-path within partent git for microservice1
-    defaultValue: workloads/dekt4pets/backend
-    display: true
-  - name: subpath2
-    label: Microservice 2 sub-path
-    description: Sub-path within partent git for microservice2
-    defaultValue: workloads/dekt4pets/frontend
-    display: true
-  - name: subPath3
-    label: Microservice 3 sub-path
-    description: Sub-path within partent git for microservice3
-    defaultValue: sub-path3
-  - name: subPath4
-    label: Microservice 4 sub-path
-    description: Sub-path within partent git for microservice4
-    defaultValue: sub-path4
-  - name: subPath5
-    label: Microservice 5 sub-path
-    description: Sub-path within partent git for microservice5
-    defaultValue: sub-path5
-  
-  - name: deploymentDomain
-    label: Initial deployment domain
-    description: The initial deployment domain 
-    display: true
-    defaultValue: tanzu.dekt.io
 
 engine:
   sources:
@@ -142,11 +127,9 @@ engine:
       with: "#ssoProvider"
     - text: ha-count
       with: "#haCount"
-    - text: parent-git
-      with: "#parentGit"
-    - text: subpath1
-      with: "#subpath1"
-    - text: subpath2
-      with: "#subpath2"
+    - text: git1
+      with: "#git1"
+    - text: git2
+      with: "#git2"
     - text: api-scorecards
       with: "#apiScorecards"
