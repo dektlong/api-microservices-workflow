@@ -25,8 +25,8 @@ accelerator:
         text: Tanzu Application Platform (kontinue)
       - value: tbs
         text: Build Service (kpack)
-      - value: tas
-        text: Tanzu Application Service (cloud foundry)
+      - value: cf
+        text: Cloud Foundry
   
   - name: parentGit
     label: Parent git repo
@@ -118,12 +118,12 @@ engine:
   #supplychain
   - includes: [ "supplychain/tap-kontinue/**" ]
     condition: "#supplychain.contains('tap')"
-  - includes: [ "supplychain/vanila-k8s/**" ]
+  - includes: [ "supplychain/k8s/**" ]
     condition: "#supplychain.contains('k8s')"
   - includes: [ "supplychain/tbs-kpack/**" ]
     condition: "#supplychain.contains('tbs')"
-  - includes: [ "supplychain/tas-cf/**" ]
-    condition: "#supplychain.contains('tas')"
+  - includes: [ "supplychain/cf/**" ]
+    condition: "#supplychain.contains('cf')"
   #api-grid
   - includes: [ "api-grid/validators/project-validator.yaml" ]
     condition: "#apiValidator.contains('project')"
