@@ -79,12 +79,12 @@ accelerator:
   - name: git1
     label: Microservice-1 git 
     description: Git repo for microservice number one
-    defaultValue: https://github.com/dektlong/APIGridDemo/workloads/dekt4pets/backend
+    defaultValue: https://github.com/dektlong/APIGridDemo/tree/main/workloads/dekt4pets/backend
     required: true
   - name: git2
     label: Microservice-2 git 
     description: Git repo for microservice number two
-    defaultValue: https://github.com/dektlong/APIGridDemo/workloads/dekt4pets/frontend
+    defaultValue: https://github.com/dektlong/APIGridDemo/tree/main/workloads/dekt4pets/frontend
     display: true
   - name: git3
     label: Microservice-3 git 
