@@ -7,6 +7,36 @@ accelerator:
 
   options:
   
+  #devops supply chain
+  
+  - name: supplychain
+    inputType: checkbox
+    label: DevOps supply chain
+    description: Generated configuration for the DevOps supply chain
+    required: true
+    dataType: [string]
+    defaultValue:
+      - tap
+      - tbs
+    choices:
+      - value: k8s
+        text: DIY with k8s resources
+      - value: tap
+        text: Tanzu Application Platform (kontinue)
+      - value: tbs
+        text: Build Service (kpack)
+      - value: tas
+        text: Tanzu Application Service (cloud foundry)
+  
+  - name: parentGit
+    label: Parent git repo
+    description: Parent Git URL for all microservices in this project
+    defaultValue: https://github.com/dektlong/APIGridDemo
+    required: true
+  
+  
+  #API Grid
+  
   - name: apiValidator
     inputType: checkbox
     label: API validation policy
@@ -47,11 +77,7 @@ accelerator:
     - value: openId
       text: OpenID connect (generic)
   
-  - name: parentGit
-    label: Parent git repo
-    description: Parent Git URL for all microservices in this project
-    defaultValue: https://github.com/dektlong/APIGridDemo
-    required: true
+  
   
   - name: apiScorecards
     description: URL for API Scorecards dashboard
@@ -89,33 +115,40 @@ accelerator:
 
 engine:
   sources:
-  - includes: ["**"]
-    excludes: ["api-grid/validators/**"]
-    transformations:
-    - type: ReplaceText
-      substitutions:
-      - text: deployment-domain
-        with: "#deploymentDomain"
-      - text: sso-provider
-        with: "#ssoProvider"
-      - text: ha-count
-        with: "#haCount"
-      - text: parent-git
-        with: "#parentGit"
-      - text: subpath1
-        with: "#subpath1"
-      - text: subpath2
-        with: "#subpath2"
-      - text: api-scorecards
-        with: "#apiScorecards"
+  #supplychain
+  - includes: [ "supplychain/tap-kontinue/**" ]
+    condition: "#supplychain.contains('tap')"
+  - includes: [ "supplychain/vanila-k8s/**" ]
+    condition: "#supplychain.contains('k8s')"
+  - includes: [ "supplychain/tbs-kpack/**" ]
+    condition: "#supplychain.contains('tbs')"
+  - includes: [ "supplychain/tas-cf/**" ]
+    condition: "#supplychain.contains('tas')"
+  #api-grid
   - includes: [ "api-grid/validators/project-validator.yaml" ]
     condition: "#apiValidator.contains('project')"
   - includes: [ "api-grid/validators/internal-validator.yaml" ]
     condition: "#apiValidator.contains('internal')"
   - includes: [ "api-grid/validators/external-validator.yaml" ]
     condition: "#apiValidator.contains('external')"
+     
+
   transformations:
   - type: ReplaceText
     substitutions:
     - text: app-name
       with: "#artifactId"
+    - text: deployment-domain
+      with: "#deploymentDomain"
+    - text: sso-provider
+      with: "#ssoProvider"
+    - text: ha-count
+      with: "#haCount"
+    - text: parent-git
+      with: "#parentGit"
+    - text: subpath1
+      with: "#subpath1"
+    - text: subpath2
+      with: "#subpath2"
+    - text: api-scorecards
+      with: "#apiScorecards"
