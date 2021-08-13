@@ -20,21 +20,3 @@ kp image create subpath2 -n app-name \
   
 kustomize build api-grid | kubectl apply -f -
 ```
-
-patch
-```
-kp image patch subpath1
-
-kp image patch subpath2
-  
-kustomize build api-grid | kubectl apply -f -
-```
-
-delete
-```
-kustomize build api-grid | kubectl delete -f -
-  
-kp image delete subpath1
-  
-kp image delete subpath2
-```
