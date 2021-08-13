@@ -85,7 +85,6 @@ accelerator:
     label: Microservice-2 git 
     description: Git repo for microservice number two
     defaultValue: https://github.com/dektlong/APIGridDemo/tree/main/workloads/dekt4pets/frontend
-    display: true
   - name: git3
     label: Microservice-3 git 
     description: Git repo for microservice number three
