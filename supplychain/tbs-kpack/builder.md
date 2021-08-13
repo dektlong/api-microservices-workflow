@@ -1,4 +1,4 @@
-Info on how to create an image builder for the app-name project
+Create an image builder for the app-name project
 
 ```
 kp builder create app-name-builder -n app-name-ns \
