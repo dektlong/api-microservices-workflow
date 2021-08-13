@@ -1,6 +1,5 @@
-info on how to deploy app components, gateways and routes using Tanzu Build Service, Spring Cloud Gateway and Kustomize
+Deploy app components, gateways and routes using Tanzu Build Service, Spring Cloud Gateway and Kustomize
 
-deploy
 ```
 kp image create subpath1 -n app-name \
   --tag goharbor.io/app-name/subpath1:0.0.1 \
