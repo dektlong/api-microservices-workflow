@@ -111,7 +111,8 @@ engine:
   - includes: [ "supplychain/cf/**" ]
     condition: "#supplychain.contains('cf')"
   #api-grid
-  - includes: [ "api-grid/validators/project-validator.yaml" ]
+  - includes: [ "api-grid/api-portal.yaml,api-grid/gateway.yaml,api-grid/mapping.yaml" ]
+  - includes: [ "api-grid/validators/project-validator.yaml" 
     condition: "#apiValidator.contains('project')"
   - includes: [ "api-grid/validators/internal-validator.yaml" ]
     condition: "#apiValidator.contains('internal')"
