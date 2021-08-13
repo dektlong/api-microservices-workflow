@@ -1,0 +1,32 @@
+apiVersion: kontinue.io/v1alpha1
+kind: BuildTemplate
+metadata:
+  name: kpack-battery
+spec:
+  # default set of parameters. see ClusterSourceTemplate for more
+  # information. (optional)
+  #
+  params: []
+
+  # jsonpath expression to instruct where in the object templated out container 
+  # image information can be found. (required)
+  #
+  imagePath: .status.latestImage
+
+  # template for instantiating the image provider.
+  # same data available for interpolation as any other `*Template`. (required)
+  #
+  template:
+    apiVersion: kpack.io/v1alpha1
+    kind: Image
+    metadata:
+      name: $(workload.name)$-image
+    spec:
+      tag: harbor-repo.vmware.com/kontinuedemo/$(workload.name)$
+      serviceAccount: service-account
+      builder:
+        kind: ClusterBuilder
+        name: java-builder
+      source:
+        blob:
+          url: $(sources[0].url)$

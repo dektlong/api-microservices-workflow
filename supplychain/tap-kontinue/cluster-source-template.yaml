@@ -1,0 +1,49 @@
+apiVersion: kontinue.io/v1alpha1
+kind: SourceTemplate
+metadata:
+  name: git-repository-battery
+spec:
+  # default set of parameters. (optional)
+  #
+  params:
+      # name of the paramter (required, unique in this list)
+      #
+    - name: git-implementation
+      # default value if not specified in the component that references 
+      # this templateClusterSupplyChain (required)
+      #
+      default: libgit2
+
+  # jsonpath expression to instruct where in the object templated out source
+  # code url information can be found. (required)
+  #
+  urlPath: .status.artifact.url
+
+  # jsonpath expression to instruct where in the object templated out 
+  # source code revision information can be found. (required)
+  #
+  revisionPath: .status.artifact.revision
+
+  # template for instantiating the source provider.
+  #
+  # data available for interpolation (`$(<json_path>)$`:
+  #
+  #     - workload
+  #     - params
+  #     - sources (if specified in the supply chain)
+  #     - images (if specified in the supply chain)
+  #     - opinions (if specified in the supply chain)
+  #
+  # (required)
+  #
+  template:
+    apiVersion: source.toolkit.fluxcd.io/v1beta1
+    kind: GitRepository
+    metadata:
+      name: $(workload.name)$-source
+    spec:
+      interval: 3m
+      url: $(workload.git.url)$
+      ref: $(workload.git.ref)$
+      gitImplementation: $(params[?(@.name=="git-implementation")].value)$
+      ignore: ""

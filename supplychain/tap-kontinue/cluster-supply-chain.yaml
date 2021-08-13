@@ -1,0 +1,71 @@
+apiVersion: kontinue.io/v1alpha1
+kind: ClusterSupplyChain
+metadata:
+  name: supplychain
+spec:
+
+  # specifies the label key-value pair to select workloads. (required)
+  #
+  selector:
+    app.tanzu.vmware.com/workload-type: web
+
+
+  # set of components that will take care of bringing the application to a
+  # deliverable state. (required, at least 1)
+  #
+  components:
+
+    # name of the component to be referenced by further components in the chain.
+    # (required, unique)
+    #
+    - name: source-provider
+      # object reference to a template object that instructs how to
+      # instantiate and keep the component up to date. (required)
+      #
+      templateRef:
+        kind: SourceTemplate
+        name: git-repository-battery
+
+    - name: built-image-provider
+      templateRef:
+        kind: BuildTemplate
+        name: kpack-battery
+
+      # a set of components that provide source information, that is, url and
+      # revision.
+      # 
+      # in a template, can be consumed as: 
+      #
+      #    $(sources.<idx>.url)$
+      #    $(sources.<idx>.revision)$
+      #
+      # (optional)
+      sources:                                  # (3)
+        # name of the component to provide the source information. (required)
+        #
+        - component: source-provider
+          # name to be referenced in the template via a query over the list of
+          # sources (for instance, `$(sources.$(name=="provider").url)`.
+          #
+          # (required, unique in this list)
+          #
+          name: provider
+
+      # (optional) set of components that provide image information
+      images: []
+
+      # (optional) set of components that provide opinionionated templates,
+      # i.e., podTemplateSpecs.
+      #
+      opinions: []
+
+      # parameters to override the defaults from the templates.
+      # (optional)
+      #
+      params:                                   # (4)
+        # name of the parameter. (required, unique in this list)
+        #
+        - name: java-version
+          # `jsonpath` expression for finding the value to that parameter.
+          #
+          path: $(workload.params[?(@.name=="nebhale-io/java-version")])$
