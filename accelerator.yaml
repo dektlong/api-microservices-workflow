@@ -138,8 +138,6 @@ engine:
     substitutions:
     - text: app-name
       with: "#artifactId"
-    - text: deployment-domain
-      with: "#deploymentDomain"
     - text: sso-provider
       with: "#ssoProvider"
     - text: ha-count
