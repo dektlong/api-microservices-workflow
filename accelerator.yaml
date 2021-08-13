@@ -28,29 +28,6 @@ accelerator:
       - value: cf
         text: Cloud Foundry
   
-  - name: git1
-    label: Git repo for microservice #1
-    description: Git repo for microservice #1
-    defaultValue: https://github.com/dektlong/APIGridDemo/workloads/dekt4pets/backend
-    required: true
-  - name: git2
-    label: Git repo for microservice #2
-    description: Git repo for microservice #2
-    defaultValue: https://github.com/dektlong/APIGridDemo/workloads/dekt4pets/frontend
-    display: true
-  - name: git3
-    label: Git repo for microservice #3
-    description: Git repo for microservice #3
-    defaultValue: https://github.com/dektlong/git3
-  - name: git4
-    label: Git repo for microservice #4
-    description: Git repo for microservice #4
-    defaultValue: https://github.com/dektlong/git4
-  - name: git5
-    label: Git repo for microservice #5
-    description: Git repo for microservice #5
-    defaultValue: https://github.com/dektlong/git5
-  
   #API Grid
   
   - name: apiValidator
@@ -97,6 +74,30 @@ accelerator:
     description: URL for API Scorecards dashboard
     defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
     display: true
+    
+  #microservices repos
+  - name: git1
+    label: Microservice-1 git 
+    description: Git repo for microservice number one
+    defaultValue: https://github.com/dektlong/APIGridDemo/workloads/dekt4pets/backend
+    required: true
+  - name: git2
+    label: Microservice-2 git 
+    description: Git repo for microservice number two
+    defaultValue: https://github.com/dektlong/APIGridDemo/workloads/dekt4pets/frontend
+    display: true
+  - name: git3
+    label: Microservice-3 git 
+    description: Git repo for microservice number three
+    defaultValue: https://github.com/dektlong/git3
+  - name: git4
+    label: Microservice-4 git 
+    description: Git repo for microservice number four
+    defaultValue: https://github.com/dektlong/git4
+  - name: git5
+    label: Microservice-5 git 
+    description: Git repo for microservice number five
+    defaultValue: https://github.com/dektlong/git5
 
 engine:
   sources:
