@@ -6,19 +6,24 @@ accelerator:
   - onlinestore-devops
 
   options:
+  
   - name: apiValidator
+    inputType: checkbox
     label: API validation policy
-    description:  Policy to score and validate APIs spec and performance
-    required: true
-    defaultValue: project
-    inputType: select 
+    description: Policy to score and validate APIs spec and performance
+    display: true
+    dataType: [string]
+    defaultValue:
+      - project
+      - internal
     choices:
-    - value: project
-      text: Project level access
-    - value: internal
-      text: Internal teams collabolartion 
-    - value: external
-      text: Extenral facing APIs
+      - value: project
+        text: Project level access
+      - value: internal
+        text: Internal teams collabolartion 
+      - value: external
+        text: Extenral facing APIs
+  
   - name: haCount
     label: Micro-gateway HA count
     description:  How many instances to deploy every Micro-gateway with 
@@ -41,15 +46,18 @@ accelerator:
       text: Microsoft
     - value: openId
       text: OpenID connect (generic)
+  
   - name: parentGit
     label: Parent git repo
     description: Parent Git URL for all microservices in this project
     defaultValue: https://github.com/dektlong/APIGridDemo
     required: true
+  
   - name: apiScorecards
     description: URL for API Scorecards dashboard
     defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
     display: true
+  
   - name: subpath1
     label: Microservice 1 sub-path
     description: Sub-path within partent git for microservice1
@@ -72,6 +80,7 @@ accelerator:
     label: Microservice 5 sub-path
     description: Sub-path within partent git for microservice5
     defaultValue: sub-path5
+  
   - name: deploymentDomain
     label: Initial deployment domain
     description: The initial deployment domain 
@@ -99,12 +108,12 @@ engine:
         with: "#subpath2"
       - text: api-scorecards
         with: "#apiScorecards"
-  - includes: [ "api-grid/validators/project-validator.yaml" ]
-    condition: "#apiValidator == 'project'"
+  - includes: [ "accelerators/api-grid/cf/**" ]
+    condition: "#apiValidator.contains('project')"
   - includes: [ "api-grid/validators/internal-validator.yaml" ]
-    condition: "#apiValidator == 'internal'"
+    condition: "#apiValidator.contains('internal')"
   - includes: [ "api-grid/validators/external-validator.yaml" ]
-    condition: "#apiValidator == 'external'"
+    condition: "#apiValidator.contains('external')"
   transformations:
   - type: ReplaceText
     substitutions:
