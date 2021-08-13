@@ -108,7 +108,7 @@ engine:
         with: "#subpath2"
       - text: api-scorecards
         with: "#apiScorecards"
-  - includes: [ "accelerators/api-grid/cf/**" ]
+  - includes: [ "api-grid/validators/project-validator.yaml" ]
     condition: "#apiValidator.contains('project')"
   - includes: [ "api-grid/validators/internal-validator.yaml" ]
     condition: "#apiValidator.contains('internal')"
