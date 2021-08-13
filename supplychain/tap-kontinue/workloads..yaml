@@ -1,7 +1,7 @@
 apiVersion: kontinue.io/v1alpha1
 kind: Workload
 metadata:
-  name: spring-petclinic
+  name: app-name
   labels:
     # label to be matched against a `ClusterSupplyChain`s label selector.
     #
@@ -11,15 +11,15 @@ spec:
   # Source code location in a git repository. (optional)
   #
   git:
-    url: https://github.com/scothis/spring-petclinic.git
+    url: parent-git
     ref: {branch: main}
 
 
   # services to be bound through service-bindings (optional)
   #
-  services:
-    - apiVersion: services.tanzu.vmware.com/v1alpha1
-      kind: RabbitMQ
+  #services:
+  #  - apiVersion: services.tanzu.vmware.com/v1alpha1
+  #    kind: RabbitMQ
 
 
   # image with the app already built (optional)
@@ -29,9 +29,9 @@ spec:
   # (optional) environment variables to be passed to the main container
   # running the application.
   #
-  env:
-    - name: SPRING_PROFILES_ACTIVE
-      value: mysql
+  #env:
+  #  - name: SPRING_PROFILES_ACTIVE
+  #    value: mysql
 
 
   # resource constraints for the main application. (optional)
@@ -43,11 +43,3 @@ spec:
     limits:
       memory: 1Gi
       cpu: 4000m
-
-  # any other parameters that don't fit the ones already typed. (optional)
-  #
-  params:
-    - name: my-company.com/defaults/java-version
-      value: 11
-    - name: debug
-      value: true
