@@ -6,19 +6,22 @@ metadata:
     app.tanzu.vmware.com/workload-type: web
 
 spec:
+
+  metadata:
+    java-version: 11
+    api-routes: git1/routes/workload1-routes.yaml
+    
   git:
     url: git1
     ref: {branch: main}
     
-  #services:
-  #  - apiVersion: services.tanzu.vmware.com/v1alpha1
-  #    kind: backend-db
+  services:
+    - apiVersion: services.tanzu.vmware.com/v1alpha1
+      kind: backend-db
 
   env:
-    - name: ROUTE_CONFIG
-      value: git1/routes/workload1-routes.yaml
-      #  - name: SPRING_PROFILES_ACTIVE
-      #    value: backend-db
+     - name: SPRING_PROFILES_ACTIVE
+       value: backend-db
 
 resources:
     requests:
