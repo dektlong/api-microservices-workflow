@@ -1,7 +1,7 @@
 apiVersion: kontinue.io/v1alpha1
 kind: ClusterSupplyChain
 metadata:
-  name: supplychain
+  name: app-name-supplychain
 spec:
 
   # specifies the label key-value pair to select workloads. (required)
