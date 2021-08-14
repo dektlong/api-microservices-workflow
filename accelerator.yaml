@@ -107,6 +107,8 @@ accelerator:
       defaultValue: dekt4pets-frontend
     - name: gatewayRepo
       defaultValue: https://github.com/dektlong/app-gw-configs
+    - name: registry
+      defaultValue: harbor.apps.cf.tanzutime.com/dekt-apps
       
 
 engine:
@@ -153,3 +155,5 @@ engine:
       with: "#workload2"
     - text: gatewayRepo
       with: "#gatewayRepo"
+    - text: registry
+      with: "#registry"
