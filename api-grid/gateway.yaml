@@ -4,14 +4,14 @@ metadata:
   name: app-name-micro-gateway
 spec:
   api:
-    serverUrl: https://app-name.deployment-domain
+    serverUrl: https://app-name.domain
     title: app-name micro-gateway
     description: Micro Gateway to control internal APIs for building microservices for app-name. 
     version: 0.1.0
     scorecards: api-scorecards
     cors:
       allowedOrigins:
-        - api-portal.deployment-domain
+        - api-portal.domain
   count: ha-count
   sso:
     secret: app-name-sso-provider-secret
