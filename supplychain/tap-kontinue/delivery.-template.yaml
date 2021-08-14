@@ -1,0 +1,21 @@
+apiVersion: experimental.kontinue.io/v1
+kind: DeliveryTemplate
+metadata:
+  name: api-grid-delivery
+spec:
+  template:
+    apiVersion: kappctrl.k14s.io/v1alpha1
+    kind: App
+    metadata:
+      name: $(workload.metadata.name)$
+    spec:
+      serviceAccountName: deployer-sa
+      fetch:
+        - inline:
+            paths:
+              spec:
+                  template: $(workload.api-routes)$
+      template:
+        - ytt: {}
+      deploy:
+        - kapp: {}
