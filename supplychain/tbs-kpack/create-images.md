@@ -1,4 +1,4 @@
-Deploy app components, gateways and routes using Tanzu Build Service, Spring Cloud Gateway and Kustomize
+create TBS images
 
 ```
 kp image create workload1 -n app-name \
@@ -13,6 +13,5 @@ kp image create workload2 -n app-name \
   --git git1\
   --git-revision main \
   --builder app-name-builder \
-  --wait
-  
+  --wait  
 ```
