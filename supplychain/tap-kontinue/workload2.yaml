@@ -9,6 +9,7 @@ spec:
 
   metadata:
     api-routes: git2/routes/workload2-routes.yaml
+    api-gateway: git3/gateway-config.yaml
     
   git:
     url: git2
