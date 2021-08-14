@@ -1,3 +1,6 @@
+#
+# WARNING: this yaml is for demonstration purposes only. Based on a work-in-progess product. Specs will change.
+#
 apiVersion: experimental.kontinue.io/v1
 kind: DeliveryTemplate
 metadata:
