@@ -1,7 +1,7 @@
 apiVersion: kontinue.io/v1alpha1
 kind: Workload
 metadata:
-  name: workload2-app
+  name: workload2
   labels:
     app.tanzu.vmware.com/workload-type: web
 
@@ -9,6 +9,16 @@ spec:
   git:
     url: git2
     ref: {branch: main}
+    
+  #services:
+  #  - apiVersion: services.tanzu.vmware.com/v1alpha1
+  #    kind: backend-db
+
+  env:
+    - name: ROUTE_CONFIG
+      value: git2/routes/workload2-routes.yaml
+      #  - name: SPRING_PROFILES_ACTIVE
+      #    value: backend-db
 
 resources:
     requests:
@@ -17,15 +27,3 @@ resources:
     limits:
       memory: 1Gi
       cpu: 1000m
----
-apiVersion: kontinue.io/v1alpha1
-kind: Workload
-metadata:
-  name: workload2-routes
-  labels:
-    app.tanzu.vmware.com/workload-type: simple
-
-spec:
-  git:
-    url: git2/routes
-    ref: {branch: main}
