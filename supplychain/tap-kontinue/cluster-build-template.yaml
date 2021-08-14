@@ -20,13 +20,13 @@ spec:
     apiVersion: kpack.io/v1alpha1
     kind: Image
     metadata:
-      name: $(workload.name)$-image
+      name: $(workload.name)$
     spec:
-      tag: harbor-repo.vmware.com/kontinuedemo/$(workload.name)$
+      tag: registry/$(workload.name)$
       serviceAccount: service-account
       builder:
         kind: ClusterBuilder
-        name: java-builder
+        name: app-name-builder
       source:
         blob:
-          url: $(sources[0].url)$
+          url: registry/app-name/app-name-builder
