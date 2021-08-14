@@ -9,21 +9,6 @@ spec:
   selector:
     app.tanzu.vmware.com/workload-type: web
 
-  #
-  #
-  #  Pipeline: 
-  #
-  #     => provide source code workload1 and workload2
-  #
-  #       => test workload1 and workload2
-  #
-  #         => build workload1 and workload2 images
-  #
-  #           => add api-grid info (api routes and micro-gateway)    
-  #
-  #           => deploy microservice, routes and micro-gateway
-  #
-  #
   components:
   
     #provide source code for workload1 and workload2
@@ -66,32 +51,4 @@ spec:
       sources:
         - component: workload2-tester
           name: workload2-tested-source
-    
-     #add api-grid info (api routes and micro-gateway)  
-     
-    
-      #provide api-grid configs
-    - name: workload1-routes
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: workload1-route-configs
-     name: workload2-routes
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: workload2-route-configs
-      name: app-name-micro-gateway
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: app-name-micro-gateway-configs
-    
-    #deploy microservice, routes and micro-gateway
-    - name: app-name-runner
-      templateRef:
-        kind: ClusterConfigTemplate
-        name: app-name-deploy
-      images:
-        - component: image-builder-workload1
-          name: workload1-image
-        - component: image-builder-workload2
-          name: workload2-image
-
+   
