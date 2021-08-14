@@ -9,6 +9,14 @@ spec:
   git:
     url: git1
     ref: {branch: main}
+    
+  services:
+    - apiVersion: services.tanzu.vmware.com/v1alpha1
+      kind: backend-db
+
+  env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: backend-db
 
 resources:
     requests:
@@ -17,7 +25,9 @@ resources:
     limits:
       memory: 1Gi
       cpu: 4000m
+
 ---
+
 apiVersion: kontinue.io/v1alpha1
 kind: Workload
 metadata:
