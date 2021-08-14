@@ -1,5 +1,5 @@
-# the supplychain provides the blueprint for how a workload should go from
-# source code to an app running somewhere (or an artifact delivered).
+#
+# WARNING: this yaml is for demonstration purposes only. Based on a work-in-progess product. Specs will change.
 #
 apiVersion: kontinue.io/v1alpha1
 kind: ClusterSupplyChain
