@@ -13,8 +13,13 @@ spec:
       fetch:
         - inline:
             paths:
-              spec:
-                  template: $(workload.api-routes)$
+              - path: metadata
+                type: copy
+                sources: $(workload.api-routes)$
+              - path: metadata
+                type: copy
+                sources: $(workload.api-gateway)$
+          
       template:
         - ytt: {}
       deploy:
