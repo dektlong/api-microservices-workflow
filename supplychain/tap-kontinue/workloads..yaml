@@ -1,7 +1,7 @@
 apiVersion: kontinue.io/v1alpha1
 kind: Workload
 metadata:
-  name: app-name
+  name: workload1
   labels:
     # label to be matched against a `ClusterSupplyChain`s label selector.
     #
@@ -11,7 +11,7 @@ spec:
   # Source code location in a git repository. (optional)
   #
   git:
-    url: parent-git
+    url: git1
     ref: {branch: main}
 
 
@@ -24,7 +24,7 @@ spec:
 
   # image with the app already built (optional)
   #
-  image: foo/docker-built@sha256:b4df00d      # (2)
+  image: registry/app-name/workload1     # (2)
 
   # (optional) environment variables to be passed to the main container
   # running the application.
