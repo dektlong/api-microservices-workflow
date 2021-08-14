@@ -101,11 +101,12 @@ accelerator:
     
     - name: domain
       defaultValue: tanzu.dekt.io
-    
     - name: workload1
       defaultValue: dekt4pets-backend
     - name: workload2
       defaultValue: dekt4pets-frontend
+    - name: gatewayRepo
+      defaultValue: https://github.com/dektlong/app-gw-configs
       
 
 engine:
@@ -150,3 +151,5 @@ engine:
       with: "#workload1"
     - text: workload2
       with: "#workload2"
+    - text: gatewayRepo
+      with: "#gatewayRepo"
