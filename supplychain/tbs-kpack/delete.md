@@ -3,7 +3,7 @@ Delete app components, gateways and routes using Tanzu Build Service, Spring Clo
 ```
 kustomize build api-grid | kubectl delete -f -
   
-kp image delete subpath1
+kp image delete workload1
   
-kp image delete subpath2
+kp image delete workload2
 ```
