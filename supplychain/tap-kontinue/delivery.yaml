@@ -1,7 +1,10 @@
+#
+# WARNING: this yaml is for demonstration purposes only. Based on a work-in-progess product. Specs will change.
+#
 apiVersion: experimental.kontinue.io/v1
 kind: Delivery
 metadata:
-  name: delivery
+  name: app-name-delivery
 spec:
   selector:
     app.tanzu.vmware.com/workload-type: web
@@ -10,4 +13,4 @@ spec:
     - name: delivery
       templateRef:
         kind: DeliveryTemplate
-        name: kapp-battery
+        name: api-grid-delivery
