@@ -1,26 +1,16 @@
 apiVersion: kontinue.io/v1alpha1
 kind: Workload
 metadata:
-  name: workload1
+  name: workload1-app
   labels:
-    # label to be matched against a `ClusterSupplyChain`s label selector.
-    #
-    app.tanzu.vmware.com/workload-type: web   # (1)
+    app.tanzu.vmware.com/workload-type: web
 
 spec:
-  # Source code location in a git repository. (optional)
-  #
   git:
     url: git1
     ref: {branch: main}
 
-  # image with the app already built (optional)
-  #
-  image: registry/app-name/workload1     # (2)
-
-  # resource constraints for the main application. (optional)
-  #
-  resources:
+resources:
     requests:
       memory: 1Gi
       cpu: 100m
@@ -31,29 +21,11 @@ spec:
 apiVersion: kontinue.io/v1alpha1
 kind: Workload
 metadata:
-  name: workload2
+  name: workload1-routes
   labels:
-    # label to be matched against a `ClusterSupplyChain`s label selector.
-    #
-    app.tanzu.vmware.com/workload-type: web   # (1)
+    app.tanzu.vmware.com/workload-type: simple
 
 spec:
-  # Source code location in a git repository. (optional)
-  #
   git:
-    url: git2
+    url: git1/routes
     ref: {branch: main}
-
-  # image with the app already built (optional)
-  #
-  image: registry/app-name/workload2     # (2)
-
-  # resource constraints for the main application. (optional)
-  #
-  resources:
-    requests:
-      memory: 1Gi
-      cpu: 100m
-    limits:
-      memory: 1Gi
-      cpu: 4000m
