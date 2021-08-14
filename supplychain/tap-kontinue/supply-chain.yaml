@@ -1,71 +1,97 @@
+# the supplychain provides the blueprint for how a workload should go from
+# source code to an app running somewhere (or an artifact delivered).
+#
 apiVersion: kontinue.io/v1alpha1
 kind: ClusterSupplyChain
 metadata:
-  name: app-name-supplychain
+  name: app-name-supply-chain
 spec:
-
-  # specifies the label key-value pair to select workloads. (required)
-  #
   selector:
     app.tanzu.vmware.com/workload-type: web
 
-
-  # set of components that will take care of bringing the application to a
-  # deliverable state. (required, at least 1)
+  #
+  #
+  #  Pipeline: 
+  #
+  #     => provide source code workload1 and workload2
+  #
+  #       => test workload1 and workload2
+  #
+  #         => build workload1 and workload2 images
+  #
+  #           => add api-grid info (api routes and micro-gateway)    
+  #
+  #           => deploy microservice, routes and micro-gateway
+  #
   #
   components:
-
-    # name of the component to be referenced by further components in the chain.
-    # (required, unique)
-    #
-    - name: source-provider
-      # object reference to a template object that instructs how to
-      # instantiate and keep the component up to date. (required)
-      #
+  
+    #provide source code for workload1 and workload2
+    - name: workload1-source-provider
       templateRef:
-        kind: SourceTemplate
-        name: git-repository-battery
-
-    - name: built-image-provider
+        kind: ClusterSourceTemplate
+        name: workload1-source-repo
+    - name: workload2-source-provider
       templateRef:
-        kind: BuildTemplate
-        name: kpack-battery
-
-      # a set of components that provide source information, that is, url and
-      # revision.
-      # 
-      # in a template, can be consumed as: 
-      #
-      #    $(sources.<idx>.url)$
-      #    $(sources.<idx>.revision)$
-      #
-      # (optional)
-      sources:                                  # (3)
-        # name of the component to provide the source information. (required)
-        #
-        - component: source-provider
-          # name to be referenced in the template via a query over the list of
-          # sources (for instance, `$(sources.$(name=="provider").url)`.
-          #
-          # (required, unique in this list)
-          #
-          name: provider
-
-      # (optional) set of components that provide image information
-      images: []
-
-      # (optional) set of components that provide opinionionated templates,
-      # i.e., podTemplateSpecs.
-      #
-      opinions: []
-
-      # parameters to override the defaults from the templates.
-      # (optional)
-      #
-      params:                                   # (4)
-        # name of the parameter. (required, unique in this list)
-        #
+        kind: ClusterSourceTemplate
+        name: workload2-source-repo
+        
+    #test workload1 and workload2
+    - name: workload1-tester
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: app-name-testing-pipeline
+      sources:
+        - component: workload1-source-provider
+          name: workload1-tested-source
+        - component: workload2-source-provider
+          name: workload2-tested-source
+    
+    #build workload1 and workload2 images
+    - name: image-builder-workload1
+      templateRef:
+        kind: ClusterBuildTemplate
+        name: app-name-builder
+      sources:
+        - component: workload1-tester
+          name: workload1-tested-source
+      params:
         - name: java-version
-          # `jsonpath` expression for finding the value to that parameter.
-          #
-          path: $(workload.params[?(@.name=="nebhale-io/java-version")])$
+          path: $(java-version)$
+
+    - name: image-builder-workload2
+      templateRef:
+        kind: ClusterBuildTemplate
+        name: app-name-builder
+      sources:
+        - component: workload2-tester
+          name: workload2-tested-source
+    
+     #add api-grid info (api routes and micro-gateway)  
+     
+    
+      #provide api-grid configs
+    - name: workload1-routes
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: workload1-route-configs
+     name: workload2-routes
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: workload2-route-configs
+      name: app-name-micro-gateway
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: app-name-micro-gateway-configs
+    
+    #deploy microservice, routes and micro-gateway
+    - name: app-name-runner
+      templateRef:
+        kind: ClusterConfigTemplate
+        name: app-name-deploy
+      images:
+        - component: image-builder-workload1
+          name: workload1-image
+        - component: image-builder-workload2
+          name: workload2-image
+
