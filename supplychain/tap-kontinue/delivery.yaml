@@ -1,0 +1,13 @@
+apiVersion: experimental.kontinue.io/v1
+kind: Delivery
+metadata:
+  name: delivery
+spec:
+  selector:
+    app.tanzu.vmware.com/workload-type: web
+
+  components:
+    - name: delivery
+      templateRef:
+        kind: DeliveryTemplate
+        name: kapp-battery
