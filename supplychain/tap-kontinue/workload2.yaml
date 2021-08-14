@@ -1,0 +1,31 @@
+apiVersion: kontinue.io/v1alpha1
+kind: Workload
+metadata:
+  name: workload2-app
+  labels:
+    app.tanzu.vmware.com/workload-type: web
+
+spec:
+  git:
+    url: git2
+    ref: {branch: main}
+
+resources:
+    requests:
+      memory: 1Gi
+      cpu: 100m
+    limits:
+      memory: 1Gi
+      cpu: 1000m
+---
+apiVersion: kontinue.io/v1alpha1
+kind: Workload
+metadata:
+  name: workload2-routes
+  labels:
+    app.tanzu.vmware.com/workload-type: simple
+
+spec:
+  git:
+    url: git2/routes
+    ref: {branch: main}
