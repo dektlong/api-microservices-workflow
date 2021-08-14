@@ -15,3 +15,11 @@ kp image create workload2 -n app-name \
   --builder app-name-builder \
   --wait  
 ```
+
+patch TBS images
+
+```
+kp image patch workload1
+
+kp image patch workload2
+```
