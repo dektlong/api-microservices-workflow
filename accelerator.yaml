@@ -112,48 +112,65 @@ accelerator:
       
 
 engine:
-  sources:
-  #supplychain
-  - includes: [ "supplychain/tap-kontinue/**" ]
-    condition: "#supplychain.contains('tap')"
-  - includes: [ "supplychain/k8s/**" ]
-    condition: "#supplychain.contains('k8s')"
-  - includes: [ "supplychain/tbs-kpack/**" ]
-    condition: "#supplychain.contains('tbs')"
-  - includes: [ "supplychain/cf/**" ]
-    condition: "#supplychain.contains('cf')"
-  #api-grid
-  - includes: [ "api-grid/api-portal.yaml", "api-grid/gateway.yaml", "api-grid/mapping.yaml" ]
-  - includes: [ "api-grid/validators/project-validator.yaml" ]
-    condition: "#apiValidator.contains('project')"
-  - includes: [ "api-grid/validators/internal-validator.yaml" ]
-    condition: "#apiValidator.contains('internal')"
-  - includes: [ "api-grid/validators/external-validator.yaml" ]
-    condition: "#apiValidator.contains('external')"
+  merge:
+    #supplychain transformations
+    - includes: [ "supplychain/tap-kontinue/**" ]
+      condition: "#supplychain.contains('tap')"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+            - text: git1
+              with: "#git1"
+            - text: git2
+              with: "#git2"
+            - text: workload1
+              with: "#workload1"
+            - text: workload2
+              with: "#workload2"
+            - text: gatewayRepo
+              with: "#gatewayRepo"
+    - includes: [ "supplychain/k8s/**" ]
+      condition: "#supplychain.contains('k8s')"
+    - includes: [ "supplychain/tbs-kpack/**" ]
+      condition: "#supplychain.contains('tbs')"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+            - text: git1
+              with: "#git1"
+            - text: git2
+              with: "#git2"
+            - text: registry
+              with: "#registry"
+    - includes: [ "supplychain/cf/**" ]
+      condition: "#supplychain.contains('cf')"
+    #api-grid transformations
+    - includes: [ "api-grid/api-portal.yaml", "api-grid/gateway.yaml", "api-grid/mapping.yaml" ]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+            - text: sso-provider
+              with: "#ssoProvider"
+            - text: ha-count
+              with: "#haCount"
+            - text: workload1
+              with: "#workload1"
+            - text: workload2
+              with: "#workload2"
+    - includes: [ "api-grid/validators/project-validator.yaml" ]
+      condition: "#apiValidator.contains('project')"
+    - includes: [ "api-grid/validators/internal-validator.yaml" ]
+      condition: "#apiValidator.contains('internal')"
+    - includes: [ "api-grid/validators/external-validator.yaml" ]
+      condition: "#apiValidator.contains('external')"
      
 
-  transformations:
-  - type: ReplaceText
-    substitutions:
-    - text: app-name
-      with: "#artifactId"
-    - text: sso-provider
-      with: "#ssoProvider"
-    - text: ha-count
-      with: "#haCount"
-    - text: git1
-      with: "#git1"
-    - text: git2
-      with: "#git2"
-    - text: api-scorecards
-      with: "#apiScorecards"
-    - text: domain
-      with: "#domain"
-    - text: workload1
-      with: "#workload1"
-    - text: workload2
-      with: "#workload2"
-    - text: gatewayRepo
-      with: "#gatewayRepo"
+    
     - text: registry
       with: "#registry"
