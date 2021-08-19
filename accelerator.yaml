@@ -169,8 +169,3 @@ engine:
       condition: "#apiValidator.contains('internal')"
     - includes: [ "api-grid/validators/external-validator.yaml" ]
       condition: "#apiValidator.contains('external')"
-     
-
-    
-    - text: registry
-      with: "#registry"
