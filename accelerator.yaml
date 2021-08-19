@@ -163,6 +163,8 @@ engine:
               with: "#workload1"
             - text: workload2
               with: "#workload2"
+            - text: "domain"
+              with: "#domain"
     - includes: [ "api-grid/validators/project-validator.yaml" ]
       condition: "#apiValidator.contains('project')"
     - includes: [ "api-grid/validators/internal-validator.yaml" ]
