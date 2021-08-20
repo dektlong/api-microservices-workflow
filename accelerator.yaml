@@ -122,7 +122,7 @@ engine:
   merge:
     #supplychain transformations
     - includes: [ "supplychain/tap-kontinue/**" ]
-      condition: "#supplychain.contains('tap')"
+      condition: "#supplychain == 'tap'"
       chain:
         - type: ReplaceText
           substitutions:
@@ -139,9 +139,9 @@ engine:
             - text: gatewayRepo
               with: "#gatewayRepo"
     - includes: [ "supplychain/k8s/**" ]
-      condition: "#supplychain.contains('k8s')"
+      condition: "#supplychain == 'k8s'"
     - includes: [ "supplychain/tbs-kpack/**" ]
-      condition: "#supplychain.contains('tbs')"
+      condition: "#supplychain == 'tbs')"
       chain:
         - type: ReplaceText
           substitutions:
@@ -154,7 +154,7 @@ engine:
             - text: registry
               with: "#registry"
     - includes: [ "supplychain/cf/**" ]
-      condition: "#supplychain.contains('cf')"
+      condition: "#supplychain == 'cf'"
     #api-grid transformations
     - includes: [ "api-grid/api-portal.yaml", "api-grid/gateway.yaml", "api-grid/mapping.yaml" ]
       chain:
