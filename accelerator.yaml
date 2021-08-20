@@ -84,27 +84,6 @@ accelerator:
       display: true
     
     #hidden values
-    #- name: git1
-    #  label: Microservice-1 git 
-    #  description: Git repo for microservice number one
-    #  defaultValue: https://github.com/dektlong/dekt4pets-backend
-    - name: git2
-      label: Microservice-2 git 
-      description: Git repo for microservice number two
-      defaultValue: https://github.com/dektlong/dekt4pets-frontend
-    - name: git3
-      label: Microservice-3 git 
-      description: Git repo for microservice number three
-      defaultValue: https://github.com/dektlong/git3
-    - name: git4
-      label: Microservice-4 git 
-      description: Git repo for microservice number four
-      defaultValue: https://github.com/dektlong/git4
-    - name: git5
-      label: Microservice-5 git 
-      description: Git repo for microservice number five
-      defaultValue: https://github.com/dektlong/git5
-    
     - name: domain
       defaultValue: tanzu.dekt.io
     - name: workload1
@@ -120,14 +99,6 @@ accelerator:
 engine:
   merge:
     #supplychain transformations
-    - includes: [ "testmulti.yaml" ]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: git1
-              with: "#gitRepos[0]"
-            - text: git2
-              with: "#gitRepos[1]"
     - includes: [ "supplychain/tap-kontinue/**" ]
       condition: "#supplychain == 'tap'"
       chain:
@@ -136,9 +107,9 @@ engine:
             - text: app-name
               with: "#artifactId"
             - text: git1
-              with: "#git1"
+              with: ""#gitRepos[0]"
             - text: git2
-              with: "#git2"
+              with: "#gitRepos[1]"
             - text: workload1
               with: "#workload1"
             - text: workload2
@@ -155,9 +126,9 @@ engine:
             - text: app-name
               with: "#artifactId"
             - text: git1
-              with: "#git1"
+              with: "#gitRepos[0]"
             - text: git2
-              with: "#git2"
+              with: ""#gitRepos[1]"
             - text: registry
               with: "#registry"
     - includes: [ "supplychain/cf/**" ]
