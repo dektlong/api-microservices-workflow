@@ -25,29 +25,8 @@ accelerator:
           text: Build Service (kpack)
         - value: cf
           text: Cloud Foundry
-  
-    #microservices info (if TAP or kPack selected as the supplychain)
-    - name: git1
-      label: Microservice-1 git 
-      description: Git repo for microservice number one
-      defaultValue: https://github.com/dektlong/dekt4pets-backend
-      dependsOn:
-        name: supplychain
-        value:
-          - [tap]
-          - [tbs]
-    - name: git2
-      label: Microservice-2 git 
-      description: Git repo for microservice number two
-      defaultValue: https://github.com/dektlong/dekt4pets-frontend
-      dependsOn:
-        name: supplychain
-        value:
-          - [tap]
-          - [tbs]
-          
+            
     #API Grid
-  
     - name: apiValidator
       inputType: checkbox
       label: API validation policy
@@ -65,18 +44,15 @@ accelerator:
         - value: external
           text: Extenral facing APIs
   
-    - name: haCount
-      label: Micro-gateway HA count
-      description:  How many instances to deploy every Micro-gateway with 
-      required: true
-      defaultValue: "2"
-    
+    #exteral sso provider (if external facing APIs included)    
     - name: ssoProvider
-      label: Identity provider
-      description: SSO OpenID identity provider
+      label: Identity provider for external access 
+      description: SSO OpenID identity provider for external access 
       inputType: select 
-      defaultValue: openId
-      required: true
+      defaultValue: okta
+      dependsOn:
+        name: apiValidator
+        value: external
       choices:
         - value: amazon
           text: Amazon
@@ -86,14 +62,29 @@ accelerator:
           text: Okta (Auth0)
         - value: microsoft
           text: Microsoft
-        - value: openId
-          text: OpenID connect (generic)
-  
+    
+    - name: haCount
+      label: Micro-gateway HA count
+      description:  How many instances to deploy every Micro-gateway with 
+      required: true
+      defaultValue: "2"
+      
     - name: apiScorecards
       description: URL for API Scorecards dashboard
       defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
       display: true
     
+    #microservices info
+    - name: git1
+      label: Microservice-1 git 
+      description: Git repo for microservice number one
+      defaultValue: https://github.com/dektlong/dekt4pets-backend
+      required: true
+    - name: git2
+      label: Microservice-2 git 
+      description: Git repo for microservice number two
+      defaultValue: https://github.com/dektlong/dekt4pets-frontend
+     
     #hidden values
     - name: git3
       label: Microservice-3 git 
