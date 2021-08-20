@@ -101,7 +101,7 @@ accelerator:
 engine:
   merge:
     #supplychain transformations
-    - includes: [ "supplychain/tap-kontinue/**" ]
+    - includes: [ "supplychain/tap/**" ]
       condition: "#supplychain == 'tap'"
       chain:
         - type: ReplaceText
