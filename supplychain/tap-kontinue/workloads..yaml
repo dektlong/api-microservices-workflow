@@ -30,3 +30,24 @@ resources:
     limits:
       memory: 1Gi
       cpu: 4000m
+---
+apiVersion: kontinue.io/v1alpha1
+kind: Workload
+metadata:
+  name: workload2
+  labels:
+    app.tanzu.vmware.com/workload-type: web
+
+spec:
+
+  git:
+    url: git2
+    ref: {branch: main}
+    
+resources:
+    requests:
+      memory: 1Gi
+      cpu: 100m
+    limits:
+      memory: 1Gi
+      cpu: 1000m
