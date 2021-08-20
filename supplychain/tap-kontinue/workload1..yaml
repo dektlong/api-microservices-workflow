@@ -9,8 +9,6 @@ spec:
 
   metadata:
     java-version: 11
-    api-routes: git1/routes/workload1-routes.yaml
-    api-gateway: gatewayRepo/app-name-gateway-config.yaml
     
   git:
     url: git1
