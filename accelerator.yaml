@@ -46,10 +46,10 @@ accelerator:
   
     #exteral sso provider (if external facing APIs included)    
     - name: ssoProvider
-      label: Identity provider for external access 
-      description: SSO OpenID identity provider for external access 
+      label: Identity provide
+      description: SSO identity provider for external access 
       inputType: select 
-      defaultValue: okta
+      defaultValue: workspaceOne
       dependsOn:
         name: apiValidator
         value: external
@@ -62,6 +62,8 @@ accelerator:
           text: Okta (Auth0)
         - value: microsoft
           text: Microsoft
+        - value: workspaceOne
+          text: Workspace ONE
     
     - name: haCount
       label: Micro-gateway HA count
