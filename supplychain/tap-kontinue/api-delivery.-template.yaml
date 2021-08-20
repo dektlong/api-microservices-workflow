@@ -10,7 +10,7 @@ spec:
     apiVersion: kappctrl.k14s.io/v1alpha1
     kind: App
     metadata:
-      name: $(workload.metadata.name)$
+      name: app-name
     spec:
       serviceAccountName: deployer-sa
       fetch:
