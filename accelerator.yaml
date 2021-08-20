@@ -26,14 +26,14 @@ accelerator:
         - value: tap
           text: Tanzu Application Platform
     
-    - name: multiText
-    label: multi-text
-    inputType: multi-text
-    display: true
-    dataType: [string]
-    defaultValue:
-      - text value 1
-      - text value 2
+    - name: gitRepos
+      label: Microservices git repos
+      inputType: multi-text
+      required: true
+      dataType: [string]
+      defaultValue:
+        - https://github.com/dektlong/dekt4pets-backend
+        - https://github.com/dektlong/dekt4pets-frontend
       
     #API Grid
     - name: apiValidator
