@@ -92,9 +92,11 @@ accelerator:
       display: true
     
     #hidden values
-    - name: Domain name
+    - name: domain
+      label: Domain name
       defaultValue: tanzu.dekt.io
-    - name: Image registry
+    - name: registry
+      label: Image registry
       defaultValue: harbor.apps.cf.tanzutime.com/dekt-apps
       
 
