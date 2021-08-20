@@ -9,7 +9,7 @@ accelerator:
   
   #devops supply chain
     - name: supplychain
-      inputType: checkbox
+      inputType: select
       label: DevOps supply chain
       description: Generated configuration for the DevOps supply chain
       required: true
@@ -19,13 +19,22 @@ accelerator:
       choices:
         - value: k8s
           text: DIY with k8s resources
-        - value: tap
-          text: Tanzu Application Platform (kontinue)
         - value: tbs
-          text: Build Service (kpack)
+          text: Build Service + kustomize
         - value: cf
           text: Cloud Foundry
-            
+        - value: tap
+          text: Tanzu Application Platform
+    
+    - name: multiText
+    label: multi-text
+    inputType: multi-text
+    display: true
+    dataType: [string]
+    defaultValue:
+      - text value 1
+      - text value 2
+      
     #API Grid
     - name: apiValidator
       inputType: checkbox
