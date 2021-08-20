@@ -10,7 +10,20 @@ spec:
     app.tanzu.vmware.com/workload-type: web
 
   components:
-    - name: delivery
-      templateRef:
-        kind: DeliveryTemplate
-        name: api-grid-delivery
+    - name: app-name-delivery
+      serviceAccountName: app-name-deployer
+      fetch:
+        - inline:
+            paths:
+              - path: workload1-routes
+                type: copy
+                sources: $(workload1.api-routes)$
+              - path: workload2-routes
+                type: copy
+                sources: $(workload2.api-routes)$
+              - path: api-mapping
+                type: copy
+                sources: ../../apigrid/mapping.yaml
+              - path: gateway-config
+                type: copy
+                sources: ../../apigrid/gateway.yaml
