@@ -116,8 +116,6 @@ engine:
               with: "#workloads[0]"
             - text: workload2
               with: "#workloads[1]"
-            - text: gatewayRepo
-              with: "#gatewayRepo"
     - includes: [ "supplychain/k8s/**" ]
       condition: "#supplychain == 'k8s'"
     - includes: [ "supplychain/tbs-kpack/**" ]
