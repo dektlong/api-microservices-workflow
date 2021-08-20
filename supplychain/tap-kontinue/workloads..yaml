@@ -9,6 +9,7 @@ spec:
 
   metadata:
     java-version: 11
+    api-routes: api-routes
     
   git:
     url: git1
