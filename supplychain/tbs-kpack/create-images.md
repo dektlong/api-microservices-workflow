@@ -10,7 +10,7 @@ kp image create workload1 -n app-name \
   
 kp image create workload2 -n app-name \
   --tag registry/app-name/workload2:0.0.1 \
-  --git git1\
+  --git git2\
   --git-revision main \
   --builder app-name-builder \
   --wait  
