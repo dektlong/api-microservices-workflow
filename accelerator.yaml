@@ -38,8 +38,8 @@ accelerator:
       inputType: multi-text
       dataType: [string]
       defaultValue:
-        - adoption-requests-api
-        - adoption-portal
+        - workload1
+        - workload2
       
     #API Grid
     - name: apiValidator
