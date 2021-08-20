@@ -11,7 +11,7 @@ spec:
 
   components:
     - name: app-name-delivery
-      serviceAccountName: app-name-deployer
+      serviceAccountName: api-grid-deployer
       fetch:
         - inline:
             paths:
