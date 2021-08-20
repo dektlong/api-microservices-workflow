@@ -34,9 +34,8 @@ accelerator:
         - https://github.com/dektlong/dekt4pets-frontend
         
     - name: workloads
-      label: Microservices workload names
+      label: Workload names
       inputType: multi-text
-      required: true
       dataType: [string]
       defaultValue:
         - adoption-requests-api
