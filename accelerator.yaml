@@ -80,14 +80,14 @@ accelerator:
       defaultValue: https://github.com/dektlong/dekt4pets-backend
       dependsOn:
         name: supplychain
-        value: [tap,tbs]
+        value: tap
     - name: git2
       label: Microservice-2 git 
       description: Git repo for microservice number two
       defaultValue: https://github.com/dektlong/dekt4pets-frontend
       dependsOn:
         name: supplychain
-        value: [tap,tbs]
+        value: tap
     - name: git3
       label: Microservice-3 git 
       description: Git repo for microservice number three
