@@ -107,7 +107,7 @@ engine:
             - text: app-name
               with: "#artifactId"
             - text: git1
-              with: ""#gitRepos[0]"
+              with: "#gitRepos[0]"
             - text: git2
               with: "#gitRepos[1]"
             - text: workload1
@@ -128,7 +128,7 @@ engine:
             - text: git1
               with: "#gitRepos[0]"
             - text: git2
-              with: ""#gitRepos[1]"
+              with: "#gitRepos[1]"
             - text: registry
               with: "#registry"
     - includes: [ "supplychain/cf/**" ]
