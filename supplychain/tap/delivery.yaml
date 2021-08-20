@@ -17,10 +17,10 @@ spec:
             paths:
               - path: workload1-routes
                 type: copy
-                sources: $(workload1.api-routes)$
+                sources: $(workload1.git)$/api-routes.yaml
               - path: workload2-routes
                 type: copy
-                sources: $(workload2.api-routes)$
+                sources: $(workload2.git)$/api-routes.yaml
               - path: api-mapping
                 type: copy
                 sources: ../../apigrid/mapping.yaml
