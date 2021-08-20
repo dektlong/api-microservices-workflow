@@ -10,14 +10,13 @@ accelerator:
     #devops supply chain
   
     - name: supplychain
-      inputType: checkbox
+      inputType: select
       label: DevOps supply chain
       description: Generated configuration for the DevOps supply chain
       required: true
       dataType: [string]
       defaultValue:
-        - tap
-        - tbs
+        - k8s
       choices:
         - value: k8s
           text: DIY with k8s resources
@@ -76,16 +75,23 @@ accelerator:
       defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
       display: true
     
-    #microservices info
+    #microservices info (if TAP or kPack selected as the supplychain)
     - name: git1
       label: Microservice-1 git 
       description: Git repo for microservice number one
       defaultValue: https://github.com/dektlong/dekt4pets-backend
-      required: true
+      dependsOn:
+        name: supplychain
+        value: tap
+        value: tbs
     - name: git2
       label: Microservice-2 git 
       description: Git repo for microservice number two
       defaultValue: https://github.com/dektlong/dekt4pets-frontend
+      dependsOn:
+        name: supplychain
+        value: tap
+        value: tbs
     - name: git3
       label: Microservice-3 git 
       description: Git repo for microservice number three
