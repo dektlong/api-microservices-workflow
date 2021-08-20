@@ -2,12 +2,23 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: app-name
 
+secretGenerator:
+- name: app-name-sso-provider-secret
+  envs:
+  - .env.secret
+- name: app-name-observability
+  envs:
+  - .env.secret
+
+generatorOptions:
+  disableNameSuffixHash: true
+  
 resources:
-  - git1/workload1.yaml
-  - git1/routes/workload1-routes.yaml
-  - git2/workload2.yaml
-  - git2/routes/workload2-routes.yaml
-  - gatewayRepo/app-name-gateway-mapping.yaml
-  - gatewayRepo/app-name-gateway-config.yaml
+  - git1/app-depolyment.yaml
+  - git1/api-routes.yaml
+  - git2/app-depolyment.yaml
+  - git2/api-routes.yaml
+  - mapping.yaml
+  - gateway.yaml
  
 
