@@ -125,9 +125,9 @@ engine:
         - type: ReplaceText
           substitutions:
             - text: git1
-              with: "#gitRepos"
+              with: "#gitRepos[0]"
             - text: git2
-              with: "#gitRepos"
+              with: "#gitRepos[1]"
     - includes: [ "supplychain/tap-kontinue/**" ]
       condition: "#supplychain == 'tap'"
       chain:
