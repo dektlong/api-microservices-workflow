@@ -79,8 +79,10 @@ accelerator:
       description: Git repo for microservice number one
       defaultValue: https://github.com/dektlong/dekt4pets-backend
       dependsOn:
-        name: supplychain
-        value: tap
+        - name: supplychain
+          value: tap
+        - name: supplychain
+          value: tbs
     - name: git2
       label: Microservice-2 git 
       description: Git repo for microservice number two
