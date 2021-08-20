@@ -9,12 +9,11 @@ accelerator:
   
   #devops supply chain
     - name: supplychain
-      inputType: select
+      inputType: choice
       label: DevOps supply chain
       description: Generated configuration for the DevOps supply chain
       required: true
       dataType: [string]
-      defaultValue: k8s
       choices:
         - value: k8s
           text: DIY with k8s resources
@@ -79,17 +78,15 @@ accelerator:
       description: Git repo for microservice number one
       defaultValue: https://github.com/dektlong/dekt4pets-backend
       dependsOn:
-        - name: supplychain
-          value: tap
-        - name: supplychain
-          value: tbs
+        name: supplychain
+        value: [tap]
     - name: git2
       label: Microservice-2 git 
       description: Git repo for microservice number two
       defaultValue: https://github.com/dektlong/dekt4pets-frontend
       dependsOn:
         name: supplychain
-        value: tap
+        value: [tbs]
     - name: git3
       label: Microservice-3 git 
       description: Git repo for microservice number three
