@@ -141,7 +141,7 @@ engine:
     - includes: [ "supplychain/k8s/**" ]
       condition: "#supplychain == 'k8s'"
     - includes: [ "supplychain/tbs-kpack/**" ]
-      condition: "#supplychain == 'tbs')"
+      condition: "#supplychain == 'tbs'"
       chain:
         - type: ReplaceText
           substitutions:
