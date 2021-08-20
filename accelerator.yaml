@@ -9,7 +9,7 @@ accelerator:
   
   #devops supply chain
     - name: supplychain
-      inputType: choice
+      inputType: checkbox
       label: DevOps supply chain
       description: Generated configuration for the DevOps supply chain
       required: true
