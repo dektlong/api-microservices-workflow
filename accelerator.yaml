@@ -128,7 +128,7 @@ engine:
             - text: app-name
               with: "#artifactId"
             - text: git1
-              with: "#git1"
+              with: "#gitRepos"
             - text: git2
               with: "#git2"
             - text: workload1
