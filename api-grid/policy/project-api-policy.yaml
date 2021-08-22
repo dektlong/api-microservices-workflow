@@ -1,11 +1,35 @@
-# this is a mockup file to illustrate future API validator concepts 
+# this is a mockup file to illustrate API policy zones concepts 
+apiVersion: mockup/v1
+kind: APIPolicyDefinition
 metadata:
-  name: app-name-project-api-validator
+  name: project-api-policy
 spec:
-  - validators: # notRequired, alwaysRequired, updateOnly
-    sso: notRequired   
-    model: notRequired
-    path: alwaysRequired
-    method: updateOnly
-    rateLimit: notRequired
-    circuitBreaker: notRequired
+  rules:
+    
+    - name: project-api-policy
+    
+      acceesControlRequired: Never
+    
+      basicAuthAllowed: Always
+    
+      oAuthv2Verification: Never
+
+      apiEncryption: NEver
+    
+      apiKeyVerification: CrossClusters
+    
+      jwtVerfication: CrossClusters
+    
+      trafficeManagementEnforced: CrossClusters
+    
+      globalNameSpacesEnable: Never
+    
+      openAPIValidation: CrossClusters
+    
+      apiModelRequired: Always
+    
+      apiPathRequired: Always
+    
+      apiMethodRequired: Always
+    
+      apiCircuitBreakerRequired: CrossClusters
