@@ -66,7 +66,7 @@ accelerator:
       inputType: select 
       defaultValue: workspaceOne
       dependsOn:
-        name: apiValidator
+        name: apiPolicy
         value: external
       choices:
         - value: amazon
