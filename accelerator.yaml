@@ -55,7 +55,7 @@ accelerator:
         - value: project
           text: Project: local dev/single team
         - value: internal
-          text: Internal: multiple teams/'brownfield'
+          text: Internal: multiple teams/brownfield
         - value: external
           text: Public: external access
   
