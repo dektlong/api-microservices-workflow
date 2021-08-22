@@ -53,11 +53,11 @@ accelerator:
         - internal
       choices:
         - value: project
-          text: Project: local dev/single team
+          text: "Project: local dev/single team"
         - value: internal
-          text: Internal: multiple teams/brownfield
+          text: "Internal: multiple teams/brownfield"
         - value: external
-          text: Public: external access
+          text: "Public: external access"
   
     #exteral sso provider (if external facing APIs included)    
     - name: ssoProvider
