@@ -1,11 +1,35 @@
-# this is a mockup file to illustrate future API validator concepts 
+# this is a mockup file to illustrate API policy zones concepts 
+apiVersion: mockup/v1
+kind: APIPolicyDefinition
 metadata:
-  name: app-name-external-api-validator
+  name: external-api-policy
 spec:
-  - validators: # notRequired, alwaysRequired, updateOnly
-    sso: alwaysRequired 
-    model: updateOnly
-    path: alwaysRequired
-    method: alwaysRequired
-    rateLimit: alwaysRequired
-    circuitBreaker: alwaysRequired
+  rules:
+    
+    - name: external-api-policy
+    
+      acceesControlRequired: Always
+    
+      basicAuthAllowed: Never
+    
+      oAuthv2Verification: Always
+
+      apiEncryption: Always
+    
+      apiKeyVerification: Always
+    
+      jwtVerfication: Always
+    
+      trafficeManagementEnforced: Always
+    
+      globalNameSpacesEnable: Always
+    
+      openAPIValidation: Always
+    
+      apiModelRequired: IfUpdateOperation
+    
+      apiPathRequired: Always
+    
+      apiMethodRequired: Always
+    
+      apiCircuitBreakerRequired: IfUpdateOperation
