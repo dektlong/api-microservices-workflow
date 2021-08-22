@@ -42,10 +42,10 @@ accelerator:
         - workload2
       
     #API Grid
-    - name: apiValidator
+    - name: apiPolicy
       inputType: checkbox
-      label: API validation policy
-      description: Policy to score and validate APIs spec and performance
+      label: API policy
+      description: Policy to contorl APIs spec and performance
       display: true
       dataType: [string]
       defaultValue:
@@ -53,11 +53,11 @@ accelerator:
         - internal
       choices:
         - value: project
-          text: Project level access
+          text: Project: local dev/single team
         - value: internal
-          text: Internal teams collabolartion 
+          text: Internal: multiple teams/'brownfield'
         - value: external
-          text: Extenral facing APIs
+          text: Public: external access
   
     #exteral sso provider (if external facing APIs included)    
     - name: ssoProvider
@@ -156,9 +156,9 @@ engine:
               with: "#workloads[1]"
             - text: "domain"
               with: "#domain"
-    - includes: [ "api-grid/validators/project-validator.yaml" ]
-      condition: "#apiValidator.contains('project')"
-    - includes: [ "api-grid/validators/internal-validator.yaml" ]
-      condition: "#apiValidator.contains('internal')"
-    - includes: [ "api-grid/validators/external-validator.yaml" ]
-      condition: "#apiValidator.contains('external')"
+    - includes: [ "api-grid/policy/project-api-policy.yaml" ]
+      condition: "#apiPolicy.contains('project')"
+    - includes: [ "api-grid/policy/internal-api-policy.yaml" ]
+      condition: "#apiPolicy.contains('internal')"
+    - includes: [ "api-grid/policy/external-api-policy.yaml" ]
+      condition: "#apiPolicy.contains('external')"
