@@ -1,0 +1,52 @@
+apiVersion: kontinue.io/v1alpha1
+kind: Workload
+metadata:
+  name: workload1
+  labels:
+    app.tanzu.vmware.com/workload-type: web
+
+spec:
+
+  metadata:
+    java-version: 11
+     
+  git:
+    url: git-repo1
+    ref: {branch: main}
+    
+  services:
+    - apiVersion: services.tanzu.vmware.com/v1alpha1
+      kind: db-prod
+
+  env:
+     - name: SPRING_PROFILES_ACTIVE
+       value: prod
+
+resources:
+    requests:
+      memory: 1Gi
+      cpu: 100m
+    limits:
+      memory: 1Gi
+      cpu: 4000m
+---
+apiVersion: kontinue.io/v1alpha1
+kind: Workload
+metadata:
+  name: workload2
+  labels:
+    app.tanzu.vmware.com/workload-type: web
+
+spec:
+
+  git:
+    url: git-repo2
+    ref: {branch: main}
+    
+resources:
+    requests:
+      memory: 1Gi
+      cpu: 100m
+    limits:
+      memory: 1Gi
+      cpu: 1000m
