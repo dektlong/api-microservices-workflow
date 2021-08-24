@@ -110,9 +110,9 @@ engine:
           substitutions:
             - text: app-name
               with: "#artifactId"
-            - text: git1
+            - text: git-repo1
               with: "#gitRepos[0]"
-            - text: git2
+            - text: git-repo2
               with: "#gitRepos[1]"
             - text: workload1
               with: "#workloads[0]"
