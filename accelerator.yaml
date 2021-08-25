@@ -10,7 +10,7 @@ accelerator:
   #devops supply chain
     - name: supplychain
       inputType: select
-      label: DevOps supply chain
+      label: DevOps new supply chain
       description: Generated configuration for the DevOps supply chain
       required: true
       defaultValue: k8s
