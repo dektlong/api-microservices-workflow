@@ -1,18 +1,17 @@
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: app-name
+  name: workload1
   labels:
     app.tanzu.vmware.com/workload-type: web
 
 spec:
   source:
     git:
-      url: git-repo
+      url: git-repo1
       ref:
         branch: "main"
-        #tag: "v0.0.1"
-        #commit: "b4df00d"
+        tag: "v1.0.0"
         
   services:
     - apiVersion: services.tanzu.vmware.com/v1alpha1
@@ -37,18 +36,17 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: app-name
+  name: workload2
   labels:
     app.tanzu.vmware.com/workload-type: web
 
 spec:
   source:
     git:
-      url: git-repo
+      url: git-repo2
       ref:
         branch: "main"
-        #tag: "v0.0.1"
-        #commit: "b4df00d"
+        tag: "v1.0.0"
 
   resources:
     requests:
