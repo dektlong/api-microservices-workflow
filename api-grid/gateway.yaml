@@ -15,13 +15,12 @@ spec:
   count: ha-count
   sso:
     secret: app-name-sso-provider-secret
-  metrics:
+  observability:
+    metrics:
+      wavefront:
+        enabled: true
     wavefront:
       secret: app-name-observability
-      application: app-name
-      service: app-name-gateway
-  tracing:
-    wavefront:
-      secret: app-name-observability
+      source: app-name-gateway
       application: app-name
       service: app-name-gateway
