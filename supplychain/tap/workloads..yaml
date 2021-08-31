@@ -1,52 +1,59 @@
-apiVersion: kontinue.io/v1alpha1
+apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: workload1
+  name: app-name
   labels:
     app.tanzu.vmware.com/workload-type: web
 
 spec:
-
-  metadata:
-    java-version: 11
-     
-  git:
-    url: git-repo1
-    ref: {branch: main}
-    
+  source:
+    git:
+      url: git-repo
+      ref:
+        branch: "main"
+        #tag: "v0.0.1"
+        #commit: "b4df00d"
+        
   services:
     - apiVersion: services.tanzu.vmware.com/v1alpha1
-      kind: db-prod
+      kind: store-db
 
   env:
-     - name: SPRING_PROFILES_ACTIVE
-       value: prod
+    - name: SPRING_PROFILES_ACTIVE
+      value: prod
 
-resources:
+  resources:
     requests:
       memory: 1Gi
       cpu: 100m
     limits:
       memory: 1Gi
       cpu: 4000m
+
+  params:
+    - name: java-version
+      value: 11
 ---
-apiVersion: kontinue.io/v1alpha1
+apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: workload2
+  name: app-name
   labels:
     app.tanzu.vmware.com/workload-type: web
 
 spec:
+  source:
+    git:
+      url: git-repo
+      ref:
+        branch: "main"
+        #tag: "v0.0.1"
+        #commit: "b4df00d"
 
-  git:
-    url: git-repo2
-    ref: {branch: main}
-    
-resources:
+  resources:
     requests:
       memory: 1Gi
       cpu: 100m
     limits:
       memory: 1Gi
-      cpu: 1000m
+      cpu: 4000m
