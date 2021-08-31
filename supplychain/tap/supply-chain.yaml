@@ -1,3 +1,79 @@
+apiVersion: carto.run/v1alpha1
+kind: ClusterSupplyChain
+metadata:
+  name: app-name-supply-chain
+spec:
+  selector:
+    app.tanzu.vmware.com/workload-type: web
+
+  #
+  #
+  #  source-provider  -->  [src]  -->  image-builder  -->  [img]  ---> api-config  --->  [apis]  -->  deployer
+  #    git workload1                     image workload1                 apis workload1                 app-name
+  #    git workload2                     image workload2                 apis workload2
+  #
+  components:
+    - name: app-name-source-provider
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: app-name-source
+
+    - name: app-name-image-builder
+      templateRef:
+        kind: ClusterImageTemplate
+        name: app-name-image
+      sources:
+        - component: source-provider
+          name: source
+
+
+    - name: deployer
+      templateRef:
+        kind: ClusterTemplate
+        name: app-deploy
+      images:
+        - component: image-builder
+          name: image
+
+
+apiVersion: carto.run/v1alpha1
+kind: ClusterSupplyChain
+metadata:
+  name: app-name-supply-chain
+spec:
+
+  selector:
+    app.tanzu.vmware.com/workload-type: web
+
+  components:
+    # git repos are used to provide source code
+    - name: app-name-source-provider
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: git-repository-battery
+
+    # Tanzu Build Service is used to build source to image 
+    - name: app-name-built-image-provider
+      templateRef:
+        kind: ClusterImageTemplate
+        name: kpack-battery
+        
+      # define all the workloads that construct this business application
+      sources:
+        - component: app-name-source-provider
+          name: workload1
+        - component: app-name-source-provider
+          name: workload2
+          
+      - name: deployer
+      templateRef:
+        kind: ClusterTemplate
+        name: app-deploy
+      images:
+        - component: image-builder
+          name: image
+
+
 #
 # WARNING: this yaml is for demonstration purposes only. Based on a work-in-progess product. Specs will change.
 #
