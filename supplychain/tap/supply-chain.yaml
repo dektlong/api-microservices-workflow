@@ -9,19 +9,19 @@ spec:
   #
   #
   #   source-provider <--[src]-- image-builder <--[img]--- deployer
-  #     GitRepository               Image                    App
+  #     workload-git               workload-image           workload-app
   #
   #
   components:
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
-        name: source
+        name: workload-source
 
     - name: image-builder
       templateRef:
         kind: ClusterImageTemplate
-        name: image
+        name: workload-image
       sources:
         - component: source-provider
           name: source
@@ -29,7 +29,7 @@ spec:
     - name: deployer
       templateRef:
         kind: ClusterTemplate
-        name: app-deploy
+        name: workload-deploy
       images:
         - component: image-builder
-          name: image
+          name: workload-image
