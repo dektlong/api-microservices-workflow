@@ -1,35 +1,26 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
-  name: app-name-supply-chain
+  name: workload1-supply-chain
 spec:
   selector:
     app.tanzu.vmware.com/workload-type: web
 
-  #  app-name deployment workflow:
   #
   #  source-provider --> [src] --> image-builder --> [img] --> deployer
-  #    git workload1                 image workload1             app-name 
-  #    git workload2                 image workload2             apis workload1
-  #                                                              apis workload2
-  #                                                              app-name-mapping
-  #                                                              app-name-gateway
+  #    git workload1                 image workload1             workload1-app 
   #
   components:
   
     # git repos are used to provide source code
-    - name: app-name-source-provider
+    - name: workload1-source-provider
       templateRef:
         kind: ClusterSourceTemplate
         name: workload1-source
-        kind: ClusterSourceTemplate
-        name: workload2-source
         
     # Tanzu Build Service is used to build source to image 
-    - name: app-name-image-builder
+    - name: workload1-image-builder
       templateRef:
-        kind: ClusterImageTemplate
-        name: workload1-image
         kind: ClusterImageTemplate
         name: workload1-image
 
@@ -37,9 +28,44 @@ spec:
     - name: app-name-deployer
       templateRef:
         kind: ClusterTemplate
-        name: app-name-deploy-flow
+        name: workload1-deploy-flow
       images:
-        - component: app-name-image-builder
-          name: image
+        - component: workload1-image-builder
+          name: workload1-image
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterSupplyChain
+metadata:
+  name: workload2-supply-chain
+spec:
+  selector:
+    app.tanzu.vmware.com/workload-type: web
+
+  #
+  #  source-provider --> [src] --> image-builder --> [img] --> deployer
+  #    git workload2                image workload2             workload2-app 
+  #
+  components:
+  
+    # git repos are used to provide source code
+    - name: workload2-source-provider
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: workload2-source
+        
+    # Tanzu Build Service is used to build source to image 
+    - name: workload2-image-builder
+      templateRef:
+        kind: ClusterImageTemplate
+        name: workload2-image
+
+    #TAP ClusterTemplate is used to deploy all artifacts
+    - name: app-name-deployer
+      templateRef:
+        kind: ClusterTemplate
+        name: workload1-deploy-flow
+      images:
+        - component: workload2-image-builder
+          name: workload3-image
 
    
