@@ -18,38 +18,28 @@ spec:
   components:
   
     # git repos are used to provide source code
-    - name: workload1-source-provider
+    - name: app-name-source-provider
       templateRef:
         kind: ClusterSourceTemplate
         name: workload1-source
-    - name: workload2-source-provider
-      templateRef:
         kind: ClusterSourceTemplate
         name: workload2-source
         
     # Tanzu Build Service is used to build source to image 
-    - name: workload1-image-builder
+    - name: app-name-image-builder
       templateRef:
         kind: ClusterImageTemplate
         name: workload1-image
-    - name: workload2-image-builder
-      templateRef:
         kind: ClusterImageTemplate
         name: workload1-image
 
-    # define all the workloads that construct this business application
-      sources:
-        - component: app-name-source-provider
-          name: workload1
-        - component: app-name-source-provider
-          name: workload2
-
-    - name: deployer
+    #TAP ClusterTemplate is used to deploy all artifacts
+    - name: app-name-deployer
       templateRef:
         kind: ClusterTemplate
-        name: app-deploy
+        name: app-name-deploy-flow
       images:
-        - component: image-builder
+        - component: app-name-image-builder
           name: image
 
    
