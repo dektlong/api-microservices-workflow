@@ -6,25 +6,36 @@ spec:
   selector:
     app.tanzu.vmware.com/workload-type: web
 
+  #  app-name deployment workflow:
   #
-  #
-  #  source-provider  -->  [src]  -->  image-builder  -->  [img]  ---> api-config  --->  [apis]  -->  deployer
-  #    git workload1                     image workload1                 apis workload1                 app-name
-  #    git workload2                     image workload2                 apis workload2
+  #  source-provider --> [src] --> image-builder --> [img] --> deployer
+  #    git workload1                 image workload1             app-name 
+  #    git workload2                 image workload2             apis workload1
+  #                                                              apis workload2
+  #                                                              app-name-mapping
+  #                                                              app-name-gateway
   #
   components:
   
     # git repos are used to provide source code
-    - name: app-name-source-provider
+    - name: workload1-source-provider
       templateRef:
         kind: ClusterSourceTemplate
-        name: git-repository-battery
+        name: workload1-source
+    - name: workload2-source-provider
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: workload2-source
         
     # Tanzu Build Service is used to build source to image 
-    - name: app-name-image-builder
+    - name: workload1-image-builder
       templateRef:
         kind: ClusterImageTemplate
-        name: pack-battery
+        name: workload1-image
+    - name: workload2-image-builder
+      templateRef:
+        kind: ClusterImageTemplate
+        name: workload1-image
 
     # define all the workloads that construct this business application
       sources:
@@ -41,16 +52,4 @@ spec:
         - component: image-builder
           name: image
 
-
-      params:
-        - name: java-version
-          path: $(java-version)$
-
-    - name: image-builder-workload2
-      templateRef:
-        kind: ClusterBuildTemplate
-        name: app-name-builder
-      sources:
-        - component: workload2-tester
-          name: workload2-tested-source
    
