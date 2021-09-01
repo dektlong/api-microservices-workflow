@@ -7,8 +7,15 @@ metadata:
   name: app-name-delivery
 spec:
   selector:
-    app.tanzu.vmware.com/workload-type: web
+    app.tanzu.vmware.com/workload-type: delivery
 
+  #
+  #   workload1-app => workload1-routes => gateway-mapping
+  #     
+  #     workload2-app => workload2-routes => gateway-mapping  
+  #
+  #         gateway-config
+  #
   components:
     - name: app-name-delivery
       serviceAccountName: api-grid-deployer
