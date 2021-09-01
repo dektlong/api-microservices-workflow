@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterTemplate
 metadata:
-  name: app-name-deployer
+  name: app-name-deploy-flow
 spec:
   template:
     apiVersion: kappctrl.k14s.io/v1alpha1
