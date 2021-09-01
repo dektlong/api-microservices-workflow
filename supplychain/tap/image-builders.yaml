@@ -1,0 +1,43 @@
+apiVersion: carto.run/v1alpha1
+kind: ClusterImageTemplate
+metadata:
+  name: workload1-image
+spec:
+  imagePath: .status.latestImage
+
+  template:
+    apiVersion: kpack.io/v1alpha1
+    kind: Image
+    metadata:
+      name: $(workload1.metadata.name)$
+    spec:
+      tag: #@ data.values.image_prefix + "$(workload1.metadata.name)$"
+      serviceAccount: service-account
+      builder:
+        kind: ClusterBuilder
+        name: java-builder
+      source:
+        blob:
+          url: $(sources[0].url)$
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterImageTemplate
+metadata:
+  name: workload2-image
+spec:
+  imagePath: .status.latestImage
+
+  template:
+    apiVersion: kpack.io/v1alpha1
+    kind: Image
+    metadata:
+      name: $(workload2.metadata.name)$
+    spec:
+      tag: #@ data.values.image_prefix + "$(workload2.metadata.name)$"
+      serviceAccount: service-account
+      builder:
+        kind: ClusterBuilder
+        name: node-builder
+      source:
+        blob:
+          url: $(sources[0].url)$
