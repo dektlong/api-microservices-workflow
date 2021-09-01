@@ -13,19 +13,25 @@ spec:
   #    git workload2                     image workload2                 apis workload2
   #
   components:
+  
+    # git repos are used to provide source code
     - name: app-name-source-provider
       templateRef:
         kind: ClusterSourceTemplate
-        name: app-name-source
-
+        name: git-repository-battery
+        
+    # Tanzu Build Service is used to build source to image 
     - name: app-name-image-builder
       templateRef:
         kind: ClusterImageTemplate
-        name: app-name-image
-      sources:
-        - component: source-provider
-          name: source
+        name: pack-battery
 
+    # define all the workloads that construct this business application
+      sources:
+        - component: app-name-source-provider
+          name: workload1
+        - component: app-name-source-provider
+          name: workload2
 
     - name: deployer
       templateRef:
@@ -36,86 +42,6 @@ spec:
           name: image
 
 
-apiVersion: carto.run/v1alpha1
-kind: ClusterSupplyChain
-metadata:
-  name: app-name-supply-chain
-spec:
-
-  selector:
-    app.tanzu.vmware.com/workload-type: web
-
-  components:
-    # git repos are used to provide source code
-    - name: app-name-source-provider
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: git-repository-battery
-
-    # Tanzu Build Service is used to build source to image 
-    - name: app-name-built-image-provider
-      templateRef:
-        kind: ClusterImageTemplate
-        name: kpack-battery
-        
-      # define all the workloads that construct this business application
-      sources:
-        - component: app-name-source-provider
-          name: workload1
-        - component: app-name-source-provider
-          name: workload2
-          
-      - name: deployer
-      templateRef:
-        kind: ClusterTemplate
-        name: app-deploy
-      images:
-        - component: image-builder
-          name: image
-
-
-#
-# WARNING: this yaml is for demonstration purposes only. Based on a work-in-progess product. Specs will change.
-#
-apiVersion: kontinue.io/v1alpha1
-kind: ClusterSupplyChain
-metadata:
-  name: app-name-supply-chain
-spec:
-  selector:
-    app.tanzu.vmware.com/workload-type: web
-
-  components:
-  
-    #provide source code for workload1 and workload2
-    - name: workload1-source-provider
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: workload1-source-repo
-    - name: workload2-source-provider
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: workload2-source-repo
-        
-    #test workload1 and workload2
-    - name: workload1-tester
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: app-name-testing-pipeline
-      sources:
-        - component: workload1-source-provider
-          name: workload1-tested-source
-        - component: workload2-source-provider
-          name: workload2-tested-source
-    
-    #build workload1 and workload2 images
-    - name: image-builder-workload1
-      templateRef:
-        kind: ClusterBuildTemplate
-        name: app-name-builder
-      sources:
-        - component: workload1-tester
-          name: workload1-tested-source
       params:
         - name: java-version
           path: $(java-version)$
