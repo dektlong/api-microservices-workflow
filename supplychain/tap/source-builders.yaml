@@ -1,0 +1,39 @@
+apiVersion: carto.run/v1alpha1
+kind: ClusterSourceTemplate
+metadata:
+  name: workload1-source
+spec:
+  urlPath: .status.artifact.url
+  revisionPath: .status.artifact.revision
+
+  template:
+    apiVersion: source.toolkit.fluxcd.io/v1beta1
+    kind: GitRepository
+    metadata:
+      name: $(workload1.metadata.name)$
+    spec:
+      interval: 5m
+      url: $(workload1.spec.source.git.url)$
+      ref: $(workload1.spec.source.git.ref)$
+      gitImplementation: libgit2
+      ignore: ""
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterSourceTemplate
+metadata:
+  name: workload2-source
+spec:
+  urlPath: .status.artifact.url
+  revisionPath: .status.artifact.revision
+
+  template:
+    apiVersion: source.toolkit.fluxcd.io/v1beta1
+    kind: GitRepository
+    metadata:
+      name: $(workload2.metadata.name)$
+    spec:
+      interval: 1m
+      url: $(workload2.spec.source.git.url)$
+      ref: $(workload2.spec.source.git.ref)$
+      gitImplementation: libgit2
+      ignore: ""
