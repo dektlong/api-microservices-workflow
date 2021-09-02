@@ -8,8 +8,8 @@ spec:
 
   #
   #
-  #   source-provider <--[src]-- image-builder <--[img]--- deployer
-  #     workload-git               workload-image           workload-app
+  #   source-provider --> source-tester --> [src] --> image-builder --> [img] --> image-deployer
+  #             [workload-git]              workload-source             workload-image              workload-app
   #
   #
   components:
@@ -17,6 +17,14 @@ spec:
       templateRef:
         kind: ClusterSourceTemplate
         name: workload-source
+        
+    - name: source-tester
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: workload-pipeline
+      sources:
+        - component: source-provider
+          name: workload-source
 
     - name: image-builder
       templateRef:
@@ -25,7 +33,6 @@ spec:
       sources:
         - component: source-provider
           name: source
-
     - name: deployer
       templateRef:
         kind: ClusterTemplate
