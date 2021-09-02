@@ -35,6 +35,7 @@ spec:
       sources:
         - component: source-provider
           name: source
+          
     - name: deployer
       templateRef:
         kind: ClusterTemplate
