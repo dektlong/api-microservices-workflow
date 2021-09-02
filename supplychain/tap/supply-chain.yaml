@@ -8,8 +8,10 @@ spec:
 
   #
   #
-  #   source-provider --> source-tester --> [src] --> image-builder --> [img] --> image-deployer
-  #             [workload-git]              workload-source             workload-image              workload-app
+  #   |-> source-provider --> [workload-git]  
+  #       |-> source-tester --> [workload-source]
+  #           |-> image-builder --> [workload-image]
+  #               |-> image-deployer --> [workload-app]
   #
   #
   components:
