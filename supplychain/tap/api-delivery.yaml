@@ -4,20 +4,13 @@
 apiVersion: experimental.kontinue.io/v1
 kind: Delivery
 metadata:
-  name: app-name-delivery
+  name: app-name-api-delivery
 spec:
   selector:
     app.tanzu.vmware.com/workload-type: delivery
 
-  #
-  #   workload1-app => workload1-routes => gateway-mapping
-  #     
-  #     workload2-app => workload2-routes => gateway-mapping  
-  #
-  #         gateway-config
-  #
   components:
-    - name: app-name-delivery
+    - name: app-name-api-delivery
       serviceAccountName: api-grid-deployer
       fetch:
         - inline:
