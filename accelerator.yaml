@@ -32,6 +32,7 @@ accelerator:
       defaultValue:
         - https://github.com/dektlong/dekt4pets-backend
         - https://github.com/dektlong/dekt4pets-frontend
+        - https://github.com/dektlong/adopter-check
         
     - name: workloads
       label: Workload names
@@ -40,6 +41,7 @@ accelerator:
       defaultValue:
         - workload1
         - workload2
+        - workload3
       
     #API Grid
     - name: apiPolicy
