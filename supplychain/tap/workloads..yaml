@@ -55,3 +55,17 @@ spec:
     limits:
       memory: 1Gi
       cpu: 4000m
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: workload3
+  labels:
+    app.kubernetes.io/name: workload3
+    app.tanzu.vmware.com/workload-type: web
+spec:
+  source:
+    git:
+      url: git-repo3
+      ref:
+        branch: main
