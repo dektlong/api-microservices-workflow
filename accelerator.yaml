@@ -164,8 +164,6 @@ engine:
               with: "#workloads[0]"
             - text: workload2
               with: "#workloads[1]"
-            - text: workload3
-              with: "#workloads[2]"
             - text: "domain"
               with: "#domain"
     - includes: [ "api-grid/policy/project-api-policy.yaml" ]
