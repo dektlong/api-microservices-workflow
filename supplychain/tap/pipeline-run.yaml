@@ -26,6 +26,8 @@ spec:
           value: $(workload2.git)$
         - name: workload2-routes
           value: $(workload2.git)$/api-routes.yaml
+        - name: workload3-source-url
+          value: $(workload3.git)$
         - name: api-mapping
           value: ../../apigrid/mapping.yaml
         - name: gateway-config
