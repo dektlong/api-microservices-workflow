@@ -14,12 +14,11 @@ kp image create workload2 -n app-name \
   --git-revision main \
   --builder app-name-builder \
   --wait  
-```
-
-patch TBS images
-
-```
-kp image patch workload1
-
-kp image patch workload2
+  
+kp image create workload3 -n app-name \
+  --tag registry/app-name/workload3:0.0.1 \
+  --git git2\
+  --git-revision main \
+  --builder app-name-builder \
+  --wait  
 ```
