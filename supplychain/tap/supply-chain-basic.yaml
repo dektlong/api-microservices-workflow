@@ -1,7 +1,15 @@
+#
+# Example of a simple Source to URL supply chain
+#   
+#  ---------------        ---------------       ------------------------       -------------------------
+#  | Watch Repo  |  ==>   | Build Image | =>    | Apply Conventions    | ==>   | Deploy to Cluster     |
+#  |  (Flux)     |        | (TBS)       |       | (Convention Service) |       | (CNR, k8s deployment) |
+#  ---------------        ---------------       ------------------------       -------------------------
+#
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
-  name: supply-chain
+  name: basic-supply-chain
 spec:
   selector:
     app.tanzu.vmware.com/workload-type: web
