@@ -33,6 +33,24 @@ accelerator:
       dependsOn:
         name: supplychain
         value: tap
+    - name: apiPipeline
+      label: API pipeline  
+      description: Select how your pipeline will control the api lifecycle 
+      inputType: select 
+      defaultValue: routes
+      dependsOn:
+        name: includePipeline
+        value: true
+      choices:
+        - value: none
+          text: None
+        - value: routes
+          text: Routes
+        - value: routesMapping
+          text: Routes and mappings
+        - value: routesMappingGW
+          text: Routes, mappings and gateways 
+
      
     - name: gitRepos
       label: Microservices git repos
