@@ -28,18 +28,12 @@ accelerator:
     - name: includePipeline
       label: Add pipeline 
       description: Add a pipeline phase (the pipeline tool was pre-configured for you by the central ops team)
-      inputType: select 
-      defaultValue: workspaceOne
+      inputType: toggle 
+      defaultValue: false
       dependsOn:
-        name: apiPolicy
-        value: external
-      choices:
-        - value: amazon
-          text: Amazon
-        - value: google
-          text: Google
-
-
+        name: supplychain
+        value: tap
+     
     - name: gitRepos
       label: Microservices git repos
       inputType: multi-text
