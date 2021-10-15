@@ -1,3 +1,4 @@
+kubectl apply -f - -o yaml << EOF
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
@@ -6,40 +7,34 @@ spec:
   selector:
     app.tanzu.vmware.com/workload-type: web
 
-  #
-  #
-  #   |-> source-provider --> [workload-git]  
-  #       |-> source-tester --> [workload-source]
-  #           |-> image-builder --> [workload-image]
-  #               |-> image-deployer --> [workload-app]
-  #
-  #
   components:
+
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
-        name: workload-source
-        
-    - name: source-tester
+        name: source-code
+
+    - name: source-scanner
       templateRef:
         kind: ClusterSourceTemplate
-        name: workload-pipeline
+        name: scanned-source
       sources:
-        - component: source-provider
-          name: workload-source
+      - component: source-provider
+        name: source-code
 
     - name: image-builder
       templateRef:
         kind: ClusterImageTemplate
-        name: workload-image
+        name: built-image
       sources:
-        - component: source-provider
-          name: source
-          
-    - name: deployer
+        - component: source-scanner
+          name: scanned-source
+
+    - name: image-scanner
       templateRef:
-        kind: ClusterTemplate
-        name: workload-deploy
+        kind: ClusterImageTemplate
+        name: scanned-image
       images:
         - component: image-builder
-          name: workload-image
+          name: built-image
+EOF
