@@ -49,7 +49,17 @@ accelerator:
         - value: routesMapping
           text: Routes and mappings
         - value: routesMappingGW
-          text: Routes, mappings and gateways 
+          text: Routes, mappings and gateways
+    - name: includeTesting
+      label: Add testing phase
+      description: Add a testing phase
+      inputType: toggle 
+      defaultValue: false
+      dependsOn:
+        name: supplychain
+        value: tap
+
+ 
 
      
     - name: gitRepos
