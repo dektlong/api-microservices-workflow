@@ -10,7 +10,7 @@ accelerator:
   #devops supply chain
     - name: supplychain
       inputType: select
-      label: DevOps supply chain
+      label: Supply chain 
       description: Generated configuration for the DevOps supply chain
       required: true
       defaultValue: k8s
@@ -23,7 +23,23 @@ accelerator:
           text: Cloud Foundry
         - value: tap
           text: Tanzu Application Platform
-    
+
+    # TAP supplychain specific options
+    - name: includePipeline
+      label: Add pipeline 
+      description: Add a pipeline phase (the pipeline tool was pre-configured for you by the central ops team)
+      inputType: select 
+      defaultValue: workspaceOne
+      dependsOn:
+        name: apiPolicy
+        value: external
+      choices:
+        - value: amazon
+          text: Amazon
+        - value: google
+          text: Google
+
+
     - name: gitRepos
       label: Microservices git repos
       inputType: multi-text
@@ -63,7 +79,7 @@ accelerator:
   
     #exteral sso provider (if external facing APIs included)    
     - name: ssoProvider
-      label: Identity provide
+      label: Identity provider
       description: SSO identity provider for external access 
       inputType: select 
       defaultValue: workspaceOne
