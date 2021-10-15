@@ -58,10 +58,28 @@ accelerator:
       dependsOn:
         name: supplychain
         value: tap
+    - name: includeScan
+      label: Add a scanning phase
+      description: Add a scanning phase
+      inputType: toggle 
+      defaultValue: false
+      dependsOn:
+        name: supplychain
+        value: tap
+    - name: scanScope
+      label: Scanning scope
+      description: Select the scope of your scanning
+      inputType: select 
+      defaultValue: src
+      dependsOn:
+        name: includeScan
+        value: true
+      choices:
+        - value: src
+          text: Source code
+        - value: srcImg
+          text: Source code and container image
 
- 
-
-     
     - name: gitRepos
       label: Microservices git repos
       inputType: multi-text
