@@ -1,14 +1,9 @@
-#
-#
-# `source` instantiates a GitRepository object, responsible for keeping track
-# of commits made to a git repository, making them available as blobs to
-# further components in the supply chain.
-#
-#
+kubectl apply -f - -o yaml << EOF
+---
 apiVersion: carto.run/v1alpha1
 kind: ClusterSourceTemplate
 metadata:
-  name: source
+  name: source-code
 spec:
   urlPath: .status.artifact.url
   revisionPath: .status.artifact.revision
@@ -17,27 +12,40 @@ spec:
     apiVersion: source.toolkit.fluxcd.io/v1beta1
     kind: GitRepository
     metadata:
-      name: $(workload.metadata.name)$
+      name: $(workload.metadata.name)$-source
     spec:
       interval: 1m
       url: $(workload.spec.source.git.url)$
       ref: $(workload.spec.source.git.ref)$
-      gitImplementation: libgit2
-      ignore: ""
-
+      ignore: |
+        !.git
 
 ---
-#
-#
-# `image` instantiates a `kpack/Image` object, responsible for ensuring that
-# there's a container image built and pushed to a container image registry
-# whenever there's either new source code, or its image builder gets na update.
-#
-#
+apiVersion: carto.run/v1alpha1
+kind: ClusterSourceTemplate
+metadata:
+  name: scanned-source
+spec:
+  urlPath: .status.artifact.blob.url
+  revisionPath: .status.artifact.blob.url
+
+  template:
+    apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+    kind: SourceScan
+    metadata:
+      name: $(workload.metadata.name)$-source-scan
+    spec:
+      blob:
+        url: $(sources.source-code.url)$
+        revision: $(sources.source-code.revision)$
+      scanTemplate: blob-source-scan-template
+      scanPolicy: scan-policy
+
+---
 apiVersion: carto.run/v1alpha1
 kind: ClusterImageTemplate
 metadata:
-  name: image
+  name: built-image
 spec:
   imagePath: .status.latestImage
 
@@ -45,72 +53,37 @@ spec:
     apiVersion: kpack.io/v1alpha1
     kind: Image
     metadata:
-      name: $(workload.metadata.name)$
+      name: $(workload.metadata.name)$-image
     spec:
-      tag: #@ data.values.image_prefix + "$(workload.metadata.name)$"
-      serviceAccount: service-account
+      tag: ${REGISTRY_SERVER}/${REGISTRY_PROJECT}/$(workload.metadata.name)$
+      serviceAccount: default
       builder:
         kind: ClusterBuilder
-        name: go-builder
+        name: default
       source:
         blob:
-          url: $(sources[0].url)$
-          
+          url: $(sources.scanned-source.url)$
+      build:
+        env:
+        - name: BP_OCI_SOURCE
+          value: $(sources.scanned-source.revision)$
+
 ---
-#
-#
-# `workload-deploy` instantiates using kapp to deploy a single workload as k8s app and service making use of an image input 
-#
-#
 apiVersion: carto.run/v1alpha1
-kind: ClusterTemplate
+kind: ClusterImageTemplate
 metadata:
-  name: workload-deploy
+  name: scanned-image
 spec:
+  imagePath: .status.artifact.registry.image
+
   template:
-    apiVersion: kappctrl.k14s.io/v1alpha1
-    kind: App
+    apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
+    kind: ImageScan
     metadata:
-      name: $(workload.metadata.name)$
+      name: $(workload.metadata.name)$-image-scan
     spec:
-      serviceAccountName: default
-      fetch:
-        - inline:
-            paths:
-              manifest.yml: |
-                apiVersion: apps/v1
-                kind: Deployment
-                metadata:
-                  name: $(workload.metadata.name)$
-                spec:
-                  selector:
-                    matchLabels:
-                      app: $(workload.metadata.name)$
-                  template:
-                    metadata:
-                      labels:
-                        app: $(workload.metadata.name)$
-                    spec:
-                      imagePullSecrets: 
-                      - name: imagereg-secret
-                      containers:
-                      - name: dekt4pets-frontend
-                        image: $(images[0].image)$
-                        ports:
-                        - containerPort: 8080
-               ---
-               apiVersion: v1
-               kind: Service
-               metadata:
-               name: $(workload.metadata.name)$-service
-               spec:
-                ports:
-                  - port: 80
-                    targetPort: 8080
-                selector:
-                  app: $(workload.metadata.name)$
-                
-      template:
-        - ytt: {}
-      deploy:
-        - kapp: {}
+      registry:
+        image: $(images.built-image.image)$
+      scanTemplate: private-image-scan-template
+      scanPolicy: scan-policy
+EOF
