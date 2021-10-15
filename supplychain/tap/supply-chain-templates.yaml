@@ -84,4 +84,3 @@ spec:
         image: $(images.built-image.image)$
       scanTemplate: private-image-scan-template
       scanPolicy: scan-policy
-EOF
