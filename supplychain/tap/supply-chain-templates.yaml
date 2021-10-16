@@ -101,11 +101,14 @@ spec:
     metadata:
       generateName: $(pipeline.metadata.name)$-
     spec:
-      pipelineRef:
-        name: $(workload.metadata.name)$-source
-        params: $(pipeline.spec.inputs.params.source)$
+      pipelineRef: {name: run-pre-prod-testing}
+      params:
+        - name: source-url
+          value: $(pipeline.spec.inputs.url)$
+        - name: source-revision
+          value: $(pipeline.spec.inputs.revision)$
   #@ if len(data.values.apiTestingScope) > 0:
-        name: $(workload.metadata.name)$-apis
-        params: #@ data.values.apiTestingScope
+        - name: api-grid
+          value: #@ data.values.apiTestingScope
   #@ end
 #@ end
