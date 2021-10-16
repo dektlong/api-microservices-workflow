@@ -104,17 +104,7 @@ spec:
       pipelineRef:
         name: $(selected.metadata.name)$
         params: $(pipeline.spec.inputs.params.source)$
-  #@ if data.values.apiTesting.routes:
-        name: $(selected.metadata.routes)$
+        name: $(selected.metadata. #@ data.values.artifactId)$
         params: $(pipeline.spec.inputs.params.routes)$
-  #@ end
-  #@ if data.values.apiTesting.mappings:
-        name: $(selected.metadata.mapping)$
-        params: $(pipeline.spec.inputs.params.mapping)$
-  #@ end
-  #@ if data.values.apiTesting.gateways:
-        name: $(selected.metadata.gateways)$
-        params: $(pipeline.spec.inputs.params.gateways)$
-  #@ end
- #@ end
+#@ end
 
