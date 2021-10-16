@@ -1,10 +1,22 @@
+#@ load("@ytt:data", "data")
 #
-# Example of a simple Source to URL supply chain
+# #@ data.values.artifactId Supply Chain workflow description:
 #   
-#  ---------------        ---------------       ------------------------       -------------------------
-#  | Watch Repo  |  ==>   | Build Image | =>    | Apply Conventions    | ==>   | Deploy to Cluster     |
-#  |  (Flux)     |        | (TBS)       |       | (Convention Service) |       | (CNR, k8s deployment) |
-#  ---------------        ---------------       ------------------------       -------------------------
+#   * Watch Repo (Flux)
+#   * Build Image (TBS) =>
+#@ if data.values.addConvenstions:
+#   * Apply Conventions (Convention Service)
+#@ end
+#@ if data.values.scanScope == "src":
+#   * Source scanning (ClusterSourceTemplate)
+#@ end
+#@ if data.values.scanScope == "img":
+#   * Image scanning (ClusterImageTemplate)
+#@ end
+#@ if data.values.addTesting:
+#   * Pre-prod testing (Tekton pipeline)
+#@ end
+#   * Deploy to Cluster (CNR, k8s deployment)
 #
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
