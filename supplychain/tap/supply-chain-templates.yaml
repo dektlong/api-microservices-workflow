@@ -104,7 +104,7 @@ spec:
       pipelineRef:
         name: $(selected.metadata.name)$
         params: $(pipeline.spec.inputs.params.source)$
-        name: $(selected.metadata. #@ data.values.artifactId)$
+        name: #@ data.values.apiTestingScope
         params: $(pipeline.spec.inputs.params.routes)$
 #@ end
 
