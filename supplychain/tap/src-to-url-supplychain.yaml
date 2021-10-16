@@ -10,7 +10,7 @@ metadata:
   name: app-name-supply-chain
 spec:
   selector:
-    app.tanzu.vmware.com/workload-type: online-store
+    app.tanzu.vmware.com/workload-type: online-store-component
   components:
     - name: source-provider
       templateRef:
