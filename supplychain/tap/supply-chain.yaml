@@ -56,4 +56,5 @@ spec:
   #@ else:
         - component: image-builder
           name: image
+  #@ end
 #@ end         
