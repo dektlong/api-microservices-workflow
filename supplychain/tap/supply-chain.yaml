@@ -32,7 +32,7 @@ spec:
       sources:
 #@ if data.values.scanScope == "src":
         - component: source-scanner
-          name: source
+          name: scanned-source
 #@ else:
         - component: source-code
           name: source
@@ -57,7 +57,7 @@ spec:
       sources:
   #@ if data.values.scanScope == "src":
         - component: source-scanner
-          name: source
+          name: scanned-source
   #@ else:
         - component: source-provider
           name: source
@@ -72,7 +72,7 @@ spec:
       images:
 #@ if data.values.scanScope == "img":
         - component: image-scanner
-          name: image
+          name: scanned-image
 #@ else:
         - component: image-builder
           name: image
