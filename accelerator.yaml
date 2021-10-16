@@ -50,7 +50,7 @@ accelerator:
           text: Mappings
         - value: gateways
           text: Gateways
-     - name: scanScope
+    - name: scanScope
       label: Scanning scope
       description: Select the scope of your scanning
       inputType: select
@@ -59,10 +59,10 @@ accelerator:
         name: supplychain
         value: tap
       choices:
-        - value: src
-          text: Source only
-        - value: srcImg
-          text: Source and image
+       - value: src
+         text: Source only
+       - value: srcImg
+         text: Source and image
 
     - name: gitRepos
       label: Microservices git repos
