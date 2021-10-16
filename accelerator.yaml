@@ -34,7 +34,7 @@ accelerator:
         name: supplychain
         value: tap
     - name: apiPipeline
-      label: API pipeline  
+      label: API pipeline scope 
       description: Select how your pipeline will control the api lifecycle 
       inputType: select 
       defaultValue: routes
@@ -42,8 +42,6 @@ accelerator:
         name: includePipeline
         value: true
       choices:
-        - value: none
-          text: None
         - value: routes
           text: Routes
         - value: routesMapping
