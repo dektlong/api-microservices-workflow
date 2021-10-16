@@ -1,0 +1,26 @@
+apiVersion: carto.run/v1alpha1
+kind: ClusterSupplyChain
+metadata:
+  name: supply-chain
+spec:
+  selector:
+    app.tanzu.vmware.com/workload-type: web
+
+  #
+  #
+  #  source-provider <--[src]-- source-tester <--[src]-- image-builder <--[img]-- app-runner
+  #
+  #
+  components:
+    - name: source-provider
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: git-repository
+
+    - name: source-tester
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: testing-pipeline
+      sources:
+        - component: source-provider
+          name: source
