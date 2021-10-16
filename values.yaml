@@ -1,9 +1,0 @@
-#@data/values
----
-artifactId: api-microservices-workflow
-addTesting: false
-addScan: false
-apiTesting: []
-scanScope: []
-gitRepos: []
-workloads: []
