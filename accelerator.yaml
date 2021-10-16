@@ -25,38 +25,38 @@ accelerator:
           text: Tanzu Application Platform
 
     # TAP supplychain specific options
-    - name: includePipeline
-      label: Add pipeline 
-      description: Add a pipeline phase (the pipeline tool was pre-configured for you by the central ops team)
+    - name: addTesting
+      label: Add pre-trod testing 
+      description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
       inputType: toggle 
       defaultValue: false
       dependsOn:
         name: supplychain
         value: tap
-    - name: apiPipeline
-      label: API pipeline scope 
+    - name: apiTesting
+      label: API pre-prod testing scope 
       description: Select how your pipeline will control the api lifecycle 
-      inputType: select 
+      inputType: choice 
       defaultValue: routes
       dependsOn:
-        name: includePipeline
+        name: addTesting
         value: true
       choices:
         - value: routes
           text: Routes
-        - value: routesMapping
-          text: Routes and mappings
-        - value: routesMappingGW
-          text: Routes, mappings and gateways
-    - name: includeTesting
-      label: Add testing phase
-      description: Add a testing phase
+        - value: mappings
+          text: Mappings
+        - value: gateways
+          text: Gateways
+    - name: addConvenstions
+      label: Pod hardening
+      description: Add pod hardening using a convention service (the convenstion service was pre-configured for you by the central ops team)
       inputType: toggle 
       defaultValue: false
       dependsOn:
         name: supplychain
         value: tap
-    - name: includeScan
+    - name: addScan
       label: Add a scanning phase
       description: Add a scanning phase
       inputType: toggle 
@@ -67,10 +67,10 @@ accelerator:
     - name: scanScope
       label: Scanning scope
       description: Select the scope of your scanning
-      inputType: select 
+      inputType: choice 
       defaultValue: src
       dependsOn:
-        name: includeScan
+        name: addScan
         value: true
       choices:
         - value: src
@@ -162,22 +162,7 @@ engine:
     - includes: [ "supplychain/tap/**" ]
       condition: "#supplychain == 'tap'"
       chain:
-        - type: ReplaceText
-          substitutions:
-            - text: app-name
-              with: "#artifactId"
-            - text: git-repo1
-              with: "#gitRepos[0]"
-            - text: git-repo2
-              with: "#gitRepos[1]"
-            - text: git-repo3
-              with: "#gitRepos[2]"
-            - text: workload1
-              with: "#workloads[0]"
-            - text: workload2
-              with: "#workloads[1]"
-            - text: workload3
-              with: "#workloads[2]"
+        - type: YTT
     - includes: [ "supplychain/k8s/**" ]
       condition: "#supplychain == 'k8s'"
     - includes: [ "supplychain/tbs-kpack/**" ]
