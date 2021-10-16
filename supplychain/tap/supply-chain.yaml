@@ -29,20 +29,16 @@ spec:
       templateRef:
         kind: ClusterImageTemplate
         name: built-image
-      sources:
-#@ if data.values.addScan:
-  #@ if data.values.scanScope == "src":
+#@ if data.values.addScan and data.values.scanScope == "src":
         - component: source-scanner
           name: scanned-source
-  #@ else:
+#@ else:
         - component: source-code
           name: source
-  #@ end
 #@ end
         
           
-#@ if data.values.addScan:
-  #@ if data.values.scanScope == "img":
+#@ if data.values.addScan and data.values.scanScope == "img":
     - name: image-scanner
       templateRef:
         kind: ClusterImageTemplate
@@ -50,7 +46,6 @@ spec:
       images:
         - component: image-builder
           name: built-image
-  #@ end
 #@ end
 
 #@ if data.values.addTesting:
@@ -59,29 +54,27 @@ spec:
         kind: ClusterSourceTemplate
         name: testing-pipeline
       sources:
-  #@ if data.values.addScan:
-    #@ if data.values.scanScope == "src":
+  #@ if data.values.addScan and data.values.scanScope == "src":
         - component: source-scanner
           name: scanned-source
-    #@ else:
+  #@ else:
         - component: source-provider
           name: source
-    #@ end
   #@ end
-#@ end    
+ #@ end    
     
     - name: app-runner
       templateRef:
         kind: ClusterTemplate
         name: app-deploy
       images:
-#@ if data.values.addScan:
-  #@ if data.values.scanScope == "img":
+
+#@ #@ if data.values.addScan and data.values.scanScope == "img":
         - component: image-scanner
           name: scanned-image
-  #@ else:
+#@ else:
         - component: image-builder
           name: image
-  #@ end
+#@ end
 #@ end
           
