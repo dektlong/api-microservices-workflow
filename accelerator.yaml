@@ -75,8 +75,8 @@ accelerator:
       choices:
         - value: src
           text: Source code
-        - value: srcImg
-          text: Source code and container image
+        - value: img
+          text: Container image
 
     - name: gitRepos
       label: Microservices git repos
