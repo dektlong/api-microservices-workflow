@@ -51,15 +51,6 @@ accelerator:
           text: Mappings
         - value: gateways
           text: Gateways
-    - name: addConvenstions
-      label: Pod convenstions
-      description: Add pod hardening using a convention service (the convenstion service was pre-configured for you by the central ops team)
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
-      dependsOn:
-        name: supplychain
-        value: tap
     - name: addScan
       label: Add a scanning phase
       description: Add a scanning phase
