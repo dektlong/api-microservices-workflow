@@ -53,14 +53,13 @@ spec:
         kind: ClusterSourceTemplate
         name: testing-pipeline
       sources:
-#@ end
-
-#@ if data.values.scanScope == "src":
+  #@ if data.values.scanScope == "src":
         - component: source-scanner
-#@ else:
+  #@ else:
         - component: source-provider
-#@ end
+  #@ end
           name: source
+#@ end    
     
     - name: app-runner
       templateRef:
