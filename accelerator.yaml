@@ -13,8 +13,7 @@ accelerator:
       label: Supply chain 
       description: Generated configuration for the DevOps supply chain
       required: true
-      defaultValue:
-        - k8s
+      defaultValue: k8s
       choices:
         - value: k8s
           text: DIY with k8s resources
@@ -27,7 +26,7 @@ accelerator:
 
     # TAP supplychain specific options
     - name: addTesting
-      label: Add pre-trod testing 
+      label: Add pre-prod testing 
       description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
       inputType: toggle 
       defaultValue: false
