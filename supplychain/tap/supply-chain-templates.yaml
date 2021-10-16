@@ -102,10 +102,10 @@ spec:
       generateName: $(pipeline.metadata.name)$-
     spec:
       pipelineRef:
-        name: $(workload.metadata.name)$-inputs
-        params: 
-          - $(pipeline.spec.inputs.params.source)$
+        name: $(workload.metadata.name)$-source
+        params: $(pipeline.spec.inputs.params.source)$
   #@ if len(data.values.apiTestingScope) > 0:
-     #@ data.values.apiTestingScope
+        name: $(workload.metadata.name)$-apis
+        params: #@ data.values.apiTestingScope
   #@ end
 #@ end
