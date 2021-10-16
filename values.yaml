@@ -1,0 +1,6 @@
+#@data/values
+---
+artifactId: gateway
+prometheusMetricsEnabled: false
+prometheusMetricsType: ServiceMonitor
+customExtensions: []
