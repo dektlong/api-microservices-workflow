@@ -39,7 +39,6 @@ accelerator:
       description: Select how your pipeline will control the api lifecycle 
       inputType: checkbox 
       dataType: [ string ]
-      defaultValue: routes
       dependsOn:
         name: addTesting
         value: true
@@ -73,7 +72,6 @@ accelerator:
       description: Select the scope of your scanning
       inputType: checkbox
       dataType: [ string ]
-      defaultValue: src
       dependsOn:
         name: addScan
         value: true
