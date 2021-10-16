@@ -1,0 +1,18 @@
+piVersion: carto.run/v1alpha1
+kind: RunTemplate
+metadata:
+  name: tekton
+spec:
+  completion:
+    succeeded: {key: 'status.conditions.#(type=="Succeeded").status', value: "True"}
+    failed:    {key: 'status.conditions.#(type=="Succeeded").status', value: "False"}
+
+  template:
+    apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: $(pipeline.metadata.name)$-
+    spec:
+      pipelineRef:
+        name: $(selected.metadata.name)$
+      params: $(pipeline.spec.inputs.params)$
