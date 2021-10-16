@@ -50,29 +50,19 @@ accelerator:
           text: Mappings
         - value: gateways
           text: Gateways
-    - name: addScan
-      label: Add a scanning phase
-      description: Add a scanning phase
-      inputType: toggle 
-      dataType: boolean
-      defaultValue: false
+     - name: scanScope
+      label: Scanning scope
+      description: Select the scope of your scanning
+      inputType: select
+      defaultValue: src
       dependsOn:
         name: supplychain
         value: tap
-    - name: scanScope
-      label: Scanning scope
-      description: Select the scope of your scanning
-      inputType: checkbox
-      defaultValue: [ src ]
-      dataType: [string]
-      dependsOn:
-        name: addScan
-        value: true
       choices:
         - value: src
-          text: Source code
-        - value: img
-          text: Container image
+          text: Source only
+        - value: srcImg
+          text: Source and image
 
     - name: gitRepos
       label: Microservices git repos
