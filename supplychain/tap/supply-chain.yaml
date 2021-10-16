@@ -44,8 +44,8 @@ spec:
 #@ if data.values.addTesting:
     - name: pre-prod-tester
       templateRef:
-        kind: ClusterSourceTemplate
-        name: testing-pipeline
+        kind: RunTemplate
+        name: run-pre-prod-testing
       sources:
         - component: source-scanner
           name: scanned-source
