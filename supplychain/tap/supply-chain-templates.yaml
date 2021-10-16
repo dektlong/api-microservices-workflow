@@ -104,15 +104,15 @@ spec:
       pipelineRef:
         name: $(selected.metadata.name)$
         params: $(pipeline.spec.inputs.params.source)$
-  #@ if data.values.apiTesting.contains("routes"):
+  #@ if data.values.apiTesting.routes:
         name: $(selected.metadata.routes)$
         params: $(pipeline.spec.inputs.params.routes)$
   #@ end
-  #@ if data.values.apiTesting.contains("mappings"):
+  #@ if data.values.apiTesting.mappings:
         name: $(selected.metadata.mapping)$
         params: $(pipeline.spec.inputs.params.mapping)$
   #@ end
-  #@ if data.values.apiTesting.contains("gateways"):
+  #@ if data.values.apiTesting.gateways:
         name: $(selected.metadata.gateways)$
         params: $(pipeline.spec.inputs.params.gateways)$
   #@ end
