@@ -65,6 +65,7 @@ spec:
         - name: BP_OCI_SOURCE
           value: $(sources.scanned-source.revision)$
 #@ if data.values.scanScope == "srcImg":
+---
 apiVersion: carto.run/v1alpha1
 kind: ClusterImageTemplate
 metadata:
