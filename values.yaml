@@ -3,7 +3,7 @@
 artifactId: api-microservices-workflow
 addTesting: false
 addScan: false
-apiTesting: none
-scanScope: none
+apiTesting: []
+scanScope: []
 gitRepos: []
 workloads: []
