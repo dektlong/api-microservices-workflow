@@ -13,7 +13,6 @@ accelerator:
       label: Supply chain 
       description: Generated configuration for the DevOps supply chain
       required: true
-      dataType: [ string ]
       defaultValue:
         - k8s
       choices:
