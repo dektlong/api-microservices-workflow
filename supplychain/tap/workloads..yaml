@@ -1,9 +1,10 @@
+#@ load("@ytt:data", "data")
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: workload1
+  name: #@ data.values.workloads[0]
   labels:
-    app.tanzu.vmware.com/workload-type: online-store-component
+    app.tanzu.vmware.com/workload-type: #@ data.values.artifactId
 
 spec:
   source:
@@ -36,7 +37,7 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: workload2
+  name: #@ data.values.workloads[1]
   labels:
     app.tanzu.vmware.com/workload-type: online-store-component
 
@@ -59,7 +60,7 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: workload3
+  name: #@ data.values.workloads[2]
   labels:
     app.kubernetes.io/name: workload3
     app.tanzu.vmware.com/workload-type: online-store-component
