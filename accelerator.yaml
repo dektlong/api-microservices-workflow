@@ -14,7 +14,7 @@ accelerator:
       description: Generated configuration for the DevOps supply chain
       required: true
       dataType: [ string ]
-      defaultValue: [ k8s ]
+      defaultValue: [ 'k8s' ]
       choices:
         - value: k8s
           text: DIY with k8s resources
@@ -34,13 +34,13 @@ accelerator:
       dataType: boolean
       dependsOn:
         name: supplychain
-        value: tap
+        value: [ 'tap' ]
     - name: apiTesting
       label: API pre-prod testing scope 
       description: Select how your pipeline will control the api lifecycle 
       inputType: checkbox 
       dataType: [ string ]
-      defaultValue: [ routes ]
+      defaultValue: [ 'routes' ]
       dependsOn:
         name: addTesting
         value: true
@@ -59,7 +59,7 @@ accelerator:
       dataType: boolean
       dependsOn:
         name: supplychain
-        value: tap
+        value: [ 'tap' ]
     - name: addScan
       label: Add a scanning phase
       description: Add a scanning phase
@@ -68,13 +68,13 @@ accelerator:
       defaultValue: false
       dependsOn:
         name: supplychain
-        value: tap
+        value: [ 'tap' ]
     - name: scanScope
       label: Scanning scope
       description: Select the scope of your scanning
       inputType: checkbox
       dataType: [ string ]
-      defaultValue: [ scr ]
+      defaultValue: [ 'scr' ]
       dependsOn:
         name: addScan
         value: true
