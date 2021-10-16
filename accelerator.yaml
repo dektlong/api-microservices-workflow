@@ -13,7 +13,8 @@ accelerator:
       label: Supply chain 
       description: Generated configuration for the DevOps supply chain
       required: true
-      defaultValue: k8s
+      dataType: [ string ]
+      defaultValue: [ k8s ]
       choices:
         - value: k8s
           text: DIY with k8s resources
@@ -39,6 +40,7 @@ accelerator:
       description: Select how your pipeline will control the api lifecycle 
       inputType: checkbox 
       dataType: [ string ]
+      defaultValue: [ routes ]
       dependsOn:
         name: addTesting
         value: true
@@ -50,7 +52,7 @@ accelerator:
         - value: gateways
           text: Gateways
     - name: addConvenstions
-      label: Pod hardening
+      label: Pod convenstions
       description: Add pod hardening using a convention service (the convenstion service was pre-configured for you by the central ops team)
       inputType: toggle 
       defaultValue: false
@@ -72,6 +74,7 @@ accelerator:
       description: Select the scope of your scanning
       inputType: checkbox
       dataType: [ string ]
+      defaultValue: [ scr ]
       dependsOn:
         name: addScan
         value: true
