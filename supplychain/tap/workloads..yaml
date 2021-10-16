@@ -3,7 +3,7 @@ kind: Workload
 metadata:
   name: workload1
   labels:
-    app.tanzu.vmware.com/workload-type: web
+    app.tanzu.vmware.com/workload-type: online-store-component
 
 spec:
   source:
@@ -38,7 +38,7 @@ kind: Workload
 metadata:
   name: workload2
   labels:
-    app.tanzu.vmware.com/workload-type: web
+    app.tanzu.vmware.com/workload-type: online-store-component
 
 spec:
   source:
@@ -62,7 +62,7 @@ metadata:
   name: workload3
   labels:
     app.kubernetes.io/name: workload3
-    app.tanzu.vmware.com/workload-type: web
+    app.tanzu.vmware.com/workload-type: online-store-component
 spec:
   source:
     git:
