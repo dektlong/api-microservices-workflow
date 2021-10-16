@@ -30,13 +30,14 @@ accelerator:
       description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
       inputType: toggle 
       defaultValue: false
+      dataType: boolean
       dependsOn:
         name: supplychain
         value: tap
     - name: apiTesting
       label: API pre-prod testing scope 
       description: Select how your pipeline will control the api lifecycle 
-      inputType: choice 
+      inputType: checkbox 
       defaultValue: routes
       dependsOn:
         name: addTesting
@@ -53,6 +54,7 @@ accelerator:
       description: Add pod hardening using a convention service (the convenstion service was pre-configured for you by the central ops team)
       inputType: toggle 
       defaultValue: false
+      dataType: boolean
       dependsOn:
         name: supplychain
         value: tap
@@ -60,6 +62,7 @@ accelerator:
       label: Add a scanning phase
       description: Add a scanning phase
       inputType: toggle 
+      dataType: boolean
       defaultValue: false
       dependsOn:
         name: supplychain
@@ -67,7 +70,7 @@ accelerator:
     - name: scanScope
       label: Scanning scope
       description: Select the scope of your scanning
-      inputType: choice 
+      inputType: checkbox 
       defaultValue: src
       dependsOn:
         name: addScan
