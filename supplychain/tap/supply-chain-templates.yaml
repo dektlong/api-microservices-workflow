@@ -89,7 +89,7 @@ spec:
 apiVersion: carto.run/v1alpha1
 kind: RunTemplate
 metadata:
-  name: #@ data.values.apiTestingScope
+  name: run-pre-prod-testing
 spec:
   completion:
     succeeded: {key: 'status.conditions.#(type=="Succeeded").status', value: "True"}
@@ -102,7 +102,11 @@ spec:
       generateName: $(pipeline.metadata.name)$-
     spec:
       pipelineRef:
-        name: $(selected.metadata.name)$
+        name: $(selected.source)$
         params: $(pipeline.spec.inputs.params.source)$
+  #@ if len(data.values.apiTestingScope) > 0:
+        names: $(selected.api-testing-scope)$
+        params:
+        #@ data.values.apiTestingScope
+  #@ end
 #@ end
-
