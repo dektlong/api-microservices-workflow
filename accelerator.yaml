@@ -38,7 +38,7 @@ accelerator:
       label: API pre-prod testing scope 
       description: Select how your pipeline will control the api lifecycle 
       inputType: checkbox 
-      dataType: [ string ]
+      dataType: [ boolean ]
       defaultValue:
         - routes
       dependsOn:
@@ -64,7 +64,7 @@ accelerator:
       label: Scanning scope
       description: Select the scope of your scanning
       inputType: checkbox
-      dataType: [ string ]
+      dataType: [ boolean ]
       defaultValue:
         - src
       dependsOn:
