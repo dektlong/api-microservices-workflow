@@ -15,7 +15,8 @@ spec:
         kind: ClusterSourceTemplate
         name: source-code
 
-#@ if data.values.scanScope == "src" && data.values.addScan:
+#@ if data.values.addScan:
+  #@ if data.values.scanScope == "src":
     - name: source-scanner
       templateRef:
         kind: ClusterSourceTemplate
@@ -23,6 +24,7 @@ spec:
       sources:
       - component: source-provider
         name: source-code
+  #@ end
 #@ end
     
     - name: image-builder
@@ -30,16 +32,19 @@ spec:
         kind: ClusterImageTemplate
         name: built-image
       sources:
-#@ if data.values.scanScope == "src":
+#@ if data.values.addScan:
+  #@ if data.values.scanScope == "src":
         - component: source-scanner
           name: scanned-source
-#@ else:
+  #@ else:
         - component: source-code
           name: source
+  #@ end
 #@ end
         
           
-#@ if data.values.scanScope == "img":
+#@ if data.values.addScan:
+  #@ if data.values.scanScope == "img":
     - name: image-scanner
       templateRef:
         kind: ClusterImageTemplate
@@ -47,6 +52,7 @@ spec:
       images:
         - component: image-builder
           name: built-image
+  #@ end
 #@ end
 
 #@ if data.values.addTesting:
@@ -55,14 +61,15 @@ spec:
         kind: ClusterSourceTemplate
         name: testing-pipeline
       sources:
-  #@ if data.values.scanScope == "src":
+  #@ if data.values.addScan:
+    #@ if data.values.scanScope == "src":
         - component: source-scanner
           name: scanned-source
-  #@ else:
+    #@ else:
         - component: source-provider
           name: source
+    #@ end
   #@ end
-          
 #@ end    
     
     - name: app-runner
@@ -70,11 +77,13 @@ spec:
         kind: ClusterTemplate
         name: app-deploy
       images:
-#@ if data.values.scanScope == "img":
+#@ if data.values.addScan:
+  #@ if data.values.scanScope == "img":
         - component: image-scanner
           name: scanned-image
-#@ else:
+  #@ else:
         - component: image-builder
           name: image
+  #@ end
 #@ end
           
