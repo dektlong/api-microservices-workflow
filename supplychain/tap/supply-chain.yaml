@@ -1,6 +1,5 @@
 #@ load("@ytt:data", "data")
 ---
-#regular comment
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
