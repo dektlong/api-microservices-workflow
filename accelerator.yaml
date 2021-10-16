@@ -38,7 +38,7 @@ accelerator:
       label: API pre-prod testing scope 
       description: Select how your pipeline will control the api lifecycle 
       inputType: checkbox
-      defaultValue: routes
+      defaultValue: [ routes ]
       dependsOn:
         name: addTesting
         value: true
@@ -62,7 +62,7 @@ accelerator:
       label: Scanning scope
       description: Select the scope of your scanning
       inputType: checkbox
-      defaultValue: src
+      defaultValue: [ src ]
       dependsOn:
         name: addScan
         value: true
