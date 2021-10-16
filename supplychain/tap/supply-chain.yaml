@@ -15,18 +15,23 @@ spec:
         kind: ClusterSourceTemplate
         name: source-code
 
-#@ if data.values.scanScope == "src":
     - name: source-scanner
       templateRef:
         kind: ClusterSourceTemplate
         name: source
       sources:
       - component: source-provider
-        name: source-code
-#@ end
+        name: scanned-source
     
+    - name: image-builder
+      templateRef:
+        kind: ClusterImageTemplate
+        name: image-build
+      sources:
+        - component: source-provider
+          name: scanned-source
          
-#@ if data.values.scanScope == "imgSrc":
+#@ if data.values.scanScope == "srcImg":
     - name: image-scanner
       templateRef:
         kind: ClusterImageTemplate
