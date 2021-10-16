@@ -4,7 +4,7 @@ kind: Workload
 metadata:
   name: #@ data.values.workloads[0]
   labels:
-    app.tanzu.vmware.com/workload-type: #@ data.values.artifactId
+    app.tanzu.vmware.com/workload-type: online-store
 
 spec:
   source:
@@ -39,7 +39,7 @@ kind: Workload
 metadata:
   name: #@ data.values.workloads[1]
   labels:
-    app.tanzu.vmware.com/workload-type: online-store-component
+    app.tanzu.vmware.com/workload-type: online-store
 
 spec:
   source:
@@ -63,7 +63,7 @@ metadata:
   name: #@ data.values.workloads[2]
   labels:
     app.kubernetes.io/name: workload3
-    app.tanzu.vmware.com/workload-type: online-store-component
+    app.tanzu.vmware.com/workload-type: online-store
 spec:
   source:
     git:
