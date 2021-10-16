@@ -109,6 +109,6 @@ spec:
           value: $(pipeline.spec.inputs.revision)$
   #@ if len(data.values.apiTestingScope) > 0:
         - name: api-grid
-          value: #@ data.values.apiTestingScope
+          value: $(pipeline.spec.inputs.api-grid)$.#@ data.values.apiTestingScope
   #@ end
 #@ end
