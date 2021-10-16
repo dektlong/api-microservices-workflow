@@ -1,27 +1,9 @@
 #@ load("@ytt:data", "data")
 ---
-#! #@ data.values.artifactId Supply Chain workflow description:
-#!   
-#!   * Watch Repo (Flux)
-#!   * Build Image (TBS) =>
-#@ if data.values.addConvenstions:
-#!   * Apply Conventions (Convention Service)
-#@ end
-#@ if data.values.scanScope == "src":
-#!   * Source scanning (ClusterSourceTemplate)
-#@ end
-#@ if data.values.scanScope == "img":
-#!   * Image scanning (ClusterImageTemplate)
-#@ end
-#@ if data.values.addTesting:
-#!   * Pre-prod testing (Tekton pipeline)
-#@ end
-#!   * Deploy to Cluster (CNR, k8s deployment)
-#!
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
-  name: supply-chain
+  name: #@ data.values.artifactId
 spec:
   selector:
     app.tanzu.vmware.com/workload-type: web
@@ -32,9 +14,8 @@ spec:
       templateRef:
         kind: ClusterSourceTemplate
         name: source-code
-#@ if data.values.addConvenstions:
-  
-#@ end
+
+#@ if data.values.scanScope == "src":
     - name: source-scanner
       templateRef:
         kind: ClusterSourceTemplate
@@ -42,7 +23,8 @@ spec:
       sources:
       - component: source-provider
         name: source-code
-
+#@ end
+    
     - name: image-builder
       templateRef:
         kind: ClusterImageTemplate
@@ -50,7 +32,8 @@ spec:
       sources:
         - component: source-scanner
           name: scanned-source
-
+          
+#@ if data.values.scanScope == "img":
     - name: image-scanner
       templateRef:
         kind: ClusterImageTemplate
@@ -58,3 +41,27 @@ spec:
       images:
         - component: image-builder
           name: built-image
+#@ end
+#@ if data.values.addTesting:
+    - name: pre-prod-tester
+      templateRef:
+        kind: ClusterSourceTemplate
+        name: testing-pipeline
+      sources:
+      #@ if data.values.scanScope == "src":
+        - component: source-scanner
+      #@ else:
+        - component: source-provider
+      #@ end
+          name: source
+    - name: app-runner
+      templateRef:
+        kind: ClusterTemplate
+        name: app-deploy
+      images:
+        #@ if data.values.scanScope == "img":
+        - component: image-scanner
+      #@ else:
+        - component: image-builder
+      #@ end
+          name: image
