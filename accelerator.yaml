@@ -14,7 +14,6 @@ accelerator:
       description: Generated configuration for the DevOps supply chain
       required: true
       defaultValue: k8s
-      dataType: [ string ]
       choices:
         - value: k8s
           text: DIY with k8s resources
