@@ -1,7 +1,6 @@
 #@ load("@ytt:data", "data")
 ---
-#! #@ data.values.artifactId supply chain description:
-#!
+# #@ data.values.artifactId supply chain description:
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
