@@ -34,7 +34,7 @@ accelerator:
       dependsOn:
         name: supplychain
         value: tap
-    - name: apiTesting
+    - name: apiTestingScope
       label: API pre-prod testing scope 
       description: Select how your pipeline will control the api lifecycle 
       inputType: checkbox
