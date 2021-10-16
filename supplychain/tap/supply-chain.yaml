@@ -6,7 +6,7 @@ metadata:
   name: #@ data.values.artifactId
 spec:
   selector:
-    app.tanzu.vmware.com/workload-type: web
+    app.tanzu.vmware.com/workload-type: online-store
 
   components:
 
@@ -42,26 +42,30 @@ spec:
         - component: image-builder
           name: built-image
 #@ end
+
 #@ if data.values.addTesting:
     - name: pre-prod-tester
       templateRef:
         kind: ClusterSourceTemplate
         name: testing-pipeline
       sources:
-      #@ if data.values.scanScope == "src":
+#0 end
+
+#@ if data.values.scanScope == "src":
         - component: source-scanner
-      #@ else:
+#@ else:
         - component: source-provider
-      #@ end
+#@ end
           name: source
+    
     - name: app-runner
       templateRef:
         kind: ClusterTemplate
         name: app-deploy
       images:
-        #@ if data.values.scanScope == "img":
+#@ if data.values.scanScope == "img":
         - component: image-scanner
-      #@ else:
+#@ else:
         - component: image-builder
-      #@ end
+#@ end
           name: image
