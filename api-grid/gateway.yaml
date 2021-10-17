@@ -40,7 +40,7 @@ spec:
   #@ elseif data.values.prometheusAnnotations 
       prometheus:
         enabled: true
-  # @end
+  #@ end
   #@ if data.values.prometheusServiceMonitor:
         serviceMonitor:
           enabled: true
