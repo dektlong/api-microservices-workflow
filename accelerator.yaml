@@ -23,7 +23,7 @@ accelerator:
           text: Cloud Foundry
         - value: tap
           text: Tanzu Application Platform
-    # TAP supplychain specific options
+ # TAP supplychain specific options
     - name: addTesting
       label: Add pre-prod testing 
       description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
@@ -63,7 +63,6 @@ accelerator:
        - value: srcImg
          text: Source and image
 
-  #API Grid
     #api-portal  
     - name: portalScope
       inputType: checkbox
@@ -75,15 +74,37 @@ accelerator:
         - dev
       choices:
         - value: dev
-          text: "developer local gateway"
+          text: "Single gateway (local dev)"
         - value: team
-          text: "Teams working on this project"
+          text: "All gateways in project's domain (team collaboration)"
         - value: brownfield
           text: "3rd -praty & legacy sytems approved for this project"
         - value: publicAuth
           text: "Public APIs that requires a key"
         - value: public
           text: "Public APIs open to all"
+    - name: brownfieldSources
+      label: Brownfield open API source urls
+      inputType: multi-text
+      dataType: [string]
+      dependsOn:
+        name: portalScope
+        value: brownfield
+    - name: publicAuthSources
+      label: Public Auth open API source urls
+      inputType: multi-text
+      dataType: [string]
+      dependsOn:
+        name: portalScope
+        value: publicAuth
+    - name: publicSources
+      label: Public open API source urls
+      inputType: multi-text
+      dataType: [string]
+      dependsOn:
+        name: portalScope
+        value: public
+    
     #api gateway
     - name: ssoProvider
       label: Identity provider
@@ -158,7 +179,7 @@ accelerator:
 
 engine:
   merge:
-    #supplychain transformations
+    #supplychain
     - includes: [ "supplychain/tap/**" ]
       condition: "#supplychain == 'tap'"
       chain:
@@ -168,43 +189,13 @@ engine:
     - includes: [ "supplychain/tbs-kpack/**" ]
       condition: "#supplychain == 'tbs'"
       chain:
-        - type: ReplaceText
-          substitutions:
-            - text: app-name
-              with: "#artifactId"
-            - text: git1
-              with: "#gitRepos[0]"
-            - text: git2
-              with: "#gitRepos[1]"
-            - text: git3
-              with: "#gitRepos[2]"
-            - text: workload1
-              with: "#workloads[0]"
-            - text: workload2
-              with: "#workloads[1]"
-            - text: workload3
-              with: "#workloads[2]"
-            - text: registry
-              with: "#registry"
+        - type: YTT
     - includes: [ "supplychain/cf/**" ]
       condition: "#supplychain == 'cf'"
-    #api-grid transformations
+    #api-grid
     - includes: [ "api-grid/api-portal.yaml", "api-grid/gateway.yaml", "api-grid/mapping.yaml" ]
       chain:
-        - type: ReplaceText
-          substitutions:
-            - text: app-name
-              with: "#artifactId"
-            - text: sso-provider
-              with: "#ssoProvider"
-            - text: ha-count
-              with: "#haCount"
-            - text: workload1
-              with: "#workloads[0]"
-            - text: workload2
-              with: "#workloads[1]"
-            - text: "domain"
-              with: "#domain"
+        - type: YTT
     - includes: [ "api-grid/policy/project-api-policy.yaml" ]
       condition: "#apiPolicy.contains('project')"
     - includes: [ "api-grid/policy/internal-api-policy.yaml" ]
