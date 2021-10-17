@@ -7,9 +7,10 @@ accelerator:
 
   options:
   
-  #app components
+  #workloads
     - name: gitRepos
-      label: App components - git repos
+      label: Workloads (git repos)
+      description: A seprate git repo for every app component
       inputType: multi-text
       required: true
       dataType: [string]
@@ -17,17 +18,6 @@ accelerator:
         - https://github.com/dektlong/dekt4pets-backend
         - https://github.com/dektlong/dekt4pets-frontend
         - https://github.com/dektlong/adopter-check
-    - name: workloads
-      label: App components - workload names
-      inputType: multi-text
-      display: true
-      dataType: [string]
-      defaultValue:
-        - workload1
-        - workload2
-        - workload3
-        
-        
   #devops supply chain
     - name: supplychain
       inputType: select
