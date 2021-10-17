@@ -6,7 +6,7 @@ metadata:
   name: #@ data.values.artifactId + "-gateway"
 spec:
   api:
-    serverUrl: #@ data.values.artifactId
+    serverUrl: #@ "https://" + data.values.artifactId + data.values.domain 
     title: app-name micro-gateway
     description: Micro Gateway to control internal APIs for building microservices for app-name. 
     version: 0.1.0
