@@ -74,11 +74,9 @@ accelerator:
         - dev
       choices:
         - value: dev
-          text: "Single gateway (local dev)"
-        - value: team
-          text: "All gateways in project's domain (team collaboration)"
+          text: "Dev gateways in project's domain (team collaboration)"
         - value: brownfield
-          text: "3rd -praty & legacy sytems approved for this project"
+          text: "3rd-party & legacy sytems approved for this project"
         - value: publicAuth
           text: "Public APIs that requires a key"
         - value: public
