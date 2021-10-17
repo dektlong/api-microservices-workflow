@@ -3,15 +3,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-portal-server
+  name: #@ data.values.artifactId + "-api-portal"
 spec:
   template:
     metadata:
       labels:
-        app: api-portal-server
+        app: #@ data.values.artifactId + "-api-portal"
     spec:
       containers:
-      - name: api-portal-server
+      - name: #@ data.values.artifactId + "-api-portal"
         env:
           - name: API_PORTAL_SOURCE_URLS
             value: #@ data.values.openAPISources
