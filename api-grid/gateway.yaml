@@ -22,7 +22,7 @@ spec:
   count: 1
 #@ end
   sso:
-    secret: #@ data.values.artifactId + "-" data.values.ssoProvider + "-sso-provider-secret"
+    secret: #@ data.values.artifactId + "-" + data.values.ssoProvider + "-sso-provider-secret"
 #@ if data.values.gwMetrics:
   observability:
     metrics:
