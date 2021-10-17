@@ -26,7 +26,7 @@ spec:
 #@ if data.values.gwMetrics:
   observability:
     metrics:
-  #@ if data.values.metricsProvider.find "wavefront":
+  #@ if data.values.wavefront:
       wavefront:
         enabled: true
         secret: #@ data.values.artifactId + "-observability"
