@@ -139,8 +139,8 @@ accelerator:
       dependsOn:
         name: gwMetrics
         value: true
-    - name: prometheusServiceMonitor
-      label: Prometheus service monitor
+    - name: prometheus
+      label: Prometheus service monitor 
       description:  Add Prometheus service monitor configuration to gateway
       inputType: toggle
       dataType: boolean
@@ -148,16 +148,7 @@ accelerator:
       dependsOn:
         name: gwMetrics
         value: true
-    - name: prometheusAnnotations
-      label: Prometheus annotations
-      description: Add Prometheus annotations configuration to gateway
-      inputType: toggle
-      dataType: boolean
-      defaultValue: false
-      dependsOn:
-        name: gwMetrics
-        value: true
-      
+    
     #workloads repos
     - name: gitRepos
       label: Workloads git repos
