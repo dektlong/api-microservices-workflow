@@ -3,7 +3,7 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
-  name: #@ data.values.artifactId "-gateway"
+  name: #@ (data.values.artifactId "-gateway")
 spec:
   api:
     serverUrl: #@ data.values.artifactId
