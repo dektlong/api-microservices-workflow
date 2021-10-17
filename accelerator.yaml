@@ -76,16 +76,15 @@ accelerator:
 
   #API Grid
     #api-portal  
-    - name: apiPortalScope
+    - name: portalScope
       inputType: checkbox
-      label: API-groups to include in API Portal
+      label: API-groups scope
       description: What api groups will be included in API portal
       required: true
       dataType: [string]
       defaultValue:
         - dev
-        - team
-      choices:
+       choices:
         - value: dev
           text: "developer local gateway"
         - value: team
@@ -99,12 +98,9 @@ accelerator:
     #api gateway
     - name: ssoProvider
       label: Identity provider
-      description: SSO identity provider for external access 
+      description: SSO identity provider
       inputType: select 
       defaultValue: workspaceOne
-      dependsOn:
-        name: apiPolicy
-        value: external
       choices:
         - value: amazon
           text: Amazon
