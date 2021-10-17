@@ -42,7 +42,7 @@ spec:
           labels:
             release: prometheus
   #@ end
-  #@ if data.values.metricsProvider == "prometheusAnnotations"
+  #@ if data.values.metricsProvider == "prometheusAnnotations" :
       prometheus:
         enabled: true
         annotations:
