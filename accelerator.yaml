@@ -132,6 +132,7 @@ accelerator:
       label: Deploy HA micro-gateway
       description:  Micro-gateways requires HA deployment 
       inputType: toggle
+      dataType: boolean
       display: true
       defaultValue: false
     - name: gwMetrics
