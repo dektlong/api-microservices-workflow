@@ -34,22 +34,14 @@ spec:
         application: #@ data.values.artifactId
         service: #@ data.values.artifactId + "-gateway"
   #@ end
-  #@ if data.values.prometheusServiceMonitor 
+  #@ if data.values.prometheus:
       prometheus:
         enabled: true
-  #@ elseif data.values.prometheusAnnotations 
-      prometheus:
-        enabled: true
-  #@ end
-  #@ if data.values.prometheusServiceMonitor:
         serviceMonitor:
           enabled: true
           labels:
             release: prometheus
-  #@ end
-  #@ if data.values.prometheusAnnotations :
         annotations:
           enabled: true
-      
   #@ end
 #@ end
