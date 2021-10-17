@@ -77,10 +77,8 @@ accelerator:
           text: "Dev gateways in project's domain (team collaboration)"
         - value: brownfield
           text: "3rd-party & legacy sytems approved for this project"
-        - value: publicAuth
-          text: "Public APIs that requires a key"
         - value: public
-          text: "Public APIs open to all"
+          text: "Publicly accessible APIs "
     - name: openAPISources
       label: Open api source urls
       inputType: multi-text
@@ -89,7 +87,6 @@ accelerator:
         name: portalScope
         value: 
           - brownfield
-          - publicAuth
           - public
       defaultValue:
         - scg-openapi.apps.dekt.io/openapi
@@ -103,6 +100,7 @@ accelerator:
         name: portalScope
         value: 
           - brownfield
+          - public
       choices:
         - value: amazon
           text: Amazon
