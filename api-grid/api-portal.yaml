@@ -14,4 +14,6 @@ spec:
       - name: api-portal-server
         env:
           - name: API_PORTAL_SOURCE_URLS
-            value: scg-openapi.domain/openapi, #@ data.values.brownfieldSources
+            value: 
+              - scg-openapi.domain/openapi
+           #@ data.values.brownfieldSources
