@@ -82,7 +82,7 @@ accelerator:
         - value: public
           text: "Public APIs open to all"
     - name: openAPISources
-      label: Brownfield source urls
+      label: Open api source urls
       inputType: multi-text
       dataType: [string]
       dependsOn:
