@@ -99,6 +99,10 @@ accelerator:
       description: SSO identity provider
       inputType: select 
       defaultValue: workspaceOne
+      dependsOn:
+        name: portalScope
+        value: 
+          - brownfield
       choices:
         - value: amazon
           text: Amazon
