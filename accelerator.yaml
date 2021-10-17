@@ -87,11 +87,10 @@ accelerator:
       dataType: [string]
       dependsOn:
         name: portalScope
-        value: brownfield
-        name: portalScope
-        value: publicAuth
-        name: portalScope
-        value: public
+        value: 
+          - brownfield
+          - publicAuth
+          - public
       defaultValue:
         - scg-openapi.domain/openapi
     #api gateway
