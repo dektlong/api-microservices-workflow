@@ -81,34 +81,19 @@ accelerator:
           text: "Public APIs that requires a key"
         - value: public
           text: "Public APIs open to all"
-    - name: brownfieldSources
+    - name: openAPISources
       label: Brownfield source urls
       inputType: multi-text
       dataType: [string]
       dependsOn:
         name: portalScope
         value: brownfield
-      defaultValue:
-        - https://brownfield.example.com/openapi
-    - name: publicAuthSources
-      label: Public-auth source urls
-      inputType: multi-text
-      dataType: [string]
-      dependsOn:
         name: portalScope
         value: publicAuth
-      defaultValue:
-        - https://public-auth.example.com/openapi
-    - name: publicSources
-      label: Public source urls
-      inputType: multi-text
-      dataType: [string]
-      dependsOn:
         name: portalScope
         value: public
       defaultValue:
-        - https://public.example.com/openapi
-    
+        - scg-openapi.domain/openapi
     #api gateway
     - name: ssoProvider
       label: Identity provider
