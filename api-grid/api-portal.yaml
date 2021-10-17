@@ -1,3 +1,5 @@
+#@ load("@ytt:data", "data")
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,6 +15,9 @@ spec:
         env:
           - name: API_PORTAL_SOURCE_URLS
             value: scg-openapi.domain/openapi
+#@ if data.values.portalScope == "brownfield":
+             , #@ data.values.brownfieldSources
+#@ end
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress 
