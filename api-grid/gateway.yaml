@@ -8,7 +8,7 @@ spec:
   api:
     serverUrl: #@ "https://" + data.values.artifactId + "." + data.values.domain 
     title: #@ data.values.artifactId + "micro-gateway"
-    description: #@ "Micro Gateway to control internal APIs for building microservices for " + data.values.artifactId
+    description: #@ "Micro Gateway to control internal APIs of " + data.values.artifactId
     version: 0.1.0
 #@ if data.values.gwMetrics:
     scorecards: #@ data.values.apiScorecards 
