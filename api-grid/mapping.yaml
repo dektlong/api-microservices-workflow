@@ -3,29 +3,29 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayMapping
 metadata:
-  name: #@ data.values.workload1 + "-mapping"
+  name: #@ data.values.workloads[0] + "-mapping"
 spec:
   gatewayRef:
     name: #@ data.values.artifactID + "-gateway"
   routeConfigRef:
-    name: #@ data.values.workload1 + "-routes"
+    name: #@ data.values.workloads[0] + "-routes"
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayMapping
 metadata:
-  name: #@ data.values.workload1 + "-mapping"
+  name: #@ data.values.workloads[1] + "-mapping"
 spec:
   gatewayRef:
     name: #@ data.values.artifactID + "-gateway"
   routeConfigRef:
-    name: #@ data.values.workload2 + "-routes"
+    name: #@ data.values.workloads[1] + "-routes"
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayMapping
 metadata:
-  name: #@ data.values.workload3 + "-mapping"
+  name: #@ data.values.workloads[2] + "-mapping"
 spec:
   gatewayRef:
     name: #@ data.values.artifactID + "-gateway"
   routeConfigRef:
-    name: #@ data.values.workload3 + "-routes"
+    name: #@ data.values.workloads[2] + "-routes"
