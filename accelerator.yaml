@@ -202,9 +202,3 @@ engine:
     - includes: [ "api-grid/api-portal.yaml", "api-grid/gateway.yaml", "api-grid/mapping.yaml" ]
       chain:
         - type: YTT
-    - includes: [ "api-grid/policy/project-api-policy.yaml" ]
-      condition: "#apiPolicy.contains('project')"
-    - includes: [ "api-grid/policy/internal-api-policy.yaml" ]
-      condition: "#apiPolicy.contains('internal')"
-    - includes: [ "api-grid/policy/external-api-policy.yaml" ]
-      condition: "#apiPolicy.contains('external')"
