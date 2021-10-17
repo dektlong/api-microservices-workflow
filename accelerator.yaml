@@ -7,6 +7,27 @@ accelerator:
 
   options:
   
+  #app components
+    - name: gitRepos
+      label: App components - git repos
+      inputType: multi-text
+      required: true
+      dataType: [string]
+      defaultValue:
+        - https://github.com/dektlong/dekt4pets-backend
+        - https://github.com/dektlong/dekt4pets-frontend
+        - https://github.com/dektlong/adopter-check
+    - name: workloads
+      label: App components - workload names
+      inputType: multi-text
+      display: true
+      dataType: [string]
+      defaultValue:
+        - workload1
+        - workload2
+        - workload3
+        
+        
   #devops supply chain
     - name: supplychain
       inputType: select
@@ -23,7 +44,6 @@ accelerator:
           text: Cloud Foundry
         - value: tap
           text: Tanzu Application Platform
-
     # TAP supplychain specific options
     - name: addTesting
       label: Add pre-prod testing 
@@ -64,44 +84,29 @@ accelerator:
        - value: srcImg
          text: Source and image
 
-    - name: gitRepos
-      label: Microservices git repos
-      inputType: multi-text
+  #API Grid
+    #api-portal  
+    - name: apiPortalScope
+      inputType: checkbox
+      label: API-groups to include in API Portal
+      description: What api groups will be included in API portal
       required: true
       dataType: [string]
       defaultValue:
-        - https://github.com/dektlong/dekt4pets-backend
-        - https://github.com/dektlong/dekt4pets-frontend
-        - https://github.com/dektlong/adopter-check
-        
-    - name: workloads
-      label: Workload names
-      inputType: multi-text
-      dataType: [string]
-      defaultValue:
-        - workload1
-        - workload2
-        - workload3
-      
-    #API Grid
-    - name: apiPolicy
-      inputType: checkbox
-      label: API policy
-      description: Policy to contorl APIs spec and performance
-      display: true
-      dataType: [string]
-      defaultValue:
-        - project
-        - internal
+        - dev
+        - team
       choices:
-        - value: project
-          text: "Project: local dev/single team"
-        - value: internal
-          text: "Internal: multiple teams/brownfield"
-        - value: external
-          text: "Public: external access"
-  
-    #exteral sso provider (if external facing APIs included)    
+        - value: dev
+          text: "developer local gateway"
+        - value: team
+          text: "Teams working on this project"
+        - value: brownfield
+          text: "3rd -praty & legacy sytems approved for this project"
+        - value: publicAuth
+          text: "Public APIs that requires a key"
+        - value: public
+          text: "Public APIs open to all"
+    #api gateway
     - name: ssoProvider
       label: Identity provider
       description: SSO identity provider for external access 
@@ -121,22 +126,45 @@ accelerator:
           text: Microsoft
         - value: workspaceOne
           text: Workspace ONE
-    
-    - name: haCount
-      label: Micro-gateway HA count
-      description:  How many instances to deploy every Micro-gateway with 
-      required: true
-      defaultValue: "2"
-      
+    - name: gwHA
+      label: Deploy HA micro-gateway
+      description:  Micro-gateways requires HA deployment 
+      inputType: toggle
+      display: true
+      defaultValue: false
+    - name: gwMetrics
+      label: Enable gateway observability
+      description:  Add observability options to gatway
+      inputType: toggle
+      display: true
+      defaultValue: false
     - name: apiScorecards
       description: URL for API Scorecards dashboard
       defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
-      display: true
+      dependsOn:
+        name: gwMetrics
+        value: true
+    - name: metricsProvider
+      description: Metrics provider
+      inputType: checkbox
+      defaultValue:
+        - wavefront
+      dependsOn:
+        name: gwMetrics
+        value: true
+      choices:
+        - value: wavefront
+          text: "Tanzu Observability"
+        - value: prometheusServiceMonitor
+          text: "Prometheus service monitor"
+        - value: prometheusAnnotations
+          text: "Prometheus annotations"
+      
     
     #hidden values
     - name: domain
       label: Domain name
-      defaultValue: tanzu.dekt.io
+      defaultValue: apps.dekt.io
     - name: registry
       label: Image registry
       defaultValue: harbor.apps.cf.tanzutime.com/dekt-apps
