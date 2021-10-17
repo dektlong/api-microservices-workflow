@@ -151,6 +151,7 @@ accelerator:
     - name: metricsProvider
       description: Metrics provider
       inputType: checkbox
+      dataType: [string]
       defaultValue:
         - wavefront
       dependsOn:
