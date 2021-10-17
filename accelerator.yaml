@@ -73,7 +73,7 @@ accelerator:
       dataType: [string]
       defaultValue:
         - dev
-       choices:
+      choices:
         - value: dev
           text: "developer local gateway"
         - value: team
