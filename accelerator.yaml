@@ -92,7 +92,7 @@ accelerator:
           - publicAuth
           - public
       defaultValue:
-        - scg-openapi.domain/openapi
+        - scg-openapi.apps.dekt.io/openapi
     #api gateway
     - name: ssoProvider
       label: Identity provider
