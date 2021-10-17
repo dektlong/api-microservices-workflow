@@ -6,7 +6,7 @@ metadata:
   name: #@ data.values.workloads[0] + "-mapping"
 spec:
   gatewayRef:
-    name: #@ data.values.artifactID + "-gateway"
+    name: #@ data.values.artifactId + "-gateway"
   routeConfigRef:
     name: #@ data.values.workloads[0] + "-routes"
 ---
@@ -16,7 +16,7 @@ metadata:
   name: #@ data.values.workloads[1] + "-mapping"
 spec:
   gatewayRef:
-    name: #@ data.values.artifactID + "-gateway"
+    name: #@ data.values.artifactId + "-gateway"
   routeConfigRef:
     name: #@ data.values.workloads[1] + "-routes"
 ---
@@ -26,6 +26,6 @@ metadata:
   name: #@ data.values.workloads[2] + "-mapping"
 spec:
   gatewayRef:
-    name: #@ data.values.artifactID + "-gateway"
+    name: #@ data.values.artifactId + "-gateway"
   routeConfigRef:
     name: #@ data.values.workloads[2] + "-routes"
