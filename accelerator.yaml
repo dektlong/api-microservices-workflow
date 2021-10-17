@@ -84,7 +84,7 @@ accelerator:
         - value: public
           text: "Public APIs open to all"
     - name: brownfieldSources
-      label: Brownfield open API source urls
+      label: Brownfield source urls
       inputType: multi-text
       dataType: [string]
       dependsOn:
@@ -93,7 +93,7 @@ accelerator:
       defaultValue:
         - https://brownfield.example.com/openapi
     - name: publicAuthSources
-      label: Public Auth open API source urls
+      label: Public-auth source urls
       inputType: multi-text
       dataType: [string]
       dependsOn:
@@ -102,7 +102,7 @@ accelerator:
       defaultValue:
         - https://public-auth.example.com/openapi
     - name: publicSources
-      label: Public open API source urls
+      label: Public source urls
       inputType: multi-text
       dataType: [string]
       dependsOn:
