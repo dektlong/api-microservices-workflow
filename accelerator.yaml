@@ -139,6 +139,7 @@ accelerator:
       label: API observability
       description:  Add observability options to gatway
       inputType: toggle
+      dataType: boolean
       display: true
       defaultValue: false
     - name: apiScorecards
