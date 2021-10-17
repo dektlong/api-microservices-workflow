@@ -90,6 +90,8 @@ accelerator:
       dependsOn:
         name: portalScope
         value: brownfield
+      defaultValue:
+        - https://brownfield.example.com/openapi
     - name: publicAuthSources
       label: Public Auth open API source urls
       inputType: multi-text
@@ -97,6 +99,8 @@ accelerator:
       dependsOn:
         name: portalScope
         value: publicAuth
+      defaultValue:
+        - https://public-auth.example.com/openapi
     - name: publicSources
       label: Public open API source urls
       inputType: multi-text
@@ -104,6 +108,8 @@ accelerator:
       dependsOn:
         name: portalScope
         value: public
+      defaultValue:
+        - https://public.example.com/openapi
     
     #api gateway
     - name: ssoProvider
