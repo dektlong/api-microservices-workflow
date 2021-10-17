@@ -134,19 +134,6 @@ accelerator:
           text: "Prometheus service monitor"
         - value: prometheusAnnotations
           text: "Prometheus annotations"
-      
-    #workloads
-    - name: gitRepos
-      label: Workloads (git repos)
-      description: A seprate git repo for every app component
-      inputType: multi-text
-      required: true
-      dataType: [string]
-      defaultValue:
-        - https://github.com/dektlong/dekt4pets-backend
-        - https://github.com/dektlong/dekt4pets-frontend
-        - https://github.com/dektlong/adopter-check
-        
     #hidden values
     - name: domain
       label: Domain name
