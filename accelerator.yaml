@@ -215,6 +215,16 @@ engine:
       chain:
         - type: YTT
     #api-grid
-    - includes: [ "api-grid/api-portal.yaml", "api-grid/gateway.yaml", "api-grid/mapping.yaml" ]
+    - includes: [ "api-grid/k8s/**" ]
+      condition: "#supplychain != 'cf'"
       chain:
         - type: YTT
+    - includes: [ "api-grid/cf/**" ]
+      condition: "#supplychain == 'cf'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+            - text: domain
+              with: "#domain"
