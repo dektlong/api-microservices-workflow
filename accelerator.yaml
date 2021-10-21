@@ -214,3 +214,18 @@ engine:
       condition: "#supplychain == 'cf'"
       chain:
         - type: YTT
+    
+    #api-grid
+    - includes: [ "api-grid/k8s/**" ]
+      condition: "#supplychain != 'cf'"
+      chain:
+        - type: YTT
+    - includes: [ "api-grid/cf/**" ]
+      condition: "#supplychain == 'cf'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: app-name
+              with: "#artifactId"
+            - text: domain
+              with: "#domain"
