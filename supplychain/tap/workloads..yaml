@@ -13,10 +13,11 @@ spec:
       ref:
         branch: "main"
         tag: "v1.0.0"
-        
+#@ if data.values.addDataEntity:        
   services:
     - apiVersion: services.tanzu.vmware.com/v1alpha1
-      kind: store-db
+      kind: #@data.values.entityType
+#@ end
 
   env:
     - name: SPRING_PROFILES_ACTIVE
