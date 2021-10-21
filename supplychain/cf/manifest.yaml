@@ -8,7 +8,7 @@ applications:
     - route: #@ data.values.workloads[0] + ".apps.internal"
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'
-    SPRING_PROFILES_ACTIVE: dev
+    SPRING_PROFILES_ACTIVE: prod
   services:
    - prod-db
 - name: #@ data.values.artifactId + "-" + data.values.workloads[1]
