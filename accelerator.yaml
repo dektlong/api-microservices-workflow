@@ -220,7 +220,11 @@ engine:
       condition: "#supplychain != 'cf'"
       chain:
         - type: YTT
-    - includes: [ "api-grid/cf/**" ]
+    - includes: [ "api-grid/cf/*.yaml ]
+      condition: "#supplychain == 'cf'"
+      chain:
+        - type: YTT
+    - includes: [ "api-grid/cf/*.json ]
       condition: "#supplychain == 'cf'"
       chain:
         - type: ReplaceText
