@@ -1,7 +1,8 @@
+#@ load("@ytt:data", "data")
 ---
 applications:
-- name: app-name-portal
+- name: #@ data.values.artifactId + "-api-portal"
   path: api-portal-server-1.0.3.jar
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'
-    API_PORTAL_SOURCE_URLS: ''
+    API_PORTAL_SOURCE_URLS:  #@ data.values.openAPISources
