@@ -1,0 +1,13 @@
+{
+  "sso": {
+    "plan": "prod"
+  },
+  "count": 2,
+  "memory": "2G",
+  "disk": "512M",
+  "host": "app-name",
+  "title": "app-name production gateway",
+  "description": "Gateway for production deployment of app-name", 
+  "error-routes": [ { "code": "404", "redirect-path": "/apiGroup1" } ],
+  "routes": [ { "uri": "https://app-name.domain", "path": "/fallback/**" } ]
+}
