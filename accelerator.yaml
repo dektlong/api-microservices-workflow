@@ -220,7 +220,7 @@ engine:
       condition: "#supplychain != 'cf'"
       chain:
         - type: YTT
-    - includes: [ "api-grid/cf/*.yaml ]
+    - includes: [ "api-grid/cf/*.yaml" ]
       condition: "#supplychain == 'cf'"
       chain:
         - type: YTT
