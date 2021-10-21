@@ -20,7 +20,7 @@ accelerator:
         - value: tbs
           text: Build Service + kNative + kustomize
         - value: cf
-          text: Cloud Foundry
+          text: Tanzu Application Service (cf)
         - value: tap
           text: Tanzu Application Platform
  # TAP supplychain specific options
@@ -212,6 +212,8 @@ engine:
               with: "#registry"
     - includes: [ "supplychain/cf/**" ]
       condition: "#supplychain == 'cf'"
+      chain:
+        - type: YTT
     #api-grid
     - includes: [ "api-grid/api-portal.yaml", "api-grid/gateway.yaml", "api-grid/mapping.yaml" ]
       chain:
