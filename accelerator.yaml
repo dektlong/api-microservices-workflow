@@ -216,7 +216,7 @@ engine:
         - type: YTT
     #api-grid
     - includes: [ "api-grid/k8s/**" ]
-      condition: "#supplychain != 'cf'"
+      condition: "#supplychain =! 'cf'"
       chain:
         - type: YTT
     - includes: [ "api-grid/cf/**" ]
