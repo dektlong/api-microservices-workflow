@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: brownfield-function-for-online-stores
-  description: Brownfield Function for Online Stores
+  name: api-driven-microservices-workflow
+  description: API Driven Microservices workflow
   tags:
     - onlinestore-dev
   annotations:
