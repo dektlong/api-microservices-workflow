@@ -4,7 +4,7 @@ metadata:
   name: api-driven-microservices-workflow
   description: API Driven Microservices workflow
   tags:
-    - onlinestore-dev
+    - onlinestore-devops
   annotations:
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=backend-api-for-online-stores'
 spec:
