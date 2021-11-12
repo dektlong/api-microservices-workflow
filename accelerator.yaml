@@ -226,7 +226,7 @@ engine:
         - type: YTT
     
     #api-grid
-    - excludes: [ "api-grid/k8s/tap/bronwnfield.yaml" ]
+    - excludes: [ "api-grid/k8s/brownfield.yaml" ]
       condition: "#portalScope != 'brownfield' and #portalScope != 'public'"
     - includes: [ "api-grid/k8s/**" ]
       condition: "#supplychain != 'cf'"
