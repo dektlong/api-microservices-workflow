@@ -33,6 +33,16 @@ spec:
     cors:
       allowedOrigins:
       - http://api-portal.apps.dekt.io
+      
+    extensions:
+    secretsProviders:
+      - name: vault-jwt-keys
+        vault:
+          roleName: scg-role
+    filter:
+      jwtKey:
+        enabled: true
+        secretsProviderName: vault-jwt-keys   
 ---
 apiVersion: v1
 kind: Service
