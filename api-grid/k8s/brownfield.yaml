@@ -12,9 +12,11 @@ spec:
         - Path=/api/browndfield-api/{adopterid}
         - Method=GET
       ssoEnabled: true
+#@ if data.values.vaultIntegration:
       filters:
         - RateLimit=3,60s
         - JwtKey={header:X-JWT-KEYID}
+#@ end
       title: "A brownfield API call for 3rd-party/legacy end point"
       tags:
         - Brownfield
@@ -26,14 +28,10 @@ metadata:
 spec:
   count: 1
   api:
-    serverUrl: http://browndield.apps.dekt.io
-    title: User Verification Services
-    description: External APIs to provide user verification services
-    version: 0.5.0
-    cors:
-      allowedOrigins:
-      - http://api-portal.apps.dekt.io
-      
+    serverUrl: #@ "https://brownfield." + data.values.domain 
+    title: Micro-gateway to contorl 3rd party/legacy API access
+    version: 0.1.0
+#@ if data.values.vaultIntegration:
     extensions:
     secretsProviders:
       - name: vault-jwt-keys
@@ -43,6 +41,7 @@ spec:
       jwtKey:
         enabled: true
         secretsProviderName: vault-jwt-keys   
+#@ end
 ---
 apiVersion: v1
 kind: Service
