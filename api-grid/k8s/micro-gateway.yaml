@@ -23,17 +23,6 @@ spec:
 #@ end
   sso:
     secret: #@ data.values.artifactId + "-" + data.values.ssoProvider + "-sso"
-#@ if data.values.vaultIntegration:
-  extensions:
-    secretsProviders:
-      - name: vault-jwt-keys
-        vault:
-          roleName: scg-role
-    filter:
-      jwtKey:
-        enabled: true
-        secretsProviderName: vault-jwt-keys
-#@ end
 #@ if data.values.gwMetrics:
   observability:
     metrics:
