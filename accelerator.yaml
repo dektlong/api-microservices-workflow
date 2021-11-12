@@ -90,6 +90,16 @@ accelerator:
           - public
       defaultValue:
         - scg-openapi.apps.dekt.io/openapi
+    - name: vaultIntegration
+      label: Add Vault key-management
+      inputType: toggle 
+      defaultValue: false
+      dataType: boolean
+      dependsOn:
+        name: portalScope
+        value: 
+          - brownfield
+          - public
     #api gateway
     - name: ssoProvider
       label: Identity provider
