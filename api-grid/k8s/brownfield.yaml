@@ -22,11 +22,11 @@ spec:
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
-  name: datacheck-gateway
+  name: brownfield-gateway
 spec:
   count: 1
   api:
-    serverUrl: http://datacheck.apps.dekt.io
+    serverUrl: http://browndield.apps.dekt.io
     title: User Verification Services
     description: External APIs to provide user verification services
     version: 0.5.0
