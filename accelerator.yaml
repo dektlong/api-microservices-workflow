@@ -226,10 +226,10 @@ engine:
         - type: YTT
     
     #api-grid
-    - excludes: [ "api-grid/k8s/brownfield.yaml" ]
-      condition: "#portalScope != 'brownfield' and #portalScope != 'public'"
     - includes: [ "api-grid/k8s/**" ]
       condition: "#supplychain != 'cf'"
+      excludes: [ "api-grid/k8s/brownfield.yaml" ]
+      condition: "#portalScope != 'brownfield' and #portalScope != 'public'"
       chain:
         - type: YTT
     - includes: [ "api-grid/cf/*.yaml" ]
