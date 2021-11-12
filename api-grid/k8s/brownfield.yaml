@@ -46,7 +46,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: datacheck-brownfield-proxy
+  name: brownfield-proxy
 spec:
   ports:
     - port: 80
@@ -55,9 +55,9 @@ spec:
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayMapping
 metadata:
-  name: datacheck-routes-mapping
+  name: brownfield-routes-mapping
 spec:
   gatewayRef:
-    name: datacheck-gateway
+    name: brownfield-gateway
   routeConfigRef:
-    name: datacheck-routes-config
+    name: brownfield-routes-config
