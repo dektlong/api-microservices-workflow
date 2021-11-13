@@ -7,11 +7,17 @@ metadata:
 spec:
   service: 
     name: #@ data.values.artifactId + "-" + data.values.workloads[0] + "-service"
+    predicates:
+      - Header=X-Request-Id
 #@ if data.values.portalScope == "public""
     ssoEnabled: true
 #@ end 
+#@ if data.values.portalScope == "brownfield""
+    filters:
+      - RateLimit=2,60s
+#@ end 
   routes:
-    - #@ "Route definitions imported at runtime from " + data.values.gitRepos[0] + "/routes"
+    - #@ "Route definitions imported from " + data.values.gitRepos[0] + "/routes"
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
@@ -20,11 +26,16 @@ metadata:
 spec:
   service: 
     name: #@ data.values.artifactId + "-" + data.values.workloads[1] + "-service"
+    predicates:
+      - Header=X-Request-Id
 #@ if data.values.portalScope == "public""
     ssoEnabled: true
 #@ end 
+#@ if data.values.portalScope == "brownfield""
+    filters:
+      - RateLimit=2,60s
   routes:
-    - #@ "Route definitions imported at runtime from " + data.values.gitRepos[1] + "/routes"
+    - #@ "Route definitions imported from " + data.values.gitRepos[1] + "/routes"
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
@@ -33,8 +44,13 @@ metadata:
 spec:
   service: 
     name: #@ data.values.artifactId + "-" + data.values.workloads[2] + "-service"
+    predicates:
+      - Header=X-Request-Id
 #@ if data.values.portalScope == "public""
     ssoEnabled: true
 #@ end 
+#@ if data.values.portalScope == "brownfield""
+    filters:
+      - RateLimit=2,60s
   routes:
-    - #@ "Route definitions imported at runtime from " + data.values.gitRepos[2] + "/routes"
+    - #@ "Route definitions imported from " + data.values.gitRepos[2] + "/routes"
