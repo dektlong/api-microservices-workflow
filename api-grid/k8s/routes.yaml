@@ -17,7 +17,6 @@ spec:
       - RateLimit=2,60s
 #@ end 
   routes:
-    - #@ "Route definitions imported from " + data.values.gitRepos[0] + "/routes"
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
@@ -36,7 +35,6 @@ spec:
       - RateLimit=2,60s
 #@ end 
   routes:
-    - #@ "Route definitions imported from " + data.values.gitRepos[1] + "/routes"
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
@@ -55,4 +53,3 @@ spec:
       - RateLimit=2,60s
 #@ end 
   routes:
-    - #@ "Route definitions imported from " + data.values.gitRepos[2] + "/routes"
