@@ -9,7 +9,7 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[0] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.forceSSO":
+#@ if data.values.forceSSO:
     ssoEnabled: true
 #@ end 
 #@ if data.values.forceRateLimit:
@@ -28,7 +28,7 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[1] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.forceSSO":
+#@ if data.values.forceSSO:
     ssoEnabled: true
 #@ end 
 #@ if data.values.forceRateLimit:
@@ -47,7 +47,7 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[2] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.forceSSO":
+#@ if data.values.forceSSO:
     ssoEnabled: true
 #@ end 
 #@ if data.values.forceRateLimit:
