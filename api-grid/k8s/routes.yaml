@@ -3,45 +3,38 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
 metadata:
-  name: #@ data.values.artifactId + "-backend-routes"
+  name: #@ data.values.artifactId + "-" + data.values.workloads[0] + "-routes"
 spec:
   service: 
-    name: #@ data.values.artifactId + "-service"
+    name: #@ data.values.artifactId + "-" + data.values.workloads[0] + "-service"
+#@ if data.values.portalScope == "public""
+    ssoEnabled: true
+#@ end 
   routes:
-    - predicates:
-        - #@ "Path=/api/" + data.values.firstApiGroup
-        - Method=GET
-      filters:
-        - RateLimit=2,10s
-      tags:
-        - #@ data.values.firstApiGroup
-      title: "open api for read-only functionality"
-      description: "open api for read only interactions with the backend service"
-    - predicates:
-        - #@ "Path=/api/" + data.values.firstApiGroup + "/" + data.values.secondApiGroup
-        - Method=POST,PUT,DELETE
-      filters:
-        - CircuitBreaker="myCircuitBreaker,forward:/inCaseOfFailureUseThis"
-      ssoEnabled: true
-      tokenRelay: true
-      tags:
-        - #@ data.values.secondApiGroup
-      title: "SSO protected api for write functionality"
-      description: "SSO protected api for write/delete/update interactions with the backend service"
-      model:
-        requestBody:
-          description: #@ "Manage " + data.values.secondApiGroup
-          content:
-            'application/json':
-              schema:
-                type: object
-                description: #@ data.values.secondApiGroup + " schema"
-                properties:
-                  itemName:
-                    type: string
-                  description:
-                    type: string
-                    format: email
-                  notes:
-                    type: string
-                required: [ "name", "description" ]
+    - #@ "Route definitions imported at runtime from " + data.values.gitRepos[0] + "/routes"
+---
+apiVersion: "tanzu.vmware.com/v1"
+kind: SpringCloudGatewayRouteConfig
+metadata:
+  name: #@ data.values.artifactId + "-" + data.values.workloads[1] + "-routes"
+spec:
+  service: 
+    name: #@ data.values.artifactId + "-" + data.values.workloads[1] + "-service"
+#@ if data.values.portalScope == "public""
+    ssoEnabled: true
+#@ end 
+  routes:
+    - #@ "Route definitions imported at runtime from " + data.values.gitRepos[1] + "/routes"
+---
+apiVersion: "tanzu.vmware.com/v1"
+kind: SpringCloudGatewayRouteConfig
+metadata:
+  name: #@ data.values.artifactId + "-" + data.values.workloads[2] + "-routes"
+spec:
+  service: 
+    name: #@ data.values.artifactId + "-" + data.values.workloads[2] + "-service"
+#@ if data.values.portalScope == "public""
+    ssoEnabled: true
+#@ end 
+  routes:
+    - #@ "Route definitions imported at runtime from " + data.values.gitRepos[2] + "/routes"
