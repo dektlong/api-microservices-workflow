@@ -1,11 +1,13 @@
 ## Accelerator to configure an API-Microservices workflow
 
-### Supplychain configuration
+### 1. Supplychain configuration
 
-### Multiple app components (microservices) build and pipelines 
+### 2. Multiple app components (microservices) build and pipelines 
 
-### Micro-gateways configuration (HA, SSO, domains, etc...)
+### 3. Micro-gateways configuration (HA, SSO, domains, etc...)
 
-### API access level and API portal configuration
+### 4. API access level and API portal configuration
+
+### 5. Observability 
 
 
