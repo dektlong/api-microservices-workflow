@@ -16,7 +16,7 @@ spec:
     filters:
       - RateLimit=2,60s
 #@ end 
-  routes: #@ "#Route definitions are imported from " + data.values.gitRepos[1]
+  routes: #@ "#Imported from " + data.values.gitRepos[0]
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
@@ -34,8 +34,7 @@ spec:
     filters:
       - RateLimit=2,60s
 #@ end 
-  routes:
-    - #@ "Imported from " + data.values.gitRepos[1]
+  routes: #@ "#Imported from " + data.values.gitRepos[1]
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
@@ -53,5 +52,4 @@ spec:
     filters:
       - RateLimit=2,60s
 #@ end 
-  routes:
-    - #@ "Imported from " + data.values.gitRepos[2]
+  routes: #@ "#Imported from " + data.values.gitRepos[2]
