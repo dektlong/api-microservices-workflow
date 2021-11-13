@@ -9,14 +9,15 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[0] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.portalScope == "public":
+#@ if data.values.forceSSO":
     ssoEnabled: true
 #@ end 
-#@ if data.values.portalScope == "brownfield":
+#@ if data.values.forceRateLimit:
     filters:
       - RateLimit=2,60s
 #@ end 
   routes:
+    - - #@ "Imported from " + data.values.gitRepos[0]
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
@@ -27,14 +28,15 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[1] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.portalScope == "public":
+#@ if data.values.forceSSO":
     ssoEnabled: true
 #@ end 
-#@ if data.values.portalScope == "brownfield":
+#@ if data.values.forceRateLimit:
     filters:
       - RateLimit=2,60s
 #@ end 
   routes:
+    - #@ "Imported from " + data.values.gitRepos[1]
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
@@ -45,11 +47,12 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[2] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.portalScope == "public":
+#@ if data.values.forceSSO":
     ssoEnabled: true
 #@ end 
-#@ if data.values.portalScope == "brownfield":
+#@ if data.values.forceRateLimit:
     filters:
       - RateLimit=2,60s
 #@ end 
   routes:
+    - #@ "Imported from " + data.values.gitRepos[2]
