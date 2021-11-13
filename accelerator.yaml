@@ -101,7 +101,7 @@ accelerator:
           - brownfield
           - public
     - name: forceRateLimit
-      label: Force rate-limits for all routes
+      label: Rate-limits for all routes
       inputType: toggle 
       defaultValue: true
       dataType: boolean
@@ -110,7 +110,7 @@ accelerator:
         value: 
           - brownfield
     - name: forceSSO
-      label: Force SSO for all routes
+      label: SSO for all routes
       inputType: toggle 
       defaultValue: true
       dataType: boolean
