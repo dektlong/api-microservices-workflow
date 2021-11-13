@@ -9,10 +9,10 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[0] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.portalScope == "public""
+#@ if data.values.portalScope == "public":
     ssoEnabled: true
 #@ end 
-#@ if data.values.portalScope == "brownfield""
+#@ if data.values.portalScope == "brownfield":
     filters:
       - RateLimit=2,60s
 #@ end 
@@ -28,10 +28,10 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[1] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.portalScope == "public""
+#@ if data.values.portalScope == "public":
     ssoEnabled: true
 #@ end 
-#@ if data.values.portalScope == "brownfield""
+#@ if data.values.portalScope == "brownfield":
     filters:
       - RateLimit=2,60s
   routes:
@@ -46,10 +46,10 @@ spec:
     name: #@ data.values.artifactId + "-" + data.values.workloads[2] + "-service"
     predicates:
       - Header=X-Request-Id
-#@ if data.values.portalScope == "public""
+#@ if data.values.portalScope == "public":
     ssoEnabled: true
 #@ end 
-#@ if data.values.portalScope == "brownfield""
+#@ if data.values.portalScope == "brownfield":
     filters:
       - RateLimit=2,60s
   routes:
