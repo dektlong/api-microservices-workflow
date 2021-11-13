@@ -16,8 +16,7 @@ spec:
     filters:
       - RateLimit=2,60s
 #@ end 
-  routes:
-    - - #@ "Imported from " + data.values.gitRepos[0]
+ #! Remove resource requirements to support smaller environments
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGatewayRouteConfig
