@@ -103,7 +103,7 @@ accelerator:
     - name: forceRateLimit
       label: Rate-limits for all routes
       inputType: toggle 
-      defaultValue: true
+      defaultValue: false
       dataType: boolean
       dependsOn:
         name: portalScope
@@ -112,7 +112,7 @@ accelerator:
     - name: forceSSO
       label: SSO for all routes
       inputType: toggle 
-      defaultValue: true
+      defaultValue: false
       dataType: boolean
       dependsOn:
         name: portalScope
