@@ -66,7 +66,7 @@ accelerator:
     #api-portal  
     - name: portalScope
       inputType: checkbox
-      label: API-groups scope
+      label: API access policies
       description: What api groups will be included in API portal
       required: true
       dataType: [string]
@@ -99,6 +99,24 @@ accelerator:
         name: portalScope
         value: 
           - brownfield
+          - public
+    - name: forceRateLimit
+      label: Force rate-limits for all routes
+      inputType: toggle 
+      defaultValue: true
+      dataType: boolean
+      dependsOn:
+        name: portalScope
+        value: 
+          - brownfield
+    - name: forceSSO
+      label: Force SSO for all routes
+      inputType: toggle 
+      defaultValue: true
+      dataType: boolean
+      dependsOn:
+        name: portalScope
+        value: 
           - public
     #api gateway
     - name: ssoProvider
