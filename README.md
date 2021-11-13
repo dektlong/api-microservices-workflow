@@ -1,12 +1,11 @@
 ## Accelerator to configure an API-Microservices workflow
 
-- Single K8s Cluster 
+### Supplychain configuration
 
-- Multiple app components (microservices) build and pipelines 
+### Multiple app components (microservices) build and pipelines 
 
-- Micro-gateways configuration (HA, SSO, domains, etc...)
+### Micro-gateways configuration (HA, SSO, domains, etc...)
 
-- Api portal configuration
+### API access level and API portal configuration
 
-- Preview of AppStack supplychain concepts
 
