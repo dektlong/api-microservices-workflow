@@ -16,9 +16,9 @@ accelerator:
       defaultValue: k8s
       choices:
         - value: k8s
-          text: DIY with k8s resources
+          text: DIY with k8s
         - value: tbs
-          text: Build Service + kNative + kustomize
+          text: Build Service + Tools
         - value: cf
           text: Tanzu Application Service (cf)
         - value: tap
