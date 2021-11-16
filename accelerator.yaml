@@ -18,7 +18,7 @@ accelerator:
         - value: k8s
           text: DIY with k8s
         - value: tbs
-          text: Build Service + Tools
+          text: Build Service + CRDs
         - value: cf
           text: Tanzu Application Service manifest
         - value: tap
