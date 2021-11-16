@@ -20,9 +20,9 @@ accelerator:
         - value: tbs
           text: Build Service + Tools
         - value: cf
-          text: Tanzu Application Service (cf)
+          text: Tanzu Application Service manifest
         - value: tap
-          text: Tanzu Application Platform
+          text: Tanzu Application Platform supply-chain
  # TAP supplychain specific options
     - name: addTesting
       label: Add pre-prod testing 
