@@ -8,12 +8,11 @@ spec:
   selector:
     app.tanzu.vmware.com/workload-type: online-store
 
-  components:
-
+  resources:
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
-        name: source-code
+        name: source
 
     - name: source-scanner
       templateRef:
@@ -28,9 +27,9 @@ spec:
         kind: ClusterImageTemplate
         name: image
       sources:
-        - component: source-provider
+        - resource: source-provider
           name: scanned-source
-         
+
 #@ if data.values.scanScope == "srcImg":
     - name: image-scanner
       templateRef:
