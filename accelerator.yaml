@@ -129,6 +129,8 @@ accelerator:
         value: 
           - brownfield
           - public
+        name: supplychain
+        value: tap
       choices:
         - value: amazon
           text: Amazon
