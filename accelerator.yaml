@@ -90,16 +90,6 @@ accelerator:
           - public
       defaultValue:
         - scg-openapi.apps.dekt.io/openapi
-    - name: vaultIntegration
-      label: Add Vault key-management
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
-      dependsOn:
-        name: portalScope
-        value: 
-          - brownfield
-          - public
     - name: forceRateLimit
       label: Rate-limits for all routes
       inputType: toggle 
@@ -118,17 +108,21 @@ accelerator:
         name: portalScope
         value: 
           - public
-    #api gateway
+    #api-gateway
+    - name: vaultIntegration
+      label: Add Vault key-management
+      inputType: toggle 
+      defaultValue: false
+      dataType: boolean
+      dependsOn:
+        name: supplychain
+        value: tap
     - name: ssoProvider
       label: Identity provider
       description: SSO identity provider
       inputType: select 
       defaultValue: workspaceOne
       dependsOn:
-        name: portalScope
-        value: 
-          - brownfield
-          - public
         name: supplychain
         value: tap
       choices:
@@ -154,7 +148,9 @@ accelerator:
       description:  Add observability options to gatway
       inputType: toggle
       dataType: boolean
-      display: true
+      dependsOn:
+        name: supplychain
+        value: tap
       defaultValue: false
     - name: apiScorecards
       description: URL for API Scorecards dashboard
