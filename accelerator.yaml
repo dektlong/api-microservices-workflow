@@ -178,23 +178,31 @@ accelerator:
       dependsOn:
         name: gwMetrics
         value: true
-    
-   #saltstack config
+
+  #vm config (saltstack) 
     - name: addSalt
-      label: vRealize SaltStack components
-      description: Select what components to add from vRealize Automation SaltStack 
-      display: false
+      label: Add vRealize config management
+      description: Use vRealize Automation SaltStack  config for VM management 
+      display: true
+      inputType: toggle
+      dataType: boolean
+      defaultValue: false
+    - name: SaltStack jobs to run
       inputType: checkbox
       dataType: [string]
+      dependsOn:
+        name: addSalt
+        value: true
       choices:
-        - value: secops
-          text: "OS compliance enforcement"
-        - value: dataServices
-          text: "Manage DB as CRDs (requires salt-states)"
+        - value: redis
+          text: "Deploy a VM with Redis data store"
+        - value: mysql
+          text: "Deploy a VM with MySQL data store"
         - value: cmdb
-          text: "Configuration database
-        
-   #workloads repos
+          text: "Manage DB as CRDs (requires salt-states)""
+  
+  
+  #workloads repos
     - name: gitRepos
       label: Workloads git repos
       description: A seprate git repo for every app component
