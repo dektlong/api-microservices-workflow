@@ -7,7 +7,7 @@ accelerator:
 
   options:
   
-  #devops supply chain
+  #supplychain selection
     - name: supplychain
       inputType: select
       label: Supply chain 
@@ -23,7 +23,8 @@ accelerator:
           text: Tanzu Application Service manifest
         - value: tap
           text: Tanzu Application Platform supply-chain
- # TAP supplychain specific options
+ 
+ # TAP supplychain
     - name: addTesting
       label: Add pre-prod testing 
       description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
@@ -62,13 +63,32 @@ accelerator:
          text: Source only
        - value: srcImg
          text: Source and image
+    - name: scaleToZero
+      label: Enable scale to zero
+      description: Enable cloud native runtimes workloads to scale to zero
+      inputType: toggle 
+      defaultValue: false
+      dataType: boolean
+      dependsOn:
+        name: supplychain
+        value: tap
 
-    #api-portal  
+ #API-grid configs
+    - name: addAPIGrid
+      label: Custome API-grid configurations
+      description: Setup custom configurations for API Gateway, Portal and access control
+      inputType: toggle 
+      defaultValue: false
+      display: true
+      dataType: boolean
+   #api-portal  
     - name: portalScope
       inputType: checkbox
       label: API access policies
       description: What api groups will be included in API portal
-      required: true
+      dependsOn:
+        name: addAPIGrid
+        value: true
       dataType: [string]
       defaultValue:
         - dev
@@ -115,16 +135,16 @@ accelerator:
       defaultValue: false
       dataType: boolean
       dependsOn:
-        name: supplychain
-        value: tap
+        name: addAPIGrid
+        value: true
     - name: ssoProvider
-      label: Identity provider
+      label: Identity provider for API SSO
       description: SSO identity provider
       inputType: select 
       defaultValue: workspaceOne
       dependsOn:
-        name: supplychain
-        value: tap
+        name: addAPIGrid
+        value: true
       choices:
         - value: amazon
           text: Amazon
@@ -149,8 +169,8 @@ accelerator:
       inputType: toggle
       dataType: boolean
       dependsOn:
-        name: supplychain
-        value: tap
+        name: addAPIGrid
+        value: true
       defaultValue: false
     - name: apiScorecards
       description: URL for API Scorecards dashboard
