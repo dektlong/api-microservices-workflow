@@ -23,6 +23,7 @@ accelerator:
           text: Tanzu Application Service manifest
         - value: tap
           text: Tanzu Application Platform supply-chain
+          
  # TAP supplychain specific options
     - name: addTesting
       label: Add pre-prod testing 
@@ -63,7 +64,41 @@ accelerator:
        - value: srcImg
          text: Source and image
 
-    #api-portal  
+#vRealize config
+    - name: addSalt
+      label: Add vRealize SaltStack config
+      description: Add configuration with vRealize Automation SaltStack Config
+      inputType: toggle 
+      display: true
+      defaultValue: false
+      dataType: boolean
+    - name: openAPISources
+      label: Open api source urls
+      inputType: multi-text
+      dataType: [string]
+      dependsOn:
+        name: addSalt
+        value: true
+      defaultValue:
+        - scg-openapi.apps.dekt.io/openapi
+    - name: forceRateLimit
+      label: Rate-limits for all routes
+      inputType: toggle 
+      defaultValue: false
+      dataType: boolean
+      dependsOn:
+        name: addSalt
+        value: true
+    - name: forceSSO
+      label: SSO for all routes
+      inputType: toggle 
+      defaultValue: false
+      dataType: boolean
+      dependsOn:
+        name: addSalt
+        value: true
+      
+ #api-portal  
     - name: portalScope
       inputType: checkbox
       label: API access policies
@@ -108,7 +143,8 @@ accelerator:
         name: portalScope
         value: 
           - public
-    #api-gateway
+    
+ #api-gateway
     - name: vaultIntegration
       label: Add Vault key-management
       inputType: toggle 
@@ -177,7 +213,7 @@ accelerator:
         name: gwMetrics
         value: true
     
-    #workloads repos
+   #workloads repos
     - name: gitRepos
       label: Workloads git repos
       description: A seprate git repo for every app component
