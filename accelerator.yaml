@@ -63,40 +63,6 @@ accelerator:
          text: Source only
        - value: srcImg
          text: Source and image
-
-#vRealize config
-    - name: addSalt
-      label: Add vRealize SaltStack config
-      description: Add configuration with vRealize Automation SaltStack Config
-      inputType: toggle 
-      display: true
-      defaultValue: false
-      dataType: boolean
-    - name: openAPISources
-      label: Open api source urls
-      inputType: multi-text
-      dataType: [string]
-      dependsOn:
-        name: addSalt
-        value: true
-      defaultValue:
-        - scg-openapi.apps.dekt.io/openapi
-    - name: forceRateLimit
-      label: Rate-limits for all routes
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
-      dependsOn:
-        name: addSalt
-        value: true
-    - name: forceSSO
-      label: SSO for all routes
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
-      dependsOn:
-        name: addSalt
-        value: true
       
  #api-portal  
     - name: portalScope
@@ -213,6 +179,21 @@ accelerator:
         name: gwMetrics
         value: true
     
+   #saltstack config
+    - name: addSalt
+      label: vRealize SaltStack components
+      description: Select what components to add from vRealize Automation SaltStack 
+      display: false
+      inputType: checkbox
+      dataType: [string]
+      choices:
+        - value: secops
+          text: "OS compliance enforcement"
+        - value: dataServices
+          text: "Manage DB as CRDs (requires salt-states)"
+        - value: cmdb
+          text: "Configuration database
+        
    #workloads repos
     - name: gitRepos
       label: Workloads git repos
