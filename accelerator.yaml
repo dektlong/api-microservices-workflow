@@ -199,7 +199,7 @@ accelerator:
         - value: mysql
           text: "Deploy a VM with MySQL data store"
         - value: cmdb
-          text: "Manage DB as CRDs (requires salt-states)""
+          text: "Manage DB as CRDs (requires salt-states)"
   
   
   #workloads repos
