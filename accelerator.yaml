@@ -23,7 +23,6 @@ accelerator:
           text: Tanzu Application Service manifest
         - value: tap
           text: Tanzu Application Platform supply-chain
-          
  # TAP supplychain specific options
     - name: addTesting
       label: Add pre-prod testing 
@@ -63,8 +62,8 @@ accelerator:
          text: Source only
        - value: srcImg
          text: Source and image
-      
- #api-portal  
+
+    #api-portal  
     - name: portalScope
       inputType: checkbox
       label: API access policies
@@ -109,8 +108,7 @@ accelerator:
         name: portalScope
         value: 
           - public
-    
- #api-gateway
+    #api-gateway
     - name: vaultIntegration
       label: Add Vault key-management
       inputType: toggle 
@@ -178,31 +176,8 @@ accelerator:
       dependsOn:
         name: gwMetrics
         value: true
-
-  #vm config (saltstack) 
-    - name: addSalt
-      label: Add vRealize config management
-      description: Use vRealize Automation SaltStack  config for VM management 
-      display: true
-      inputType: toggle
-      dataType: boolean
-      defaultValue: false
-    - name: SaltStack jobs to run
-      inputType: checkbox
-      dataType: [string]
-      dependsOn:
-        name: addSalt
-        value: true
-      choices:
-        - value: redis
-          text: "Deploy a VM with Redis data store"
-        - value: mysql
-          text: "Deploy a VM with MySQL data store"
-        - value: cmdb
-          text: "Manage DB as CRDs (requires salt-states)"
-  
-  
-  #workloads repos
+    
+    #workloads repos
     - name: gitRepos
       label: Workloads git repos
       description: A seprate git repo for every app component
