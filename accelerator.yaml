@@ -94,7 +94,7 @@ accelerator:
         name: addExternalServices
         value: true
       dataType: [string]
-      defaultValue: aws-rds-broker
+      defaultValue: service-cluster
       choices:
         - value: aws-rds-broker
           text: Cloud broker to Amazon RDS
@@ -104,6 +104,8 @@ accelerator:
           text: Cloud broker to Google Spanner 
         - value: on-prem-kafka
           text: Broker to on-prem Kafka
+        - value: service-cluster
+          text: Service cluster access
 
 #workloads repos
     - name: gitRepos
