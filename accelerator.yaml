@@ -120,8 +120,10 @@ accelerator:
       inputType: multi-text
       dataType: [string]
       dependsOn:
-        name: addAPIGrid
-        value: true
+        name: portalScope
+        value: 
+          - brownfield
+          - public
       defaultValue:
         - scg-openapi.apps.dekt.io/openapi
     - name: forceRateLimit
@@ -130,16 +132,19 @@ accelerator:
       defaultValue: false
       dataType: boolean
       dependsOn:
-        name: addAPIGrid
-        value: true
+        name: portalScope
+        value: 
+          - brownfield
     - name: forceSSO
       label: SSO for all routes
       inputType: toggle 
       defaultValue: false
       dataType: boolean
       dependsOn:
-        name: addAPIGrid
-        value: true
+        name: portalScope
+        value: 
+          - brownfield
+          - public
     #api-gateway
     - name: vaultIntegration
       label: Add Vault key-management
