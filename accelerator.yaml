@@ -224,8 +224,9 @@ accelerator:
       defaultValue: false
       display: true
       dataType: boolean
-    - name: externalServices
+    - name: externalServicesScope
       label: External services scope
+      description: External services scope of access
       inputType: checkbox
       dependsOn:
         name: addExternalServices
@@ -239,7 +240,7 @@ accelerator:
         - value: vRealize
           text: "vRealize on-prem broker"
         - value: bitnami
-          text:  "Service catalog (private bitnami)"
+          text: "Service catalog (private bitnami)"
  
  #hidden values
     - name: domain
