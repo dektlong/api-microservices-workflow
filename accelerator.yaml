@@ -220,7 +220,6 @@ accelerator:
     - name: externalServices
       label: Enable external services
       description: Enable connectivity to external services
-      display: false
       inputType: checkbox
       dataType: [string]
       choices:
@@ -231,7 +230,7 @@ accelerator:
         - value: vRealize
           text: "vRealize on-prem broker"
         - value: bitnami
-          text:  Service catalog (private bitnami)
+          text:  "Service catalog (private bitnami)"
  
  #hidden values
     - name: domain
