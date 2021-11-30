@@ -18,7 +18,7 @@ spec:
   - name: mydb
     ref:
       apiVersion: v1
-      kind: #@data.values.externalServicesScope
+      kind: #@ data.values.externalServicesScope
      
  #@ end
   env:
