@@ -13,7 +13,7 @@ accelerator:
       label: Supply chain 
       description: Generated configuration for the DevOps supply chain
       required: true
-      defaultValue: k8s
+      defaultValue: tap
       choices:
         - value: k8s
           text: DIY with k8s
@@ -98,10 +98,10 @@ accelerator:
       choices:
         - value: aws-rds-broker
           text: Cloud broker to Amazon RDS
-        - value: sql-azure-broker
-          text: Cloud broker to Azure SQL
-        - value: gcp-spanner-broker
-          text: Cloud broker to Google Spanner 
+        - value: s3-aws-broker
+          text: Cloud broker to Amazon S3
+        - value: dynamo-aws-broker
+          text: Cloud broker to Amazon DynamoDB
         - value: on-prem-kafka
           text: Broker to on-prem Kafka
         - value: service-cluster
