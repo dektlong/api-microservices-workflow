@@ -94,7 +94,7 @@ accelerator:
         name: addExternalServices
         value: true
       dataType: [string]
-      defaultValue: 
+      defaultValue: aws-rds-broker
       choices:
         - value: aws-rds-broker
           text: Cloud broker to Amazon RDS
