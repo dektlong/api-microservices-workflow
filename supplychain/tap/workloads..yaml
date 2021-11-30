@@ -15,7 +15,7 @@ spec:
         tag: "v1.0.0"
   #@ if data.values.addExternalServices:
   serviceClaims:
-    - name: #@ data.values.externalServicesScope
+    - name: externalDBSecrets
       ref:
         apiVersion: v1
         kind: Secret
