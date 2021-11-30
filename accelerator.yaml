@@ -94,17 +94,16 @@ accelerator:
         name: addExternalServices
         value: true
       dataType: [string]
-      defaultValue:
-        - bitnami
+      defaultValue: 
       choices:
-        - value: aws
-          text: Cloud broker AWS
-        - value: azure
-          text: Cloud broker Azure
-        - value: vRealize
-          text: vRealize on-prem broker
-        - value: bitnami
-          text: Private helm service catalog
+        - value: aws-rds-broker
+          text: Cloud broker to Amazon RDS
+        - value: sql-azure-broker
+          text: Cloud broker to Azure SQL
+        - value: gcp-spanner-broker
+          text: Cloud broker to Google Spanner 
+        - value: on-prem-kafka
+          text: Broker to on-prem Kafka
 
 #workloads repos
     - name: gitRepos
