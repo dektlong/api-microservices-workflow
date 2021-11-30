@@ -75,7 +75,7 @@ accelerator:
 
     #workloads repos
     - name: gitRepos
-      label: Workloads git repos
+      label: Microservices git repos
       description: A seprate git repo for every app component
       inputType: multi-text
       required: true
