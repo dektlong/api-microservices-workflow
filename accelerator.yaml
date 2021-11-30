@@ -217,10 +217,19 @@ accelerator:
         value: true
  
  #External services configs
-    - name: externalServices
+    - name: addExternalServices
       label: Enable external services
-      description: Enable connectivity to external services
+      description: Enable access to external services
+      inputType: toggle 
+      defaultValue: false
+      display: true
+      dataType: boolean
+    - name: externalServices
+      label: External services scope
       inputType: checkbox
+      dependsOn:
+        name: addExternalServices
+        value: true
       dataType: [string]
       choices:
         - value: aws
