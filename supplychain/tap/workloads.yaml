@@ -15,11 +15,11 @@ spec:
         tag: "v1.0.0"
   #@ if data.values.addExternalServices:
   serviceClaims:
-    - name: externalServices
-      ref:
-        apiVersion: v1
-        kind: ExternalServicesTemplate
-        name: #@ data.values.externalServicesScope
+  - name: mydb
+    ref:
+      apiVersion: v1
+      kind: #@data.values.externalServicesScope
+     
  #@ end
   env:
     - name: SPRING_PROFILES_ACTIVE
