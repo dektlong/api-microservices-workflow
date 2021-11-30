@@ -13,10 +13,15 @@ spec:
       ref:
         branch: "main"
         tag: "v1.0.0"
-  services:
-    - apiVersion: services.tanzu.vmware.com/v1alpha1
-      kind: prod-db
-  env:
+  #@ if data.values.addExternalServices:
+  serviceClaims:
+    - name: #@ data.values.externalServicesScope
+      ref:
+        apiVersion: v1
+        kind: Secret
+        name: #@ data.values.externalServicesScope
+ #@ end
+ env:
     - name: SPRING_PROFILES_ACTIVE
       value: prod
 
