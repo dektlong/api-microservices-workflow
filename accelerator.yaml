@@ -34,22 +34,26 @@ accelerator:
       dependsOn:
         name: supplychain
         value: tap
-    - name: apiTestingScope
-      label: API pre-prod testing scope 
-      description: Select how your pipeline will control the api lifecycle 
+    - name: testScope
+      label: Testing scope
+      description: Select scope of testing in your pipeline
       inputType: checkbox
       dataType: [string]
-      defaultValue: [ routes ]
+      defaultValue: [ core ]
       dependsOn:
         name: addTesting
         value: true
       choices:
-        - value: routes
-          text: Routes
-        - value: mappings
-          text: Mappings
-        - value: gateways
-          text: Gateways
+        - value: core
+          text: Core functionality
+        - value: data
+          text: Data integrations
+        - value: api
+          text: External APIs
+        - value: stress
+          text: Stress testing
+        - value: pen
+          text: Pen testing
     - name: scanScope
       label: Scanning scope
       description: Select the scope of your scanning
@@ -72,29 +76,6 @@ accelerator:
       dependsOn:
         name: supplychain
         value: tap
-   #vrealize (saltstack) 
-    - name: addSalt
-      label: Manage CRDs with vRealize SaltStack
-      description: Use vRealize Automation SaltStack to manage CRDs
-      dependsOn:
-        name: supplychain
-        value: tap
-      inputType: toggle
-      dataType: boolean
-      defaultValue: false
-    #- name: SaltStack k8s formula add-ons
-    #  inputType: checkbox
-    #  dataType: [string]
-    #  dependsOn:
-    #    name: addSalt
-    #    value: true
-    #  choices:
-    #    - value: salt1
-    #      text: "Private registries"
-    #    - value: salt2
-    #      text: "Affinity"
-    #    - value: salt3
-    #      text: "Service definitions"
 
 #workloads repos
     - name: gitRepos
