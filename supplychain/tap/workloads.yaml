@@ -15,10 +15,18 @@ spec:
         tag: "v1.0.0"
   #@ if data.values.addExternalServices:
   serviceClaims:
-  - name: mydb
+  - name: mysqldb
     ref:
-      apiVersion: v1
-      kind: RDSBroker
+      apiVersion: services.tanzu.vmware.com/v1alpha1
+      kind: #@ data.values.externalServicesScope[0]
+  - name: myblob
+    ref:
+      apiVersion: services.tanzu.vmware.com/v1alpha1
+      kind: #@ data.values.externalServicesScope[1]
+  - name: mynosqldb
+    ref:
+      apiVersion: services.tanzu.vmware.com/v1alpha1
+      kind: #@ data.values.externalServicesScope[0]
      
  #@ end
   env:
