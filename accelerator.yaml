@@ -216,6 +216,15 @@ accelerator:
         name: gwMetrics
         value: true
  
+ #External services configs
+    - name: addExternalServices
+      label: Enable external services
+      description: Enable access to external services
+      inputType: toggle 
+      defaultValue: false
+      display: true
+      dataType: boolean
+    
  #hidden values
     - name: domain
       label: Domain name
