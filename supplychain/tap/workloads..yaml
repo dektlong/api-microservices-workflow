@@ -21,7 +21,7 @@ spec:
         kind: Secret
         name: #@ data.values.externalServicesScope
  #@ end
- env:
+  env:
     - name: SPRING_PROFILES_ACTIVE
       value: prod
 
