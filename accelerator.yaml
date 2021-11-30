@@ -76,6 +76,35 @@ accelerator:
       dependsOn:
         name: supplychain
         value: tap
+    #External services configs
+    - name: addExternalServices
+      label: Enable external services
+      description: Enable access to external services
+      inputType: toggle 
+      defaultValue: false
+      dependsOn:
+        name: supplychain
+        value: tap
+      dataType: boolean
+    - name: externalServicesScope
+      label: External services scope
+      description: External services scope of access
+      inputType: checkbox
+      dependsOn:
+        name: addExternalServices
+        value: true
+      dataType: [string]
+      defaultValue:
+        - bitnami
+      choices:
+        - value: aws
+          text: Cloud broker AWS
+        - value: azure
+          text: Cloud broker Azure
+        - value: vRealize
+          text: vRealize on-prem broker
+        - value: bitnami
+          text: Private helm service catalog
 
 #workloads repos
     - name: gitRepos
@@ -215,34 +244,6 @@ accelerator:
       dependsOn:
         name: gwMetrics
         value: true
- 
- #External services configs
-    - name: addExternalServices
-      label: Enable external services
-      description: Enable access to external services
-      inputType: toggle 
-      defaultValue: false
-      display: true
-      dataType: boolean
-    - name: externalServicesScope
-      label: External services scope
-      description: External services scope of access
-      inputType: checkbox
-      dependsOn:
-        name: addExternalServices
-        value: true
-      dataType: [string]
-      defaultValue:
-        - bitnami
-      choices:
-        - value: aws
-          text: Cloud broker AWS
-        - value: azure
-          text: Cloud broker Azure
-        - value: vRealize
-          text: vRealize on-prem broker
-        - value: bitnami
-          text: Private helm service catalog
           
  #hidden values
     - name: domain
