@@ -232,11 +232,18 @@ accelerator:
         name: addExternalServices
         value: true
       dataType: [string]
+      defaultValue:
+        - bitnami
       choices:
-        - value: a
-          text: b and a
-        
-    
+        - value: aws
+          text: Cloud broker AWS
+        - value: azure
+          text: Cloud broker Azure
+        - value: vRealize
+          text: vRealize on-prem broker
+        - value: bitnami
+          text: Private helm service catalog
+          
  #hidden values
     - name: domain
       label: Domain name
