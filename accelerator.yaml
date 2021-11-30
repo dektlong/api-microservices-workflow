@@ -73,7 +73,19 @@ accelerator:
         name: supplychain
         value: tap
 
- #API-grid configs
+    #workloads repos
+    - name: gitRepos
+      label: Workloads git repos
+      description: A seprate git repo for every app component
+      inputType: multi-text
+      required: true
+      dataType: [string]
+      defaultValue:
+        - https://github.com/dektlong/dekt4pets-backend
+        - https://github.com/dektlong/dekt4pets-frontend
+        - https://github.com/dektlong/adopter-check
+    
+     #API-grid configs
     - name: addAPIGrid
       label: Add API-grid 
       description: Setup custom configurations for API Gateway, Portal and access control
@@ -194,19 +206,6 @@ accelerator:
       dependsOn:
         name: gwMetrics
         value: true
-    
-    #workloads repos
-    - name: gitRepos
-      label: Workloads git repos
-      description: A seprate git repo for every app component
-      inputType: multi-text
-      required: true
-      dataType: [string]
-      defaultValue:
-        - https://github.com/dektlong/dekt4pets-backend
-        - https://github.com/dektlong/dekt4pets-frontend
-        - https://github.com/dektlong/adopter-check
-    
     #hidden values
     - name: domain
       label: Domain name
