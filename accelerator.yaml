@@ -240,7 +240,7 @@ accelerator:
         - value: vRealize
           text: vRealize on-prem broker
         - value: bitnami
-          text: Private helm service catalog"
+          text: Private helm service catalog
     
  #hidden values
     - name: domain
