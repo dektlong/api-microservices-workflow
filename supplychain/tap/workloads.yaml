@@ -26,7 +26,7 @@ spec:
   - name: mynosqldb
     ref:
       apiVersion: services.tanzu.vmware.com/v1alpha1
-      kind: #@ data.values.externalServicesScope[0]
+      kind: #@ data.values.externalServicesScope[2]
      
  #@ end
   env:
