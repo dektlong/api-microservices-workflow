@@ -96,11 +96,11 @@ accelerator:
       dataType: [string]
       defaultValue: service-cluster
       choices:
-        - value: aws-rds-broker
+        - value: RDScrd
           text: Cloud broker to Amazon RDS
-        - value: s3-aws-broker
+        - value: S3crd
           text: Cloud broker to Amazon S3
-        - value: dynamo-aws-broker
+        - value: DynamoDBcrd
           text: Cloud broker to Amazon DynamoDB
         - value: on-prem-kafka
           text: Broker to on-prem Kafka
