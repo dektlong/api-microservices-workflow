@@ -75,7 +75,7 @@ accelerator:
 
  #API-grid configs
     - name: addAPIGrid
-      label: Custome API-grid configurations
+      label: Add API-grid 
       description: Setup custom configurations for API Gateway, Portal and access control
       inputType: toggle 
       defaultValue: false
@@ -104,10 +104,8 @@ accelerator:
       inputType: multi-text
       dataType: [string]
       dependsOn:
-        name: portalScope
-        value: 
-          - brownfield
-          - public
+        name: addAPIGrid
+        value: true
       defaultValue:
         - scg-openapi.apps.dekt.io/openapi
     - name: forceRateLimit
@@ -116,18 +114,16 @@ accelerator:
       defaultValue: false
       dataType: boolean
       dependsOn:
-        name: portalScope
-        value: 
-          - brownfield
+        name: addAPIGrid
+        value: true
     - name: forceSSO
       label: SSO for all routes
       inputType: toggle 
       defaultValue: false
       dataType: boolean
       dependsOn:
-        name: portalScope
-        value: 
-          - public
+        name: addAPIGrid
+        value: true
     #api-gateway
     - name: vaultIntegration
       label: Add Vault key-management
@@ -161,7 +157,9 @@ accelerator:
       description:  Micro-gateways requires HA deployment 
       inputType: toggle
       dataType: boolean
-      display: true
+      dependsOn:
+        name: addAPIGrid
+        value: true
       defaultValue: false
     - name: gwMetrics
       label: API observability
