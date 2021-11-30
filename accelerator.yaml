@@ -233,14 +233,9 @@ accelerator:
         value: true
       dataType: [string]
       choices:
-        - value: aws
-          text: Cloud broker AWS
-        - value: azure
-          text: Cloud broker Azure
-        - value: vRealize
-          text: vRealize on-prem broker
-        - value: bitnami
-          text: Private helm service catalog
+        - value: a
+          text: b and a
+        
     
  #hidden values
     - name: domain
