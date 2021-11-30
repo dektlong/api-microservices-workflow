@@ -72,8 +72,31 @@ accelerator:
       dependsOn:
         name: supplychain
         value: tap
+   #vrealize (saltstack) 
+    - name: addSalt
+      label: Manage CRDs with vRealize SaltStack
+      description: Use vRealize Automation SaltStack to manage CRDs
+      dependsOn:
+        name: supplychain
+        value: tap
+      inputType: toggle
+      dataType: boolean
+      defaultValue: false
+    - name: SaltStack k8s formula add-ons
+      inputType: checkbox
+      dataType: [string]
+      dependsOn:
+        name: addSalt
+        value: true
+      choices:
+        - value: salt1
+          text: "Private registries"
+        - value: salt2
+          text: "Affinity"
+        - value: salt3
+          text: "Service definitions"
 
-    #workloads repos
+#workloads repos
     - name: gitRepos
       label: Microservices git repos
       description: A seprate git repo for every app component
@@ -85,7 +108,7 @@ accelerator:
         - https://github.com/dektlong/dekt4pets-frontend
         - https://github.com/dektlong/adopter-check
     
-     #API-grid configs
+#API-grid configs
     - name: addAPIGrid
       label: Add API-grid 
       description: Setup custom configurations for API Gateway, Portal and access control
@@ -206,7 +229,9 @@ accelerator:
       dependsOn:
         name: gwMetrics
         value: true
-    #hidden values
+ 
+ 
+ #hidden values
     - name: domain
       label: Domain name
       defaultValue: apps.dekt.io
