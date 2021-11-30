@@ -108,8 +108,8 @@ spec:
           value: $(pipeline.spec.inputs.url)$
         - name: source-revision
           value: $(pipeline.spec.inputs.revision)$
-  #@ if len(data.values.apiTestingScope) > 0:
+  #@ if len(data.values.testScope) > 0:
         - name: api-grid-scope
-          value: #@ data.values.apiTestingScope
+          value: #@ data.values.testScope
   #@ end
 #@ end
