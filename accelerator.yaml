@@ -216,6 +216,22 @@ accelerator:
         name: gwMetrics
         value: true
  
+ #External services configs
+    - name: externalServices
+      label: Enable external services
+      description: Enable connectivity to external services
+      display: false
+      inputType: checkbox
+      dataType: [string]
+      choices:
+        - value: aws
+          text: "Cloud broker AWS"
+        - value: azure
+          text: "Cloud broker Azure"
+        - value: vRealize
+          text: "vRealize on-prem broker"
+        - value: bitnami
+          text:  Service catalog (private bitnami)
  
  #hidden values
     - name: domain
