@@ -136,7 +136,7 @@ accelerator:
         - value: GoogleStorageBroker
           text: Cloud broker to Google Storage
         - value: CassandraOperator
-          text: Apache Cassandra cluster operator
+          text: Cassandra cluster operator
     - name: externalStreaming
       label: External streaming service
       description: Select an external broker to a streaming service 
@@ -153,7 +153,7 @@ accelerator:
         - value: GoogleDataflowBroker
           text: Cloud broker to Google Cloud Dataflow
         - value: KafkaOperator
-          text: Apache Kafka cluster operator
+          text: Kafka cluster operator
         
 #workloads repos
     - name: gitRepos
