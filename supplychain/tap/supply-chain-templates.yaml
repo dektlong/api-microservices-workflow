@@ -127,7 +127,7 @@ spec:
     kind: GitRepository
     spec:
       interval: 10m
-      url: #@ "$(" + #@ data.values.externalDB + ".spec.source.git.url)$"
+      - #@ "url: $(" + #@ data.values.externalDB + ".spec.source.git.url)$"
  ---
 apiVersion: carto.run/v1alpha1
 kind: #@ data.values.externalStorage
@@ -141,7 +141,7 @@ spec:
     kind: GitRepository
     spec:
       interval: 1m
-      url: #@ "$(" + #@ data.values.externalStorage + ".spec.source.git.url)$"
+      - #@ "url: $(" + #@ data.values.externalStorage + ".spec.source.git.url)$"
 ---
 apiVersion: carto.run/v1alpha1
 kind: #@ data.values.externalStreaming
@@ -155,5 +155,5 @@ spec:
     kind: GitRepository
     spec:
       interval: 1m
-      url: #@ "$(" + #@ data.values.externalStreaming + ".spec.source.git.url)$"
+      - #@ "url: $(" + #@ data.values.externalStreaming + ".spec.source.git.url)$"
  #@ end
