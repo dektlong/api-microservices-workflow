@@ -113,35 +113,3 @@ spec:
           value: #@ data.values.testScope
   #@ end
 #@ end
-#@ if data.values.addExternalServices:
----
-apiVersion: carto.run/v1alpha1
-kind: #@ data.values.externalDB
-metadata:
-  name: #@ data.values.externalDB
-spec:
-  urlPath: .status.artifact.url
-  revisionPath: .status.artifact.revision
-  template:
-    apiVersion: source.toolkit.brokers.io/v1beta1
- ---
-apiVersion: carto.run/v1alpha1
-kind: #@ data.values.externalStorage
-metadata:
-  name: #@ data.values.externalStorage
-spec:
-  urlPath: .status.artifact.url
-  revisionPath: .status.artifact.revision
-  template:
-    apiVersion: source.toolkit.brokers.io/v1beta1
----
-apiVersion: carto.run/v1alpha1
-kind: #@ data.values.externalStreaming
-metadata:
-  name: #@ data.values.externalStreaming
-spec:
-  urlPath: .status.artifact.url
-  revisionPath: .status.artifact.revision
-  template:
-    apiVersion: source.toolkit.brokers.io/v1beta1
- #@ end
