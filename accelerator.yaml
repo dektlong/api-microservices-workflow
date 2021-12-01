@@ -90,6 +90,7 @@ accelerator:
       label: External database service
       description: Select an external broker to a managed database service 
       inputType: select
+      defaultValue: PostgreSQL_CRD
       dependsOn:
         name: addExternalServices
         value: true
@@ -106,6 +107,7 @@ accelerator:
       label: External storage service
       description: Select an external broker to a managed storage service 
       inputType: select
+      defaultValue: Cassandra_CRD
       dependsOn:
         name: addExternalServices
         value: true
@@ -122,6 +124,7 @@ accelerator:
       label: External streaming service
       description: Select an external broker to a managed streaming service 
       inputType: select
+      defaultValue: Kafka_CRD
       dependsOn:
         name: addExternalServices
         value: true
