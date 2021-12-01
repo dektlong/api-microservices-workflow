@@ -86,27 +86,58 @@ accelerator:
         name: supplychain
         value: tap
       dataType: boolean
-    - name: externalServicesScope
-      label: External services scope
-      description: External services scope of access
-      inputType: checkbox
+    - name: externalDB
+      label: External database service
+      description: Select an external broker to a managed database service 
+      inputType: select
       dependsOn:
         name: addExternalServices
         value: true
       dataType: [string]
-      defaultValue: service-cluster
       choices:
-        - value: RDScrd
+        - value: RDS_CRD
           text: Cloud broker to Amazon RDS
-        - value: S3crd
+        - value: AzureSQL_CRD
+          text: Cloud broker to Azure SQL
+        - value: GoogleSQL_CRD
+          text: Cloud broker to Google Cloud SQL
+        - value: PostgreSQL_CRD
+          text: Broker to PostgreSQL
+    - name: externalStorage
+      label: External storage service
+      description: Select an external broker to a managed storage service 
+      inputType: select
+      dependsOn:
+        name: addExternalServices
+        value: true
+      dataType: [string]
+      choices:
+        - value: S3_CRD
           text: Cloud broker to Amazon S3
-        - value: DynamoDBcrd
-          text: Cloud broker to Amazon DynamoDB
-        - value: on-prem-kafka
-          text: Broker to on-prem Kafka
-        - value: service-cluster
-          text: Service cluster access
-
+        - value: AzureBlob_CRD
+          text: Cloud broker to Azure Blob
+        - value: GoogleStorage_CRD
+          text: Cloud broker to Google Storage
+        - value: Cassandra_CRD
+          text: Broker to Apache Cassandra
+    - name: externalStreaming
+      label: External streaming service
+      description: Select an external broker to a managed streaming service 
+      inputType: select
+      dependsOn:
+        name: addExternalServices
+        value: true
+      dataType: [string]
+      choices:
+        - value: Kinesis_CRD
+          text: Cloud broker to Amazon Kinesis
+        - value: AzureEventHubs_CRD
+          text: Cloud broker to Azure Event Hubs
+        - value: GoogleDatafloe_CRD
+          text: Cloud broker to Google Cloud Dataflow
+        - value: Kafka_CRD
+          text: Broker to Apache Kafka
+        
 #workloads repos
     - name: gitRepos
       label: Microservices git repos
