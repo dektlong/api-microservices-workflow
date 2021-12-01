@@ -88,7 +88,8 @@ spec:
 #@ if data.values.addTesting:
 ---
 apiVersion: carto.run/v1alpha1
-kind: RunTemplate
+kind: Pipeline
+Template
 metadata:
   name: run-pre-prod-testing
 spec:
@@ -108,8 +109,35 @@ spec:
           value: $(pipeline.spec.inputs.url)$
         - name: source-revision
           value: $(pipeline.spec.inputs.revision)$
-  #@ if len(data.values.testScope) > 0:
-        - name: testing-scope
-          value: #@ data.values.testScope
-  #@ end
+
+#@ if data.values.addExternalServices:
+---
+apiVersion: carto.run/v1alpha1
+kind: BindTemplate
+metadata:
+  name: bind-template
+spec:
+  apiVersion: services.tanzu.vmware.com/v1alpha1
+  kind: #@ data.values.externalDB
+  metadata:
+    name: #@ data.values.externalDB + "-broker"
+  spec:
+    template: 
+      name: #@ data.values.externalDB + "-template"
+  apiVersion: services.tanzu.vmware.com/v1alpha1
+  kind: #@ data.values.externalBlob
+  metadata:
+    name: #@ data.values.externalBlob + "-broker"
+  spec:
+    template: 
+      name: #@ data.values.externalBlob + "-template"
+  apiVersion: services.tanzu.vmware.com/v1alpha1
+  kind: #@ data.values.externalStreaming
+  metadata:
+    name: #@ data.values.externalStreaming + "-broker"
+  spec:
+    template: 
+      name: #@ data.values.externalStreaming + "-template"
+    
 #@ end
+
