@@ -119,11 +119,11 @@ metadata:
   name: bind-template
 spec:
   brokers:
-    - name: external-db
+    - name: db-broker
       value: #@ data.values.externalDB
-    - name: external-blob
-      value: #@ data.values.externalBlob
-    - name: external-stream
+    - name: storage-broker
+      value: #@ data.values.externalStorage
+    - name: streaming-broker
       value: #@ data.values.externalStreaming
 #@ end
 
