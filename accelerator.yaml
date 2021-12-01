@@ -93,7 +93,6 @@ accelerator:
       dependsOn:
         name: addExternalServices
         value: true
-      dataType: [string]
       choices:
         - value: RDS_CRD
           text: Cloud broker to Amazon RDS
@@ -110,7 +109,6 @@ accelerator:
       dependsOn:
         name: addExternalServices
         value: true
-      dataType: [string]
       choices:
         - value: S3_CRD
           text: Cloud broker to Amazon S3
@@ -127,7 +125,6 @@ accelerator:
       dependsOn:
         name: addExternalServices
         value: true
-      dataType: [string]
       choices:
         - value: Kinesis_CRD
           text: Cloud broker to Amazon Kinesis
