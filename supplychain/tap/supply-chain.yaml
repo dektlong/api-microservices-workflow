@@ -9,6 +9,7 @@ spec:
     app.tanzu.vmware.com/workload-type: online-store
 
   resources:
+    
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
@@ -30,7 +31,7 @@ spec:
         - resource: source-provider
           name: scanned-source
 
-#@ if data.values.scanScope == "srcImg":
+#@ if data.values.scanScope == "srcImg":    
     - name: image-scanner
       templateRef:
         kind: ClusterImageTemplate
@@ -39,16 +40,7 @@ spec:
         - component: image-builder
           name: built-image
 #@ end
-
-#@ if data.values.addTesting:
-    - name: pre-prod-tester
-      templateRef:
-        kind: RunTemplate
-        name: run-pre-prod-testing
-      sources:
-        - component: source-scanner
-          name: scanned-source
-      
+   
     - name: app-runner
       templateRef:
         kind: ClusterTemplate
@@ -61,4 +53,25 @@ spec:
         - component: image-builder
           name: image
   #@ end
-#@ end         
+
+#@ if data.values.addExternalServices:
+    
+    - name: external-service-binding
+      templateRef:
+        kind: BindTemplate
+        name: service-binder
+      sources:
+        - resource: app-runner
+          name: running-app-to-bind
+#@ end
+
+#@ if data.values.addTesting:
+    - name: pre-prod-tester
+      templateRef:
+        kind: PipelineTemplate
+        name: run-pre-prod-testing
+      sources:
+    #@ if len(data.values.testScope) > 0:
+        - name: testing-sources
+          value: #@ data.values.testScope
+#@ end  
