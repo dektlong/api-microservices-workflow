@@ -113,7 +113,7 @@ accelerator:
         value: true
       choices:
         - value: AmazonSQSBroker
-          text: Cloud broker to Amazon SQDS
+          text: Cloud broker to Amazon SQS
         - value: AzureServiceBusBroker
           text: Cloud broker to Azure Service Bus
         - value: GoogleSQLBroker
