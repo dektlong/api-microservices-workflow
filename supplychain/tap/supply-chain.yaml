@@ -59,10 +59,10 @@ spec:
     - name: external-service-binding
       templateRef:
         kind: BindTemplate
-        name: app-with-service
+        name: app-bind
       sources:
         - resource: app-runner
-          name: running-app-to-bind
+          name: app-deploy
 #@ end
 
 #@ if data.values.addTesting:
