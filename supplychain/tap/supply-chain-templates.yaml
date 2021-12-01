@@ -113,32 +113,17 @@ spec:
 
 #@ if data.values.addExternalServices:
 ---
-apiVersion: carto.run/v1alpha1
+apiVersion: services.tanzu.vmware.com/v1alpha1
 kind: BindTemplate
 metadata:
   name: bind-template
 spec:
-  apiVersion: services.tanzu.vmware.com/v1alpha1
-  kind: #@ data.values.externalDB
-  metadata:
-    name: #@ data.values.externalDB + "-broker"
-  spec:
-    template: 
-      name: #@ data.values.externalDB + "-template"
-  apiVersion: services.tanzu.vmware.com/v1alpha1
-  kind: #@ data.values.externalBlob
-  metadata:
-    name: #@ data.values.externalBlob + "-broker"
-  spec:
-    template: 
-      name: #@ data.values.externalBlob + "-template"
-  apiVersion: services.tanzu.vmware.com/v1alpha1
-  kind: #@ data.values.externalStreaming
-  metadata:
-    name: #@ data.values.externalStreaming + "-broker"
-  spec:
-    template: 
-      name: #@ data.values.externalStreaming + "-template"
-    
+  brokers:
+    - name: external-db
+      value: #@ data.values.externalDB
+    - name: external-blob
+      value: #@ data.values.externalBlob
+    - name: external-stream
+      value: #@ data.values.externalStreaming
 #@ end
 
