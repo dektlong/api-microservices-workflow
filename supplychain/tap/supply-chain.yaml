@@ -59,7 +59,7 @@ spec:
     - name: external-service-binding
       templateRef:
         kind: BindTemplate
-        name: service-binder
+        name: app-with-service
       sources:
         - resource: app-runner
           name: running-app-to-bind
@@ -71,7 +71,9 @@ spec:
         kind: PipelineTemplate
         name: run-pre-prod-testing
       sources:
+        - resource: app-with-service
     #@ if len(data.values.testScope) > 0:
-        - name: testing-sources
+        - resource: additional-testing-scopes
           value: #@ data.values.testScope
+    #@ end
 #@ end  
