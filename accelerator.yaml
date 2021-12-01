@@ -88,55 +88,72 @@ accelerator:
       dataType: boolean
     - name: externalDB
       label: External database service
-      description: Select an external broker to a managed database service 
+      description: Select an external broker to a database service 
       inputType: select
-      defaultValue: PostgreSQL_CRD
+      defaultValue: PostgreSQLOperator
       dependsOn:
         name: addExternalServices
         value: true
       choices:
-        - value: RDS_CRD
+        - value: AmazonRDSBroker
           text: Cloud broker to Amazon RDS
-        - value: AzureSQL_CRD
+        - value: AzureSQLBroker
           text: Cloud broker to Azure SQL
-        - value: GoogleSQL_CRD
+        - value: GoogleSQLBroker
           text: Cloud broker to Google Cloud SQL
-        - value: PostgreSQL_CRD
-          text: Broker to PostgreSQL
+        - value: PostgreSQLOperator
+          text: PostgreSQL cluster operator
+    - name: externalMsg
+      label: External messaging service
+      description: Select an external broker to a messaging service 
+      inputType: select
+      defaultValue: RabbitMQOperator
+      dependsOn:
+        name: addExternalServices
+        value: true
+      choices:
+        - value: AmazonSQSBroker
+          text: Cloud broker to Amazon SQDS
+        - value: AzureServiceBusBroker
+          text: Cloud broker to Azure Service Bus
+        - value: GoogleSQLBroker
+          text: Cloud broker to Google Pub-Sub
+        - value: RabbitMQOperator
+          text: RabbitMQOperator cluster operator
     - name: externalStorage
       label: External storage service
-      description: Select an external broker to a managed storage service 
+      description: Select an external broker to a storage service 
       inputType: select
-      defaultValue: Cassandra_CRD
+      defaultValue: CassandraOperator
       dependsOn:
         name: addExternalServices
         value: true
       choices:
-        - value: S3_CRD
+        - value: S3Broker
           text: Cloud broker to Amazon S3
-        - value: AzureBlob_CRD
+        - value: AzureBlobBroker
           text: Cloud broker to Azure Blob
-        - value: GoogleStorage_CRD
+        - value: GoogleStorageBroker
           text: Cloud broker to Google Storage
-        - value: Cassandra_CRD
-          text: Broker to Apache Cassandra
+        - value: CassandraOperator
+          text: Apache Cassandra cluster operator
     - name: externalStreaming
       label: External streaming service
-      description: Select an external broker to a managed streaming service 
+      description: Select an external broker to a streaming service 
       inputType: select
-      defaultValue: Kafka_CRD
+      defaultValue: KafkaOperator
       dependsOn:
         name: addExternalServices
         value: true
       choices:
-        - value: Kinesis_CRD
+        - value: KinesisBroker
           text: Cloud broker to Amazon Kinesis
-        - value: AzureEventHubs_CRD
+        - value: AzureEventHubsBroker
           text: Cloud broker to Azure Event Hubs
-        - value: GoogleDatafloe_CRD
+        - value: GoogleDataflowBroker
           text: Cloud broker to Google Cloud Dataflow
-        - value: Kafka_CRD
-          text: Broker to Apache Kafka
+        - value: KafkaOperator
+          text: Apache Kafka cluster operator
         
 #workloads repos
     - name: gitRepos
@@ -292,7 +309,6 @@ accelerator:
         - backend
         - frontend
         - adopter-check
-      
 
 engine:
   merge:
