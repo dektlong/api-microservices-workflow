@@ -88,8 +88,7 @@ spec:
 #@ if data.values.addTesting:
 ---
 apiVersion: carto.run/v1alpha1
-kind: Pipeline
-Template
+kind: PipelineTemplate
 metadata:
   name: run-pre-prod-testing
 spec:
