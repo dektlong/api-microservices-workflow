@@ -71,9 +71,11 @@ spec:
         kind: PipelineTemplate
         name: run-pre-prod-testing
       sources:
-        - resource: app-with-service
     #@ if len(data.values.testScope) > 0:
-        - resource: additional-testing-scopes
+        - resource: testing-scopes
           value: #@ data.values.testScope
+    #@ else:
+        - resource: testing-scopes
+          value: core
     #@ end
 #@ end  
