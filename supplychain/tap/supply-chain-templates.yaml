@@ -109,6 +109,8 @@ spec:
         - name: source-revision
           value: $(pipeline.spec.inputs.revision)$
 
+#@ end
+
 #@ if data.values.addExternalServices:
 ---
 apiVersion: carto.run/v1alpha1
