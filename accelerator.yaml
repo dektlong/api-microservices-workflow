@@ -119,7 +119,7 @@ accelerator:
         - value: GoogleSQLBroker
           text: Cloud broker to Google Pub-Sub
         - value: RabbitMQOperator
-          text: RabbitMQOperator cluster operator
+          text: RabbitMQ cluster operator
     - name: externalStorage
       label: External storage service
       description: Select an external broker to a storage service 
