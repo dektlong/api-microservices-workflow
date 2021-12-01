@@ -19,6 +19,9 @@ spec:
     ref:
       apiVersion: services.tanzu.vmware.com/v1alpha1
       kind: #@ data.values.externalDB
+  - name: myMsg
+      apiVersion: services.tanzu.vmware.com/v1alpha1
+      kind: #@ data.values.externalMsg
   - name: myBlob
     ref:
       apiVersion: services.tanzu.vmware.com/v1alpha1
