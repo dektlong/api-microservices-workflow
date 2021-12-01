@@ -15,18 +15,18 @@ spec:
         tag: "v1.0.0"
   #@ if data.values.addExternalServices:
   serviceClaims:
-  - name: mysqldb
+  - name: myDB
     ref:
       apiVersion: services.tanzu.vmware.com/v1alpha1
-      kind: #@ data.values.externalServicesScope[0]
-  - name: myblob
+      kind: #@ data.values.externalDB
+  - name: myBlob
     ref:
       apiVersion: services.tanzu.vmware.com/v1alpha1
-      kind: #@ data.values.externalServicesScope[1]
-  - name: mynosqldb
+      kind: #@ data.values.externalStorage
+  - name: myStream
     ref:
       apiVersion: services.tanzu.vmware.com/v1alpha1
-      kind: #@ data.values.externalServicesScope[2]
+      kind: #@ data.values.externalStreaming
      
  #@ end
   env:
