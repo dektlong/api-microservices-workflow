@@ -13,45 +13,45 @@ spec:
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
-        name: source
+        name: app-source
 
     - name: source-scanner
       templateRef:
         kind: ClusterSourceTemplate
-        name: source
+        name: app-source-scanned
       sources:
       - component: source-provider
-        name: scanned-source
+        name: app-source
     
     - name: image-builder
       templateRef:
         kind: ClusterImageTemplate
-        name: image
+        name: app-image
       sources:
         - resource: source-provider
-          name: scanned-source
+          name: app-source-scanned
 
 #@ if data.values.scanScope == "srcImg":    
     - name: image-scanner
       templateRef:
         kind: ClusterImageTemplate
-        name: scanned-image
+        name: app-image-scanned
       images:
         - component: image-builder
-          name: built-image
+          name: app-image
 #@ end
    
     - name: app-runner
       templateRef:
         kind: ClusterTemplate
-        name: app-deploy
+        name: app-deployed
       images:
   #@ if data.values.scanScope == "srcImg":
         - component: image-scanner
-          name: scanned-image
+          name: app-image-scanned
   #@ else:
         - component: image-builder
-          name: image
+          name: app-image
   #@ end
 
 #@ if data.values.addExternalServices:
@@ -59,10 +59,10 @@ spec:
     - name: external-service-binding
       templateRef:
         kind: BindTemplate
-        name: app-bind
+        name: app-deployed-bind
       sources:
         - resource: app-runner
-          name: app-deploy
+          name: app-deployed
 #@ end
 
 #@ if data.values.addTesting:
