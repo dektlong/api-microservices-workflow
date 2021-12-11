@@ -62,7 +62,7 @@ accelerator:
          text: Source and image
         
     - name: addCNR
-      label: Add CNR deployment
+      label: Add app deployment w/ CNR
       description: Add a deployment step with CNR
       inputType: toggle 
       defaultValue: false
