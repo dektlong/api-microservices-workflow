@@ -91,7 +91,7 @@ accelerator:
         name: supplychain
         value: tap
       dataType: boolean
-   - name: addCloudDataServices
+    - name: addCloudDataServices
       label: Add cloud data services binding
       description: Add a step to bind to cloud data services
       inputType: toggle 
