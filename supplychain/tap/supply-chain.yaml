@@ -41,7 +41,6 @@ spec:
           name: app-image
 #@ end
 
-#@ if data.values.addCNR:
     - name: app-runner
       templateRef:
         kind: ClusterTemplate
@@ -54,7 +53,6 @@ spec:
         - component: image-builder
           name: app-image
   #@ end
-#@ end
 
 #@ if data.values.addClusterDataServices:
     - name: cluster-service-binding
