@@ -62,11 +62,11 @@ accelerator:
          text: Source and image
         
      #add deployment with CNR
-    - name: addCNR
-      label: Add deployment w/ CNR
-      description: Add a deployment step with CNR
+    - name: scaleToZero
+      label: Scale to zero CNR workloads
+      description: Scale to zero CNR workloads
       inputType: toggle 
-      defaultValue: true
+      defaultValue: false
       dataType: boolean
       dependsOn:
         name: supplychain
