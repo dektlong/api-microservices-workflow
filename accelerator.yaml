@@ -46,9 +46,42 @@ accelerator:
          text: Web backend
        - value: web-frontend
          text: Web frontend
-       
+    
+    - name: scanScope
+      label: Scanning scope
+      description: Select the scope of your scanning
+      inputType: select
+      defaultValue: src
+      dependsOn:
+        name: supplychain
+        value: tap
+      choices:
+       - value: src
+         text: Source only
+       - value: srcImg
+         text: Source and image
+        
+    - name: addCNR
+      label: Deploy with Cloud Native Runtime
+      description: Add a deployment step with CNR
+      inputType: toggle 
+      defaultValue: false
+      dataType: boolean
+      dependsOn:
+        name: supplychain
+        value: tap
+    - name: scaleToZero
+      label: Enable scale to zero
+      description: Enable cloud native runtimes workloads to scale to zero
+      inputType: toggle 
+      defaultValue: true
+      dataType: boolean
+      dependsOn:
+        name: addCNR
+        value: true
+        
     - name: addTesting
-      label: Add pre-prod testing 
+      label: Add integration testing
       description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
       inputType: toggle 
       defaultValue: false
@@ -76,115 +109,39 @@ accelerator:
           text: Stress testing
         - value: pen
           text: Pen testing
-    - name: scanScope
-      label: Scanning scope
-      description: Select the scope of your scanning
-      inputType: select
-      defaultValue: src
-      dependsOn:
-        name: supplychain
-        value: tap
-      choices:
-       - value: src
-         text: Source only
-       - value: srcImg
-         text: Source and image
-    - name: addTesting
-      label: Add pre-prod testing 
-      description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
-      dependsOn:
-        name: supplychain
-        value: tap
-    - name: scaleToZero
-      label: Enable scale to zero
-      description: Enable cloud native runtimes workloads to scale to zero
-      inputType: toggle 
-      defaultValue: true
-      dataType: boolean
-      dependsOn:
-        name: supplychain
-        value: tap
+    
+    
     #External services configs
-    - name: addExternalServices
-      label: Enable external services
-      description: Enable access to external services
+    - name: addDataServicesBinding
+      label: Add data services binding
+      description: Add a step to bind to data services
       inputType: toggle 
       defaultValue: false
       dependsOn:
         name: supplychain
         value: tap
       dataType: boolean
-    - name: externalDB
-      label: External database service
-      description: Select an external broker to a database service 
-      inputType: select
-      defaultValue: PostgreSQLOperator
+    - name: serviceClaimsScope
+      label: Scope of service claims
+      description: Select the scope of allowed service claims from workloads
+      inputType: choice
+      defaultValue: clusterServices
       dependsOn:
-        name: addExternalServices
+        name: addDataServicesBinding
         value: true
       choices:
-        - value: AmazonRDSBroker
-          text: Cloud broker to Amazon RDS
-        - value: AzureSQLBroker
-          text: Cloud broker to Azure SQL
-        - value: GoogleSQLBroker
-          text: Cloud broker to Google Cloud SQL
-        - value: PostgreSQLOperator
-          text: PostgreSQL cluster operator
-    - name: externalMsg
-      label: External messaging service
-      description: Select an external broker to a messaging service 
-      inputType: select
-      defaultValue: RabbitMQOperator
-      dependsOn:
-        name: addExternalServices
-        value: true
-      choices:
-        - value: AmazonSQSBroker
-          text: Cloud broker to Amazon SQS
-        - value: AzureServiceBusBroker
-          text: Cloud broker to Azure Service Bus
-        - value: GoogleSQLBroker
-          text: Cloud broker to Google Pub-Sub
-        - value: RabbitMQOperator
-          text: RabbitMQ cluster operator
-    - name: externalStorage
-      label: External storage service
-      description: Select an external broker to a storage service 
-      inputType: select
-      defaultValue: CassandraOperator
-      dependsOn:
-        name: addExternalServices
-        value: true
-      choices:
-        - value: S3Broker
-          text: Cloud broker to Amazon S3
-        - value: AzureBlobBroker
-          text: Cloud broker to Azure Blob
-        - value: GoogleStorageBroker
-          text: Cloud broker to Google Storage
-        - value: CassandraOperator
-          text: Cassandra cluster operator
-    - name: externalStreaming
-      label: External streaming service
-      description: Select an external broker to a streaming service 
-      inputType: select
-      defaultValue: KafkaOperator
-      dependsOn:
-        name: addExternalServices
-        value: true
-      choices:
-        - value: KinesisBroker
-          text: Cloud broker to Amazon Kinesis
-        - value: AzureEventHubsBroker
-          text: Cloud broker to Azure Event Hubs
-        - value: GoogleDataflowBroker
-          text: Cloud broker to Google Cloud Dataflow
-        - value: KafkaOperator
-          text: Kafka cluster operator
+        - value: clusterOperators
+          text: Cluster operators
+        - value: awsBroker
+          text: Cloud broker to AWS marketplace
+        - value: azureBroker
+          text: Cloud broker to Azure marketplace
+        - value: googleBroker
+          text: Cloud broker to GCP marketplace
+        - value: tanzuCatalog
+          text: Tanzu app catalog
+          
+
         
 #workloads repos
     - name: gitRepos
