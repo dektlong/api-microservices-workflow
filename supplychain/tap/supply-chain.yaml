@@ -67,7 +67,7 @@ spec:
           name: app-deployed
 #@ end    
 
-#@ if data.values.addCloudBrokers == "cloudBrokers":
+#@ if data.values.addCloudBrokers:
     - name: cloud-service-binding
       templateRef:
         kind: CloudBindTemplate
