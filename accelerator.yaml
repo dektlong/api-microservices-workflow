@@ -25,6 +25,28 @@ accelerator:
           text: Tanzu Application Platform supply-chain
  
  # TAP supplychain
+    - name: workloadType
+      label: Workload type
+      description: Select the workload type for this supply chain
+      inputType: select
+      defaultValue: web
+      dependsOn:
+        name: supplychain
+        value: tap
+      choices:
+       - value: data-processor 
+         text: Data transformer 
+       - value: event-topic 
+         text: Event topic processor
+       - value: ml
+         text: ML workload
+       - value: web
+         text: Web
+       - value: web-backend
+         text: Web backend
+       - value: web-frontend
+         text: Web frontend
+       
     - name: addTesting
       label: Add pre-prod testing 
       description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
@@ -67,11 +89,20 @@ accelerator:
          text: Source only
        - value: srcImg
          text: Source and image
+    - name: addTesting
+      label: Add pre-prod testing 
+      description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
+      inputType: toggle 
+      defaultValue: false
+      dataType: boolean
+      dependsOn:
+        name: supplychain
+        value: tap
     - name: scaleToZero
       label: Enable scale to zero
       description: Enable cloud native runtimes workloads to scale to zero
       inputType: toggle 
-      defaultValue: false
+      defaultValue: true
       dataType: boolean
       dependsOn:
         name: supplychain
