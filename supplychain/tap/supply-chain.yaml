@@ -6,7 +6,7 @@ metadata:
   name: #@ data.values.artifactId
 spec:
   selector:
-    app.tanzu.vmware.com/workload-type: online-store
+    app.tanzu.vmware.com/workload-type: #@ data.values.workloadType
 
   resources:
     
@@ -40,7 +40,8 @@ spec:
         - component: image-builder
           name: app-image
 #@ end
-   
+
+#@ if data.values.addCNR:
     - name: app-runner
       templateRef:
         kind: ClusterTemplate
@@ -53,16 +54,54 @@ spec:
         - component: image-builder
           name: app-image
   #@ end
+#@ end
 
-#@ if data.values.addExternalServices:
-    
-    - name: external-service-binding
+#@ if data.values.addDataServicesBinding:
+    #@ if data.values.serviceClaimsScope == "clusterOperators":
+    - name: cluster-service-binding
       templateRef:
-        kind: BindTemplate
-        name: app-deployed-bind
+        kind: ClusterBindTemplate
+        name: app-bind-cluster
       sources:
         - resource: app-runner
           name: app-deployed
+    #@ end
+    #@ if data.values.serviceClaimsScope == "awsBroker":
+    - name: aws-service-binding
+      templateRef:
+        kind: AWSBindTemplate
+        name: app-bind-aws
+      sources:
+        - resource: app-runner
+          name: app-deployed
+    #@ end
+    #@ if data.values.serviceClaimsScope == "azureBroker":
+    - name: azure-service-binding
+      templateRef:
+        kind: AzureBindTemplate
+        name: app-bind-azure
+      sources:
+        - resource: app-runner
+          name: app-deployed
+    #@ end
+    #@ if data.values.serviceClaimsScope == "googleBroker":
+    - name: google-service-binding
+      templateRef:
+        kind: GoogleBindTemplate
+        name: app-bind-google
+      sources:
+        - resource: app-runner
+          name: app-deployed
+    #@ end
+    #@ if data.values.serviceClaimsScope == "tanzuCatalog":
+    - name: tanzucatalog-service-binding
+      templateRef:
+        kind: TanzuCatalogBindTemplate
+        name: app-bind-tanzu-catalog
+      sources:
+        - resource: app-runner
+          name: app-deployed
+    #@ end
 #@ end
 
 #@ if data.values.addTesting:
