@@ -87,7 +87,7 @@ spec:
     #@ if data.values.serviceClaimsScope == "googleBroker":
     - name: google-service-binding
       templateRef:
-        kind: GoogleBindTemplate
+        kind: GCPBindTemplate
         name: app-bind-google
       sources:
         - resource: app-runner
