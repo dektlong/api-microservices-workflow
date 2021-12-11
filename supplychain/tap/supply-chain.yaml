@@ -57,7 +57,7 @@ spec:
 #@ end
 
 #@ if data.values.addDataServicesBinding:
-    #@ if data.values.serviceClaimsScope.contains("clusterOperators"):
+    #@ if hasattr (data.values.serviceClaimsScope, "clusterOperators"):
     - name: cluster-service-binding
       templateRef:
         kind: ClusterBindTemplate
