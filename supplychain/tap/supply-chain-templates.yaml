@@ -111,12 +111,12 @@ spec:
 
 #@ end
 
-#@ if data.values.addExternalServices:
+#@ if data.values.addDataServicesBinding:
 ---
 apiVersion: services.tanzu.vmware.com/v1alpha1
-kind: BindTemplate
+kind: ClusterBindTemplate
 metadata:
-  name: bind-template
+  name: clusterbind-template
 spec:
   ytt: |
     #@ load("@ytt:data", "data")
@@ -186,6 +186,45 @@ spec:
       #@ if hasattr(data.values.workload.spec, "serviceClaims") and len(data.values.workload.spec.serviceClaims):
       serviceclaims.yml: #@ yaml.encode(claims())
       #@ end
-
+---
+apiVersion: services.tanzu.vmware.com/v1alpha1
+kind: AWSBindTemplate
+metadata:
+  name: aws-bind-template
+spec:
+  imagePath: .status.artifact.registry.image
+  template:
+    apiVersion: brokers.apps.tanzu.vmware.com/v1alpha1
+    kind: AWSBroker
+---
+apiVersion: services.tanzu.vmware.com/v1alpha1
+kind: AzureBindTemplate
+metadata:
+  name: azure-bind-template
+spec:
+  imagePath: .status.artifact.registry.image
+  template:
+    apiVersion: brokers.apps.tanzu.vmware.com/v1alpha1
+    kind: AzureBroker
+---
+apiVersion: services.tanzu.vmware.com/v1alpha1
+kind: GCPBindTemplate
+metadata:
+  name: gcp-bind-template
+spec:
+  imagePath: .status.artifact.registry.image
+  template:
+    apiVersion: brokers.apps.tanzu.vmware.com/v1alpha1
+    kind: GCPBroker
+---
+apiVersion: services.tanzu.vmware.com/v1alpha1
+kind: TanzuCatalogBindTemplate
+metadata:
+  name: app-catalog-bind-template
+spec:
+  imagePath: .status.artifact.registry.image
+  template:
+    apiVersion: brokers.apps.tanzu.vmware.com/v1alpha1
+    kind: AppCatalog
 #@ end
 
