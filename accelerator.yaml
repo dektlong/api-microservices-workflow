@@ -71,21 +71,10 @@ accelerator:
       dependsOn:
         name: supplychain
         value: tap
-    - name: scaleToZero
-      label: Enable scale to zero
-      description: Enable cloud native runtimes workloads to scale to zero
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
-      dependsOn:
-        name: supplychain
-        value: tap
-        name: addCNR
-        value: true
         
     #add data services
     - name: addClusterDataServices
-      label: Add cluster data services binding
+      label: Bind to Cluster data services
       description: Add a step to bind to cluster data services
       inputType: toggle 
       defaultValue: false
@@ -94,7 +83,7 @@ accelerator:
         value: tap
       dataType: boolean
     - name: addCloudDataServices
-      label: Add cloud data services binding
+      label: Bind to Cloud data services
       description: Add a step to bind to cloud data services
       inputType: toggle 
       defaultValue: false
