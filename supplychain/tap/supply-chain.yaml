@@ -56,8 +56,7 @@ spec:
   #@ end
 #@ end
 
-#@ if data.values.addDataServicesBinding:
-    
+#@ if data.values.addClusterDataServices:
     - name: cluster-service-binding
       templateRef:
         kind: ClusterBindTemplate
@@ -67,7 +66,7 @@ spec:
           name: app-deployed
 #@ end    
 
-#@ if data.values.addCloudBrokers:
+#@ if data.values.addCloudDataServices:
     - name: cloud-service-binding
       templateRef:
         kind: CloudBindTemplate
