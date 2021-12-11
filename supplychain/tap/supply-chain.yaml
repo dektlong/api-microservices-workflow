@@ -56,7 +56,6 @@ spec:
   #@ end
 #@ end
 
-#@ if data.values.addDataServicesBinding:
     #@ if hasattr (data.values.serviceClaimsScope, "clusterOperators"):
     - name: cluster-service-binding
       templateRef:
@@ -102,7 +101,6 @@ spec:
         - resource: app-runner
           name: app-deployed
     #@ end
-#@ end
 
 #@ if data.values.addTesting:
     - name: pre-prod-tester
