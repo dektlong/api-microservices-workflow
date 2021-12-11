@@ -78,8 +78,10 @@ accelerator:
       defaultValue: false
       dataType: boolean
       dependsOn:
-        name: addCNR
-        value: true
+        - name: supplychain
+          value: tap
+        - name: addCNR
+          value: true
         
     #add data services
     - name: addClusterDataServices
