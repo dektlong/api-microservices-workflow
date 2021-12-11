@@ -44,8 +44,6 @@ accelerator:
          text: Web
        - value: web-backend
          text: Web backend
-       - value: web-frontend
-         text: Web frontend
     
     - name: scanScope
       label: Scanning scope
