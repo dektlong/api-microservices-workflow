@@ -56,7 +56,8 @@ spec:
   #@ end
 #@ end
 
-    #@ if hasattr (data.values.serviceClaimsScope, "clusterOperators"):
+#@ if data.values.addDataServicesBinding:
+    
     - name: cluster-service-binding
       templateRef:
         kind: ClusterBindTemplate
@@ -64,7 +65,7 @@ spec:
       sources:
         - resource: app-runner
           name: app-deployed
-    #@ end
+    
     #@ if data.values.serviceClaimsScope == "awsBroker":
     - name: aws-service-binding
       templateRef:
@@ -101,7 +102,7 @@ spec:
         - resource: app-runner
           name: app-deployed
     #@ end
-
+#@ end
 #@ if data.values.addTesting:
     - name: pre-prod-tester
       templateRef:
