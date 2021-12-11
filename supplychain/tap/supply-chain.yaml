@@ -65,44 +65,18 @@ spec:
       sources:
         - resource: app-runner
           name: app-deployed
-    
-    #@ if data.values.serviceClaimsScope == "awsBroker":
-    - name: aws-service-binding
+#@ end    
+
+#@ if data.values.addCloudBrokers == "cloudBrokers":
+    - name: cloud-service-binding
       templateRef:
-        kind: AWSBindTemplate
-        name: app-bind-aws
+        kind: CloudBindTemplate
+        name: app-bind-cloud
       sources:
         - resource: app-runner
           name: app-deployed
-    #@ end
-    #@ if data.values.serviceClaimsScope == "azureBroker":
-    - name: azure-service-binding
-      templateRef:
-        kind: AzureBindTemplate
-        name: app-bind-azure
-      sources:
-        - resource: app-runner
-          name: app-deployed
-    #@ end
-    #@ if data.values.serviceClaimsScope == "googleBroker":
-    - name: google-service-binding
-      templateRef:
-        kind: GCPBindTemplate
-        name: app-bind-google
-      sources:
-        - resource: app-runner
-          name: app-deployed
-    #@ end
-    #@ if data.values.serviceClaimsScope == "tanzuCatalog":
-    - name: tanzucatalog-service-binding
-      templateRef:
-        kind: TanzuCatalogBindTemplate
-        name: app-bind-tanzu-catalog
-      sources:
-        - resource: app-runner
-          name: app-deployed
-    #@ end
 #@ end
+
 #@ if data.values.addTesting:
     - name: pre-prod-tester
       templateRef:
