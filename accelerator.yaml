@@ -61,6 +61,7 @@ accelerator:
        - value: srcImg
          text: Source and image
         
+     #add deployment with CNR
     - name: addCNR
       label: Add app deployment w/ CNR
       description: Add a deployment step with CNR
@@ -80,38 +81,7 @@ accelerator:
         name: addCNR
         value: true
         
-    - name: addTesting
-      label: Add integration testing
-      description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
-      dependsOn:
-        name: supplychain
-        value: tap
-    - name: testScope
-      label: Testing scope
-      description: Select scope of testing in your pipeline
-      inputType: checkbox
-      dataType: [string]
-      defaultValue: [ core ]
-      dependsOn:
-        name: addTesting
-        value: true
-      choices:
-        - value: core
-          text: Core functionality
-        - value: data
-          text: Data integrations
-        - value: api
-          text: External APIs
-        - value: stress
-          text: Stress testing
-        - value: pen
-          text: Pen testing
-    
-    
-    #External services configs
+    #add data services
     - name: addDataServicesBinding
       label: Add data services binding
       description: Add a step to bind to data services
@@ -142,7 +112,36 @@ accelerator:
         - value: tanzuCatalog
           text: Tanzu app catalog
           
-
+   #add pre-prod intgration
+   - name: addTesting
+      label: Add integration testing
+      description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
+      inputType: toggle 
+      defaultValue: false
+      dataType: boolean
+      dependsOn:
+        name: supplychain
+        value: tap
+    - name: testScope
+      label: Testing scope
+      description: Select scope of testing in your pipeline
+      inputType: checkbox
+      dataType: [string]
+      defaultValue: [ core ]
+      dependsOn:
+        name: addTesting
+        value: true
+      choices:
+        - value: core
+          text: Core functionality
+        - value: data
+          text: Data integrations
+        - value: api
+          text: External APIs
+        - value: stress
+          text: Stress testing
+        - value: pen
+          text: Pen testing
         
 #workloads repos
     - name: gitRepos
