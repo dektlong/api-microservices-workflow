@@ -1,6 +1,6 @@
 accelerator:
-  displayName: Microservices supply-chain
-  description: Configure the path-to-production of multiple app components (microservices)
+  displayName: Microservice supply-chain
+  description: Configure the path-to-production of an application component (microservices)
   iconUrl: https://raw.githubusercontent.com/dektlong/dekt-images/80bfdbf23040731d16310e286e7d40b57e3b23d5/tanzu.png
   tags:
   - cloud-native-secops
@@ -149,7 +149,7 @@ accelerator:
       label: Microservices git repos
       description: A seprate git repo for every app component
       inputType: multi-text
-      required: true
+      required: false
       dataType: [string]
       defaultValue:
         - https://github.com/dektlong/dekt4pets-backend
