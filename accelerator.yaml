@@ -82,35 +82,25 @@ accelerator:
         value: true
         
     #add data services
-    - name: addDataServicesBinding
-      label: Add data services binding
-      description: Add a step to bind to data services
+    - name: addClusterDataServices
+      label: Add cluster data services binding
+      description: Add a step to bind to cluster data services
       inputType: toggle 
       defaultValue: false
       dependsOn:
         name: supplychain
         value: tap
       dataType: boolean
-    - name: serviceClaimsScope
-      label: Scope of service claims
-      description: Select the scope of allowed service claims from workloads
-      inputType: checkbox
-      dataType: [string]
-      defaultValue: [ clusterOperators ]
+   - name: addCloudDataServices
+      label: Add cloud data services binding
+      description: Add a step to bind to cloud data services
+      inputType: toggle 
+      defaultValue: false
       dependsOn:
-        name: addDataServicesBinding
-        value: true
-      choices:
-        - value: clusterOperators
-          text: Cluster operators
-        - value: awsBroker
-          text: Cloud broker to AWS marketplace
-        - value: azureBroker
-          text: Cloud broker to Azure marketplace
-        - value: googleBroker
-          text: Cloud broker to GCP marketplace
-        - value: tanzuCatalog
-          text: Tanzu app catalog
+        name: supplychain
+        value: tap
+      dataType: boolean
+    
           
     #add pre-prod intgration
     - name: addTesting
