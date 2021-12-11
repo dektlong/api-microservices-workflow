@@ -112,8 +112,8 @@ accelerator:
         - value: tanzuCatalog
           text: Tanzu app catalog
           
-   #add pre-prod intgration
-   - name: addTesting
+    #add pre-prod intgration
+    - name: addTesting
       label: Add integration testing
       description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
       inputType: toggle 
