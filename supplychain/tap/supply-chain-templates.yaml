@@ -111,7 +111,7 @@ spec:
 
 #@ end
 
-#@ if data.values.addDataServicesBinding:
+#@ if data.values.addClusterDataServices:
 ---
 apiVersion: services.tanzu.vmware.com/v1alpha1
 kind: ClusterBindTemplate
@@ -188,7 +188,7 @@ spec:
       #@ end
 #@ end
 
-#@ if data.values.addCloudBrokers:
+#@ if data.values.addCloudDataServices:
 ---
 apiVersion: services.tanzu.vmware.com/v1alpha1
 kind: CloudBindTemplate
