@@ -1,4 +1,5 @@
 #@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
 ---
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
@@ -9,7 +10,7 @@ spec:
     app.tanzu.vmware.com/workload-type: #@ data.values.workloadType
 
   resources:
-    
+   # test comment
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
