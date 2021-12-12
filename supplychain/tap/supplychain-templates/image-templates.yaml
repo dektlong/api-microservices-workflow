@@ -51,8 +51,7 @@ spec:
         #@ if/end workload_param("live-update"):
         - name: BP_LIVE_RELOAD_ENABLED
           value: 'true'
- ---
- ---
+---
 apiVersion: carto.run/v1alpha1
 kind: ClusterImageTemplate
 metadata:
