@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterTemplate
 metadata:
-  name: app-deploy-template
+  name: app-deploy-cnr-template
 spec:
   params:
     - default: default
