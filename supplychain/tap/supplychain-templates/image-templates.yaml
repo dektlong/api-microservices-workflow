@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterImageTemplate
 metadata:
-  name: kpack-template
+  name: image-builder-template
 spec:
   imagePath: .status.latestImage
   params:
