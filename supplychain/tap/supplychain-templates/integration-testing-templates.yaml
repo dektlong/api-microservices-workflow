@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
-kind: RunTemplate
+kind: PipelineTemplate
 metadata:
-  name: run-pre-prod-testing
+  name: integration-testing-template
 spec:
   completion:
     succeeded:
@@ -24,5 +24,3 @@ spec:
       - name: source-revision
         value: $(pipeline.spec.inputs.revision)$
       - name: api-grid-scope
-        value:
-        - routes
