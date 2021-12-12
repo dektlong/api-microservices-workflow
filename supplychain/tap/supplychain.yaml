@@ -10,19 +10,18 @@ spec:
     app.tanzu.vmware.com/workload-type: #@ data.values.workloadType
 
   resources:
-   #@ "#fetch the updated application source code from git"
-    - name: source-provider
+    - name: 1-APP-SOURCE
       templateRef:
         kind: ClusterSourceTemplate
         name: source-template
 
-    - name: source-scanner
+    - name: 2-APP-SOURCE-SCANNED
       templateRef:
         kind: ClusterSourceTemplate
         name: source-scanning-template
       sources:
         - name: source
-          resource: source-provider
+          resource: 1-APP-SOURCE
     
     - name: image-builder
       templateRef:
@@ -30,7 +29,7 @@ spec:
         name: image-builder-template
       sources:
         - name: scanned-source
-          resource: source-scanner
+          resource: 2-APP-SOURCE-SCANNED
           
 #@ if data.values.scanScope == "srcImg":    
     - name: image-scanner
