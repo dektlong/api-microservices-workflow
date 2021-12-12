@@ -58,7 +58,7 @@ spec:
     - name: app-deployer
       templateRef:
         kind: ClusterTemplate
-        name: app-deploy-template
+        name: app-deploy-cnr-template
       configs:
         - name: app-config
           resource: config-provider
