@@ -1,0 +1,28 @@
+apiVersion: carto.run/v1alpha1
+kind: RunTemplate
+metadata:
+  name: run-pre-prod-testing
+spec:
+  completion:
+    succeeded:
+      key: status.conditions.#(type=="Succeeded").status
+      value: "True"
+    failed:
+      key: status.conditions.#(type=="Succeeded").status
+      value: "False"
+  template:
+    apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: $(pipeline.metadata.name)$-
+    spec:
+      pipelineRef:
+        name: run-pre-prod-testing
+      params:
+      - name: source-url
+        value: $(pipeline.spec.inputs.url)$
+      - name: source-revision
+        value: $(pipeline.spec.inputs.revision)$
+      - name: api-grid-scope
+        value:
+        - routes
