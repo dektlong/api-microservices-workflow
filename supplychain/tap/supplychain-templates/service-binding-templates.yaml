@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterTemplate
 metadata:
-  name: config-template
+  name: cluster-service-binder-template
 spec:
   ytt: |
     #@ load("@ytt:data", "data")
@@ -71,3 +71,27 @@ spec:
       #@ if hasattr(data.values.workload.spec, "serviceClaims") and len(data.values.workload.spec.serviceClaims):
       serviceclaims.yml: #@ yaml.encode(claims())
       #@ end
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterTemplate
+metadata:
+  name: cloud-service-binder-template
+spec:
+ ytt: |
+    #@ load("@ytt:data", "data")
+    #@ load("@ytt:yaml", "yaml")
+    
+    apiVersion: servicebinding.io/v1alpha3
+    kind: ServiceBinding
+    metadata:
+      name: aws-service-broker
+    spec:
+      name: #@ s.name
+      service:
+        apiVersion: services.tanzu.vmware.com/v1alpha1
+        kind: AWSResourceClaim
+        name: #@ data.values.workload.metadata.name + '-' + s.name
+      workload:
+        apiVersion: serving.knative.dev/v1
+        kind: Service
+        name: #@ data.values.workload.metadata.name
