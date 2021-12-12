@@ -10,7 +10,7 @@ spec:
     app.tanzu.vmware.com/workload-type: #@ data.values.workloadType
 
   resources:
-   #! mark PVCs as owned by kapp so they will deleted successfully
+   #@ "#fetch the updated application source code from git"
     - name: source-provider
       templateRef:
         kind: ClusterSourceTemplate
