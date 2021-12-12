@@ -15,76 +15,80 @@ spec:
         kind: ClusterSourceTemplate
         name: source-template
 
-    - name: 2-APP-SOURCE-SCANNED
+    - name: 2-APP-SOURCE-SCAN
       templateRef:
         kind: ClusterSourceTemplate
         name: source-scanning-template
       sources:
-        - name: source
-          resource: 1-APP-SOURCE
+        - resource: 1-APP-SOURCE 
+          name: source
+          
     
-    - name: image-builder
+    - name: 3-APP-IMAGE
       templateRef:
         kind: ClusterImageTemplate
         name: image-builder-template
       sources:
-        - name: scanned-source
-          resource: 2-APP-SOURCE-SCANNED
+        - resource: 2-APP-SOURCE-SCAN
+          name: scanned-source
+          
           
 #@ if data.values.scanScope == "srcImg":    
-    - name: image-scanner
+    - name: 4-APP-IMAGE-SCAN
       templateRef:
         kind: ClusterImageTemplate
         name: image-scanning-template
       images:
-        - name: image
-          component: image-builder
+        - component: 3-APP-IMAGE
+          name: image
+          
           
 #@ end
 
-    - name: config-provider
+    - name: 5-APP-CONFIG
       templateRef:
         kind: ClusterConfigTemplate
         name: convention-template
       images:
       #@ if data.values.scanScope == "srcImg":
-        - name: scanned-image
-          component: image-scanner
+        - component: 4-APP-IMAGE-SCAN
+          name: scanned-image
       #@ else:
-        - name: image
-          component: image-builder
+        - component: 3-APP-IMAGE
+          name: image
       #@ end     
     
-    - name: app-deployer
+    - name: 6-APP-DEPLOY
       templateRef:
         kind: ClusterTemplate
         name: app-deploy-cnr-template
       configs:
-        - name: app-config
-          resource: config-provider
+        - resource: 5-APP-CONFIG
+          name: app-config
+          
       
 #@ if data.values.addClusterDataServices:
-    - name: cluster-service-binder
+    - name: 7-BIND-CLUSTER-SERVICE
       templateRef:
         kind: ClusterTemplate
         name: cluster-service-binder-template
       configs:
-        - name: app-config
-          resource: config-provider
+        - resource: 5-APP-CONFIG
+          name: app-config
 #@ end    
 
 #@ if data.values.addCloudDataServices:
-    - name: cloud-service-binder
+    - name: 7-BIND-CLOUD-SERVICE
       templateRef:
         kind: ClusterTemplate
         name: cloud-service-binder-template
       configs:
-        - name: app-config
-          resource: config-provider
+        - resource: 5-APP-CONFIG
+          name: app-config
 #@ end
 
 #@ if data.values.addTesting:
-    - name: integration-testing-provider
+    - name: 8-TEST-INTEGRATIONS
       templateRef:
         kind: PipelineTemplate
         name: integration-testing-template
