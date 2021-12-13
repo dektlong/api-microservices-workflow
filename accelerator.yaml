@@ -34,17 +34,13 @@ accelerator:
         name: supplychain
         value: tap
       choices:
-       - value: data-processor 
-         text: Data transformer 
-       - value: event-topic 
-         text: Event topic processor
-       - value: ml
-         text: ML workload
+       - value: event
+         text: Event
+       - value: stream
+         text: Stream
        - value: web
          text: Web
-       - value: web-backend
-         text: Web backend
-    
+       
     - name: scanScope
       label: Scanning scope
       description: Select the scope of your scanning
