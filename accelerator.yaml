@@ -34,12 +34,12 @@ accelerator:
         name: supplychain
         value: tap
       choices:
-       - value: event
-         text: Event
-       - value: stream
-         text: Stream
        - value: web
-         text: Web
+         text: Web function
+       - value: web-backend
+         text: Web backend 
+       - value: event-topic
+         text: Event topic
        
     - name: scanScope
       label: Scanning scope
