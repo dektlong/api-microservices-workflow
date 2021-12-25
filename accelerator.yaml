@@ -54,18 +54,7 @@ accelerator:
          text: Source only
        - value: srcImg
          text: Source and image
-        
-     #add deployment with CNR
-    - name: scaleToZero
-      label: Scale to zero CNR workloads
-      description: Scale to zero CNR workloads
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
-      dependsOn:
-        name: supplychain
-        value: tap
-        
+               
     #add data services
     - name: addClusterDataServices
       label: Bind to Cluster data services
