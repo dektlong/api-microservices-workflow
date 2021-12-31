@@ -82,7 +82,7 @@ accelerator:
       dataType: [string]
       defaultValue:
         - core
-        - data
+        - stress
       #dependsOn:
       #  name: addTesting
       #  value: true
