@@ -42,14 +42,14 @@ accelerator:
          text: Event topic
     
     #workloads repos
-    - name: gitRepos
-      label: Workloads FQDN repos 
-      description: A seprate git repo for every workload in this supply chain type
-      inputType: multi-text
-      required: false
-      dataType: [string]
-      defaultValue:
-        - https://github.com/dektlong/workload1
+    #- name: gitRepos
+    #  label: Workloads FQDN repos 
+    #  description: A seprate git repo for every workload in this supply chain type
+    #  inputType: multi-text
+    #  required: false
+    #  dataType: [string]
+    #  defaultValue:
+    #    - https://github.com/dektlong/workload1
 
     - name: scanScope
       label: Scanning scope
