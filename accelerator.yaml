@@ -8,21 +8,21 @@ accelerator:
   options:
   
   #supplychain selection
-    - name: supplychain
-      inputType: select
-      label: Supply chain 
-      description: Generated configuration for the DevOps supply chain
-      required: true
+   # - name: supplychain
+   #   inputType: select
+   #   label: Supply chain 
+   #   description: Generated configuration for the DevOps supply chain
+   #   required: true
       #defaultValue: tap
-      choices:
-        - value: k8s
-          text: k8s + Skaffold
-        - value: tbs
-          text: Build Service + CRDs
-        - value: cf
-          text: Tanzu Application Service manifest
-        - value: tap
-          text: Tanzu Application Platform supply-chain
+   #   choices:
+   #     - value: k8s
+   #       text: k8s + Skaffold
+   #     - value: tbs
+   #       text: Build Service + CRDs
+   #     - value: cf
+   #       text: Tanzu Application Service manifest
+   #     - value: tap
+   #       text: Tanzu Application Platform supply-chain
  
  # TAP supplychain
     - name: workloadType
@@ -30,9 +30,9 @@ accelerator:
       description: Select the workload type for this supply chain
       inputType: select
       defaultValue: web
-      dependsOn:
-        name: supplychain
-        value: tap
+    #  dependsOn:
+     #   name: supplychain
+      #  value: tap
       choices:
        - value: web
          text: Web function
@@ -46,9 +46,9 @@ accelerator:
       description: Select the scope of your scanning
       inputType: select
       defaultValue: src
-      dependsOn:
-        name: supplychain
-        value: tap
+      #dependsOn:
+      #  name: supplychain
+      #  value: tap
       choices:
        - value: src
          text: Source only
@@ -61,18 +61,18 @@ accelerator:
       description: Add a step to bind to cluster data services
       inputType: toggle 
       defaultValue: false
-      dependsOn:
-        name: supplychain
-        value: tap
+      #dependsOn:
+      #  name: supplychain
+      #  value: tap
       dataType: boolean
     - name: addCloudDataServices
       label: Bind to Cloud data services
       description: Add a step to bind to cloud data services
       inputType: toggle 
       defaultValue: false
-      dependsOn:
-        name: supplychain
-        value: tap
+      #dependsOn:
+      #  name: supplychain
+      #  value: tap
       dataType: boolean
     
           
@@ -83,9 +83,9 @@ accelerator:
       inputType: toggle 
       defaultValue: false
       dataType: boolean
-      dependsOn:
-        name: supplychain
-        value: tap
+      #dependsOn:
+      #  name: supplychain
+      #  value: tap
     - name: testScope
       label: Testing scope
       description: Select scope of testing in your pipeline
@@ -119,22 +119,31 @@ accelerator:
         - https://github.com/dektlong/dekt4pets-frontend
         - https://github.com/dektlong/adopter-check
     
+    #add TBS configs
+    - name: addTBS
+       label: Add Build Service standalone configs
+       description: Add config examples for using TBS without a TAP suppply chain
+       inputType: toggle 
+       defaultValue: false
+       display: true
+       dataType: boolean
+    
 #API-grid configs
-    - name: addAPIGrid
-      label: Add API-grid 
-      description: Setup custom configurations for API Gateway, Portal and access control
-      inputType: toggle 
-      defaultValue: false
-      display: true
-      dataType: boolean
+    #- name: addAPIGrid
+    #  label: Add API-grid 
+    #  description: Setup custom configurations for API Gateway, Portal and access control
+    #  inputType: toggle 
+    #  defaultValue: false
+    #  display: true
+    #  dataType: boolean
    #api-portal  
     - name: portalScope
       inputType: checkbox
       label: API access policies
       description: What api groups will be included in API portal
-      dependsOn:
-        name: addAPIGrid
-        value: true
+     # dependsOn:
+     #   name: addAPIGrid
+     #   value: true
       dataType: [string]
       defaultValue:
         - dev
@@ -181,17 +190,17 @@ accelerator:
       inputType: toggle 
       defaultValue: false
       dataType: boolean
-      dependsOn:
-        name: addAPIGrid
-        value: true
+      #dependsOn:
+      #  name: addAPIGrid
+      #  value: true
     - name: ssoProvider
       label: Identity provider for API SSO
       description: SSO identity provider
       inputType: select 
       defaultValue: workspaceOne
-      dependsOn:
-        name: addAPIGrid
-        value: true
+      #dependsOn:
+      #  name: addAPIGrid
+      #  value: true
       choices:
         - value: amazon
           text: Amazon
@@ -208,18 +217,18 @@ accelerator:
       description:  Micro-gateways requires HA deployment 
       inputType: toggle
       dataType: boolean
-      dependsOn:
-        name: addAPIGrid
-        value: true
+      #dependsOn:
+      #  name: addAPIGrid
+      #  value: true
       defaultValue: false
     - name: gwMetrics
       label: API observability
       description:  Add observability options to gatway
       inputType: toggle
       dataType: boolean
-      dependsOn:
-        name: addAPIGrid
-        value: true
+      #dependsOn:
+      #  name: addAPIGrid
+      #  value: true
       defaultValue: false
     - name: apiScorecards
       description: URL for API Scorecards dashboard
@@ -249,12 +258,15 @@ accelerator:
  #hidden values
     - name: domain
       label: Domain name
-      defaultValue: apps.dekt.io
+      defaultValue: gw.dekt.io
+      display: false
     - name: registry
       label: Image registry
       defaultValue: harbor.apps.cf.tanzutime.com/dekt-apps
+      display: false
     - name: workloads
       label: Workload names
+      display: false
       inputType: multi-text
       dataType: [string]
       defaultValue:
@@ -266,13 +278,13 @@ engine:
   merge:
     #supplychain
     - includes: [ "supplychain/tap/**" ]
-      condition: "#supplychain == 'tap'"
+      #condition: "#supplychain == 'tap'"
       chain:
         - type: YTT
-    - includes: [ "supplychain/k8s/**" ]
-      condition: "#supplychain == 'k8s'"
+    #- includes: [ "supplychain/k8s/**" ]
+    #  condition: "#supplychain == 'k8s'"
     - includes: [ "supplychain/tbs-kpack/**" ]
-      condition: "#supplychain == 'tbs'"
+      condition: "#addTBS"
       chain:
         - type: ReplaceText
           substitutions:
@@ -292,26 +304,26 @@ engine:
               with: "#workloads[2]"
             - text: registry
               with: "#registry"
-    - includes: [ "supplychain/cf/**" ]
-      condition: "#supplychain == 'cf'"
-      chain:
-        - type: YTT
+    #- includes: [ "supplychain/cf/**" ]
+    #  condition: "#supplychain == 'cf'"
+    #  chain:
+    #    - type: YTT
     
     #api-grid
     - includes: [ "api-grid/k8s/**" ]
-      condition: "#supplychain != 'cf'"
+      #condition: "#supplychain != 'cf'"
       chain:
         - type: YTT
-    - includes: [ "api-grid/cf/*.yaml" ]
-      condition: "#supplychain == 'cf'"
-      chain:
-        - type: YTT
-    - includes: [ "api-grid/cf/*.json" ]
-      condition: "#supplychain == 'cf'"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: app-name
-              with: "#artifactId"
-            - text: domain
-              with: "#domain"
+    #- includes: [ "api-grid/cf/*.yaml" ]
+    #  condition: "#supplychain == 'cf'"
+    #  chain:
+    #    - type: YTT
+    #- includes: [ "api-grid/cf/*.json" ]
+    #  condition: "#supplychain == 'cf'"
+    #  chain:
+    #    - type: ReplaceText
+    #      substitutions:
+    #        - text: app-name
+    #          with: "#artifactId"
+    #        - text: domain
+    #          with: "#domain"
