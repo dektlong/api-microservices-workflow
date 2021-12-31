@@ -35,7 +35,7 @@ accelerator:
       #  value: tap
       choices:
        - value: web
-         text: Web function
+         text: Web frontend
        - value: web-backend
          text: Web backend 
        - value: event-topic
@@ -73,14 +73,11 @@ accelerator:
       inputType: checkbox
       dataType: [string]
       defaultValue:
-        - cluster
         - tanzu
       #dependsOn:
       #  name: addTesting
       #  value: true
       choices:
-        - value: cluster
-          text: On cluster services
         - value: aws
           text: AWS Marketplace
         - value: azure
@@ -133,7 +130,8 @@ accelerator:
       dataType: boolean
   
 #API-grid configs
-    #- name: addAPIGrid
+   
+   #- name: addAPIGrid
     #  label: Add API-grid 
     #  description: Setup custom configurations for API Gateway, Portal and access control
     #  inputType: toggle 
@@ -141,16 +139,16 @@ accelerator:
     #  display: true
     #  dataType: boolean
    #api-portal  
-    - name: portalScope
-      inputType: checkbox
+    - name: apiAccess
       label: API access policies
       description: What api groups will be included in API portal
-     # dependsOn:
-     #   name: addAPIGrid
-     #   value: true
+      inputType: checkbox
       dataType: [string]
       defaultValue:
         - dev
+     # dependsOn:
+     #   name: addAPIGrid
+     #   value: true
       choices:
         - value: dev
           text: "Dev gateways in project's domain (team collaboration)"
@@ -158,42 +156,42 @@ accelerator:
           text: "3rd-party & legacy sytems approved for this project"
         - value: public
           text: "Publicly accessible APIs "
-    - name: openAPISources
-      label: Open api source urls
-      inputType: multi-text
-      dataType: [string]
-      dependsOn:
-        name: portalScope
-        value: 
-          - brownfield
-          - public
-      defaultValue:
+#    - name: openAPISources
+ #     label: Open api source urls
+  #    inputType: multi-text
+   #   dataType: [string]
+    #  dependsOn:
+     #   name: apiAccess
+      #  value: 
+    #      - brownfield
+    #      - public
+    #  defaultValue:
         - scg-openapi.apps.dekt.io/openapi
     - name: forceRateLimit
       label: Rate-limits for all routes
       inputType: checkbox 
       defaultValue: false
       dataType: boolean
-      dependsOn:
-        name: portalScope
-        value: 
-          - brownfield
+      #dependsOn:
+      #  name: apiAccess
+      #  value: 
+      #    - brownfield
     - name: forceSSO
       label: SSO for all routes
       inputType: checkbox 
       defaultValue: false
       dataType: boolean
-      dependsOn:
-        name: portalScope
-        value: 
-          - brownfield
-          - public
+   #   dependsOn:
+   #     name: portalScope
+   #     value: 
+   #       - brownfield
+   #       - public
     #api-gateway
-    - name: vaultIntegration
-      label: Add Vault key-management
-      inputType: checkbox 
-      defaultValue: false
-      dataType: boolean
+   # - name: vaultIntegration
+   #   label: Add Vault key-management
+   #   inputType: checkbox 
+   #   defaultValue: false
+   #   dataType: boolean
       #dependsOn:
       #  name: addAPIGrid
       #  value: true
