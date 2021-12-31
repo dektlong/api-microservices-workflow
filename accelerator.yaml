@@ -81,7 +81,7 @@ accelerator:
       description: Select scope of testing in your pipeline
       inputType: radio
       dataType: [string]
-      defaultValue: [ core ]
+      defaultValue: [core]
       #dependsOn:
       #  name: addTesting
       #  value: true
@@ -116,19 +116,17 @@ accelerator:
       #  name: supplychain
       #  value: tap
       dataType: boolean
-    
-          
-    
+        
     
     #add TBS configs
     - name: addTBS
-       label: Add Build Service standalone configs
-       description: Add config examples for using TBS without a TAP suppply chain
-       inputType: toggle 
-       defaultValue: false
-       display: true
-       dataType: boolean
-    
+      label: Add Build Service standalone configs
+      description: Add config examples for using TBS without a TAP suppply chain
+      inputType: checkbox 
+      defaultValue: false
+      display: true
+      dataType: boolean
+  
 #API-grid configs
     #- name: addAPIGrid
     #  label: Add API-grid 
@@ -139,7 +137,7 @@ accelerator:
     #  dataType: boolean
    #api-portal  
     - name: portalScope
-      inputType: radio
+      inputType: checkbox
       label: API access policies
       description: What api groups will be included in API portal
      # dependsOn:
@@ -168,7 +166,7 @@ accelerator:
         - scg-openapi.apps.dekt.io/openapi
     - name: forceRateLimit
       label: Rate-limits for all routes
-      inputType: toggle 
+      inputType: checkbox 
       defaultValue: false
       dataType: boolean
       dependsOn:
