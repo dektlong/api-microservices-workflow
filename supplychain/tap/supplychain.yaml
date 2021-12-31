@@ -107,17 +107,52 @@ spec:
           name: app-config
 #@ end    
 
-#@ if data.values.addTesting:
-    - name: 6-TEST-INTEGRATIONS
+#@ if hasattr(data.values.testScope, "core"):
+    - name: 6-TEST-CORE
       templateRef:
         kind: PipelineTemplate
-        name: integration-testing-template
-      sources:
-    #@ if len(data.values.testScope) > 0:
-        - resource: testing-scopes
-          value: #@ data.values.testScope
-    #@ else:
-        - resource: testing-scopes
-          value: core
-    #@ end
+        name: core-testing-template
+      configs:
+        - resource: 3-APP-CONFIG
+          name: app-config
+#@ end  
+
+#@ if hasattr(data.values.testScope, "data"):
+    - name: 6-TEST-DATA
+      templateRef:
+        kind: PipelineTemplate
+        name: data-testing-template
+      configs:
+        - resource: 3-APP-CONFIG
+          name: app-config
+#@ end  
+
+#@ if hasattr(data.values.testScope, "api"):
+    - name: 6-TEST-API
+      templateRef:
+        kind: PipelineTemplate
+        name: api-testing-template
+      configs:
+        - resource: 3-APP-CONFIG
+          name: app-config
+#@ end  
+
+#@ if hasattr(data.values.testScope, "stress"):
+    - name: 6-TEST-STRESS
+      templateRef:
+        kind: PipelineTemplate
+        name: stress-testing-template
+      configs:
+        - resource: 3-APP-CONFIG
+          name: app-config
+#@ end  
+
+#@ if hasattr(data.values.testScope, "pen"):
+    - name: 6-TEST-PEN
+      templateRef:
+        kind: PipelineTemplate
+        name: pen-testing-template
+      configs:
+        - resource: 3-APP-CONFIG
+          name: app-config
 #@ end  
