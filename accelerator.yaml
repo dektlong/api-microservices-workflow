@@ -24,7 +24,7 @@ accelerator:
    #     - value: tap
    #       text: Tanzu Application Platform supply-chain
  
- # TAP supplychain
+ # workload type
     - name: workloadType
       label: Workload type
       description: Select the workload type for this supply chain
@@ -51,6 +51,7 @@ accelerator:
     #  defaultValue:
     #    - https://github.com/dektlong/workload1
 
+#scanning
     - name: scanScope
       label: Scanning scope
       description: Select the scope of your scanning
@@ -65,7 +66,31 @@ accelerator:
        - value: srcImg
          text: Source and image
                
-    #add pre-prod intgration
+#data services binding
+    - name: serviceBinding
+      label: Service binding scope
+      description: Select which type of data services to bind to
+      inputType: checkbox
+      dataType: [string]
+      defaultValue:
+        - cluster
+        - tanzu
+      #dependsOn:
+      #  name: addTesting
+      #  value: true
+      choices:
+        - value: cluster
+          text: On cluster services
+        - value: aws
+          text: AWS Marketplace
+        - value: azure
+          text: Azure Marketplace
+        - value: gcp
+          text: Google Marketplace
+        - value: tanzu
+          text: Tanzu App Catalog
+
+#intgration testing
     #- name: addTesting
     #  label: Add integration testing
     #  description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
@@ -97,27 +122,6 @@ accelerator:
           text: Stress testing
         - value: pen
           text: Pen testing
-          
-    #add data services
-    - name: addClusterDataServices
-      label: Bind to Cluster data services
-      description: Add a step to bind to cluster data services
-      inputType: checkbox 
-      defaultValue: false
-      #dependsOn:
-      #  name: supplychain
-      #  value: tap
-      dataType: boolean
-    - name: addCloudDataServices
-      label: Bind to Cloud data services
-      description: Add a step to bind to cloud data services
-      inputType: checkbox 
-      defaultValue: false
-      #dependsOn:
-      #  name: supplychain
-      #  value: tap
-      dataType: boolean
-        
     
     #add TBS configs
     - name: addTBS
