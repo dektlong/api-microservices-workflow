@@ -50,7 +50,6 @@ accelerator:
       dataType: [string]
       defaultValue:
         - https://github.com/dektlong/workload1
-        - https://github.com/dektlong/workload1
 
     - name: scanScope
       label: Scanning scope
@@ -79,9 +78,11 @@ accelerator:
     - name: testScope
       label: Integration testing scope
       description: Select scope of testing in your pipeline
-      inputType: radio
+      inputType: checkbox
       dataType: [string]
-      defaultValue: [core]
+      defaultValue:
+        - core
+        - data
       #dependsOn:
       #  name: addTesting
       #  value: true
