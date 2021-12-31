@@ -40,7 +40,18 @@ accelerator:
          text: Web backend 
        - value: event-topic
          text: Event topic
-       
+    
+    #workloads repos
+    - name: gitRepos
+      label: Workloads FQDN repos 
+      description: A seprate git repo for every workload in this supply chain type
+      inputType: multi-text
+      required: false
+      dataType: [string]
+      defaultValue:
+        - https://github.com/dektlong/workload1
+        - https://github.com/dektlong/workload1
+
     - name: scanScope
       label: Scanning scope
       description: Select the scope of your scanning
@@ -55,46 +66,25 @@ accelerator:
        - value: srcImg
          text: Source and image
                
-    #add data services
-    - name: addClusterDataServices
-      label: Bind to Cluster data services
-      description: Add a step to bind to cluster data services
-      inputType: toggle 
-      defaultValue: false
-      #dependsOn:
-      #  name: supplychain
-      #  value: tap
-      dataType: boolean
-    - name: addCloudDataServices
-      label: Bind to Cloud data services
-      description: Add a step to bind to cloud data services
-      inputType: toggle 
-      defaultValue: false
-      #dependsOn:
-      #  name: supplychain
-      #  value: tap
-      dataType: boolean
-    
-          
     #add pre-prod intgration
-    - name: addTesting
-      label: Add integration testing
-      description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
-      inputType: toggle 
-      defaultValue: false
-      dataType: boolean
+    #- name: addTesting
+    #  label: Add integration testing
+    #  description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
+    #  inputType: checkbox 
+    #  defaultValue: false
+    #  dataType: boolean
       #dependsOn:
       #  name: supplychain
       #  value: tap
     - name: testScope
-      label: Testing scope
+      label: Integration testing scope
       description: Select scope of testing in your pipeline
-      inputType: checkbox
+      inputType: radio
       dataType: [string]
       defaultValue: [ core ]
-      dependsOn:
-        name: addTesting
-        value: true
+      #dependsOn:
+      #  name: addTesting
+      #  value: true
       choices:
         - value: core
           text: Core functionality
@@ -106,18 +96,29 @@ accelerator:
           text: Stress testing
         - value: pen
           text: Pen testing
-        
-#workloads repos
-    - name: gitRepos
-      label: Microservices git repos
-      description: A seprate git repo for every app component
-      inputType: multi-text
-      required: false
-      dataType: [string]
-      defaultValue:
-        - https://github.com/dektlong/dekt4pets-backend
-        - https://github.com/dektlong/dekt4pets-frontend
-        - https://github.com/dektlong/adopter-check
+          
+    #add data services
+    - name: addClusterDataServices
+      label: Bind to Cluster data services
+      description: Add a step to bind to cluster data services
+      inputType: checkbox 
+      defaultValue: false
+      #dependsOn:
+      #  name: supplychain
+      #  value: tap
+      dataType: boolean
+    - name: addCloudDataServices
+      label: Bind to Cloud data services
+      description: Add a step to bind to cloud data services
+      inputType: checkbox 
+      defaultValue: false
+      #dependsOn:
+      #  name: supplychain
+      #  value: tap
+      dataType: boolean
+    
+          
+    
     
     #add TBS configs
     - name: addTBS
@@ -138,7 +139,7 @@ accelerator:
     #  dataType: boolean
    #api-portal  
     - name: portalScope
-      inputType: checkbox
+      inputType: radio
       label: API access policies
       description: What api groups will be included in API portal
      # dependsOn:
@@ -176,7 +177,7 @@ accelerator:
           - brownfield
     - name: forceSSO
       label: SSO for all routes
-      inputType: toggle 
+      inputType: checkbox 
       defaultValue: false
       dataType: boolean
       dependsOn:
@@ -187,7 +188,7 @@ accelerator:
     #api-gateway
     - name: vaultIntegration
       label: Add Vault key-management
-      inputType: toggle 
+      inputType: checkbox 
       defaultValue: false
       dataType: boolean
       #dependsOn:
@@ -215,7 +216,7 @@ accelerator:
     - name: gwHA
       label: Deploy HA micro-gateway
       description:  Micro-gateways requires HA deployment 
-      inputType: toggle
+      inputType: checkbox
       dataType: boolean
       #dependsOn:
       #  name: addAPIGrid
@@ -224,7 +225,7 @@ accelerator:
     - name: gwMetrics
       label: API observability
       description:  Add observability options to gatway
-      inputType: toggle
+      inputType: checkbox
       dataType: boolean
       #dependsOn:
       #  name: addAPIGrid
@@ -239,7 +240,7 @@ accelerator:
     - name: wavefront
       label: Tanzu observability
       description:  Add Tanzu observability configuration to gateway
-      inputType: toggle
+      inputType: checkbox
       dataType: boolean
       defaultValue: true
       dependsOn:
@@ -248,7 +249,7 @@ accelerator:
     - name: prometheus
       label: Prometheus service monitor 
       description:  Add Prometheus service monitor configuration to gateway
-      inputType: toggle
+      inputType: checkbox
       dataType: boolean
       defaultValue: false
       dependsOn:
@@ -256,23 +257,23 @@ accelerator:
         value: true
           
  #hidden values
-    - name: domain
-      label: Domain name
-      defaultValue: gw.dekt.io
-      display: false
-    - name: registry
-      label: Image registry
-      defaultValue: harbor.apps.cf.tanzutime.com/dekt-apps
-      display: false
-    - name: workloads
-      label: Workload names
-      display: false
-      inputType: multi-text
-      dataType: [string]
-      defaultValue:
-        - backend
-        - frontend
-        - adopter-check
+    #- name: domain
+    #  label: Domain name
+    #  defaultValue: gw.dekt.io
+    #  display: false
+    #- name: registry
+    #  label: Image registry
+    #  defaultValue: harbor.apps.cf.tanzutime.com/dekt-apps
+    #  display: false
+    #- name: workloads
+    #  label: Workload names
+    #  display: false
+    #  inputType: multi-text
+    #  dataType: [string]
+     # defaultValue:
+     #   - backend
+     #   - frontend
+     #   - adopter-check
 
 engine:
   merge:
