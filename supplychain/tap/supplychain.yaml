@@ -67,25 +67,45 @@ spec:
           name: app-config
           
       
-#@ if data.values.addClusterDataServices:
-    - name: 5-BIND-CLUSTER-SERVICE
+#@ if hasattr(data.values.serviceBinding, "aws"):
+    - name: 5-BIND-AWS-SERVICE
       templateRef:
         kind: ClusterTemplate
-        name: cluster-service-binder-template
+        name: aws-service-binder-template
       configs:
         - resource: 3-APP-CONFIG
           name: app-config
 #@ end    
 
-#@ if data.values.addCloudDataServices:
-    - name: 5-BIND-CLOUD-SERVICE
+#@ if hasattr(data.values.serviceBinding, "azure"):
+    - name: 5-BIND-AZURE-SERVICE
       templateRef:
         kind: ClusterTemplate
-        name: cloud-service-binder-template
+        name: azure-service-binder-template
       configs:
         - resource: 3-APP-CONFIG
           name: app-config
 #@ end
+
+#@ if hasattr(data.values.serviceBinding, "gcp"):
+    - name: 5-BIND-GCP-SERVICE
+      templateRef:
+        kind: ClusterTemplate
+        name: gcp-service-binder-template
+      configs:
+        - resource: 3-APP-CONFIG
+          name: app-config
+#@ end
+
+#@ if hasattr(data.values.serviceBinding, "tanzu"):
+    - name: 5-BIND-TANZU-SERVICE
+      templateRef:
+        kind: ClusterTemplate
+        name: tanzu-service-binder-template
+      configs:
+        - resource: 3-APP-CONFIG
+          name: app-config
+#@ end    
 
 #@ if data.values.addTesting:
     - name: 6-TEST-INTEGRATIONS
