@@ -238,11 +238,11 @@ accelerator:
       #  name: addAPIGrid
       #  value: true
       defaultValue: false
-    - name: vaultIntegration
-      label: API key management with Vault
-      inputType: checkbox 
-      defaultValue: false
-      dataType: boolean
+    #- name: vaultIntegration
+    #  label: API key management with Vault
+    #  inputType: checkbox 
+    #  defaultValue: false
+    #  dataType: boolean
       #dependsOn:
       #  name: addAPIGrid
       #  value: true
