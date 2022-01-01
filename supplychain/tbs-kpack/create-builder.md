@@ -1,8 +1,8 @@
 Create an image builder for the app-name project
 
 ```
-kp builder create app-name-builder -n app-name-ns \
-  --tag registry/app-name/app-name-builder \
+kp builder create myapp-builder -n myapp-ns \
+  --tag example.com/myregistry/myrepo/myapp-builder \
   --order build-order.yaml \
   --stack base \
   --store default
