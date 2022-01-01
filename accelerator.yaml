@@ -180,7 +180,7 @@ accelerator:
         - value: localdev
           text: "Local development"
         - value: teamdev
-          text: "Team developemnt (HA)
+          text: "Team developemnt (HA)"
         - value: integration
           text: "Integration (HA, global rate-limits)"
         - value: production
