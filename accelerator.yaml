@@ -166,7 +166,7 @@ accelerator:
     #      - brownfield
     #      - public
     #  defaultValue:
-        - scg-openapi.apps.dekt.io/openapi
+    #    - scg-openapi.apps.dekt.io/openapi
     - name: forceRateLimit
       label: Rate-limits for all routes
       inputType: checkbox 
@@ -195,25 +195,25 @@ accelerator:
       #dependsOn:
       #  name: addAPIGrid
       #  value: true
-    - name: ssoProvider
-      label: Identity provider for API SSO
-      description: SSO identity provider
-      inputType: select 
-      defaultValue: workspaceOne
+   # - name: ssoProvider
+   #   label: Identity provider for API SSO
+   #   description: SSO identity provider
+   #   inputType: select 
+   #   defaultValue: workspaceOne
       #dependsOn:
       #  name: addAPIGrid
       #  value: true
-      choices:
-        - value: amazon
-          text: Amazon
-        - value: google
-          text: Google
-        - value: okta
-          text: Okta (Auth0)
-        - value: microsoft
-          text: Microsoft
-        - value: workspaceOne
-          text: Workspace ONE
+    #  choices:
+     #   - value: amazon
+     #     text: Amazon
+     #   - value: google
+     #     text: Google
+     #   - value: okta
+     #     text: Okta (Auth0)
+     #   - value: microsoft
+     #     text: Microsoft
+     #   - value: workspaceOne
+     #     text: Workspace ONE
     - name: gwHA
       label: Deploy HA micro-gateway
       description:  Micro-gateways requires HA deployment 
