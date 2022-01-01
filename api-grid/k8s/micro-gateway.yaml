@@ -13,7 +13,7 @@ spec:
     cors:
       allowedOrigins:
         - api-portal.example.com
-#@ if hasattr(data.values.gwSLA, "localdev")
+#@ if hasattr(data.values.gwSLA, "localdev"):
   count: 1
 #@ else:
   count: 3
