@@ -45,7 +45,8 @@ spec:
           labels:
             release: $(workload.metadata.name)$-prometheus"
 #@ end
-#@ data.values.gwSLA == "integration" or data.values.gwSLA == "production":
+
+#@ if data.values.gwSLA == "integration" or data.values.gwSLA == "production":
 ---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
