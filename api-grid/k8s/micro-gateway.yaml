@@ -3,43 +3,37 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
-  name: #@ data.values.artifactId + "-gateway"
+  name: $(workload.metadata.name)$-gateway"
 spec:
   api:
     serverUrl: #@ "https://" + data.values.artifactId + "." + data.values.domain 
     title: #@ data.values.artifactId + "-micro-gateway"
     description: #@ "Micro Gateway to control internal APIs of " + data.values.artifactId
     version: 0.1.0
-#@ if data.values.gwMetrics:
-    scorecards: #@ data.values.apiScorecards 
-#@ end
     cors:
       allowedOrigins:
-        - #@ "api-portal." + data.values.domain
-#@ if data.values.gwHA:  
-  count: 3
-#@ else:
+        - api-portal.example.com
+#@ if hasattr(data.values.gwSLA, "localdev")
   count: 1
+#@ else:
+  count: 3
 #@ end
   sso:
-    secret: #@ data.values.artifactId + "-" + data.values.ssoProvider + "-sso"
+    secret: sso-secret
 #@ if data.values.gwMetrics:
   observability:
     metrics:
-  #@ if data.values.wavefront:
       wavefront:
         enabled: true
-        secret: #@ data.values.artifactId + "-observability"
-        source: #@ data.values.artifactId + "-gateway"
-        application: #@ data.values.artifactId
-        service: #@ data.values.artifactId + "-gateway"
-  #@ end
-  #@ if data.values.prometheus:
+    wavefront:
+      secret: wavefront-secret
+      source: $(workload.metadata.name)$-gateway
+      application: $(workload.metadata.name)$
+      service: $(workload.metadata.name)$-gateway
       prometheus:
         enabled: true
         serviceMonitor:
           enabled: true
           labels:
-            release: #@ data.values.artifactId + "-prometheus"
-  #@ end
+            release: $(workload.metadata.name)$-prometheus"
 #@ end
