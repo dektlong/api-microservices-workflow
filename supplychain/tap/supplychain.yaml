@@ -20,7 +20,7 @@ spec:
         kind: ClusterSourceTemplate
         name: source-scanning-template
       sources:
-        - resource: 1-APP-SOURCE 
+        - resource: 1-app-source
           name: source
           
     
@@ -29,7 +29,7 @@ spec:
         kind: ClusterImageTemplate
         name: image-builder-template
       sources:
-        - resource: 2-APP-SOURCE-SCAN
+        - resource: 2-app-source-scan
           name: scanned-source
           
           
@@ -39,7 +39,7 @@ spec:
         kind: ClusterImageTemplate
         name: image-scanning-template
       images:
-        - component: 2-APP-IMAGE
+        - component: 2-app-image
           name: image
           
           
@@ -51,10 +51,10 @@ spec:
         name: convention-template
       images:
       #@ if data.values.scanScope == "srcImg":
-        - component: 2-APP-IMAGE-SCAN
+        - component: 2-app-image-scan
           name: scanned-image
       #@ else:
-        - component: 2-APP-IMAGE
+        - component: 2-app-image
           name: image
       #@ end     
     
@@ -63,7 +63,7 @@ spec:
         kind: ClusterTemplate
         name: app-deploy-cnr-template
       configs:
-        - resource: 3-APP-CONFIG
+        - resource: 3-app-config
           name: app-config
           
       
@@ -73,7 +73,7 @@ spec:
         kind: ClusterTemplate
         name: aws-service-binder-template
       configs:
-        - resource: 3-APP-CONFIG
+        - resource: 3-app-config
           name: app-config
 #@ end    
 
@@ -83,7 +83,7 @@ spec:
         kind: ClusterTemplate
         name: azure-service-binder-template
       configs:
-        - resource: 3-APP-CONFIG
+        - resource: 3-app-config
           name: app-config
 #@ end
 
@@ -93,7 +93,7 @@ spec:
         kind: ClusterTemplate
         name: gcp-service-binder-template
       configs:
-        - resource: 3-APP-CONFIG
+        - resource: 3-app-config
           name: app-config
 #@ end
 
@@ -103,7 +103,7 @@ spec:
         kind: ClusterTemplate
         name: tanzu-service-binder-template
       configs:
-        - resource: 3-APP-CONFIG
+        - resource: 3-app-config
           name: app-config
 #@ end    
 
@@ -113,7 +113,7 @@ spec:
         kind: PipelineTemplate
         name: core-testing-template
       configs:
-        - resource: 3-APP-CONFIG
+        - resource: 3-app-config
           name: app-config
 #@ end  
 
@@ -123,7 +123,7 @@ spec:
         kind: PipelineTemplate
         name: data-testing-template
       configs:
-        - resource: 3-APP-CONFIG
+        - resource: 3-app-config
           name: app-config
 #@ end  
 
@@ -133,6 +133,6 @@ spec:
         kind: PipelineTemplate
         name: api-testing-template
       configs:
-        - resource: 3-APP-CONFIG
+        - resource: 3-app-config
           name: app-config
 #@ end
