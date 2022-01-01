@@ -134,22 +134,22 @@ accelerator:
     #  display: true
     #  dataType: boolean
 
-    - name: apiAccess
-      label: API access level
-      description: The scope the API access this supplychain enables
-      inputType: select
-      dataType: string
-      defaultValue: dev
+   # - name: apiAccess
+   #   label: API access level
+   #   description: The scope the API access this supplychain enables
+   #   inputType: select
+   #   dataType: string
+   #   defaultValue: dev
      # dependsOn:
      #   name: addAPIGrid
      #   value: true
-      choices:
-        - value: dev
-          text: "Dev gateways in project's domain (team collaboration)"
-        - value: brownfield
-          text: "3rd-party & legacy sytems approved for this project"
-        - value: public
-          text: "Publicly accessible APIs "
+    #  choices:
+    #    - value: dev
+    #      text: "Dev gateways in project's domain (team collaboration)"
+    #    - value: brownfield
+    #      text: "3rd-party & legacy sytems approved for this project"
+    #    - value: public
+    #      text: "Publicly accessible APIs "
 #    - name: openAPISources
  #     label: Open api source urls
   #    inputType: multi-text
@@ -162,7 +162,7 @@ accelerator:
     #  defaultValue:
     #    - scg-openapi.apps.dekt.io/openapi
     - name: gwSLA
-      label: Micro gateway SLA and access level
+      label: Micro gateway SLA and API access level
       description: The SLA config of micro-gateway deployed by this supplychain
       inputType: select
       dataType: string
