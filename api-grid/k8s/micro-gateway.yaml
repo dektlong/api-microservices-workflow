@@ -13,11 +13,19 @@ spec:
     cors:
       allowedOrigins:
         - api-portal.example.com
-#@ if "brownfield" in data.values.gwSLA or "public" in data.values.gwSLA:
-  count: 3
-#@ else:
+#@ if "localdev" in data.values.gwSLA: 
   count: 1
 #@ end
+#@ if "teamdev" in data.values.gwSLA: 
+  count: 2
+#@ end
+#@ if "integration" in data.values.gwSLA: 
+  count: 3
+#@ end
+#@ if "production" in data.values.gwSLA: 
+  count: 3
+#@ end
+
   sso:
     secret: sso-secret
 #@ if data.values.gwMetrics:
