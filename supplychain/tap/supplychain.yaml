@@ -67,7 +67,7 @@ spec:
           name: app-config
           
       
-#@ if hasattr(data.values.serviceBinding, "aws"):
+#@ if "aws" in data.values.serviceBinding:
     - name: 5-BIND-AWS-SERVICE
       templateRef:
         kind: ClusterTemplate
@@ -77,7 +77,7 @@ spec:
           name: app-config
 #@ end    
 
-#@ if hasattr(data.values.serviceBinding, "azure"):
+#@ if "azure" in data.values.serviceBinding:
     - name: 5-BIND-AZURE-SERVICE
       templateRef:
         kind: ClusterTemplate
@@ -87,7 +87,7 @@ spec:
           name: app-config
 #@ end
 
-#@ if data.values.serviceBinding.gcp:
+#@ if "gcp" in data.values.serviceBinding:
     - name: 5-BIND-GCP-SERVICE
       templateRef:
         kind: ClusterTemplate
@@ -97,7 +97,7 @@ spec:
           name: app-config
 #@ end
 
-#@ if hasattr(data.values.serviceBinding, "tanzu"):
+#@ if "tanzu" in data.values.serviceBinding:
     - name: 5-BIND-TANZU-SERVICE
       templateRef:
         kind: ClusterTemplate
@@ -107,7 +107,7 @@ spec:
           name: app-config
 #@ end    
 
-#@ if hasattr(data.values.testScope, "core"):
+#@ if "core" in data.values.testScope;
     - name: 6-TEST-CORE
       templateRef:
         kind: PipelineTemplate
@@ -117,7 +117,7 @@ spec:
           name: app-config
 #@ end  
 
-#@ if hasattr(data.values.testScope, "data"):
+#@ if "data" in data.values.testScope;
     - name: 6-TEST-DATA
       templateRef:
         kind: PipelineTemplate
@@ -127,7 +127,7 @@ spec:
           name: app-config
 #@ end  
 
-#@ if hasattr(data.values.testScope, "api"):
+#@ if "api" in data.values.testScope;
     - name: 6-TEST-API
       templateRef:
         kind: PipelineTemplate
@@ -135,24 +135,4 @@ spec:
       configs:
         - resource: 3-APP-CONFIG
           name: app-config
-#@ end  
-
-#@ if hasattr(data.values.testScope, "stress"):
-    - name: 6-TEST-STRESS
-      templateRef:
-        kind: PipelineTemplate
-        name: stress-testing-template
-      configs:
-        - resource: 3-APP-CONFIG
-          name: app-config
-#@ end  
-
-#@ if hasattr(data.values.testScope, "pen"):
-    - name: 6-TEST-PEN
-      templateRef:
-        kind: PipelineTemplate
-        name: pen-testing-template
-      configs:
-        - resource: 3-APP-CONFIG
-          name: app-config
-#@ end  
+#@ end
