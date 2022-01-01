@@ -107,7 +107,7 @@ spec:
           name: app-config
 #@ end    
 
-#@ if "core" in data.values.testScope;
+#@ if "core" in data.values.testScope:
     - name: 6-TEST-CORE
       templateRef:
         kind: PipelineTemplate
@@ -117,7 +117,7 @@ spec:
           name: app-config
 #@ end  
 
-#@ if "data" in data.values.testScope;
+#@ if "data" in data.values.testScope:
     - name: 6-TEST-DATA
       templateRef:
         kind: PipelineTemplate
@@ -127,7 +127,7 @@ spec:
           name: app-config
 #@ end  
 
-#@ if "api" in data.values.testScope;
+#@ if "api" in data.values.testScope:
     - name: 6-TEST-API
       templateRef:
         kind: PipelineTemplate
