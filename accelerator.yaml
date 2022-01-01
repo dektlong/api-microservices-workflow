@@ -310,20 +310,20 @@ engine:
           substitutions:
             - text: app-name
               with: "#artifactId"
-            - text: git1
-              with: "#gitRepos[0]"
-            - text: git2
-              with: "#gitRepos[1]"
-            - text: git3
-              with: "#gitRepos[2]"
-            - text: workload1
-              with: "#workloads[0]"
-            - text: workload2
-              with: "#workloads[1]"
-            - text: workload3
-              with: "#workloads[2]"
-            - text: registry
-              with: "#registry"
+           # - text: git1
+           #   with: "#gitRepos[0]"
+           # - text: git2
+           #   with: "#gitRepos[1]"
+           # - text: git3
+           #   with: "#gitRepos[2]"
+           # - text: workload1
+           #   with: "#workloads[0]"
+           # - text: workload2
+           #   with: "#workloads[1]"
+           # - text: workload3
+           #   with: "#workloads[2]"
+           # - text: registry
+           #   with: "#registry"
     #- includes: [ "supplychain/cf/**" ]
     #  condition: "#supplychain == 'cf'"
     #  chain:
