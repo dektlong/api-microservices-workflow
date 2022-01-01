@@ -28,7 +28,7 @@ metadata:
 spec:
   count: 1
   api:
-    serverUrl: #@ "https://brownfield." + data.values.domain 
+    serverUrl: https://brownfield.example.com 
     title: Micro-gateway to contorl 3rd party/legacy API access
     version: 0.1.0
 #@ if data.values.vaultIntegration:
