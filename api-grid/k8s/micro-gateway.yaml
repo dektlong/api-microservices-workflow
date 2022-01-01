@@ -13,16 +13,16 @@ spec:
     cors:
       allowedOrigins:
         - api-portal.example.com
-#@ if "localdev" in data.values.gwSLA: 
+#@ if data.values.gwSLA == "localdev":
   count: 1
 #@ end
-#@ if "teamdev" in data.values.gwSLA: 
+#@ if data.values.gwSLA == "teamdev":
   count: 2
 #@ end
-#@ if "integration" in data.values.gwSLA: 
+#@ if data.values.gwSLA == "integration":
   count: 3
 #@ end
-#@ if "production" in data.values.gwSLA: 
+#@ if data.values.gwSLA == "production":
   count: 3
 #@ end
 
