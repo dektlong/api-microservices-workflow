@@ -1,17 +1,15 @@
-#@ load("@ytt:data", "data")
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ data.values.artifactId + "-api-portal"
+  name: $(workload.metadata.name)$-api-portal
 spec:
   template:
     metadata:
       labels:
-        app: #@ data.values.artifactId + "-api-portal"
+        app: $(workload.metadata.name)$-api-portal
     spec:
       containers:
-      - name: #@ data.values.artifactId + "-api-portal"
+      - name: $(workload.metadata.name)$-api-portal
         env:
           - name: API_PORTAL_SOURCE_URLS
             value: https://scg-openapi.example.com/openapi 
