@@ -3,12 +3,12 @@
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
-  name: $(workload.metadata.name)$-gateway"
+  name: $(workload.metadata.name)$-gateway
 spec:
   api:
-    serverUrl: #@ "https://" + data.values.artifactId + "." + data.values.domain 
-    title: #@ data.values.artifactId + "-micro-gateway"
-    description: #@ "Micro Gateway to control internal APIs of " + data.values.artifactId
+    serverUrl: https://$(workload.metadata.name)$-gateway.example.com
+    title: $(workload.metadata.name)$ micro gateway
+    description: Micro Gateway to control internal APIs of $(workload.metadata.name)$
     version: 0.1.0
     cors:
       allowedOrigins:
