@@ -13,10 +13,10 @@ spec:
     cors:
       allowedOrigins:
         - api-portal.example.com
-#@ if hasattr(data.values.gwSLA, "localdev"):
-  count: 1
-#@ else:
+#@ if "brownfield" in data.values.gwSLA or "public" in data.values.gwSLA:
   count: 3
+#@ else:
+  count: 1
 #@ end
   sso:
     secret: sso-secret
