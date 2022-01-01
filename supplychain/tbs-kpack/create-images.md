@@ -1,24 +1,10 @@
 create TBS images
 
 ```
-kp image create workload1 -n app-name \
-  --tag registry/app-name/workload1:0.0.1 \
-  --git git1 \
+kp image create myapp -n myapp-ns \
+  --tag myregistry.example.com/myrepo/myapp:0.0.1 \
+  --git mygit \
   --git-revision main \
-  --builder app-name-builder \
-  --wait
-  
-kp image create workload2 -n app-name \
-  --tag registry/app-name/workload2:0.0.1 \
-  --git git2\
-  --git-revision main \
-  --builder app-name-builder \
-  --wait  
-  
-kp image create workload3 -n app-name \
-  --tag registry/app-name/workload3:0.0.1 \
-  --git git2\
-  --git-revision main \
-  --builder app-name-builder \
-  --wait  
+  --builder myapp-builder \
+  --wait 
 ```
