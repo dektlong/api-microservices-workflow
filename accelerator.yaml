@@ -167,20 +167,38 @@ accelerator:
     #      - public
     #  defaultValue:
     #    - scg-openapi.apps.dekt.io/openapi
-    - name: forceRateLimit
-      label: Rate-limits for all routes
-      inputType: checkbox 
-      defaultValue: false
-      dataType: boolean
+    - name: gwSLA
+      label: Micro gateway SLA
+      description: The SLA config of micro-gateway deployed by this supplychain
+      inputType: select
+      dataType: string
+      defaultValue: localdev
+     # dependsOn:
+     #   name: addAPIGrid
+     #   value: true
+      choices:
+        - value: localdev
+          text: "Local development"
+        - value: teamdev
+          text: "Team developemnt (HA)
+        - value: integration
+          text: "Integration (HA, global rate-limits)"
+        - value: production
+          text: "Production (HA, global rate-limits and SSO)"
+   # - name: forceRateLimit
+   #   label: Rate-limits for all routes
+   #   inputType: checkbox 
+   #   defaultValue: false
+   #   dataType: boolean
       #dependsOn:
       #  name: apiAccess
       #  value: 
       #    - brownfield
-    - name: forceSSO
-      label: SSO for all routes
-      inputType: checkbox 
-      defaultValue: false
-      dataType: boolean
+   # - name: forceSSO
+   #   label: SSO for all routes
+   #   inputType: checkbox 
+   #   defaultValue: false
+   #   dataType: boolean
    #   dependsOn:
    #     name: portalScope
    #     value: 
@@ -214,17 +232,17 @@ accelerator:
      #     text: Microsoft
      #   - value: workspaceOne
      #     text: Workspace ONE
-    - name: gwHA
-      label: Deploy HA micro-gateway
-      description:  Micro-gateways requires HA deployment 
-      inputType: checkbox
-      dataType: boolean
+    #- name: gwHA
+    #  label: Deploy HA micro-gateway
+    #  description:  Micro-gateways requires HA deployment 
+    #  inputType: checkbox
+    #  dataType: boolean
       #dependsOn:
       #  name: addAPIGrid
       #  value: true
-      defaultValue: false
+    #  defaultValue: false
     - name: gwMetrics
-      label: API observability
+      label: Add API observability
       description:  Add observability options to gatway
       inputType: checkbox
       dataType: boolean
@@ -232,30 +250,30 @@ accelerator:
       #  name: addAPIGrid
       #  value: true
       defaultValue: false
-    - name: apiScorecards
-      description: URL for API Scorecards dashboard
-      defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
-      dependsOn:
-        name: gwMetrics
-        value: true
-    - name: wavefront
-      label: Tanzu observability
-      description:  Add Tanzu observability configuration to gateway
-      inputType: checkbox
-      dataType: boolean
-      defaultValue: true
-      dependsOn:
-        name: gwMetrics
-        value: true
-    - name: prometheus
-      label: Prometheus service monitor 
-      description:  Add Prometheus service monitor configuration to gateway
-      inputType: checkbox
-      dataType: boolean
-      defaultValue: false
-      dependsOn:
-        name: gwMetrics
-        value: true
+    #- name: apiScorecards
+    #  description: URL for API Scorecards dashboard
+    #  defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
+    #  dependsOn:
+    #    name: gwMetrics
+    #    value: true
+    #- name: wavefront
+    #  label: Tanzu observability
+    #  description:  Add Tanzu observability configuration to gateway
+    #  inputType: checkbox
+    #  dataType: boolean
+    #  defaultValue: true
+    #  dependsOn:
+    #    name: gwMetrics
+    #    value: true
+    #- name: prometheus
+    #  label: Prometheus service monitor 
+    #  description:  Add Prometheus service monitor configuration to gateway
+    #  inputType: checkbox
+    #  dataType: boolean
+    #  defaultValue: false
+    #  dependsOn:
+    #    name: gwMetrics
+    #    value: true
           
  #hidden values
     #- name: domain
