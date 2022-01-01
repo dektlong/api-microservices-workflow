@@ -243,7 +243,7 @@ accelerator:
       #  value: true
       defaultValue: false
     - name: vaultIntegration
-      label: APO key management with Vault
+      label: API key management with Vault
       inputType: checkbox 
       defaultValue: false
       dataType: boolean
