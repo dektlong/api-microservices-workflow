@@ -9,11 +9,13 @@ spec:
     name: $(workload.metadata.name)$-service
     predicates:
       - Header=X-Request-Id
-#@ if "production" in data.values.gwSLA:
-    ssoEnabled: true
-#@ end 
-#@ if "production" in data.values.gwSLA or "integration" in data.values.gwSLA:
+#@ if data.values.gwSLA == "integration":
     filters:
       - RateLimit=2,60s
-#@ end 
+#@ end
+#@ if data.values.gwSLA == "production":
+    ssoEnabled: true
+    filters:
+      - RateLimit=2,60s
+#@ end
   routes: $(sources.source-code.routes)$
