@@ -113,7 +113,6 @@ accelerator:
       dataType: [string]
       defaultValue:
         - core
-        - stress
       #dependsOn:
       #  name: addTesting
       #  value: true
@@ -124,12 +123,7 @@ accelerator:
           text: Data integrations
         - value: api
           text: External APIs
-        - value: stress
-          text: Stress testing
-        - value: pen
-          text: Pen testing
-
-  
+   
 #API-grid configs
    
    #- name: addAPIGrid
