@@ -87,7 +87,7 @@ spec:
           name: app-config
 #@ end
 
-#@ if hasattr(data.values.serviceBinding, "gcp"):
+#@ if data.values.serviceBinding.gcp:
     - name: 5-BIND-GCP-SERVICE
       templateRef:
         kind: ClusterTemplate
