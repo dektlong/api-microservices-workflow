@@ -45,3 +45,34 @@ spec:
           labels:
             release: $(workload.metadata.name)$-prometheus"
 #@ end
+#@ data.values.gwSLA == "integration" or data.values.gwSLA == "production":
+---
+apiVersion: "tanzu.vmware.com/v1"
+kind: SpringCloudGateway
+metadata:
+  name: brownfield-gateway
+spec:
+  count: 1
+  api:
+    serverUrl: https://brownfield.example.com 
+    title: Micro-gateway to contorl 3rd party/legacy API access
+    version: 0.1.0
+    extensions:
+    secretsProviders:
+      - name: vault-jwt-keys
+        vault:
+          roleName: scg-role
+    filter:
+      jwtKey:
+        enabled: true
+        secretsProviderName: vault-jwt-keys   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: brownfield-proxy
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+#@end
