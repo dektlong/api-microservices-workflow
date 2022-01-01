@@ -9,10 +9,10 @@ spec:
     name: $(workload.metadata.name)$-service
     predicates:
       - Header=X-Request-Id
-#@ if hasattr(data.values.gwSLA, "production"):
+#@ if "production" in data.values.gwSLA:
     ssoEnabled: true
 #@ end 
-#@ if hasattr(data.values.gwSLA, "production") or hasattr(data.values.gwSLA, "integration"):
+#@ if "production" in data.values.gwSLA or "integration" in data.values.gwSLA:
     filters:
       - RateLimit=2,60s
 #@ end 
