@@ -184,7 +184,7 @@ accelerator:
         - value: integration
           text: "Integration (HA, global rate-limits)"
         - value: production
-          text: "Production (HA, global rate-limits and SSO)"
+          text: "Production (HA, global rate-limits and global SSO)"
    # - name: forceRateLimit
    #   label: Rate-limits for all routes
    #   inputType: checkbox 
@@ -242,7 +242,7 @@ accelerator:
       #  value: true
     #  defaultValue: false
     - name: gwMetrics
-      label: Add API observability
+      label: Micro-gateway metrics collection
       description:  Add observability options to gatway
       inputType: checkbox
       dataType: boolean
