@@ -41,6 +41,15 @@ accelerator:
        - value: event-topic
          text: Event topic
     
+ #add TBS configs
+    - name: addTBS
+      label: Add Build Service standalone configs
+      description: Add config examples for using TBS without a TAP suppply chain
+      inputType: checkbox 
+      defaultValue: false
+      display: true
+      dataType: boolean
+      
     #workloads repos
     #- name: gitRepos
     #  label: Workloads FQDN repos 
@@ -119,15 +128,7 @@ accelerator:
           text: Stress testing
         - value: pen
           text: Pen testing
-    
-    #add TBS configs
-    - name: addTBS
-      label: Add Build Service standalone configs
-      description: Add config examples for using TBS without a TAP suppply chain
-      inputType: checkbox 
-      defaultValue: false
-      display: true
-      dataType: boolean
+
   
 #API-grid configs
    
@@ -140,12 +141,11 @@ accelerator:
     #  dataType: boolean
    #api-portal  
     - name: apiAccess
-      label: API access policies
-      description: What api groups will be included in API portal
-      inputType: checkbox
-      dataType: [string]
-      defaultValue:
-        - dev
+      label: API access level
+      description: The scope the API access this supplychain enables
+      inputType: select
+      dataType: string
+      defaultValue: dev
      # dependsOn:
      #   name: addAPIGrid
      #   value: true
