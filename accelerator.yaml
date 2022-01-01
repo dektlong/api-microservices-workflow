@@ -139,7 +139,7 @@ accelerator:
     #  defaultValue: false
     #  display: true
     #  dataType: boolean
-   #api-portal  
+
     - name: apiAccess
       label: API access level
       description: The scope the API access this supplychain enables
@@ -204,15 +204,7 @@ accelerator:
    #     value: 
    #       - brownfield
    #       - public
-    #api-gateway
-   # - name: vaultIntegration
-   #   label: Add Vault key-management
-   #   inputType: checkbox 
-   #   defaultValue: false
-   #   dataType: boolean
-      #dependsOn:
-      #  name: addAPIGrid
-      #  value: true
+
    # - name: ssoProvider
    #   label: Identity provider for API SSO
    #   description: SSO identity provider
@@ -250,6 +242,14 @@ accelerator:
       #  name: addAPIGrid
       #  value: true
       defaultValue: false
+    - name: vaultIntegration
+      label: APO key management with Vault
+      inputType: checkbox 
+      defaultValue: false
+      dataType: boolean
+      #dependsOn:
+      #  name: addAPIGrid
+      #  value: true
     #- name: apiScorecards
     #  description: URL for API Scorecards dashboard
     #  defaultValue: https://vmware.wavefront.com/u/xNrc03cJ7L?t=vmware
