@@ -165,7 +165,7 @@ accelerator:
     #    - scg-openapi.apps.dekt.io/openapi
     - name: gwSLA
       label: Micro gateway config and API access level
-      description: The SLA config of micro-gateway deployed by this supplychain
+      description: [Local: single team API access] Team: multiple teams API access, 2 GW intances ; Integration: 
       inputType: select
       dataType: string
       defaultValue: localdev
@@ -174,15 +174,15 @@ accelerator:
      #   value: true
       choices:
         - value: localdev
-          text: "Local development [ GW Config: dev mapping ]  [ API Access: Single team ]"
+          text: "Local development (1 GW instance)"
         - value: teamdev
-          text: "Team developemnt [ GW Config: dev mapping, HA ]  [ API Access: Multiple teams ]"
+          text: "Team developemnt (2 GW instances)"
         - value: integration
-          text: "Integration [ GW Config: prod mapping, HA,force rate-limits ]  [ API Access: Multiple teams + 'Brownfield' ]"
+          text: "Integration (3 GW instances; force rate-limits; 'brownfield' API access)"
         - value: production
-          text: "Production [ GW Config: prod mapping, HA,force rate-limits, force SSO ]  [ API Access: Multiple teams + 'Brownfield' ]"
+          text: "Production (4 GW instances; force rate-limits & SSO; 'brownfield' API access)"
         - value: external
-          text: "public APIs [ GW Config: HA,force rate-limits, force SSO, force key management ]  [ API Access: Approved public enpoints ]"
+          text: "Curated Public APIs (2 GW instances; force rate-limits, SSO & key management)"
    # - name: forceRateLimit
    #   label: Rate-limits for all routes
    #   inputType: checkbox 
