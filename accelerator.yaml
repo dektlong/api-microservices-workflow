@@ -94,9 +94,9 @@ accelerator:
         - value: gcp
           text: Google Marketplace
         - value: tanzuK8s
-          text: App Catalog (K8s services)
+          text: K8s services
         - value: tanzuVM
-          text: On-prem Services (Dedicated VMs)
+          text: Dedicated VMs
 
 #intgration testing
     #- name: addTesting
