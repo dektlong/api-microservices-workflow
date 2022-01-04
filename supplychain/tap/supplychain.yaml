@@ -97,11 +97,21 @@ spec:
           name: app-config
 #@ end
 
-#@ if "tanzu" in data.values.serviceBinding:
-    - name: 5-BIND-TANZU-SERVICE
+#@ if "tanzuK8s" in data.values.serviceBinding:
+    - name: 5-BIND-K8S-SERVICE
       templateRef:
         kind: ClusterTemplate
-        name: tanzu-service-binder-template
+        name: k8s-operator-binder-template
+      configs:
+        - resource: 3-app-config
+          name: app-config
+#@ end    
+
+#@ if "tanzuVM" in data.values.serviceBinding:
+    - name: 5-BIND-VM-SERVICE
+      templateRef:
+        kind: ClusterTemplate
+        name: vm-binder-template
       configs:
         - resource: 3-app-config
           name: app-config
