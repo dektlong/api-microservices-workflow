@@ -165,7 +165,7 @@ accelerator:
     #    - scg-openapi.apps.dekt.io/openapi
     - name: gwSLA
       label: Micro gateway config and API access level
-      description: Team: 2 GW instances, Integrati[Local: single team API access] Team: multiple teams API access, 2 GW intances ; Integration: 
+      description: Define HA, access level, global rate-limits, SSO, key management policies
       inputType: select
       dataType: string
       defaultValue: localdev
