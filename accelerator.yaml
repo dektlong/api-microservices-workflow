@@ -82,7 +82,7 @@ accelerator:
       inputType: checkbox
       dataType: [string]
       defaultValue:
-        - tanzu
+        - tanzuK8s
       #dependsOn:
       #  name: addTesting
       #  value: true
