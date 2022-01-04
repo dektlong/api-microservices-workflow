@@ -23,7 +23,7 @@ spec:
   count: 3
 #@ end
 #@ if data.values.gwSLA == "production":
-  count: 3
+  count: 4
 #@ end
 
   sso:
