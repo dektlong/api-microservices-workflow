@@ -93,9 +93,9 @@ accelerator:
           text: Azure Marketplace
         - value: gcp
           text: Google Marketplace
-        - value: tanzu-k8s
+        - value: tanzuK8s
           text: App Catalog (K8s services)
-        - value: tanzu-VM
+        - value: tanzuVM
           text: On-prem Services (Dedicated VMs)
 
 #intgration testing
