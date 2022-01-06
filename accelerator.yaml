@@ -165,7 +165,7 @@ accelerator:
     #    - scg-openapi.apps.dekt.io/openapi
     - name: gwSLA
       label: Micro gateway config and API access level
-      description: "Local:HA(none),access(local)<BR>Team:HA(2),access(project)<BR>Integration:HA(3),access(brownfield),global-filters(rate-limits) | Production:HA(4),access(brownfield),global-filters(rate-limits+SSO) | Public:HA(2),access(approved public APIs, key management),global-filters(rate-limits+SSO)"
+      description: Define micro-GW HA, global filters and API access scope
       inputType: select
       dataType: string
       defaultValue: localdev
@@ -174,15 +174,15 @@ accelerator:
      #   value: true
       choices:
         - value: localdev
-          text: "Local development"
+          text: "Local development (1 GW, local access only)"
         - value: teamdev
-          text: "Team developemnt"
+          text: "Team developemnt (2 GWs, team access)"
         - value: integration
-          text: "Integration"
+          text: "Integration (3 GWs, brownfiled access, global rate-limits)"
         - value: production
-          text: "Production"
+          text: "Production (4 GWs, brownfield access, global rate-limits and SSO)"
         - value: external
-          text: "Curated Public APIs"
+          text: "Public (2 GWs, external access, global rate-limits, SSO and Key Management)"
    # - name: forceRateLimit
    #   label: Rate-limits for all routes
    #   inputType: checkbox 
