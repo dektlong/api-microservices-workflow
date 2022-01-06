@@ -176,13 +176,13 @@ accelerator:
         - value: localdev
           text: "Local development"
         - value: teamdev
-          text: "Team developemnt (HA)"
+          text: "Team developemnt"
         - value: integration
-          text: "Integrationforce (HA, rate-limits,brownfield access)"
+          text: "Integration"
         - value: production
-          text: "Production (HA,rate-limits, SSO, brownfield access)"
+          text: "Production"
         - value: external
-          text: "Curated Public APIs (HA, rate-limits, SSO ,key management)"
+          text: "Curated Public APIs"
    # - name: forceRateLimit
    #   label: Rate-limits for all routes
    #   inputType: checkbox 
