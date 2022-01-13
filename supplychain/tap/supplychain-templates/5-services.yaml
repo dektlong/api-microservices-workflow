@@ -77,7 +77,8 @@ kind: ClusterTemplate
 metadata:
   name: aws-service-binder-template
 spec:
- # implementation TBC
+ ytt: |
+    #@ "Implementation TBC"
 
 ---
 apiVersion: carto.run/v1alpha1
@@ -85,7 +86,8 @@ kind: ClusterTemplate
 metadata:
   name: azure-service-binder-template
 spec:
- # implementation TBC
+ ytt: |
+    #@ "Implementation TBC"
 
 ---
 apiVersion: carto.run/v1alpha1
@@ -93,7 +95,8 @@ kind: ClusterTemplate
 metadata:
   name: gcp-service-binder-template
 spec:
- # implementation TBC
+ ytt: |
+    #@ "Implementation TBC"
 
 ---
 apiVersion: carto.run/v1alpha1
@@ -101,7 +104,8 @@ kind: ClusterTemplate
 metadata:
   name: k8s-operator-binder-template
 spec:
- # implementation TBC
+ ytt: |
+    #@ "Implementation TBC"
 
 ---
 apiVersion: carto.run/v1alpha1
@@ -109,6 +113,7 @@ kind: ClusterTemplate
 metadata:
   name: vm-binder-template
 spec:
- # implementation TBC
+ ytt: |
+    #@ "Implementation TBC"
     
    
