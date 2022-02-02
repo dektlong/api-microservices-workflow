@@ -164,7 +164,7 @@ accelerator:
     #  defaultValue:
     #    - scg-openapi.apps.dekt.io/openapi
     - name: gwSLA
-      label: Micro gateway config and API access level
+      label: API boundaries / domains 
       description: Define micro-GW HA, global filters and API access scope
       inputType: select
       dataType: string
