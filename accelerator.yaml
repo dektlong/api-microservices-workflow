@@ -49,8 +49,8 @@ accelerator:
       defaultValue: false
       display: true
       dataType: boolean
-      
-    #workloads repos
+
+#workloads repos
     #- name: gitRepos
     #  label: Workloads FQDN repos 
     #  description: A seprate git repo for every workload in this supply chain type
@@ -231,14 +231,25 @@ accelerator:
       #  name: addAPIGrid
       #  value: true
     #  defaultValue: false
+    
+#metrics integrations
+    
+    - name: addTO
+      label: Add Platform Observabilty   
+      description: Select the scope of observability integration to platoform components
+      inputType: checkbox 
+      defaultValue: false
+      display: true
+      dataType: boolean
+      
     - name: gwMetrics
       label: Micro-gateway metrics collection
-      description:  Add observability options to gatway
+      description:  Add observability options to gatway to be
       inputType: checkbox
       dataType: boolean
-      #dependsOn:
-      #  name: addAPIGrid
-      #  value: true
+      dependsOn:
+        name: addTO
+        value: true
       defaultValue: false
     #- name: vaultIntegration
     #  label: API key management with Vault
