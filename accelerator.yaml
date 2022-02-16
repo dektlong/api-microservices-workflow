@@ -82,21 +82,24 @@ accelerator:
       inputType: checkbox
       dataType: [string]
       defaultValue:
-        - tanzuK8s
+        - k8sPostgresSQL
+        - k8sRabbitMQ
       #dependsOn:
       #  name: addTesting
       #  value: true
       choices:
-        - value: aws
-          text: AWS Marketplace
-        - value: azure
-          text: Azure Marketplace
-        - value: gcp
-          text: Google Marketplace
-        - value: tanzuK8s
-          text: K8s services
-        - value: tanzuVM
-          text: Dedicated VMs
+        - value: rdsPostgresCrossplane
+          text: RDS PostgresSQL with Crossplane
+        - value: azureSQLvRealize
+          text: Azure SQL with vRealize
+        - value: gcpSQLSidecar
+          text: Google Cloud SQL with Sidecar
+        - value: k8sRabbitMQ
+          text: On-cluster RabbitMQ Operator
+        - value: k8sPostgresSQL
+          text: On-cluster PostgresSQL Operator
+        - value: vmPostgresvRealize
+          text: PostgresSQL on a dedicated VMs with vRealize
 
 #intgration testing
     #- name: addTesting
