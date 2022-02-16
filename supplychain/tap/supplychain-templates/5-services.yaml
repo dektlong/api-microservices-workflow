@@ -1,10 +1,3 @@
-#
-# Tempalte for binding to an on-cluster RabbitMQ instance
-#
-# Assumptions:
-# 1. RabbitMQ Operator installed
-# 2. RabbitMQ service instance provisioned
-#
 apiVersion: carto.run/v1alpha1
 kind: ClusterTemplate
 metadata:
@@ -13,7 +6,14 @@ spec:
   ytt: |
     #@ load("@ytt:data", "data")
     #@ load("@ytt:yaml", "yaml")
-
+    
+    !@ Binding to an on-cluster RabbitMQ using Tanzu Services Toolkit
+    !@
+    !@ Assumptions:
+    !@ 1. RabbitMQ Operator installed
+    !@ 2. RabbitMQ service instance provisioned
+    !@
+    
     #@ def delivery():
     apiVersion: serving.knative.dev/v1
     kind: Service
