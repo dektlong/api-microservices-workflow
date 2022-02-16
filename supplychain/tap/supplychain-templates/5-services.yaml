@@ -79,37 +79,23 @@ spec:
       serviceclaims.yml: #@ yaml.encode(claims())
       #@ end
 ---
-
-#
-# Tempalte for binding to an on-cluster PostgresSQL instance
-#
-# Assumptions:
-# 1. PostgresSQL Operator installed
-# 2. PostgresSQL service instance provisioned
-#
-apiVersion: carto.run/v1alpha1
-kind: ClusterTemplate
-metadata:
-  name: k8s-postgres-binder-template
-spec:
-  ytt: |
-    #@ "Implementation TBC"
----
-
-#
-# Tempalte for binding to RDS PostgresSQL instance using Crossplane
-#
-# Assumptions:
-# 1. Crossplane installed
-# 2. ProviderConfig CRD configured to RDS
-# 3. PostgreSQLInstance instance provisioned
-#
-apiVersion: carto.run/v1alpha1
+piVersion: carto.run/v1alpha1
 kind: ClusterTemplate
 metadata:
   name: rds-postgres-binder-template
 spec:
   ytt: |
+    #@ load("@ytt:data", "data")
+    #@ load("@ytt:yaml", "yaml")
+    
+    !@ Tempalte for binding to RDS PostgresSQL instance using Crossplane
+    !@
+    !@ Assumptions:
+    !@ 1. Crossplane installed
+    !@ 2. ProviderConfig CRD configured to RDS
+    !@ 3. PostgreSQLInstance instance provisioned
+    !@
+
     apiVersion: apiextensions.crossplane.io/v1
     kind: Composition
     metadata:
