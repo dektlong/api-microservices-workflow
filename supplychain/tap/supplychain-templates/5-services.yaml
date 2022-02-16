@@ -88,7 +88,7 @@ spec:
     #@ load("@ytt:data", "data")
     #@ load("@ytt:yaml", "yaml")
     
-    !@ Tempalte for binding to RDS PostgresSQL instance using Crossplane
+    !@ Binding to RDS PostgresSQL instance using Crossplane
     !@
     !@ Assumptions:
     !@ 1. Crossplane installed
