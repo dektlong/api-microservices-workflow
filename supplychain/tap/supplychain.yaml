@@ -67,51 +67,61 @@ spec:
           name: app-config
           
       
-#@ if "aws" in data.values.serviceBinding:
-    - name: 5-BIND-AWS-SERVICE
+#@ if "rdsPostgres" in data.values.serviceBinding:
+    - name: 5-BIND-RDS-POSTGRESSQL
       templateRef:
         kind: ClusterTemplate
-        name: aws-service-binder-template
+        name: rds-postgres-binder-template
       configs:
         - resource: 3-app-config
           name: app-config
 #@ end    
 
-#@ if "azure" in data.values.serviceBinding:
-    - name: 5-BIND-AZURE-SERVICE
+#@ if "azureSQL" in data.values.serviceBinding:
+    - name: 5-BIND-AZURE-SQL
       templateRef:
         kind: ClusterTemplate
-        name: azure-service-binder-template
+        name: azure-sql-binder-template
       configs:
         - resource: 3-app-config
           name: app-config
 #@ end
 
-#@ if "gcp" in data.values.serviceBinding:
-    - name: 5-BIND-GCP-SERVICE
+#@ if "gcpSQL" in data.values.serviceBinding:
+    - name: 5-BIND-GCP-CLOUDSQL
       templateRef:
         kind: ClusterTemplate
-        name: gcp-service-binder-template
+        name: gcp-cloudql-service-binder-template
       configs:
         - resource: 3-app-config
           name: app-config
 #@ end
 
-#@ if "tanzuK8s" in data.values.serviceBinding:
-    - name: 5-BIND-K8S-SERVICE
+#@ if "k8sRabbitMQ" in data.values.serviceBinding:
+    - name: 5-BIND-K8S-RABBITMQ
       templateRef:
         kind: ClusterTemplate
-        name: k8s-operator-binder-template
+        name: k8s-rabbitmq-binder-template
       configs:
         - resource: 3-app-config
           name: app-config
-#@ end    
+#@ end
 
-#@ if "tanzuVM" in data.values.serviceBinding:
-    - name: 5-BIND-VM-SERVICE
+#@ if "k8sPostgresSQL" in data.values.serviceBinding:
+    - name: 5-BIND-K8S-POSTGRESSQL
       templateRef:
         kind: ClusterTemplate
-        name: vm-binder-template
+        name: k8s-postgres-binder-template
+      configs:
+        - resource: 3-app-config
+          name: app-config
+#@ end   
+
+#@ if "vmPostgresSQL" in data.values.serviceBinding:
+    - name: 5-BIND-VM-POSTGRESSQL
+      templateRef:
+        kind: ClusterTemplate
+        name: vm-postgres-binder-template
       configs:
         - resource: 3-app-config
           name: app-config
