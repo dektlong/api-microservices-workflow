@@ -9,7 +9,7 @@ spec:
     
     !@ Binding to an on-cluster RabbitMQ using Tanzu Services Toolkit
     !@
-    !@ Assumptions:
+    !@ Assumptions
     !@ 1. RabbitMQ Operator installed
     !@ 2. RabbitMQ service instance provisioned
     !@
@@ -90,7 +90,7 @@ spec:
     
     !@ Binding to RDS PostgresSQL instance using Crossplane
     !@
-    !@ Assumptions:
+    !@ Assumptions
     !@ 1. Crossplane installed
     !@ 2. ProviderConfig CRD configured to RDS
     !@ 3. PostgreSQLInstance instance provisioned
