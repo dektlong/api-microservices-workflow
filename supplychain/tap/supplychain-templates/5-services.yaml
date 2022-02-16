@@ -92,7 +92,7 @@ spec:
     !@
     !@ Assumptions
     !@ 1. Crossplane installed
-    !@ 2. ProviderConfig CRD configured to RDS
+    !@ 2. ProviderConfig configured to RDS
     !@ 3. PostgreSQLInstance instance provisioned
     !@
 
@@ -114,13 +114,7 @@ spec:
         kind: RDSInstance
         spec:
           forProvider:
-            region: us-east-1
-            dbInstanceClass: db.t2.small
-            masterUsername: masteruser
-            engine: postgres
-            engineVersion: "12"
-            skipFinalSnapshotBeforeDeletion: true
-            publiclyAccessible: true
+            - fromFieldPath: "metadata.providerInfo"
           writeConnectionSecretToRef:
             namespace: crossplane-system
         patches:
