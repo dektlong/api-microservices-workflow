@@ -88,18 +88,18 @@ accelerator:
       #  name: addTesting
       #  value: true
       choices:
-        - value: rdsPostgresCrossplane
-          text: RDS PostgresSQL with Crossplane
-        - value: azureSQLvRealize
-          text: Azure SQL with vRealize
-        - value: gcpSQLSidecar
-          text: Google Cloud SQL with Sidecar
+        - value: rdsPostgres
+          text: RDS PostgresSQL
+        - value: azureSQL
+          text: Azure SQL
+        - value: gcpSQL
+          text: Google Cloud SQL
         - value: k8sRabbitMQ
-          text: On-cluster RabbitMQ Operator
+          text: On-cluster RabbitMQ
         - value: k8sPostgresSQL
-          text: On-cluster PostgresSQL Operator
-        - value: vmPostgresvRealize
-          text: PostgresSQL on a dedicated VMs with vRealize
+          text: On-cluster PostgresSQL
+        - value: vmPostgresSQL
+          text: PostgresSQL on a dedicated VM
 
 #intgration testing
     #- name: addTesting
