@@ -99,35 +99,41 @@ spec:
     apiVersion: apiextensions.crossplane.io/v1
     kind: Composition
     metadata:
-      name: rdsPostgres-crossplane-connector
-    labels:
-      provider: aws
+      name: dekt-rds-postgres
+      labels:
+        provider: dekt-provider-aws
+        vpc: dekt-vpc-data-services
     spec:
       writeConnectionSecretsToNamespace: crossplane-system
-    compositeTypeRef:
-      apiVersion: database.example.org/v1alpha1
-      kind: XPostgreSQLInstance
+      compositeTypeRef:
+        apiVersion: database.example.org/v1alpha1
+        kind: CompositePostgreSQLInstance
       resources:
-        - name: #@ data.values.workload.metadata.name + '-' + data.values.workload.metadata.dbName
-      base:
-        apiVersion: database.aws.crossplane.io/v1beta1
-        kind: RDSInstance
-        spec:
-          forProvider:
-            - fromFieldPath: "metadata.providerInfo"
-          writeConnectionSecretToRef:
-            namespace: crossplane-system
-        patches:
-          - fromFieldPath: "metadata.uid"
-            toFieldPath: "spec.writeConnectionSecretToRef.name"
-            transforms:
-              - type: string
-                string:
-                  fmt: "%s-postgresql"
-          - fromFieldPath: "spec.parameters.storageGB"
-            toFieldPath: "spec.forProvider.allocatedStorage"
-        connectionDetails:
-          - fromConnectionSecretKey: username
-          - fromConnectionSecretKey: password
-          - fromConnectionSecretKey: endpoint
-          - fromConnectionSecretKey: port
+        - name: rdsinstance
+          base:
+            apiVersion: database.aws.crossplane.io/v1beta1
+            kind: RDSInstance
+            spec:
+              providerConfigRef:
+                name: dekt-provider-aws
+              forProvider:
+                dbInstanceClass: db.t3.medium
+                engine: postgres
+                engineVersion: "13"
+              writeConnectionSecretToRef:
+                namespace: crossplane-system
+                name: rds-postgres-creds
+          patches:
+            - fromFieldPath: "metadata.uid"
+              toFieldPath: "spec.writeConnectionSecretToRef.name"
+              transforms:
+                - type: string
+                  string:
+                    fmt: "%s-postgresql"
+            - fromFieldPath: "spec.parameters.storageGB"
+              toFieldPath: "spec.forProvider.allocatedStorage"
+          connectionDetails:
+            - fromConnectionSecretKey: username
+            - fromConnectionSecretKey: password
+            - fromConnectionSecretKey: endpoint
+            - fromConnectionSecretKey: port
