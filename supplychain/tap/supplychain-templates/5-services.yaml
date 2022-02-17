@@ -109,7 +109,7 @@ spec:
         apiVersion: database.example.org/v1alpha1
         kind: CompositePostgreSQLInstance
       resources:
-        - name: rdsinstance
+        - name: data.values.workload.metadata.dbName
           base:
             apiVersion: database.aws.crossplane.io/v1beta1
             kind: RDSInstance
