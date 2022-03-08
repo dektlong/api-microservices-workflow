@@ -108,7 +108,7 @@ accelerator:
         - value: vmPostgresSQL
           text: PostgresSQL on a dedicated VM
 
-intgration testing
+#intgration testing
     - name: addTesting
       label: Add integration testing
       description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
