@@ -77,6 +77,12 @@ accelerator:
          text: Source and image
                
 #data services binding
+    - name: addBinding
+      label: Add data services binding
+      description: Add a data services binding phase
+      inputType: checkbox 
+      defaultValue: false
+      dataType: boolean
     - name: serviceBinding
       label: Service binding scope
       description: Select which type of data services to bind to
@@ -85,9 +91,9 @@ accelerator:
       defaultValue:
         - k8sPostgresSQL
         - k8sRabbitMQ
-      #dependsOn:
-      #  name: addTesting
-      #  value: true
+      dependsOn:
+        name: addBinding
+        value: true
       choices:
         - value: rdsPostgres
           text: RDS PostgresSQL
@@ -102,16 +108,13 @@ accelerator:
         - value: vmPostgresSQL
           text: PostgresSQL on a dedicated VM
 
-#intgration testing
-    #- name: addTesting
-    #  label: Add integration testing
-    #  description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
-    #  inputType: checkbox 
-    #  defaultValue: false
-    #  dataType: boolean
-      #dependsOn:
-      #  name: supplychain
-      #  value: tap
+intgration testing
+    - name: addTesting
+      label: Add integration testing
+      description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
+      inputType: checkbox 
+      defaultValue: false
+      dataType: boolean
     - name: testScope
       label: Integration testing scope
       description: Select scope of testing in your pipeline
@@ -119,9 +122,9 @@ accelerator:
       dataType: [string]
       defaultValue:
         - core
-      #dependsOn:
-      #  name: addTesting
-      #  value: true
+      dependsOn:
+        name: addTesting
+        value: true
       choices:
         - value: core
           text: Core functionality
