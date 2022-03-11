@@ -54,7 +54,7 @@ accelerator:
       label: Testing logic source
       description: Select the source provider fo the testing logic
       inputType: select
-      defaultValue: 
+      defaultValue: app
       dependsOn:
         name: addTesting
         value: true
