@@ -57,7 +57,7 @@ accelerator:
       defaultValue: 
       dependsOn:
         name: addTesting
-        choices:
+      choices:
         - value: app
           text: Application source repo (as defined in the workload.yml)
         - value: central
@@ -65,7 +65,6 @@ accelerator:
         - value: external
           text: External testing framework (must be defined in the pipeline spec)
    
-
 #workloads repos
     #- name: gitRepos
     #  label: Workloads FQDN repos 
@@ -263,7 +262,7 @@ accelerator:
       dataType: [string]
       defaultValue:
         - core
-      dependsOn:
+       dependsOn:
         name: addObservability
         value: true
       choices:
