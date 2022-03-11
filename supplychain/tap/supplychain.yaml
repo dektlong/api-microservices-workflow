@@ -74,69 +74,63 @@ spec:
       name: convention-template
   
   #@ if "rdsPostgres" in data.values.serviceBinding:
-    - name: BIND-RDS-POSTGRES
-      configs:
-      - name: config
-        resource: config-provider
-      name: app-config
-      templateRef:
-        kind: ClusterConfigTemplate
-        name: rds-postgres-binder-template
+   - name: BIND-RDS-POSTGRES
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+      kind: ClusterConfigTemplate
+      name: rds-postgres-binder-template
 #@ end    
 
 #@ if "azureSQL" in data.values.serviceBinding:
-    - name: BIND-AZURE-SQL
-      configs:
-      - name: config
-        resource: config-provider
-      name: app-config
-      templateRef:
-        kind: ClusterConfigTemplate
-        name: azure-sql-binder-template
+   - name: BIND-AZURE-SQL
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+       kind: ClusterConfigTemplate
+       name: azure-sql-binder-template
 #@ end
 
 #@ if "gcpSQL" in data.values.serviceBinding:
-    - name: BIND-GCP-SQL
-      configs:
-      - name: config
-        resource: config-provider
-      name: app-config
-      templateRef:
-        kind: ClusterConfigTemplate
-        name: gcp-sql-binder-template
+   - name: BIND-GCP-SQL
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+      kind: ClusterConfigTemplate
+      name: gcp-sql-binder-template
 #@ end
 
 #@ if "k8sRabbitMQ" in data.values.serviceBinding:
-    - name: BIND-CLUSTER-RABBITMQ
-      configs:
-      - name: config
-        resource: config-provider
-      name: app-config
-      templateRef:
-        kind: ClusterConfigTemplate
-        name: cluster-rabbitmq-binder-template
+   - name: BIND-CLUSTER-RABBITMQ
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+      kind: ClusterConfigTemplate
+      name: cluster-rabbitmq-binder-template
 #@ end
 
 #@ if "k8sPostgresSQL" in data.values.serviceBinding:
-    - name: BIND-CLUSTER-POSTGRESQL
-      configs:
-      - name: config
-        resource: config-provider
-      name: app-config
-      templateRef:
-        kind: ClusterConfigTemplate
-        name: cluster-postgres-binder-template
+   - name: BIND-CLUSTER-POSTGRESQL
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+      kind: ClusterConfigTemplate
+      name: cluster-postgres-binder-template
 #@ end   
 
 #@ if "vmPostgresSQL" in data.values.serviceBinding:
-    - name: BIND-VM-POSTGRESQL
-      configs:
-      - name: config
-        resource: config-provider
-      name: app-config
-      templateRef:
-        kind: ClusterConfigTemplate
-        name: vm-postgres-binder-template
+   - name: BIND-VM-POSTGRESQL
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+       kind: ClusterConfigTemplate
+       name: vm-postgres-binder-template
   #@ end
   - name: CONFIG-WRITER
     configs:
