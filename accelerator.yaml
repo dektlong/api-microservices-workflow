@@ -264,7 +264,7 @@ accelerator:
       dataType: [string]
       defaultValue:
         - core
-       dependsOn:
+      dependsOn:
         name: addObservability
         value: true
       choices:
