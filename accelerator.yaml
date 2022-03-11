@@ -102,7 +102,7 @@ accelerator:
       inputType: checkbox
       dataType: [string]
       defaultValue: 
-        - onCluster
+        - tap
       dependsOn:
         name: addBinding
         value: true
