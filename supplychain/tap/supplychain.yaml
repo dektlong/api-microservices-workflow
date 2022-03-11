@@ -31,6 +31,7 @@ spec:
       kind: ClusterSourceTemplate
       name: testing-pipeline
   #@ end
+  #@ if data.values.addScanning:
   - name: SOURCE-SCANNER
     sources:
     - name: source
@@ -38,6 +39,7 @@ spec:
     templateRef:
       kind: ClusterSourceTemplate
       name: source-scanner-template
+  #@
   - name: IMAGE-BUILDER
     params:
     - name: serviceAccount
@@ -50,7 +52,7 @@ spec:
     templateRef:
       kind: ClusterImageTemplate
       name: kpack-template
-#@ if data.values.scanScope == "srcImg":   
+  #@ if data.values.addScanning:
   - name: IMAGE-SCANNER
     images:
     - name: image
@@ -58,7 +60,7 @@ spec:
     templateRef:
       kind: ClusterImageTemplate
       name: image-scanner-template
-  #@
+  #@ end
   - name: CONFIG-PROVIDER
     images:
     - name: image
