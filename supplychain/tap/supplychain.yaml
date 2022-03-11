@@ -65,7 +65,6 @@ spec:
     images:
     - name: image
       resource: image-scanner
-    name: config-provider
     params:
     - name: serviceAccount
       value: default
