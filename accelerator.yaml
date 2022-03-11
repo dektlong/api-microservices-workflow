@@ -35,12 +35,12 @@ accelerator:
      #   name: supplychain
       #  value: tap
       choices:
-       - value: web
-         text: Web frontend
-       - value: web-backend
-         text: Web backend 
-       - value: event-topic
-         text: Event topic
+      - value: web
+        text: Web frontend
+      - value: web-backend
+        text: Web backend 
+      - value: event-topic
+        text: Event topic
     
  #testing phase 
     - name: addTesting
@@ -57,13 +57,14 @@ accelerator:
       defaultValue: 
       dependsOn:
         name: addTesting
+        value: true
       choices:
-        - value: app
+      - value: app
           text: Application source repo (as defined in the workload.yml)
-        - value: central
-          text: UAT testing framework
-        - value: external
-          text: External testing framework (must be defined in the pipeline spec)
+      - value: central
+        text: UAT testing framework
+      - value: external
+        text: External testing framework (must be defined in the pipeline spec)
    
 #workloads repos
     #- name: gitRepos
@@ -90,22 +91,23 @@ accelerator:
       defaultValue: src
       dependsOn:
         name: addScanning
+        value: true
       dataType: [string]
       defaultValue:
         - critical
       choices:
-        - value: Low
-          text: Low
-        - value: Medium
-          text: Medium
-        - value: High
-          text: High
-        - value: Critical
-          text: Critical
-        - value: Negligible
-          text: Negligible
-        - value: UnknownSeverity
-          text: Unknown Severity
+      - value: Low
+        text: Low
+      - value: Medium
+        text: Medium
+      - value: High
+        text: High
+      - value: Critical
+        text: Critical
+      - value: Negligible
+        text: Negligible
+      - value: UnknownSeverity
+        text: Unknown Severity
                
 #data services binding
     - name: addBinding
