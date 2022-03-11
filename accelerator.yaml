@@ -42,14 +42,29 @@ accelerator:
        - value: event-topic
          text: Event topic
     
- #add TBS configs
-    - name: addTBS
-      label: Add Build Service standalone configs
-      description: Add config examples for using TBS without a TAP suppply chain
+ #testing phase 
+    - name: addTesting
+      label: Add functionality testing
       inputType: checkbox 
       defaultValue: false
       display: true
       dataType: boolean
+    
+    - name: testSource
+      label: Testing logic source
+      description: Select the source provider fo the testing logic
+      inputType: select
+      defaultValue: 
+      dependsOn:
+        name: addTesting
+        choices:
+        - value: app
+          text: Application source repo (as defined in the workload.yml)
+        - value: central
+          text: UAT testing framework
+        - value: external
+          text: External testing framework (must be defined in the pipeline spec)
+   
 
 #workloads repos
     #- name: gitRepos
@@ -61,20 +76,37 @@ accelerator:
     #  defaultValue:
     #    - https://github.com/dektlong/workload1
 
-#scanning
-    - name: scanScope
-      label: Scanning scope
-      description: Select the scope of your scanning
+#scanning phase
+    - name: addScanning
+      label: Add source and image scanning
+      inputType: checkbox 
+      defaultValue: false
+      display: true
+      dataType: boolean
+      
+    - name: scanPolicy
+      label: Violating severities
+      description: Select what severities will result in scanning failure 
       inputType: select
       defaultValue: src
-      #dependsOn:
-      #  name: supplychain
-      #  value: tap
+      dependsOn:
+        name: addScanning
+      dataType: [string]
+      defaultValue:
+        - critical
       choices:
-       - value: src
-         text: Source only
-       - value: srcImg
-         text: Source and image
+        - value: Low
+          text: Low
+        - value: Medium
+          text: Medium
+        - value: High
+          text: High
+        - value: Critical
+          text: Critical
+        - value: Negligible
+          text: Negligible
+        - value: UnknownSeverity
+          text: Unknown Severity
                
 #data services binding
     - name: addBinding
@@ -107,31 +139,7 @@ accelerator:
         - value: vmPostgresSQL
           text: PostgresSQL on a dedicated VM
 
-#intgration testing
-    - name: addTesting
-      label: Add integration testing
-      description: Add a pipeline to run pre-prod testing (the pipeline tool was pre-configured for you by the central ops team)
-      inputType: checkbox 
-      defaultValue: false
-      dataType: boolean
-    - name: testScope
-      label: Integration testing scope
-      description: Select scope of testing in your pipeline
-      inputType: checkbox
-      dataType: [string]
-      defaultValue:
-        - core
-      dependsOn:
-        name: addTesting
-        value: true
-      choices:
-        - value: core
-          text: Core functionality
-        - value: data
-          text: Data integrations
-        - value: api
-          text: External APIs
-   
+  
 #API-grid configs
    
    #- name: addAPIGrid
