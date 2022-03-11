@@ -87,14 +87,14 @@ accelerator:
     - name: scanPolicy
       label: Violating severities
       description: Select what severities will result in scanning failure 
-      inputType: select
-      defaultValue: src
+      inputType: checkbox
       dependsOn:
         name: addScanning
         value: true
       dataType: [string]
       defaultValue:
-        - critical
+        - Critical
+        - High
       choices:
       - value: Low
         text: Low
