@@ -8,32 +8,12 @@ accelerator:
 
   options:
   
-  #supplychain selection
-   # - name: supplychain
-   #   inputType: select
-   #   label: Supply chain 
-   #   description: Generated configuration for the DevOps supply chain
-   #   required: true
-      #defaultValue: tap
-   #   choices:
-   #     - value: k8s
-   #       text: k8s + Skaffold
-   #     - value: tbs
-   #       text: Build Service + CRDs
-   #     - value: cf
-   #       text: Tanzu Application Service manifest
-   #     - value: tap
-   #       text: Tanzu Application Platform supply-chain
- 
  # workload type
     - name: workloadType
       label: Workload type
       description: Select the workload type for this supply chain
       inputType: select
       defaultValue: web
-    #  dependsOn:
-     #   name: supplychain
-      #  value: tap
       choices:
       - value: web
         text: Web frontend
@@ -118,28 +98,21 @@ accelerator:
       dataType: boolean
     - name: serviceBinding
       label: Service binding scope
-      description: Select which type of data services to bind to
+      description: Select the scope of the service binding phase
       inputType: checkbox
       dataType: [string]
-      defaultValue:
-        - k8sRabbitMQ
+      defaultValue: 
+        - onCluster
       dependsOn:
         name: addBinding
         value: true
       choices:
-        - value: rdsPostgres
-          text: RDS PostgresSQL
-        - value: azureSQL
-          text: Azure SQL
-        - value: gcpSQL
-          text: Google Cloud SQL
-        - value: k8sRabbitMQ
-          text: On-cluster RabbitMQ
-        - value: k8sPostgresSQL
-          text: On-cluster PostgresSQL
-        - value: vmPostgresSQL
-          text: PostgresSQL on a dedicated VM
-
+        - value: tap
+          text: Data services running on TAP clusters (via Services Toolkit)
+        - value: externalPrivate
+          text: Data services running on-prem on non TAP clusters (requires a custom template)
+        - value: externalPublic
+          text: Data services running on pubblic clouds (requires a custom template)
   
 #API-grid configs
    
