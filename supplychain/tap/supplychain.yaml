@@ -72,8 +72,7 @@ spec:
     templateRef:
       kind: ClusterConfigTemplate
       name: convention-template
-  
-   - name: CONFIG-WRITER
+  - name: CONFIG-WRITER
     configs:
     - name: config
       resource: app-config
@@ -83,7 +82,6 @@ spec:
     templateRef:
       kind: ClusterTemplate
       name: config-writer-template
-
   params:
   - default: main
     name: gitops_branch
