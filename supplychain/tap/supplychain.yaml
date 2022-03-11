@@ -15,8 +15,6 @@ spec:
   resources:
   - name: SOURCE-PROVIDER
     params:
-    - name: serviceAccount
-      value: default
     - name: gitImplementation
       value: go-git
     templateRef:
@@ -42,8 +40,6 @@ spec:
   #@ end
   - name: IMAGE-BUILDER
     params:
-    - name: serviceAccount
-      value: default
     - name: clusterBuilder
       value: default
     sources:
@@ -61,23 +57,45 @@ spec:
       kind: ClusterImageTemplate
       name: image-scanner-template
   #@ end
-  - name: CONFIG-PROVIDER
+  - name: POD-CONVENSIONS
     images:
     - name: image
       resource: image-scanner
-    params:
-    - name: serviceAccount
-      value: default
-    templateRef:
+     templateRef:
       kind: ClusterConfigTemplate
       name: convention-template
+   #@ if "tap" in data.values.serviceBinding:
+   - name: TAP-SERVICE-CLAIMS-BINDING
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+      kind: ClusterConfigTemplate
+      name: service-claims-binder-template
+  #@ end    
+   #@ if "externalPrivate" in data.values.serviceBinding:
+   - name: EXTERNAL-PRIVATE-BINDING
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+      kind: ClusterConfigTemplate
+      name: external-private-binder-template
+  #@ end    
+  #@ if "externalPublic" in data.values.serviceBinding:
+   - name: EXTERNAL-PUBLIC-BINDING
+     configs:
+     - name: config
+       resource: config-provider
+     templateRef:
+      kind: ClusterConfigTemplate
+      name: external-public-binder-template
+  #@ end    
   - name: CONFIG-WRITER
     configs:
     - name: config
       resource: app-config
     params:
-    - name: serviceAccount
-      value: default
     templateRef:
       kind: ClusterTemplate
       name: config-writer-template
