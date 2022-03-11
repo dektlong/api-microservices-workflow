@@ -72,14 +72,72 @@ spec:
     templateRef:
       kind: ClusterConfigTemplate
       name: convention-template
-  - name: APP-CONFIG
-    configs:
-    - name: config
-      resource: config-provider
-    name: app-config
-    templateRef:
-      kind: ClusterConfigTemplate
-      name: config-template
+  
+  #@ if "rdsPostgres" in data.values.serviceBinding:
+    - name: BIND-RDS-POSTGRES
+      configs:
+      - name: config
+        resource: config-provider
+      name: app-config
+      templateRef:
+        kind: ClusterConfigTemplate
+        name: rds-postgres-binder-template
+#@ end    
+
+#@ if "azureSQL" in data.values.serviceBinding:
+    - name: BIND-AZURE-SQL
+      configs:
+      - name: config
+        resource: config-provider
+      name: app-config
+      templateRef:
+        kind: ClusterConfigTemplate
+        name: azure-sql-binder-template
+#@ end
+
+#@ if "gcpSQL" in data.values.serviceBinding:
+    - name: BIND-GCP-SQL
+      configs:
+      - name: config
+        resource: config-provider
+      name: app-config
+      templateRef:
+        kind: ClusterConfigTemplate
+        name: gcp-sql-binder-template
+#@ end
+
+#@ if "k8sRabbitMQ" in data.values.serviceBinding:
+    - name: BIND-CLUSTER-RABBITMQ
+      configs:
+      - name: config
+        resource: config-provider
+      name: app-config
+      templateRef:
+        kind: ClusterConfigTemplate
+        name: cluster-rabbitmq-binder-template
+#@ end
+
+#@ if "k8sPostgresSQL" in data.values.serviceBinding:
+    - name: BIND-CLUSTER-POSTGRESQL
+      configs:
+      - name: config
+        resource: config-provider
+      name: app-config
+      templateRef:
+        kind: ClusterConfigTemplate
+        name: cluster-postgres-binder-template
+#@ end   
+
+#@ if "vmPostgresSQL" in data.values.serviceBinding:
+    - name: BIND-VM-POSTGRESQL
+      configs:
+      - name: config
+        resource: config-provider
+      name: app-config
+      templateRef:
+        kind: ClusterConfigTemplate
+        name: vm-postgres-binder-template
+  #@ end
   - name: CONFIG-WRITER
     configs:
     - name: config
@@ -90,97 +148,6 @@ spec:
     templateRef:
       kind: ClusterTemplate
       name: config-writer-template
-
-      
-#@ if "rdsPostgres" in data.values.serviceBinding:
-    - name: 5-BIND-RDS-POSTGRESSQL
-      templateRef:
-        kind: ClusterTemplate
-        name: rds-postgres-binder-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end    
-
-#@ if "azureSQL" in data.values.serviceBinding:
-    - name: 5-BIND-AZURE-SQL
-      templateRef:
-        kind: ClusterTemplate
-        name: azure-sql-binder-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end
-
-#@ if "gcpSQL" in data.values.serviceBinding:
-    - name: 5-BIND-GCP-CLOUDSQL
-      templateRef:
-        kind: ClusterTemplate
-        name: gcp-cloudql-service-binder-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end
-
-#@ if "k8sRabbitMQ" in data.values.serviceBinding:
-    - name: 5-BIND-K8S-RABBITMQ
-      templateRef:
-        kind: ClusterTemplate
-        name: k8s-rabbitmq-binder-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end
-
-#@ if "k8sPostgresSQL" in data.values.serviceBinding:
-    - name: 5-BIND-K8S-POSTGRESSQL
-      templateRef:
-        kind: ClusterTemplate
-        name: k8s-postgres-binder-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end   
-
-#@ if "vmPostgresSQL" in data.values.serviceBinding:
-    - name: 5-BIND-VM-POSTGRESSQL
-      templateRef:
-        kind: ClusterTemplate
-        name: vm-postgres-binder-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end    
-
-#@ if "core" in data.values.testScope:
-    - name: 6-TEST-CORE
-      templateRef:
-        kind: PipelineTemplate
-        name: core-testing-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end  
-
-#@ if "data" in data.values.testScope:
-    - name: 6-TEST-DATA
-      templateRef:
-        kind: PipelineTemplate
-        name: data-testing-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end  
-
-#@ if "api" in data.values.testScope:
-    - name: 6-TEST-API
-      templateRef:
-        kind: PipelineTemplate
-        name: api-testing-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-#@ end
 
   params:
   - default: main
