@@ -13,7 +13,7 @@ spec:
     #@ end
 
   resources:
-  #@ "# 1. SOURCE PROVIDER"
+  #@ "# SOURCE PROVIDER"
   - name: source-provider
     params:
     - name: gitImplementation
