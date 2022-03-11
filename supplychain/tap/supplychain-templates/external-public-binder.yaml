@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterTemplate
 metadata:
-  name: rds-postgres-binder-template
+  name: external-public-binder-template
 spec:
   ytt: |
     #@ load("@ytt:data", "data")
