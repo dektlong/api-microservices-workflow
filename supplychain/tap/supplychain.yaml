@@ -8,64 +8,87 @@ metadata:
 spec:
   selector:
     app.tanzu.vmware.com/workload-type: #@ data.values.workloadType
+    #@ if data.values.addTesting:
+    apps.tanzu.vmware.com/has-tests: 'true'
+    #@ end
 
   resources:
-    - name: 1-APP-SOURCE
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: source-template
+  - name: SOURCE-PROVIDER
+    params:
+    - name: serviceAccount
+      value: default
+    - name: gitImplementation
+      value: go-git
+    templateRef:
+      kind: ClusterSourceTemplate
+      name: source-template
+  #@ if data.values.addTesting:
+  - name: SOURCE-TESTER
+    sources:
+    - name: source
+      resource: source-provider
+    templateRef:
+      kind: ClusterSourceTemplate
+      name: testing-pipeline
+  #@ end
+  - name: SOURCE-SCANNER
+    sources:
+    - name: source
+      resource: source-tester
+    templateRef:
+      kind: ClusterSourceTemplate
+      name: source-scanner-template
+  - name: IMAGE-BUILDER
+    params:
+    - name: serviceAccount
+      value: default
+    - name: clusterBuilder
+      value: default
+    sources:
+    - name: source
+      resource: source-scanner
+    templateRef:
+      kind: ClusterImageTemplate
+      name: kpack-template
+#@ if data.values.scanScope == "srcImg":   
+  - name: IMAGE-SCANNER
+    images:
+    - name: image
+      resource: image-builder
+    templateRef:
+      kind: ClusterImageTemplate
+      name: image-scanner-template
+  #@
+  - name: CONFIG-PROVIDER
+    images:
+    - name: image
+      resource: image-scanner
+    name: config-provider
+    params:
+    - name: serviceAccount
+      value: default
+    templateRef:
+      kind: ClusterConfigTemplate
+      name: convention-template
+  - name: APP-CONFIG
+    configs:
+    - name: config
+      resource: config-provider
+    name: app-config
+    templateRef:
+      kind: ClusterConfigTemplate
+      name: config-template
+  - name: CONFIG-WRITER
+    configs:
+    - name: config
+      resource: app-config
+    params:
+    - name: serviceAccount
+      value: default
+    templateRef:
+      kind: ClusterTemplate
+      name: config-writer-template
 
-    - name: 1-APP-SOURCE-SCAN
-      templateRef:
-        kind: ClusterSourceTemplate
-        name: source-scanning-template
-      sources:
-        - resource: 1-app-source
-          name: source
-          
-    
-    - name: 2-APP-IMAGE
-      templateRef:
-        kind: ClusterImageTemplate
-        name: image-builder-template
-      sources:
-        - resource: 2-app-source-scan
-          name: scanned-source
-          
-          
-#@ if data.values.scanScope == "srcImg":    
-    - name: 2-APP-IMAGE-SCAN
-      templateRef:
-        kind: ClusterImageTemplate
-        name: image-scanning-template
-      images:
-        - component: 2-app-image
-          name: image
-          
-          
-#@ end
-
-    - name: 3-APP-CONFIG
-      templateRef:
-        kind: ClusterConfigTemplate
-        name: convention-template
-      images:
-      #@ if data.values.scanScope == "srcImg":
-        - component: 2-app-image-scan
-          name: scanned-image
-      #@ else:
-        - component: 2-app-image
-          name: image
-      #@ end     
-    
-    - name: 4-APP-DEPLOY
-      templateRef:
-        kind: ClusterTemplate
-        name: app-deploy-cnr-template
-      configs:
-        - resource: 3-app-config
-          name: app-config
-          
       
 #@ if "rdsPostgres" in data.values.serviceBinding:
     - name: 5-BIND-RDS-POSTGRESSQL
@@ -156,3 +179,15 @@ spec:
         - resource: 3-app-config
           name: app-config
 #@ end
+
+  params:
+  - default: main
+    name: gitops_branch
+  - default: supplychain
+    name: gitops_user_name
+  - default: supplychain
+    name: gitops_user_email
+  - default: supplychain@cluster.local
+    name: gitops_commit_message
+  - default: ''
+    name: gitops_ssh_secret
