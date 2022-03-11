@@ -39,7 +39,7 @@ spec:
     templateRef:
       kind: ClusterSourceTemplate
       name: source-scanner-template
-  #@
+  #@ end
   - name: IMAGE-BUILDER
     params:
     - name: serviceAccount
