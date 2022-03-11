@@ -60,7 +60,7 @@ accelerator:
         value: true
       choices:
       - value: app
-          text: Application source repo (as defined in the workload.yml)
+        text: Application source repo (as defined in the workload.yml)
       - value: central
         text: UAT testing framework
       - value: external
