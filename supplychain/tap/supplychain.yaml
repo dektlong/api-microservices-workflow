@@ -23,8 +23,8 @@ spec:
       name: source-template
   #@ if data.values.addTesting:
    #@ "# SOURCE TESTER"
-  - name: 
-    sources: source-tester
+  - name: source-tester
+    sources: 
     - name: source
       resource: source-provider
     templateRef:
