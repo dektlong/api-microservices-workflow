@@ -91,7 +91,7 @@ spec:
       name: external-private-binder-template
   #@ end    
   #@ if "externalPublic" in data.values.serviceBinding:
-  #@ "# EXTERNAL PUBLIC BINDING
+  #@ "# EXTERNAL PUBLIC BINDING"
   - name: external-public-binding
     configs:
      - name: config
