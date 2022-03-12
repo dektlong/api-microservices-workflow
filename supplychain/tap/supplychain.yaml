@@ -13,8 +13,7 @@ spec:
     #@ end
 
   resources:
-  #@ "# SOURCE PROVIDER"
-  - name: source-provider
+  - name: SOURCE-PROVIDER
     params:
     - name: gitImplementation
       value: go-git
@@ -22,8 +21,7 @@ spec:
       kind: ClusterSourceTemplate
       name: source-template
   #@ if data.values.addTesting:
-   #@ "# SOURCE TESTER"
-  - name: source-tester
+  - name: SOURCE-TESTER
     sources: 
     - name: source
       resource: source-provider
@@ -32,8 +30,7 @@ spec:
       name: testing-pipeline
   #@ end
   #@ if data.values.addScanning:
-  #@ "# SOURCE SCANNER"
-  - name: source-scanner
+  - name: SOURCE-SCANNER
     sources:
     - name: source
       resource: source-tester
@@ -41,8 +38,7 @@ spec:
       kind: ClusterSourceTemplate
       name: source-scanner-template
   #@ end
-  #@ "# IMAGE BUILDER"
-  - name: image-builder
+  - name: IMAGE-BUILDER
     params:
     - name: clusterBuilder
       value: default
@@ -53,8 +49,7 @@ spec:
       kind: ClusterImageTemplate
       name: kpack-template
   #@ if data.values.addScanning:
-  #@ "# IMAGE SCANNER"
-  - name: image-scanner
+  - name: IMAGE-SCANNER
     images:
     - name: image
       resource: image-builder
@@ -62,8 +57,7 @@ spec:
       kind: ClusterImageTemplate
       name: image-scanner-template
   #@ end
-  #@ "# CONVENTIONS"
-  - name: config-provider
+  - name: POD-CONVENTION
     images: 
     - name: image
       resource: image-scanner
@@ -71,8 +65,7 @@ spec:
       kind: ClusterConfigTemplate
       name: convention-template
    #@ if "tap" in data.values.serviceBinding:
-   #@ "# TAP SERVICE CLAIMS BINDING"
-  - name: tap-service-claims-binding
+  - name: BINDING-TAP-CLUSTER-SERVICES
     configs:
      - name: config
        resource: config-provider
@@ -81,8 +74,7 @@ spec:
       name: service-claims-binder-template
   #@ end    
    #@ if "externalPrivate" in data.values.serviceBinding:
-     #@ "# EXTERNAL PRIVATE BINDING"
-  - name: external-private-binding
+  - name: BINDING-EXTERNAL-PRIVATE-SERVICES
     configs:
      - name: config
        resource: config-provider
@@ -91,8 +83,7 @@ spec:
       name: external-private-binder-template
   #@ end    
   #@ if "externalPublic" in data.values.serviceBinding:
-  #@ "# EXTERNAL PUBLIC BINDING"
-  - name: external-public-binding
+  - name: BINDING-EXTERNAL-PUBLIC-SERVICES
     configs:
      - name: config
        resource: config-provider
@@ -100,8 +91,7 @@ spec:
       kind: ClusterConfigTemplate
       name: external-public-binder-template
   #@ end    
-  #@ "# CONFIG WRITER"
-  - name: config-writer
+  - name: CONFIG-WRITER
     configs:
     - name: config
       resource: app-config
