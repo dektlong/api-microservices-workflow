@@ -58,7 +58,7 @@ accelerator:
 
 #scanning phase
     - name: addScanning
-      label: Add source and image scanning
+      label: Add vulnerability scanning
       inputType: checkbox 
       defaultValue: false
       display: true
