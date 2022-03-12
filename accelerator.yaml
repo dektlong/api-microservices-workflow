@@ -231,8 +231,8 @@ accelerator:
       dataType: boolean
       
     - name: scopeTO
-      label: Scope of integration with Tanzu Observabilty
-      description: Select scope of integration with with Tanzu Observabilty (will inject TO proxy into clusters)
+      label: Scope of integration with Tanzu Observability
+      description: Select scope of integration with with Tanzu Observability (will inject TO proxy into clusters)
       inputType: checkbox
       dataType: [string]
       defaultValue:
