@@ -137,7 +137,7 @@ accelerator:
     #    - value: dev
     #      text: "Dev gateways in project's domain (team collaboration)"
     #    - value: brownfield
-    #      text: "3rd-party & legacy sytems approved for this project"
+    #      text: "3rd-party & legacy systems approved for this project"
     #    - value: public
     #      text: "Publicly accessible APIs "
 #    - name: openAPISources
