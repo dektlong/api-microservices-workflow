@@ -72,31 +72,31 @@ spec:
       name: convention-template
    #@ if "tap" in data.values.serviceBinding:
    #@ "# TAP SERVICE CLAIMS BINDING"
-   - name: tap-service-claims-binding
-     configs:
+  - name: tap-service-claims-binding
+    configs:
      - name: config
        resource: config-provider
-     templateRef:
+    templateRef:
       kind: ClusterConfigTemplate
       name: service-claims-binder-template
   #@ end    
    #@ if "externalPrivate" in data.values.serviceBinding:
      #@ "# EXTERNAL PRIVATE BINDING"
-   - name: external-private-binding
-     configs:
+  - name: external-private-binding
+    configs:
      - name: config
        resource: config-provider
-     templateRef:
+    templateRef:
       kind: ClusterConfigTemplate
       name: external-private-binder-template
   #@ end    
   #@ if "externalPublic" in data.values.serviceBinding:
   #@ "# EXTERNAL PUBLIC BINDING
-   - name: external-public-binding
-     configs:
+  - name: external-public-binding
+    configs:
      - name: config
        resource: config-provider
-     templateRef:
+    templateRef:
       kind: ClusterConfigTemplate
       name: external-public-binder-template
   #@ end    
