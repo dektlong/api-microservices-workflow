@@ -49,7 +49,7 @@ accelerator:
 #workloads repos
     #- name: gitRepos
     #  label: Workloads FQDN repos 
-    #  description: A seprate git repo for every workload in this supply chain type
+    #  description: A separate git repo for every workload in this supply chain type
     #  inputType: multi-text
     #  required: false
     #  dataType: [string]
