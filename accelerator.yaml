@@ -24,7 +24,7 @@ accelerator:
     
  #testing phase 
     - name: addTesting
-      label: Add functionality testing
+      label: Add functional testing
       inputType: checkbox 
       defaultValue: false
       display: true
@@ -32,7 +32,7 @@ accelerator:
     
     - name: testSource
       label: Testing logic source
-      description: Select the source provider fo the testing logic
+      description: Select the source provider of the testing logic
       inputType: select
       defaultValue: app
       dependsOn:
@@ -112,7 +112,7 @@ accelerator:
         - value: externalPrivate
           text: Data services running on-prem on non TAP clusters (requires a custom template)
         - value: externalPublic
-          text: Data services running on pubblic clouds (requires a custom template)
+          text: Data services running on public clouds (requires a custom template)
   
 #API-grid configs
    
@@ -164,9 +164,9 @@ accelerator:
         - value: localdev
           text: "Local development (1 GW, local access only)"
         - value: teamdev
-          text: "Team developemnt (2 GWs, team access)"
+          text: "Team development (2 GWs, team access)"
         - value: integration
-          text: "Integration (3 GWs, brownfiled access, global rate-limits)"
+          text: "Integration (3 GWs, brownfield access, global rate-limits)"
         - value: production
           text: "Production (4 GWs, brownfield access, global rate-limits and SSO)"
         - value: external
@@ -223,8 +223,8 @@ accelerator:
 #metrics integrations
     
     - name: addObservability
-      label: Add Platform Observabilty   
-      description: Add observability to platoform components
+      label: Add Platform Observability   
+      description: Add observability to platform components
       inputType: checkbox 
       defaultValue: false
       display: true
