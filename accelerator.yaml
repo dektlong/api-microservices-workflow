@@ -90,30 +90,24 @@ accelerator:
         text: Unknown Severity
                
 #data services binding
-    - name: addBinding
-      label: Add data services binding
-      description: Add a data services binding phase
+    - name: addTapBinding
+      label: Bind to data services running on TAP clusters (via Services Toolkit)
       inputType: checkbox 
       defaultValue: false
       dataType: boolean
-    - name: serviceBinding
-      label: Service binding scope
-      description: Select the scope of the service binding phase
-      inputType: checkbox
-      dataType: [string]
+    - name: addExternalBinding
+      label: Bind to external data service (e.g. public clouds)
+      inputType: checkbox 
+      defaultValue: false
+      dataType: boolean
+    - name: externalBindingTemplate
+      label: Name of binding template (required to be applied to the TAP cluster)
       defaultValue: 
-        - tap
+        - mytemplate
       dependsOn:
-        name: addBinding
+        name: addExternalBinding
         value: true
-      choices:
-        - value: tap
-          text: Data services running on TAP clusters (via Services Toolkit)
-        - value: externalPrivate
-          text: Data services running on-prem on non TAP clusters (requires a custom template)
-        - value: externalPublic
-          text: Data services running on public clouds (requires a custom template)
-  
+      
 #API-grid configs
    
    #- name: addAPIGrid
