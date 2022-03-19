@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterConfigTemplate
 metadata:
-  name: service-claims-binder-template
+  name: binder-tap
 spec:
   configPath: ".data"
   ytt: |
