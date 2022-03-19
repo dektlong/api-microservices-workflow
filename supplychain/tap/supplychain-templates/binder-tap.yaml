@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterConfigTemplate
 metadata:
-  name: binder-tap
+  name: tap-binder
 spec:
   configPath: ".data"
   ytt: |
