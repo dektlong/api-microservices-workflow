@@ -71,7 +71,7 @@ spec:
        resource: config-provider
     templateRef:
       kind: ClusterConfigTemplate
-      name: service-claims-binder-template
+      name: tap-binder
   #@ end    
    #@ if data.values.addExternalBinding:
   - name: BINDING-EXTERNAL-SERVICES
