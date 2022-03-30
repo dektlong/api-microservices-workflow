@@ -11,7 +11,7 @@ accelerator:
  # workload type
     - name: workloadType
       label: Workload type
-      description: Select the workload type for this supply chain
+      #description: Select the workload type for this supply chain
       inputType: select
       defaultValue: web
       choices:
@@ -32,7 +32,7 @@ accelerator:
     
     - name: testSource
       label: Testing logic source
-      description: Select the source provider of the testing logic
+      #description: Select the source provider of the testing logic
       inputType: select
       defaultValue: app
       dependsOn:
@@ -66,7 +66,7 @@ accelerator:
       
     - name: scanPolicy
       label: Violating severities
-      description: Select what severities will result in scanning failure 
+     # description: Select what severities will result in scanning failure 
       inputType: checkbox
       dependsOn:
         name: addScanning
@@ -146,8 +146,8 @@ accelerator:
     #  defaultValue:
     #    - scg-openapi.apps.dekt.io/openapi
     - name: gwSLA
-      label: API boundaries / domains 
-      description: Define micro-GW HA, global filters and API access scope
+      label: API access boundaries and SLA
+      #description: Define micro-GW HA, global filters and API access scope
       inputType: select
       dataType: string
       defaultValue: localdev
@@ -213,12 +213,19 @@ accelerator:
       #  name: addAPIGrid
       #  value: true
     #  defaultValue: false
-    
+
+#disable scale to zero    
+    - name: disableScale2Zero
+      label: Disable scale to zero  
+      inputType: checkbox 
+      defaultValue: false
+      display: true
+      dataType: boolean
+
 #metrics integrations
     
     - name: addObservability
       label: Add Platform Observability   
-      description: Add observability to platform components
       inputType: checkbox 
       defaultValue: false
       display: true
