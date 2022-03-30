@@ -225,7 +225,7 @@ accelerator:
 #metrics integrations
     
     - name: addObservability
-      label: Add Platform Observability   
+      label: Add platform observability   
       inputType: checkbox 
       defaultValue: false
       display: true
