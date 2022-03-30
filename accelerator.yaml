@@ -313,6 +313,7 @@ engine:
   merge:
     #supplychain
     - includes: [ "supplychain/tap/**" ]
+      excludes: [ "supplychain/tap/supplychain-templates/disable-scale2zero.yaml" ]
       #condition: "#supplychain == 'tap'"
       chain:
         - type: YTT
@@ -344,6 +345,9 @@ engine:
     #  chain:
     #    - type: YTT
     
+    #disable-scale-zero
+    - includes: [ "supplychain/tap/supplychain-templates/disable-scale2zero.yaml" ]
+      condition: "#disableScale2Zero"
     #api-grid
     - includes: [ "api-grid/k8s/**" ]
       #condition: "#supplychain != 'cf'"
