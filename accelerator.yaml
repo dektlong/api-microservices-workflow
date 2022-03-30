@@ -213,14 +213,6 @@ accelerator:
       #  value: true
     #  defaultValue: false
 
-#disable scale to zero    
-    - name: disableScale2Zero
-      label: Disable scale to zero  
-      inputType: checkbox 
-      defaultValue: false
-      display: true
-      dataType: boolean
-
 #metrics integrations
     
     - name: addObservability
