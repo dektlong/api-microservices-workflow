@@ -102,8 +102,7 @@ accelerator:
       dataType: boolean
     - name: externalBindingTemplate
       label: Name of binding template (required to be applied to the TAP cluster)
-      defaultValue: 
-        - mytemplate
+      defaultValue: "my template"
       dependsOn:
         name: addExternalBinding
         value: true
