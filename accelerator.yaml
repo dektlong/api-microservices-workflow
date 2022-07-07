@@ -17,7 +17,7 @@ accelerator:
       choices:
       - value: web
         text: Web frontend
-      - value: web-backend
+      - value: dekt-backend
         text: Web backend 
       - value: event-topic
         text: Event topic
