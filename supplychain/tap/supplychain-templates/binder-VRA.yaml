@@ -7,7 +7,13 @@ spec:
     #@ load("@ytt:data", "data")
     #@ load("@ytt:yaml", "yaml")
     
-    !@ Binding to Data Service managed by VRA
+    !@ Binding to VRA managed PostgresSQL instance using Crossplane
+    !@
+    !@ Assumptions
+    !@ 1. Crossplane installed
+    !@ 2. VRA ProviderConfig
+    !@ 3. PostgreSQLInstance instance provisioned
+    !@
     apiVersion: apiextensions.crossplane.io/v1
     kind: Composition
     metadata:
