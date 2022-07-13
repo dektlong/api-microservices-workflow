@@ -8,15 +8,13 @@ spec:
     #@ load("@ytt:yaml", "yaml")
     
     !@
-    !@ Binding to VRA managed PostgresSQL instance using Crossplane
+    !@ Binding to VRA managed PostgresSQL instance using VRA Service Broker
     !@
-    !@ Assumptions
-    !@ 1. Crossplane installed
-    !@ 2. VRA ProviderConfig
-    !@ 3. PostgreSQLInstance instance provisioned
+    !@ 1. VRA Service Broker configured
+    !@ 2. PostgreSQLInstance instance mangaed by VRA
     !@
-    apiVersion: apiextensions.crossplane.io/v1
-    kind: Composition
+    apiVersion: api.mgmt.cloud.vmware.com/v1
+    kind: ServiceBroker   
     metadata:
       name: dekt-vra-postgres
       labels:
@@ -41,7 +39,7 @@ spec:
                 engineVersion: "13"
               writeConnectionSecretToRef:
                 namespace: crossplane-system
-                name: rds-postgres-creds
+                name: vra-postgres-creds
           patches:
             - fromFieldPath: "metadata.uid"
               toFieldPath: "spec.writeConnectionSecretToRef.name"
