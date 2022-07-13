@@ -96,7 +96,7 @@ accelerator:
       defaultValue: false
       dataType: boolean
     - name: addExternalBinding
-      label: Bind to external data service (e.g. public clouds)
+      label: Bind to data services hosted outside of TAP
       inputType: checkbox 
       defaultValue: false
       dataType: boolean
