@@ -7,7 +7,6 @@ spec:
     #@ load("@ytt:data", "data")
     #@ load("@ytt:yaml", "yaml")
     
-    !@
     !@ Binding to VRA managed PostgresSQL instance using VRA Service Broker
     !@
     !@ 1. VRA Service Broker configured
@@ -20,37 +19,4 @@ spec:
       labels:
         provider: dekt-provider-vra
         vpc: dekt-vpc-data-services
-    spec:
-      writeConnectionSecretsToNamespace: crossplane-system
-      compositeTypeRef:
-        apiVersion: database.example.org/v1alpha1
-        kind: CompositePostgreSQLInstance
-      resources:
-        - name: data.values.workload.metadata.dbName
-          base:
-            apiVersion: database.vra.crossplane.io/v1beta1
-            kind: RDSInstance
-            spec:
-              providerConfigRef:
-                name: dekt-provider-vra
-              forProvider:
-                dbInstanceClass: db.t3.medium
-                engine: postgres
-                engineVersion: "13"
-              writeConnectionSecretToRef:
-                namespace: crossplane-system
-                name: vra-postgres-creds
-          patches:
-            - fromFieldPath: "metadata.uid"
-              toFieldPath: "spec.writeConnectionSecretToRef.name"
-              transforms:
-                - type: string
-                  string:
-                    fmt: "%s-postgresql"
-            - fromFieldPath: "spec.parameters.storageGB"
-              toFieldPath: "spec.forProvider.allocatedStorage"
-          connectionDetails:
-            - fromConnectionSecretKey: username
-            - fromConnectionSecretKey: password
-            - fromConnectionSecretKey: endpoint
-            - fromConnectionSecretKey: port
+    spec: 
